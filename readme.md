@@ -1,5 +1,7 @@
 # jquery.loan-calculator.js
 
+[![Build Status](https://travis-ci.org/scrubmx/jquery.loan-calculator.svg?branch=master)](https://travis-ci.org/scrubmx/jquery.loan-calculator)
+
 ### Development Installation
 **Install dependencies**
 ```bash
@@ -39,7 +41,15 @@ $('#calculator').loanCalculator({
 
 **Attach any number of event handlers**
 ```js
-$('#loan-amount, #loan-duration, #credit-score').change(function(){
-    $('#calculator').loanCalculator();
+$('#loan-amount, #loan-duration, #credit-score').change(function() {
+  updateCalculator();
 });
+
+function updateCalculator() {
+  $('#widget').loanCalculator({
+    loanAmount: $('#loan-amount').val(),
+    loanDuration: $('#loan-duration').val(),
+    creditScore: $('#credit-score').val()
+  });
+}
 ```
