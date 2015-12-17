@@ -1,6 +1,3 @@
 language: node_js
 node_js:
-  - 0.8
-script: node_modules/karma/bin/karma start karma.conf.js --single-run
-before_script:
-  - npm install
+  - "0.10"
