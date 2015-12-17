@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/scrubmx/jquery.loan-calculator.svg?branch=master)](https://travis-ci.org/scrubmx/jquery.loan-calculator)
 
-### Development Installation
+## Development Installation
 **Install dependencies**
 ```bash
 node install
@@ -13,35 +13,25 @@ node install
 karma start
 ```
 
-### Basic Instructions
-**Basic example.html**
+## Basic Example
+**Create basic html with the following structure:**
 ```html
-<div id="calculator">
-    <input id="loan-amount">
-    <input id="loan-duration">
-    <input id="credit-score">
-    <p id="loan-total"></p>
-    <p id="monthly-rate"></p>
+<div id="widget">
+    <input type="range" id="loan-amount" min="50000" max="250000" step="1000">
+    <input type="range" id="loan-duration" min="12" max="36" step="1">
+    <input id="credit-score" value="A">
+    <h4 id="loan-total"></h4>
+    <h4 id="monthly-rate"></h4>
 </div>
-```
-
-**Create new instance on a `#calculator` element**
-```js
-$('#calculator').loanCalculator({
-  // default values for a loan
-  loanAmount: 10000,
-  loanDuration: 24,
-  creditScore: 'A',
-
-  // change the template selectors
-  loanTotalSelector: '#loan-total',
-  monthlyRateSelector: '#monthly-rate'
-});
 ```
 
 **Attach any number of event handlers**
 ```js
 $('#loan-amount, #loan-duration, #credit-score').change(function() {
+  updateCalculator();
+});
+
+$('#loan-amount, #loan-duration').mousemove(function () {
   updateCalculator();
 });
 
@@ -53,3 +43,13 @@ function updateCalculator() {
   });
 }
 ```
+
+
+## Todo
+
+* Document the public API.
+* Move the event handlers inside the plugin
+
+### License
+
+jQuery Loan Calculator is open-sourced software licensed under the [MIT license](https://github.com/scrubmx/jquery.loan-calculator/blob/master/licence)
