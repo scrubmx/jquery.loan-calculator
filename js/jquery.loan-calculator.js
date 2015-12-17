@@ -3,7 +3,7 @@
   "use strict";
 
   /**
-   * [CREDIT_RATES description]
+   * Table of the credit rates for every calification.
    * @type {Object}
    */
   var CREDIT_RATES = {
