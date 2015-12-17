@@ -17,13 +17,13 @@
   };
 
   /**
-   * [INVESTMENT description]
+   * The minimum allowed for a loan.
    * @type {Number}
    */
-  var MINIMUM_INVESTMENT = 50000;
+  var MINIMUM_LOAN = 50000;
 
   /**
-   * [DURATION description]
+   * The minimum duration in months.
    * @type {Number}
    */
   var MINIMUM_DURATION = 12;
@@ -32,7 +32,7 @@
    * Default options for the plugin.
    * @type {Object}
    */
-  var defaults = { 
+  var defaults = {
     // default values for a loan
     loanAmount: 50000,
     loanDuration: 12,
@@ -41,11 +41,11 @@
     // change the template selectors
     loanTotalSelector   : '#loan-total',
     monthlyRateSelector : '#monthly-rate',
-    creditScoreSelector : '#credit-score',       // missing test
+    creditScoreSelector : '#credit-score',
 
-    selectedAmount      : '#selected-amount',    // missing test
-    selectedDuration    : '#selected-duration',  // missing test
-    selectedScore       : '#selected-score'      // missing test
+    selectedAmount      : '#selected-amount',
+    selectedDuration    : '#selected-duration',
+    selectedScore       : '#selected-score'
   };
 
   /**
@@ -64,7 +64,7 @@
   $.extend(Plugin.prototype, {
 
     /**
-     * [init description]
+     * Validates the data and shows the results.
      * @return {void}
      */
     init: function() {
@@ -73,7 +73,7 @@
     },
 
     /**
-     * [validate description]
+     * Sanitize and validate the user input data.
      * @return {void}
      */
     validate: function() {
@@ -91,7 +91,7 @@
         throw new Error('The value provided for [creditScore] is not a valid.');
       }
 
-      if (this.settings.loanAmount < MINIMUM_INVESTMENT) {
+      if (this.settings.loanAmount < MINIMUM_LOAN) {
         throw new Error('The value provided for [loanAmount] must me at least 10000.');
       }
 
@@ -101,39 +101,39 @@
     },
 
     /**
-     * [getCreditScoreRate description]
-     * @return {Number} [description]
+     * Get the credit rate corresponding to the provided credit score.
+     * @return {Number}
      */
     getCreditScoreRate: function() {
       return CREDIT_RATES[ this.settings.creditScore ];
     },
 
     /**
-     * [getInterestTotal description]
-     * @return {Number} [description]
+     * Calculates the total amount of interest.
+     * @return {Number}
      */
     getInterestTotal: function() {
       return this.settings.loanAmount * (this.getCreditScoreRate()/100);
     },
 
     /**
-     * [getLoanTotal description]
-     * @return {Number} [description]
+     * Calculates the total cost of the loan.
+     * @return {Number}
      */
     getLoanTotal: function() {
       return this.settings.loanAmount + this.getInterestTotal();
     },
 
     /**
-     * [getMonthlyRate description]
-     * @return {Number} [description]
+     * Calculate the monthly rate for the provided loan duration.
+     * @return {Number}
      */
     getMonthlyRate: function() {
       return this.getLoanTotal() / this.settings.loanDuration;
     },
 
     /**
-     * [render description]
+     * Show the results in the DOM.
      * @return {void}
      */
     render: function() {
@@ -159,18 +159,18 @@
     },
 
     /**
-     * [toMoney description]
-     * @param  {Number} numeric [description]
-     * @return {String}         [description]
+     * Convert numeric format to money format.
+     * @param  {Number} numeric
+     * @return {String}
      */
     toMoney: function(numeric) {
       return '$' + numeric.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
     },
 
     /**
-     * [toNumeric description]
-     * @param  {[type]} value [description]
-     * @return {[type]}       [description]
+     * Convert from money format to numeric format.
+     * @param  {[type]} value
+     * @return {[type]}
      */
     toNumeric: function(value) {
       return value.toString().replace(/[^0-9\.]+/g, '');
