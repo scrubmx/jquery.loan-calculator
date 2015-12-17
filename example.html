@@ -14,18 +14,18 @@
           <div id="widget">
 
             <div class="form-group">
-              <label for="loan-amount">Cantidad: </label> <span id="selected-amount"></span>
+              <label for="loan-amount">Amount: </label> <span id="selected-amount"></span>
               <input type="range" id="loan-amount" min="50000" max="250000" step="1000" value="50000">
             </div>
 
             <div class="form-group">
-              <label for="loan-duration">Periodo <small>(meses)</small>:</label> <span id="selected-duration"></span>
+              <label for="loan-duration">Months:</label> <span id="selected-duration"></span>
               <input type="range" id="loan-duration" min="12" max="36" step="1" value="12">
             </div>
 
             <div class="form-group">
-              <label for="credit-score">Calificacion crediticia:</label> <span id="selected-score"></span>
-              <select id="credit-score">
+              <label for="credit-score">Credit Score:</label> <span id="selected-score"></span>
+              <select id="credit-score" class="form-control">
                 <option value="A" selected>A</option>
                 <option value="B">B</option>
                 <option value="C">C</option>
@@ -48,7 +48,7 @@
     <script src="js/jquery.loan-calculator.js"></script>
     <script>
       (function($){
-        
+
         $('#loan-amount, #loan-duration').mousemove(function () {
           updateCalculator();
         });
