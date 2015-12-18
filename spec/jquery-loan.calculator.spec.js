@@ -14,7 +14,7 @@ describe('jQuery LoanCalculator Plugin', function() {
 
   it('can initialize with the default values', function() {
     $('#widget').loanCalculator();
-    expect($('#loan-total').html()).toBe('$52,660.00');
+    expect($('#loan-total')).toHaveText('$52,660.00');
   });
 
 
@@ -25,17 +25,14 @@ describe('jQuery LoanCalculator Plugin', function() {
         creditScore  : 'A'
       });
 
-      var loanTotal = $('#loan-total').html();
-      var monthlyRate = $('#monthly-rate').html();
-
-      expect(loanTotal).toBe('$52,660.00');
-      expect(monthlyRate).toBe('$1,462.78');
+      expect($('#loan-total')).toHaveText('$52,660.00');
+      expect($('#monthly-rate')).toHaveText('$1,462.78');
   });
 
 
   it('throws exception when invalid loanAmount value is supplied', function() {
-    expect(function() { 
-      $('#widget').loanCalculator({ loanAmount: 150 }) 
+    expect(function() {
+      $('#widget').loanCalculator({ loanAmount: 150 })
     })
     .toThrow(new Error(
       'The value provided for [loanAmount] must me at least 10000.'
@@ -44,8 +41,8 @@ describe('jQuery LoanCalculator Plugin', function() {
 
 
   it('throws exception when invalid loanDuration value is supplied', function() {
-    expect(function() { 
-      $('#widget').loanCalculator({ loanDuration: 2 }) 
+    expect(function() {
+      $('#widget').loanCalculator({ loanDuration: 2 })
     })
     .toThrow(new Error(
       'The value provided for [loanDuration] must me at least 6.'
@@ -54,8 +51,8 @@ describe('jQuery LoanCalculator Plugin', function() {
 
 
   it('throws exception when invalid creditScore value is supplied', function() {
-    expect(function() { 
-      $('#widget').loanCalculator({ creditScore: 'INVALID' }) 
+    expect(function() {
+      $('#widget').loanCalculator({ creditScore: 'INVALID' })
     })
     .toThrow(new Error(
       'The value provided for [creditScore] is not a valid.'
@@ -74,9 +71,9 @@ describe('jQuery LoanCalculator Plugin', function() {
     $('#widget2').loanCalculator({ loanAmount: 55000.50, loanTotalSelector: '#loan-total2' });
     $('#widget3').loanCalculator({ loanAmount: '133000', loanTotalSelector: '#loan-total3' });
 
-    expect($('#loan-total1').html()).toBe('$105,320.00');
-    expect($('#loan-total2').html()).toBe('$57,926.53');
-    expect($('#loan-total3').html()).toBe('$140,075.60');
+    expect($('#loan-total1')).toHaveText('$105,320.00');
+    expect($('#loan-total2')).toHaveText('$57,926.53');
+    expect($('#loan-total3')).toHaveText('$140,075.60');
   });
 
 
@@ -89,8 +86,8 @@ describe('jQuery LoanCalculator Plugin', function() {
     $('#widget1').loanCalculator({ loanAmount: '50,000', loanTotalSelector: '#loan-total1' });
     $('#widget2').loanCalculator({ loanAmount: '$133,100.25', loanTotalSelector: '#loan-total2' });
 
-    expect($('#loan-total1').html()).toBe('$52,660.00');
-    expect($('#loan-total2').html()).toBe('$140,181.18');
+    expect($('#loan-total1')).toHaveText('$52,660.00');
+    expect($('#loan-total2')).toHaveText('$140,181.18');
   });
 
 
@@ -99,6 +96,7 @@ describe('jQuery LoanCalculator Plugin', function() {
       "<div id='widget'>" +
         "<p id='total-container'></p>" +
         "<p id='monthly-rate-container'></p>" +
+        "<p id='selected-credit-score'></p>" +
       "</div>"
     );
 
@@ -109,11 +107,8 @@ describe('jQuery LoanCalculator Plugin', function() {
       monthlyRateSelector: '#monthly-rate-container'
     });
 
-    var loanTotal = $('#total-container').html();
-    var monthlyRate = $('#monthly-rate-container').html();
-
-    expect(loanTotal).toBe('$126,384.00');
-    expect(monthlyRate).toBe('$10,532.00');
+    expect($('#total-container')).toHaveText('$126,384.00');
+    expect($('#monthly-rate-container')).toHaveText('$10,532.00');
   });
 
 
@@ -121,11 +116,8 @@ describe('jQuery LoanCalculator Plugin', function() {
     $('#widget').loanCalculator({ loanAmount: 50000 });
     $('#widget').loanCalculator({ loanAmount: 150000 });
 
-    var loanTotal = $('#loan-total').html();
-    var monthlyRate = $('#monthly-rate').html();
-
-    expect(loanTotal).toBe('$157,980.00');
-    expect(monthlyRate).toBe('$13,165.00');
+    expect($('#loan-total')).toHaveText('$157,980.00');
+    expect($('#monthly-rate')).toHaveText('$13,165.00');
   });
 
 
@@ -135,11 +127,9 @@ describe('jQuery LoanCalculator Plugin', function() {
                     .loanCalculator({ loanAmount: '50000' })
                     .attr('test', 'testing');
 
-    var loanTotal = $('#loan-total').html();
-
+    expect($('#loan-total')).toHaveText('$52,660.00');
     expect(widget).toHaveClass('active');
     expect(widget).toHaveAttr('test');
-    expect(loanTotal).toBe('$52,660.00');
   });
 
 
