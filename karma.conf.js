@@ -16,6 +16,7 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
       'node_modules/jquery/dist/jquery.min.js',
+      'spec/support/phantom_bind_polyfill.js',
       'js/**/*.js',
       'spec/**/*.js',
       {
