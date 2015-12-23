@@ -1,11 +1,29 @@
-<!doctype html>
-<html>
-	<body>
-		<div class="container">
-			<div id="widget">
-				<p id="loan-total"></p>
-				<p id="monthly-rate"></p>
-			</div>
-		</div>
-	</body>
-</html>
+<div id="widget">
+
+    <div class="form-group">
+      <label for="loan-amount">Amount: </label> <span id="selected-amount"></span>
+      <input type="range" id="loan-amount" min="50000" max="250000" step="1000" value="50000">
+    </div>
+
+    <div class="form-group">
+      <label for="loan-duration">Months:</label> <span id="selected-duration"></span>
+      <input type="range" id="loan-duration" min="12" max="36" step="1" value="12">
+    </div>
+
+    <div class="form-group">
+      <label for="credit-score">Credit Score:</label> <span id="selected-score"></span>
+      <select id="credit-score" class="form-control">
+        <option value="A" selected>A</option>
+        <option value="B">B</option>
+        <option value="C">C</option>
+        <option value="D">D</option>
+        <option value="E">E</option>
+        <option value="F">F</option>
+        <option value="G">G</option>
+      </select>
+    </div>
+
+    <h4 id="loan-total"></h4>
+    <h4 id="monthly-rate"></h4>
+
+</div>
