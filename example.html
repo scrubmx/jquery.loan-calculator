@@ -49,6 +49,8 @@
     <script>
       (function($){
 
+        $calculator = $('#widget').loanCalculator();
+
         $('#loan-amount, #loan-duration').mousemove(function () {
           updateCalculator();
         });
@@ -58,7 +60,7 @@
         });
 
         function updateCalculator() {
-          $('#widget').loanCalculator({
+          $calculator.loanCalculator('update', {
             loanAmount   : $('#loan-amount').val(),
             loanDuration : $('#loan-duration').val(),
             creditScore  : $('#credit-score').val()

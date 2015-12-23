@@ -55,12 +55,13 @@
    */
   function Plugin(element, options) {
     this.$el = $(element);
+    this._name = 'loanCalculator';
     this._defaults = defaults;
     this.settings = $.extend({}, defaults, options);
     this.init();
   }
 
-  // Avoid Plugin.prototype conflicts
+    // Avoid Plugin.prototype conflicts
   $.extend(Plugin.prototype, {
 
     /**
@@ -101,50 +102,26 @@
     },
 
     /**
-     * Get the credit rate corresponding to the provided credit score.
-     * @return {Number}
-     */
-    getCreditScoreRate: function() {
-      return CREDIT_RATES[ this.settings.creditScore ];
-    },
-
-    /**
-     * Calculates the total amount of interest.
-     * @return {Number}
-     */
-    getInterestTotal: function() {
-      return this.settings.loanAmount * (this.getCreditScoreRate()/100);
-    },
-
-    /**
-     * Calculates the total cost of the loan.
-     * @return {Number}
-     */
-    getLoanTotal: function() {
-      return this.settings.loanAmount + this.getInterestTotal();
-    },
-
-    /**
-     * Calculate the monthly rate for the provided loan duration.
-     * @return {Number}
-     */
-    getMonthlyRate: function() {
-      return this.getLoanTotal() / this.settings.loanDuration;
-    },
-
-    /**
      * Show the results in the DOM.
      * @return {void}
      */
     render: function() {
       this.$el.find(this.settings.loanTotalSelector).html(
-        this.toMoney(this.getLoanTotal())
+        this.toMoney(this._loanTotal())
       );
 
       this.$el.find(this.settings.monthlyRateSelector).html(
-        this.toMoney(this.getMonthlyRate())
+        this.toMoney(this._monthlyRate())
       );
 
+      this._displaySelectedValues();
+    },
+
+    /**
+     * Show the selected values in the DOM.
+     * @return {void}
+     */
+    _displaySelectedValues: function() {
       this.$el.find(this.settings.selectedAmount).html(
         this.toMoney(this.settings.loanAmount)
       );
@@ -159,6 +136,46 @@
     },
 
     /**
+     * Run the init method again with the provided options.
+     * @param  {Object} args
+     */
+    update: function(args) {
+      this.settings = $.extend({}, this._defaults, args);
+      this.init();
+    },
+
+    /**
+     * Get the credit rate corresponding to the provided credit score.
+     * @return {Number}
+     */
+    _interestRate: function() {
+      var interestRate = CREDIT_RATES[ this.settings.creditScore ];
+      return (interestRate / 100) / 12;
+    },
+
+    /**
+     * Calculates the total cost of the loan.
+     * @return {Number}
+     */
+    _loanTotal: function() {
+      return this._monthlyRate() * this.settings.loanDuration;
+    },
+
+    /**
+     * Calculate the monthly rate for the provided loan duration.
+     * @see https://en.wikipedia.org/wiki/Mortgage_calculator#Monthly_payment_formula
+     *
+     * @return {Number}
+     */
+    _monthlyRate: function() {
+      var r = this._interestRate();       // the interest rate
+      var P = this.settings.loanAmount;   // the amount borrowed
+      var N = this.settings.loanDuration; // the number of payments
+
+      return (P * r) / (1 - Math.pow((1 + r), -N));
+    },
+
+    /**
      * Convert numeric format to money format.
      * @param  {Number} numeric
      * @return {String}
@@ -169,8 +186,8 @@
 
     /**
      * Convert from money format to numeric format.
-     * @param  {[type]} value
-     * @return {[type]}
+     * @param  {String} value
+     * @return {Number}
      */
     toNumeric: function(value) {
       return value.toString().replace(/[^0-9\.]+/g, '');
@@ -178,10 +195,15 @@
 
   });
 
-  // wrapper around the constructor to prevent against multiple instantiations
-  $.fn.loanCalculator = function(options) {
+  $.fn.loanCalculator = function(options, args) {
     return this.each(function() {
-      new Plugin(this, options);
+      var instance = $.data(this, 'plugin_loanCalculator');
+      if (! instance) {
+        $.data(this, 'plugin_loanCalculator', new Plugin(this, options));
+      }
+      else if (options === 'update') {
+        return instance.update(args);
+      }
     });
   };
 

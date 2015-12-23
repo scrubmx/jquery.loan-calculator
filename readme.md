@@ -27,6 +27,8 @@ karma start
 
 **Attach any number of event handlers**
 ```js
+$calculator = loanCalculator();
+
 $('#loan-amount, #loan-duration, #credit-score').change(function() {
   updateCalculator();
 });
@@ -36,10 +38,10 @@ $('#loan-amount, #loan-duration').mousemove(function () {
 });
 
 function updateCalculator() {
-  $('#widget').loanCalculator({
-    loanAmount: $('#loan-amount').val(),
-    loanDuration: $('#loan-duration').val(),
-    creditScore: $('#credit-score').val()
+  $calculator.loanCalculator('update', {
+    loanAmount   : $('#loan-amount').val(),
+    loanDuration : $('#loan-duration').val(),
+    creditScore  : $('#credit-score').val()
   });
 }
 ```
