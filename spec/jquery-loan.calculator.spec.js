@@ -137,7 +137,7 @@ describe('jQuery LoanCalculator Plugin', function() {
   });
 
 
-  it('supports jquery fluent chainable syntax', function(){
+  it('supports jquery fluent chainable syntax', function() {
     $element.addClass('active')
             .loanCalculator({ loanAmount: '50000' })
             .attr('test', 'testing');
@@ -145,6 +145,16 @@ describe('jQuery LoanCalculator Plugin', function() {
     expect($loanTotal).toHaveText('$51,452.52');
     expect($element).toHaveClass('active');
     expect($element).toHaveAttr('test');
+  });
+
+
+  it('handles DOM events and recalculates the results', function() {
+    $element.loanCalculator({ loanAmount: '$120,000.00' });
+
+    $('#loan-amount').val('50000').trigger('change');
+
+    expect($loanTotal.html()).toBe('$51,452.52');
+    expect($monthlyRate.html()).toBe('$4,287.71');
   });
 
 

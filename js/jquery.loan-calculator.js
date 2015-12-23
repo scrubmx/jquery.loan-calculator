@@ -38,14 +38,19 @@
     loanDuration: 12,
     creditScore: 'A',
 
-    // change the template selectors
-    loanTotalSelector   : '#loan-total',
-    monthlyRateSelector : '#monthly-rate',
-    creditScoreSelector : '#credit-score',
+    // inputs
+    loanAmountSelector   : '#loan-amount',
+    loanDurationSelector : '#loan-duration',
+    creditScoreSelector  : '#credit-score',
 
-    selectedAmount      : '#selected-amount',
-    selectedDuration    : '#selected-duration',
-    selectedScore       : '#selected-score'
+    // display selected values
+    selectedAmount       : '#selected-amount',
+    selectedDuration     : '#selected-duration',
+    selectedScore        : '#selected-score',
+
+    // results
+    loanTotalSelector    : '#loan-total',
+    monthlyRateSelector  : '#monthly-rate'
   };
 
   /**
@@ -54,10 +59,11 @@
    * @param {Object} options
    */
   function Plugin(element, options) {
-    this.$el = $(element);
-    this._name = 'loanCalculator';
+    this.$el       = $(element);
+    this._name     = 'loanCalculator';
     this._defaults = defaults;
-    this.settings = $.extend({}, defaults, options);
+    this.settings  = $.extend({}, defaults, options);
+    this.attachListeners();
     this.init();
   }
 
@@ -74,7 +80,36 @@
     },
 
     /**
+     * Attach event listeners to the event handlers.
+     * @return {void}
+     */
+    attachListeners: function() {
+      var eventEmitters = [
+        this.settings.loanAmountSelector,
+        this.settings.loanDurationSelector,
+        this.settings.creditScoreSelector
+      ];
+
+      $(eventEmitters.join())
+        .mousemove(this.eventHandler.bind(this))
+        .change(this.eventHandler.bind(this));
+    },
+
+    /**
+     * Handle events from the DOM.
+     * @return {void}
+     */
+    eventHandler: function() {
+      this.update({
+        loanAmount   : this.$el.find(this.settings.loanAmountSelector).val(),
+        loanDuration : this.$el.find(this.settings.loanDurationSelector).val(),
+        creditScore  : this.$el.find(this.settings.creditScoreSelector).val()
+      });
+    },
+
+    /**
      * Sanitize and validate the user input data.
+     * @throws Error
      * @return {void}
      */
     validate: function() {
@@ -145,12 +180,19 @@
     },
 
     /**
-     * Get the credit rate corresponding to the provided credit score.
+     * Get the credit rate corresponding to the current credit score.
      * @return {Number}
      */
     _interestRate: function() {
-      var interestRate = CREDIT_RATES[ this.settings.creditScore ];
-      return (interestRate / 100) / 12;
+      return CREDIT_RATES[ this.settings.creditScore ] / 100;
+    },
+
+    /**
+     * Get the monhtly interest rate for the current credit score.
+     * @return {Number}
+     */
+    _monthlyInterestRate: function() {
+      return this._interestRate() / 12;
     },
 
     /**
@@ -162,17 +204,17 @@
     },
 
     /**
-     * Calculate the monthly rate for the provided loan duration.
-     * @see https://en.wikipedia.org/wiki/Mortgage_calculator#Monthly_payment_formula
+     * Calculate the monthly amortized loan payments.
+     * @see https://en.wikipedia.org/wiki/Compound_interest#Monthly_amortized_loan_or_mortgage_payments
      *
      * @return {Number}
      */
     _monthlyRate: function() {
-      var r = this._interestRate();       // the interest rate
-      var P = this.settings.loanAmount;   // the amount borrowed
-      var N = this.settings.loanDuration; // the number of payments
+      var i = this._monthlyInterestRate(); // interest rate
+      var L = this.settings.loanAmount;    // amount borrowed
+      var n = this.settings.loanDuration;  // number of payments
 
-      return (P * r) / (1 - Math.pow((1 + r), -N));
+      return (L * i) / (1 - Math.pow(1 + i, -n));
     },
 
     /**

@@ -49,23 +49,7 @@
     <script>
       (function($){
 
-        $calculator = $('#widget').loanCalculator();
-
-        $('#loan-amount, #loan-duration').mousemove(function () {
-          updateCalculator();
-        });
-
-        $('#loan-amount, #loan-duration, #credit-score').change(function() {
-          updateCalculator();
-        });
-
-        function updateCalculator() {
-          $calculator.loanCalculator('update', {
-            loanAmount   : $('#loan-amount').val(),
-            loanDuration : $('#loan-duration').val(),
-            creditScore  : $('#credit-score').val()
-          });
-        }
+        $('#widget').loanCalculator();
 
       })(jQuery);
     </script>

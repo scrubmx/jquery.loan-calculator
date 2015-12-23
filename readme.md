@@ -25,32 +25,61 @@ karma start
 </div>
 ```
 
-**Attach any number of event handlers**
+**Create new instance**
 ```js
-$calculator = loanCalculator();
+var $calculator = $('#widget').loanCalculator();
+```
 
-$('#loan-amount, #loan-duration, #credit-score').change(function() {
-  updateCalculator();
-});
 
-$('#loan-amount, #loan-duration').mousemove(function () {
-  updateCalculator();
-});
+* The plugin handles all the `mousemove` and `change` jQuery events.
+* If you need to attach other events you can call the `update` method like so:
+```js
+$('#selector').on('myEvent', function(){
 
-function updateCalculator() {
   $calculator.loanCalculator('update', {
     loanAmount   : $('#loan-amount').val(),
     loanDuration : $('#loan-duration').val(),
     creditScore  : $('#credit-score').val()
   });
-}
+
+});
+```
+
+## Options
+Default values for all the posible options:
+```js
+$('#widget').loanCalculator({
+    // default values for a loan
+    loanAmount           : 50000,
+    loanDuration         : 12,
+    creditScore          : 'A',
+
+    // inputs
+    loanAmountSelector   : '#loan-amount',
+    loanDurationSelector : '#loan-duration',
+    creditScoreSelector  : '#credit-score',
+
+    // display selected values
+    selectedAmount       : '#selected-amount',
+    selectedDuration     : '#selected-duration',
+    selectedScore        : '#selected-score',
+
+    // show the results
+    loanTotalSelector    : '#loan-total',
+    monthlyRateSelector  : '#monthly-rate'
+});
 ```
 
 
 ## Todo
 
-* Document the public API.
-* Move the event handlers inside the plugin
+* Document the public API
+* Document all the posible option arguments
+* Accept the following as options:
+  * creditRates (JSON or URL)
+  * minimumLoan 
+  * minimumDuration
+  * valueAddedTax
 
 ### License
 
