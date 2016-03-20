@@ -20,13 +20,13 @@
    * The minimum allowed for a loan.
    * @type {Number}
    */
-  var MINIMUM_LOAN = 50000;
+  var MINIMUM_LOAN = 1000;
 
   /**
    * The minimum duration in months.
    * @type {Number}
    */
-  var MINIMUM_DURATION = 12;
+  var MINIMUM_DURATION = 1;
 
   /**
    * Default options for the plugin.
@@ -128,11 +128,11 @@
       }
 
       if (this.settings.loanAmount < MINIMUM_LOAN) {
-        throw new Error('The value provided for [loanAmount] must me at least 10000.');
+        throw new Error('The value provided for [loanAmount] must me at least 1000.');
       }
 
       if (this.settings.loanDuration < MINIMUM_DURATION) {
-        throw new Error('The value provided for [loanDuration] must me at least 6.');
+        throw new Error('The value provided for [loanDuration] must me at least 1.');
       }
     },
 
