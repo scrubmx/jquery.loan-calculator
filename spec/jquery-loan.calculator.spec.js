@@ -46,6 +46,19 @@ describe('jQuery LoanCalculator Plugin', function() {
   });
 
 
+  it('takes interest rate as optional parameter', function() {
+    $element.loanCalculator({
+      loanAmount   : '$50,000.00',
+      loanDuration : '36',
+      creditScore  : 'A',
+      interestRate : '6.25%'
+    });
+
+    expect($loanTotal.html()).toBe('$54,963.61');
+    expect($monthlyRate.html()).toBe('$1,526.77');
+  });
+
+
   it('recalculates values when update maethod is called', function(){
     $element.loanCalculator({ loanAmount: 99999, loanDuration: 36 });
     $element.loanCalculator('update', { loanAmount: 50000, loanDuration: 36 })

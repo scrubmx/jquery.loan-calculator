@@ -2,17 +2,6 @@
 
 [![Build Status](https://travis-ci.org/scrubmx/jquery.loan-calculator.svg?branch=master)](https://travis-ci.org/scrubmx/jquery.loan-calculator) [![Code Climate](https://codeclimate.com/github/scrubmx/jquery.loan-calculator/badges/gpa.svg)](https://codeclimate.com/github/scrubmx/jquery.loan-calculator)
 
-## Development Installation
-**Install dependencies**
-```bash
-node install
-```
-
-**Run the tests**
-```bash
-karma start
-```
-
 ## Basic Example
 **Create basic html with the following structure:**
 ```html
@@ -25,14 +14,23 @@ karma start
 </div>
 ```
 
-**Create new instance**
+**Create new instance:**
 ```js
 var $calculator = $('#widget').loanCalculator();
 ```
 
+**You can initialize with an options object:**
+```js
+$('#widget').loanCalculator({
+    loanAmount   : 50000,
+    loanDuration : 12,
+    ...
+});
+```
 
-* The plugin handles all the `mousemove` and `change` jQuery events.
-* If you need to respond to other events you can call the `update` method like so:
+## Event handling
+The plugin handles all the `mousemove` and `change` jQuery events for you.
+If you need to respond to other events you can call the `update` method inside your own event handler:
 ```js
 $('#selector').on('myEvent', function(){
 
@@ -46,28 +44,61 @@ $('#selector').on('myEvent', function(){
 ```
 
 ## Options
-Default values for all the posible options:
-```js
-$('#widget').loanCalculator({
-    // default values for a loan
-    loanAmount           : 50000,
-    loanDuration         : 12,
-    creditScore          : 'A',
+**All the posible options:**
 
-    // inputs
-    loanAmountSelector   : '#loan-amount',
-    loanDurationSelector : '#loan-duration',
-    creditScoreSelector  : '#credit-score',
+* **loanAmount** 
+  - Default: `50000`
+  - Description: The loan amount
+* **loanDuration** 
+  - Default: `12`
+  - Description: The loan duration
+* **creditScore**
+  - Default: `A`
+  - Description: The credit score is taken from the `CREDIT_SCORE` object
+* **interestRate:** 
+  - Description: This value will override the `creditScore` 
+* **loanAmountSelector** 
+  - Default: `#loan-amount`
+  - Description: Input where the user will choose the loan amount
+* **loanDurationSelector**
+  - Default: `#loan-duration`
+  - Description: Input where the user will choose the loan duration
+* **creditScoreSelector**
+  - Default: `#credit-score`
+  - Description: Input where the user will choose the credit score
+* **selectedAmount**  
+  - Default: `#selected-amount`
+  - Description: Element to display the selected amount
+* **selectedDuration**  
+  - Default: `#selected-duration`
+  - Description: Element to display the selected duration
+* **selectedScore**        
+  - Default: `#selected-score`
+  - Description: Element to display the selected credit score
+* **loanTotalSelector**
+  - Default: `#loan-total`
+  - Description: Element to display the resulting total loan cost
+* **monthlyRateSelector**
+  - Default: `#monthly-rate`
+  - Description: Element to display the resulting monthly payment amount
 
-    // display selected values
-    selectedAmount       : '#selected-amount',
-    selectedDuration     : '#selected-duration',
-    selectedScore        : '#selected-score',
+## Development Setup
 
-    // display the results
-    loanTotalSelector    : '#loan-total',
-    monthlyRateSelector  : '#monthly-rate'
-});
+* Clone the repository
+```bash
+git clone git@github.com:scrubmx/jquery.loan-calculator.git
+
+cd jquery.loan-calculator
+```
+
+* Install dependencies:
+```bash
+npm install
+```
+
+* Run the tests:
+```bash
+npm test
 ```
 
 
@@ -76,10 +107,11 @@ $('#widget').loanCalculator({
 * Document the public API
 * Document all the posible option arguments
 * Accept the following as options:
-  * creditRates (JSON or URL)
-  * minimumLoan 
-  * minimumDuration
-  * valueAddedTax
+  - creditScores (JSON or URL)
+  - ~~interestRate~~
+  - minimumLoan 
+  - minimumDuration
+  - valueAddedTax
 
 ### License
 

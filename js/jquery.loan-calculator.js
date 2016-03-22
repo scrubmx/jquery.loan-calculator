@@ -184,6 +184,10 @@
      * @return {Number}
      */
     _interestRate: function() {
+      if (this.settings.hasOwnProperty('interestRate')) {
+        return this.toNumeric(this.settings.interestRate) / 100;
+      }
+
       return CREDIT_RATES[ this.settings.creditScore ] / 100;
     },
 
