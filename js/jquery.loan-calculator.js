@@ -175,7 +175,7 @@
      * @param  {Object} args
      */
     update: function(args) {
-      this.settings = $.extend({}, this._defaults, args);
+      this.settings = $.extend({}, this._defaults, this.settings, args);
       this.init();
     },
 

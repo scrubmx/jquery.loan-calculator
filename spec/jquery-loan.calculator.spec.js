@@ -59,9 +59,30 @@ describe('jQuery LoanCalculator Plugin', function() {
   });
 
 
-  it('recalculates values when update maethod is called', function(){
-    $element.loanCalculator({ loanAmount: 99999, loanDuration: 36 });
-    $element.loanCalculator('update', { loanAmount: 50000, loanDuration: 36 })
+  it('has an update method', function() {
+    var plugin = $element.loanCalculator().data('plugin_loanCalculator');
+
+    expect(typeof plugin.update).toBe('function')
+  });
+
+
+  it('recalculates values when update method is called', function() {
+    $element.loanCalculator({
+      loanAmount   : 40000,
+      loanDuration : 12,
+      interestRate : 5.32
+    });
+
+    $element.loanCalculator('update');
+
+    expect($loanTotal.html()).toBe('$41,162.01');
+    expect($monthlyRate.html()).toBe('$3,430.17');
+  });
+
+
+  it('update takes an overrides object as a second argument', function() {
+    $element.loanCalculator({ loanAmount: 99999, loanDuration: 36, interestRate : 5.32 });
+    $element.loanCalculator('update', { loanAmount: 50000 });
 
     expect($loanTotal.html()).toBe('$54,206.61');
     expect($monthlyRate.html()).toBe('$1,505.74');
