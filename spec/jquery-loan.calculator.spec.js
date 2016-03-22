@@ -60,17 +60,17 @@ describe('jQuery LoanCalculator Plugin', function() {
       $element.loanCalculator({ loanAmount: 150 })
     })
     .toThrow(new Error(
-      'The value provided for [loanAmount] must me at least 10000.'
+      'The value provided for [loanAmount] must me at least 1000.'
     ));
   });
 
 
   it('throws exception when invalid loanDuration value is supplied', function() {
     expect(function() {
-      $element.loanCalculator({ loanDuration: 2 })
+      $element.loanCalculator({ loanDuration: 0 })
     })
     .toThrow(new Error(
-      'The value provided for [loanDuration] must me at least 6.'
+      'The value provided for [loanDuration] must me at least 1.'
     ));
   });
 

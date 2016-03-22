@@ -34,9 +34,9 @@
    */
   var defaults = {
     // default values for a loan
-    loanAmount: 50000,
-    loanDuration: 12,
-    creditScore: 'A',
+    loanAmount    : 50000,
+    loanDuration  : 12,
+    creditScore   : 'A',
 
     // inputs
     loanAmountSelector   : '#loan-amount',
@@ -48,7 +48,7 @@
     selectedDuration     : '#selected-duration',
     selectedScore        : '#selected-score',
 
-    // results
+    // display the results
     loanTotalSelector    : '#loan-total',
     monthlyRateSelector  : '#monthly-rate'
   };
@@ -67,7 +67,7 @@
     this.init();
   }
 
-    // Avoid Plugin.prototype conflicts
+  // Avoid Plugin.prototype conflicts
   $.extend(Plugin.prototype, {
 
     /**

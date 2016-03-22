@@ -32,7 +32,7 @@ var $calculator = $('#widget').loanCalculator();
 
 
 * The plugin handles all the `mousemove` and `change` jQuery events.
-* If you need to attach other events you can call the `update` method like so:
+* If you need to respond to other events you can call the `update` method like so:
 ```js
 $('#selector').on('myEvent', function(){
 
@@ -64,7 +64,7 @@ $('#widget').loanCalculator({
     selectedDuration     : '#selected-duration',
     selectedScore        : '#selected-score',
 
-    // show the results
+    // display the results
     loanTotalSelector    : '#loan-total',
     monthlyRateSelector  : '#monthly-rate'
 });
