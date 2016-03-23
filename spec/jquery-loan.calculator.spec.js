@@ -4,6 +4,7 @@ describe('jQuery LoanCalculator Plugin', function() {
 
   beforeEach(function() {
     jasmine.getFixtures().fixturesPath = 'base/spec/fixtures';
+
     loadFixtures('fixture.html');
 
     $element     = $('#widget');
@@ -189,6 +190,57 @@ describe('jQuery LoanCalculator Plugin', function() {
 
     expect($loanTotal.html()).toBe('$51,452.52');
     expect($monthlyRate.html()).toBe('$4,287.71');
+  });
+
+
+  it('can recive value added tax as a parameter', function() {
+    $element.loanCalculator({
+      loanAmount    : '$50,000.00',
+      loanDuration  : '12',
+      interestRate  : '17.9%',
+      valueAddedTax : '16%'
+    });
+
+    expect($loanTotal.html()).toBe('$55,800.33');
+
+    $element.loanCalculator('update', {valueAddedTax : 0.16});
+
+    expect($loanTotal.html()).toBe('$55,800.33');
+  });
+
+
+  it('has an schedule method', function() {
+    var plugin = $element.loanCalculator().data('plugin_loanCalculator');
+
+    expect(typeof plugin.schedule).toBe('function')
+  });
+
+
+  it('returns a json object with the amortization schedule', function() {
+    $element.loanCalculator({
+      loanAmount    : '$50,000.00',
+      loanDuration  : '12',
+      interestRate  : '17.9%',
+      valueAddedTax : '16%'
+    });
+
+    var schedule = $element.loanCalculator('schedule');
+
+     expect(schedule[0]).toEqual({
+      balance   : '$46,215.14',
+      payment   : '$4,650.03',
+      principal : '$3,784.86',
+      interest  : '$745.83',
+      vat       : '$119.33'
+    })
+
+    expect(schedule[11]).toEqual({
+      balance   : '$-0.00',
+      payment   : '$4,650.03',
+      principal : '$4,570.93',
+      interest  : '$68.18',
+      vat       : '$10.91'
+    })
   });
 
 

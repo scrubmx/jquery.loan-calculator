@@ -1,9 +1,10 @@
-# jquery.loan-calculator.js
+# jQuery Loan Calculator
 
 [![Build Status](https://travis-ci.org/scrubmx/jquery.loan-calculator.svg?branch=master)](https://travis-ci.org/scrubmx/jquery.loan-calculator) [![Code Climate](https://codeclimate.com/github/scrubmx/jquery.loan-calculator/badges/gpa.svg)](https://codeclimate.com/github/scrubmx/jquery.loan-calculator)
 
-## Basic Example
-**Create basic html with the following structure:**
+## Basic Example 
+
+* Create basic html with the following structure:
 ```html
 <div id="widget">
     <input type="range" id="loan-amount" min="50000" max="250000" step="1000">
@@ -14,12 +15,12 @@
 </div>
 ```
 
-**Create new instance:**
+* Create new instance:
 ```js
 var $calculator = $('#widget').loanCalculator();
 ```
 
-**You can initialize with an options object:**
+* You can initialize with an options object:
 ```js
 $('#widget').loanCalculator({
     loanAmount   : 50000,
@@ -28,35 +29,50 @@ $('#widget').loanCalculator({
 });
 ```
 
+## Value-added tax (VAT)
+
 ## Event handling
-The plugin handles all the `mousemove` and `change` jQuery events for you.
-If you need to respond to other events you can call the `update` method inside your own event handler:
+
+The plugin automatically handles all the `mousemove` and `change` input events for you. 
+
+* If you need to force the plugin to recalculate values use the `update` method:
+```js
+$calculator.loanCalculator('update');
+```
+
+* If you need to respond to other events you can call the `update` method inside your own event handler:
 ```js
 $('#selector').on('myEvent', function(){
-
-  $calculator.loanCalculator('update', {
-    loanAmount   : $('#loan-amount').val(),
-    loanDuration : $('#loan-duration').val(),
-    creditScore  : $('#credit-score').val()
-  });
-
+  $calculator.loanCalculator('update');
 });
 ```
 
+* You can pass overrides object as a second argument:
+```js
+  $calculator.loanCalculator('update', {
+    loanAmount   : $('#other-loan-amount').val(),
+    loanDuration : 12,
+    interestRate : 6.25
+  });
+```
+
+
 ## Options
-**All the posible options:**
 
 * **loanAmount** 
   - Default: `50000`
+  - Default Input: `#loan-amount`
   - Description: The loan amount
 * **loanDuration** 
   - Default: `12`
+  - Default Input: `#loan-duration`
   - Description: The loan duration
 * **creditScore**
   - Default: `A`
-  - Description: The credit score is taken from the `CREDIT_SCORE` object
+  - Default Input: `#credit-score`
+  - Description: If no interest rate is provided, then we will look for the provided `creditScore` in the `CREDIT_RATES` object.
 * **interestRate:** 
-  - Description: This value will override the `creditScore` 
+  - Description: The annual interest rate for the loan. This value will override the `creditScore` option
 * **loanAmountSelector** 
   - Default: `#loan-amount`
   - Description: Input where the user will choose the loan amount
@@ -113,6 +129,6 @@ npm test
   - minimumDuration
   - valueAddedTax
 
-### License
+## License
 
 jQuery Loan Calculator is open-sourced software licensed under the [MIT license](https://github.com/scrubmx/jquery.loan-calculator/blob/master/licence.txt)

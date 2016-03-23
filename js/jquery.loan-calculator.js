@@ -179,6 +179,32 @@
       this.init();
     },
 
+    schedule: function(args) {
+      var balance  = this.settings.loanAmount;
+      var payment  = this._monthlyRate();
+      var schedule = [];
+
+      for (var i=0; i < this.settings.loanDuration; i++) {
+        var interestPaid  = balance * this._monthlyInterestRate();
+        var taxesPaid     = balance * this._monthlyInterestRate() * this._valueAddedTax();
+        var principalPaid = payment - interestPaid - taxesPaid;
+
+        balance = balance - principalPaid;
+
+        schedule.push({
+          balance   : this.toMoney(balance),
+          payment   : this.toMoney(payment),
+          principal : this.toMoney(principalPaid),
+          interest  : this.toMoney(interestPaid),
+          vat       : this.toMoney(taxesPaid)
+        })
+      };
+
+      console.log(schedule);
+
+      return schedule;
+    },
+
     /**
      * Get the credit rate corresponding to the current credit score.
      * @return {Number}
@@ -218,7 +244,20 @@
       var L = this.settings.loanAmount;    // amount borrowed
       var n = this.settings.loanDuration;  // number of payments
 
+      if ('valueAddedTax' in this.settings) {
+        i = (1 + this._valueAddedTax()) * i; // interest rate with tax
+      }
+
       return (L * i) / (1 - Math.pow(1 + i, -n));
+    },
+
+    _valueAddedTax: function () {
+      var tax = this.toNumeric(this.settings.valueAddedTax);
+      if (tax > 1) {
+        tax = tax / 100;
+      }
+
+      return parseFloat(tax, 2);
     },
 
     /**
@@ -227,6 +266,10 @@
      * @return {String}
      */
     toMoney: function(numeric) {
+      if (typeof numeric == 'string') {
+        numeric = parseFloat(numeric);
+      }
+
       return '$' + numeric.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
     },
 
@@ -242,6 +285,11 @@
   });
 
   $.fn.loanCalculator = function(options, args) {
+
+    if (options === 'schedule') {
+      return $.data(this[0], 'plugin_loanCalculator').schedule(args);
+    }
+
     return this.each(function() {
       var instance = $.data(this, 'plugin_loanCalculator');
       if (! instance) {
