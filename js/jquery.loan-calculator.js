@@ -54,7 +54,7 @@
   };
 
   /**
-   * Plugin constructor
+   * The actual plugin constructor
    * @param {Object} element
    * @param {Object} options
    */
@@ -141,10 +141,12 @@
      * @return {void}
      */
     render: function() {
+      // Display the loan total
       this.$el.find(this.settings.loanTotalSelector).html(
         this.toMoney(this._loanTotal())
       );
 
+      // Display the loan monthly payment
       this.$el.find(this.settings.monthlyRateSelector).html(
         this.toMoney(this._monthlyRate())
       );
@@ -157,14 +159,17 @@
      * @return {void}
      */
     _displaySelectedValues: function() {
+      // Display the selected loan amount
       this.$el.find(this.settings.selectedAmount).html(
         this.toMoney(this.settings.loanAmount)
       );
 
+      // Display the selected loan duration
       this.$el.find(this.settings.selectedDuration).html(
         this.settings.loanDuration
       );
 
+      // Display the selected credit score
       this.$el.find(this.settings.selectedScore).html(
         this.settings.creditScore
       );
@@ -179,28 +184,35 @@
       this.init();
     },
 
+    /**
+     * Generate the amortization schedule.
+     * @param  {Object} args
+     * @return {Array}
+     */
     schedule: function(args) {
       var balance  = this.settings.loanAmount;
       var payment  = this._monthlyRate();
       var schedule = [];
 
-      for (var i=0; i < this.settings.loanDuration; i++) {
-        var interestPaid  = balance * this._monthlyInterestRate();
-        var taxesPaid     = balance * this._monthlyInterestRate() * this._valueAddedTax();
-        var principalPaid = payment - interestPaid - taxesPaid;
+      // Loop over n times where n is the loan duration,
+      // each time we extract the data for the period
+      // and finally append to the schedule array.
+      for (var n=0; n<this.settings.loanDuration; n++) {
+        var interest  = balance * this._monthlyInterestRate();
+        var taxesPaid = balance * this._monthlyInterestRate() * this._valueAddedTax();
+        var principal = payment - interest - taxesPaid;
 
-        balance = balance - principalPaid;
+        // update balance for the next iteration.
+        balance = balance - principal;
 
         schedule.push({
           balance   : this.toMoney(balance),
           payment   : this.toMoney(payment),
-          principal : this.toMoney(principalPaid),
-          interest  : this.toMoney(interestPaid),
-          vat       : this.toMoney(taxesPaid)
+          principal : this.toMoney(principal),
+          interest  : this.toMoney(interest),
+          tax       : this.toMoney(taxesPaid)
         })
       };
-
-      console.log(schedule);
 
       return schedule;
     },
@@ -244,15 +256,22 @@
       var L = this.settings.loanAmount;    // amount borrowed
       var n = this.settings.loanDuration;  // number of payments
 
-      if ('valueAddedTax' in this.settings) {
+      if (this.settings.hasOwnProperty('valueAddedTax')) {
         i = (1 + this._valueAddedTax()) * i; // interest rate with tax
       }
 
       return (L * i) / (1 - Math.pow(1 + i, -n));
     },
 
+    /**
+     * Return the value added tax in decimals.
+     * @return {Number}
+     */
     _valueAddedTax: function () {
       var tax = this.toNumeric(this.settings.valueAddedTax);
+
+      // if tax is greater than 1 means the value must be
+      // converted to decimals first.
       if (tax > 1) {
         tax = tax / 100;
       }
@@ -284,10 +303,12 @@
 
   });
 
+  /**
+   * Wrapper around the constructor to prevent multiple instantiations.
+   */
   $.fn.loanCalculator = function(options, args) {
-
     if (options === 'schedule') {
-      return $.data(this[0], 'plugin_loanCalculator').schedule(args);
+      return this.data('plugin_loanCalculator').schedule(args);
     }
 
     return this.each(function() {

@@ -82,7 +82,10 @@ describe('jQuery LoanCalculator Plugin', function() {
 
 
   it('update takes an overrides object as a second argument', function() {
-    $element.loanCalculator({ loanAmount: 99999, loanDuration: 36, interestRate : 5.32 });
+    $element.loanCalculator({
+      loanAmount: 99999, loanDuration: 36, interestRate : 5.32
+    });
+
     $element.loanCalculator('update', { loanAmount: 50000 });
 
     expect($loanTotal.html()).toBe('$54,206.61');
@@ -90,7 +93,7 @@ describe('jQuery LoanCalculator Plugin', function() {
   });
 
 
-  it('throws exception when invalid loanAmount value is supplied', function() {
+  it('throws exception when invalid loanAmount is supplied', function() {
     expect(function() {
       $element.loanCalculator({ loanAmount: 150 })
     })
@@ -100,7 +103,7 @@ describe('jQuery LoanCalculator Plugin', function() {
   });
 
 
-  it('throws exception when invalid loanDuration value is supplied', function() {
+  it('throws exception when invalid loanDuration is supplied', function() {
     expect(function() {
       $element.loanCalculator({ loanDuration: 0 })
     })
@@ -110,7 +113,7 @@ describe('jQuery LoanCalculator Plugin', function() {
   });
 
 
-  it('throws exception when invalid creditScore value is supplied', function() {
+  it('throws exception when invalid creditScore is supplied', function() {
     expect(function() {
       $element.loanCalculator({ creditScore: 'INVALID' })
     })
@@ -127,9 +130,15 @@ describe('jQuery LoanCalculator Plugin', function() {
       "<div id='widget3'><div id='loan-total3'></div><div>"
     );
 
-    $('#widget1').loanCalculator({ loanAmount: 100000, loanTotalSelector: '#loan-total1' });
-    $('#widget2').loanCalculator({ loanAmount: 55000.50, loanTotalSelector: '#loan-total2' });
-    $('#widget3').loanCalculator({ loanAmount: '133000', loanTotalSelector: '#loan-total3' });
+    $('#widget1').loanCalculator({
+      loanAmount: 100000, loanTotalSelector: '#loan-total1'
+    });
+    $('#widget2').loanCalculator({
+      loanAmount: 55000.50, loanTotalSelector: '#loan-total2'
+    });
+    $('#widget3').loanCalculator({
+      loanAmount: '133000', loanTotalSelector: '#loan-total3'
+    });
 
     expect($('#loan-total1').html()).toBe('$102,905.04');
     expect($('#loan-total2').html()).toBe('$56,598.28');
@@ -143,8 +152,13 @@ describe('jQuery LoanCalculator Plugin', function() {
         "<div id='widget2'><div id='loan-total2'></div><div>"
     );
 
-    $('#widget1').loanCalculator({ loanAmount: '50,000', loanTotalSelector: '#loan-total1' });
-    $('#widget2').loanCalculator({ loanAmount: '$133,100.25', loanTotalSelector: '#loan-total2' });
+    $('#widget1').loanCalculator({
+      loanAmount: '50,000', loanTotalSelector: '#loan-total1'
+    });
+
+    $('#widget2').loanCalculator({
+      loanAmount: '$133,100.25', loanTotalSelector: '#loan-total2'
+    });
 
     expect($('#loan-total1')).toHaveText('$51,452.52');
     expect($('#loan-total2')).toHaveText('$136,966.86');
@@ -231,7 +245,7 @@ describe('jQuery LoanCalculator Plugin', function() {
       payment   : '$4,650.03',
       principal : '$3,784.86',
       interest  : '$745.83',
-      vat       : '$119.33'
+      tax       : '$119.33'
     })
 
     expect(schedule[11]).toEqual({
@@ -239,7 +253,7 @@ describe('jQuery LoanCalculator Plugin', function() {
       payment   : '$4,650.03',
       principal : '$4,570.93',
       interest  : '$68.18',
-      vat       : '$10.91'
+      tax       : '$10.91'
     })
   });
 

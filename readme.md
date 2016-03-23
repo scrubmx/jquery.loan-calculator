@@ -23,13 +23,11 @@ var $calculator = $('#widget').loanCalculator();
 * You can initialize with an options object:
 ```js
 $('#widget').loanCalculator({
-    loanAmount   : 50000,
-    loanDuration : 12,
-    ...
+  loanAmount: 50000,
+  loanDuration: 12,
+  ...
 });
 ```
-
-## Value-added tax (VAT)
 
 ## Event handling
 
@@ -49,13 +47,39 @@ $('#selector').on('myEvent', function(){
 
 * You can pass overrides object as a second argument:
 ```js
-  $calculator.loanCalculator('update', {
-    loanAmount   : $('#other-loan-amount').val(),
-    loanDuration : 12,
-    interestRate : 6.25
-  });
+$calculator.loanCalculator('update', {
+  loanAmount: $('#other-loan-amount').val(),
+  creditScore: 'A',
+  valueAddedTax: '16%'
+});
 ```
 
+## Amortization Schedule
+
+You can generate the amortization schedule as a json object:
+```js
+var json = $calculator.loanCalculator('schedule');
+```
+
+Example output:
+```json
+[  
+   {  
+      "balance": "$5,042.89",
+      "payment": "$5,130.15",
+      "principal": "$4,957.11",
+      "interest": "$149.17",
+      "vat": "$23.87"
+   },
+   {  
+      "balance": "$0.00",
+      "payment": "$5,130.15",
+      "principal": "$5,042.89",
+      "interest": "$75.22",
+      "vat": "$12.04"
+   }
+]
+```
 
 ## Options
 
@@ -97,6 +121,9 @@ $('#selector').on('myEvent', function(){
 * **monthlyRateSelector**
   - Default: `#monthly-rate`
   - Description: Element to display the resulting monthly payment amount
+* **valueAddedTax**
+  - Default: None
+  - Description: Value-added tax (VAT)
 
 ## Development Setup
 
@@ -120,14 +147,14 @@ npm test
 
 ## Todo
 
-* Document the public API
-* Document all the posible option arguments
+* ~~Document the public API~~
+* ~~Document all the posible option arguments~~
 * Accept the following as options:
   - creditScores (JSON or URL)
   - ~~interestRate~~
   - minimumLoan 
   - minimumDuration
-  - valueAddedTax
+  - ~~valueAddedTax~~
 
 ## License
 
