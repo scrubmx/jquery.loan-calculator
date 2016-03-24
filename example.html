@@ -36,8 +36,13 @@
               </select>
             </div>
 
-            <h4 id="loan-total"></h4>
-            <h4 id="monthly-rate"></h4>
+            <h4>Loan total: <span id="loan-total"></span></h4>
+            <h4>Monthly rate: <span id="monthly-rate"></span></h4>
+            <h4>CAT: <span id="total-annual-cost"></span></h4>
+
+            <hr>
+            <h3>Amortization Schedule</h3>
+            <pre id="amortization"></pre>
 
           </div><!-- #widget -->
 
@@ -49,7 +54,28 @@
     <script>
       (function($){
 
-        $('#widget').loanCalculator();
+        // Accepts arguments as strings
+        $widget = $('#widget').loanCalculator({
+          loanAmount    : '$50,000.00',
+          loanDuration  : '12',
+          interestRate  : '17.9%',
+          valueAddedTax : '16%',
+          serviceFee    : '5%'
+        });
+
+        // Can also take numbers as arguments...
+        $widget.loanCalculator('update', {
+          loanAmount    : 50000.00,
+          loanDuration  : 12,
+          interestRate  : 17.9,
+          valueAddedTax : 0.16,
+          serviceFee    : 0.05
+        })
+
+        // It can generate an amortization schedule as json.
+        $('#amortization').html(
+          JSON.stringify($widget.loanCalculator('schedule'), undefined, 2)
+        );
 
       })(jQuery);
     </script>

@@ -37,6 +37,8 @@
     loanAmount    : 50000,
     loanDuration  : 12,
     creditScore   : 'A',
+    valueAddedTax : 0,
+    serviceFee    : 0,
 
     // inputs
     loanAmountSelector   : '#loan-amount',
@@ -44,13 +46,14 @@
     creditScoreSelector  : '#credit-score',
 
     // display selected values
-    selectedAmount       : '#selected-amount',
-    selectedDuration     : '#selected-duration',
-    selectedScore        : '#selected-score',
+    selectedAmount   : '#selected-amount',
+    selectedDuration : '#selected-duration',
+    selectedScore    : '#selected-score',
 
     // display the results
-    loanTotalSelector    : '#loan-total',
-    monthlyRateSelector  : '#monthly-rate'
+    loanTotalSelector       : '#loan-total',
+    monthlyRateSelector     : '#monthly-rate',
+    totalAnnualCostSelector : '#total-annual-cost'
   };
 
   /**
@@ -151,6 +154,9 @@
         this.toMoney(this._monthlyRate())
       );
 
+      // Display the annual total cost
+      this.$el.find(this.settings.totalAnnualCostSelector).html(this._CAT());
+
       this._displaySelectedValues();
     },
 
@@ -221,8 +227,12 @@
      * Get the credit rate corresponding to the current credit score.
      * @return {Number}
      */
-    _interestRate: function() {
+    _annualInterestRate: function() {
       if (this.settings.hasOwnProperty('interestRate')) {
+        if (this.settings.interestRate <= 1) {
+          return this.settings.interestRate;
+        }
+
         return this.toNumeric(this.settings.interestRate) / 100;
       }
 
@@ -234,7 +244,7 @@
      * @return {Number}
      */
     _monthlyInterestRate: function() {
-      return this._interestRate() / 12;
+      return this._annualInterestRate() / 12;
     },
 
     /**
@@ -248,7 +258,6 @@
     /**
      * Calculate the monthly amortized loan payments.
      * @see https://en.wikipedia.org/wiki/Compound_interest#Monthly_amortized_loan_or_mortgage_payments
-     *
      * @return {Number}
      */
     _monthlyRate: function() {
@@ -256,7 +265,7 @@
       var L = this.settings.loanAmount;    // amount borrowed
       var n = this.settings.loanDuration;  // number of payments
 
-      if (this.settings.hasOwnProperty('valueAddedTax')) {
+      if (this.settings.valueAddedTax !== 0) {
         i = (1 + this._valueAddedTax()) * i; // interest rate with tax
       }
 
@@ -264,14 +273,132 @@
     },
 
     /**
+     * Return the loan fees and commissions total.
+     * @return {Number}
+     */
+    _serviceFee: function () {
+      var serviceFee = this.toNumeric(this.settings.serviceFee);
+
+      // if the service fee is greater than 1 then the
+      // value must be converted to decimals first.
+      if (serviceFee > 1) {
+        serviceFee = serviceFee / 100;
+      }
+
+      return this.settings.loanAmount * serviceFee;
+    },
+
+    /**
+     * Return the total annual cost (CAT)
+     * @see http://www.banxico.org.mx/CAT
+     * @return {Number}
+     */
+    _CAT: function () {
+      var IRR = this._IRR(this._cashFlow());
+
+      var CAT = Math.pow(1 + IRR, 12) - 1;
+
+      return parseFloat(CAT*100).toFixed(2) + '%';
+    },
+
+    /**
+     * Returns an array with a serires of cash flows for the current loan.
+     * @return {Array}
+     */
+    _cashFlow: function () {
+      var schedule = this.schedule();
+      var cashFlow = [this._serviceFee() - this.settings.loanAmount];
+
+      $.each(schedule, function(index, period){
+          cashFlow.push(this.toNumeric(period.payment) - this.toNumeric(period.tax));
+      }.bind(this));
+
+      return cashFlow;
+    },
+
+    /**
+     * Returns the internal rate of return for a series of cash flows represented by the numbers in values.
+     * @param  {Array} values
+     * @param  {Number} guess
+     * @return {Number}
+     */
+    _IRR: function(values, guess) {
+      guess = guess || 0;
+
+      // Calculates the resulting amount
+      var irrResult = function(values, dates, rate) {
+        var result = values[0];
+
+        for (var i = 1; i < values.length; i++) {
+          result += values[i] / Math.pow(rate+1, (dates[i] - dates[0]) / 365);
+        }
+
+        return result;
+      };
+
+      // Calculates the first derivation
+      var irrResultDeriv = function(values, dates, rate) {
+        var result = 0;
+
+        for (var i = 1; i < values.length; i++) {
+          var frac = (dates[i] - dates[0]) / 365;
+          result -= frac * values[i] / Math.pow(rate+1, frac+1);
+        }
+
+        return result;
+      };
+
+      // Initialize dates and check that values contains at
+      // least one positive value and one negative value
+      var dates    = [];
+      var positive = false;
+      var negative = false;
+
+      for (var i = 0; i < values.length; i++) {
+        dates[i] = (i === 0) ? 0 : dates[i - 1] + 365;
+        if (values[i] > 0) positive = true;
+        if (values[i] < 0) negative = true;
+      }
+
+      if (! positive || ! negative) {
+        throw new Error(
+          'Error the values does not contain at least one positive value and one negative value'
+        );
+      }
+
+      // Initialize guess and resultRate
+      guess = (guess === undefined) ? 0.1 : guess;
+      var resultRate = guess;
+
+      // Set maximum epsilon for end of iteration
+      var epsMax = 1e-10;
+
+      // Implement Newton's method
+      var newRate, epsRate, resultValue;
+      var contLoop = true;
+
+      do {
+        resultValue = irrResult(values, dates, resultRate);
+        newRate     = resultRate - resultValue / irrResultDeriv(values, dates, resultRate);
+        epsRate     = Math.abs(newRate - resultRate);
+        resultRate  = newRate;
+        contLoop    = (epsRate > epsMax) && (Math.abs(resultValue) > epsMax);
+      } while (contLoop);
+
+      // Return internal rate of return
+      return resultRate;
+    },
+
+    /**
      * Return the value added tax in decimals.
      * @return {Number}
      */
     _valueAddedTax: function () {
-      var tax = this.toNumeric(this.settings.valueAddedTax);
+      var VAT = this.settings.valueAddedTax || 0;
+      var tax = this.toNumeric(VAT);
 
-      // if tax is greater than 1 means the value must be
-      // converted to decimals first.
+      // if tax is greater than 1 means the value
+      // must be converted to decimals first.
       if (tax > 1) {
         tax = tax / 100;
       }

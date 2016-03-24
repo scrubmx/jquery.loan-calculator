@@ -1,4 +1,4 @@
-describe('jQuery LoanCalculator Plugin', function() {
+describe('jQuery Loan Calculator Plugin', function() {
 
   var $element, $loanTotal, $monthlyRate;
 
@@ -7,9 +7,10 @@ describe('jQuery LoanCalculator Plugin', function() {
 
     loadFixtures('fixture.html');
 
-    $element     = $('#widget');
-    $loanTotal   = $('#loan-total');
-    $monthlyRate = $('#monthly-rate');
+    $element         = $('#widget');
+    $loanTotal       = $('#loan-total');
+    $monthlyRate     = $('#monthly-rate');
+    $totalAnnualCost = $('#total-annual-cost');
   });
 
 
@@ -35,7 +36,7 @@ describe('jQuery LoanCalculator Plugin', function() {
   });
 
 
-  it('calculates the correct interest rate', function() {
+  it('calculates the correct values for a given credit score', function() {
       $element.loanCalculator({
         loanAmount   : '$50,000.00',
         loanDuration : '36',
@@ -47,16 +48,66 @@ describe('jQuery LoanCalculator Plugin', function() {
   });
 
 
-  it('takes interest rate as optional parameter', function() {
+  it('calculates the correct values for a given interest rate', function() {
+    $element.loanCalculator({
+      loanAmount   : '$50,000.00',
+      loanDuration : '36',
+      interestRate : '16%'
+    });
+
+    expect($loanTotal.html()).toBe('$63,282.66');
+    expect($monthlyRate.html()).toBe('$1,757.85');
+  });
+
+
+  it('calculates the correct total annual cost', function() {
+     $element.loanCalculator({
+      loanAmount    : '$50,000.00',
+      loanDuration  : '12',
+      interestRate  : '17.9%',
+      valueAddedTax : '16%',
+      serviceFee    : '5%'
+    });
+
+     expect($totalAnnualCost.html()).toBe('31.70%');
+  });
+
+
+  it('supports the interestRate in string or numeric format ', function() {
+    // can optionally append the '%' sign to the interestRate
+    $element.loanCalculator({
+      loanAmount   : '$50,000.00',
+      loanDuration : '36',
+      interestRate : '16%'
+    });
+
+    expect($loanTotal.html()).toBe('$63,282.66');
+    expect($monthlyRate.html()).toBe('$1,757.85');
+
+    // supports integer format
+    $element.loanCalculator('update', { interestRate: 25 });
+
+    expect($loanTotal.html()).toBe('$71,567.69');
+    expect($monthlyRate.html()).toBe('$1,987.99');
+
+    // supports floating point format
+    $element.loanCalculator('update', { interestRate: 0.33 });
+
+    expect($loanTotal.html()).toBe('$79,400.38');
+    expect($monthlyRate.html()).toBe('$2,205.57');
+  });
+
+
+  it('overrides the credit score when an interest rate parameter is supplied', function() {
     $element.loanCalculator({
       loanAmount   : '$50,000.00',
       loanDuration : '36',
       creditScore  : 'A',
-      interestRate : '6.25%'
+      interestRate : '25%'
     });
 
-    expect($loanTotal.html()).toBe('$54,963.61');
-    expect($monthlyRate.html()).toBe('$1,526.77');
+    expect($loanTotal.html()).toBe('$71,567.69');
+    expect($monthlyRate.html()).toBe('$1,987.99');
   });
 
 
@@ -67,13 +118,14 @@ describe('jQuery LoanCalculator Plugin', function() {
   });
 
 
-  it('recalculates values when update method is called', function() {
+  it('can call the method update with no arguments', function() {
     $element.loanCalculator({
       loanAmount   : 40000,
       loanDuration : 12,
       interestRate : 5.32
     });
 
+    // this call should have no effect on the results
     $element.loanCalculator('update');
 
     expect($loanTotal.html()).toBe('$41,162.01');
@@ -81,15 +133,20 @@ describe('jQuery LoanCalculator Plugin', function() {
   });
 
 
-  it('update takes an overrides object as a second argument', function() {
+  it('takes an overrides object as a second argument when calling the update method', function() {
     $element.loanCalculator({
-      loanAmount: 99999, loanDuration: 36, interestRate : 5.32
+      loanAmount: 999999, loanDuration: 36, interestRate : 5.32
     });
 
     $element.loanCalculator('update', { loanAmount: 50000 });
 
     expect($loanTotal.html()).toBe('$54,206.61');
     expect($monthlyRate.html()).toBe('$1,505.74');
+
+    $element.loanCalculator('update', { interestRate: 8.18 });
+
+    expect($loanTotal.html()).toBe('$56,555.04');
+    expect($monthlyRate.html()).toBe('$1,570.97');
   });
 
 
@@ -133,9 +190,11 @@ describe('jQuery LoanCalculator Plugin', function() {
     $('#widget1').loanCalculator({
       loanAmount: 100000, loanTotalSelector: '#loan-total1'
     });
+
     $('#widget2').loanCalculator({
       loanAmount: 55000.50, loanTotalSelector: '#loan-total2'
     });
+
     $('#widget3').loanCalculator({
       loanAmount: '133000', loanTotalSelector: '#loan-total3'
     });
@@ -217,7 +276,7 @@ describe('jQuery LoanCalculator Plugin', function() {
 
     expect($loanTotal.html()).toBe('$55,800.33');
 
-    $element.loanCalculator('update', {valueAddedTax : 0.16});
+    $element.loanCalculator('update', { valueAddedTax: 0.16 });
 
     expect($loanTotal.html()).toBe('$55,800.33');
   });
