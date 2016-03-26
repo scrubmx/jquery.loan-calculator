@@ -59,7 +59,8 @@
     // display the results
     loanTotalSelector       : '#loan-total',
     monthlyRateSelector     : '#monthly-rate',
-    totalAnnualCostSelector : '#total-annual-cost'
+    totalAnnualCostSelector : '#total-annual-cost',
+    serviceFeeSelector      : '#service-fee'
   };
 
   /**
@@ -150,20 +151,8 @@
      * @return {void}
      */
     render: function() {
-      // Display the loan total
-      this.$el.find(this.settings.loanTotalSelector).html(
-        this.toMoney(this._loanTotal())
-      );
-
-      // Display the loan monthly payment
-      this.$el.find(this.settings.monthlyRateSelector).html(
-        this.toMoney(this._monthlyRate())
-      );
-
-      // Display the annual total cost
-      this.$el.find(this.settings.totalAnnualCostSelector).html(this._CAT());
-
       this._displaySelectedValues();
+      this._displayResults();
     },
 
     /**
@@ -184,6 +173,30 @@
       // Display the selected credit score
       this.$el.find(this.settings.selectedScore).html(
         this.settings.creditScore
+      );
+    },
+
+    /**
+     * Display the results for the current values.
+     * @return {void}
+     */
+    _displayResults: function() {
+      // Display the loan total
+      this.$el.find(this.settings.loanTotalSelector).html(
+        this.toMoney(this._loanTotal())
+      );
+
+      // Display the loan monthly payment
+      this.$el.find(this.settings.monthlyRateSelector).html(
+        this.toMoney(this._monthlyRate())
+      );
+
+      // Display the annual total cost
+      this.$el.find(this.settings.totalAnnualCostSelector).html(this._CAT());
+
+      // Display the service fee if any
+      this.$el.find(this.settings.serviceFeeSelector).html(
+        this.toMoney(this._serviceFee())
       );
     },
 

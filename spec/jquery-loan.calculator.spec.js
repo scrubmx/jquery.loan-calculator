@@ -11,6 +11,7 @@ describe('jQuery Loan Calculator Plugin', function() {
     $loanTotal       = $('#loan-total');
     $monthlyRate     = $('#monthly-rate');
     $totalAnnualCost = $('#total-annual-cost');
+    $serviceFee      = $('#service-fee');
   });
 
 
@@ -60,7 +61,7 @@ describe('jQuery Loan Calculator Plugin', function() {
   });
 
 
-  it('calculates the correct total annual cost', function() {
+  it('calculates the correct total annual cost (CAT)', function() {
      $element.loanCalculator({
       loanAmount    : '$50,000.00',
       loanDuration  : '12',
@@ -70,6 +71,22 @@ describe('jQuery Loan Calculator Plugin', function() {
     });
 
      expect($totalAnnualCost.html()).toBe('31.70%');
+  });
+
+
+  it('can update the total annual cost (CAT) selector', function() {
+    setFixtures("<div id='widget1'><p id='cat'></p><div>");
+
+    $('#widget1').loanCalculator({
+      loanAmount              : '$50,000.00',
+      loanDuration            : '12',
+      interestRate            : '17.9%',
+      valueAddedTax           : '16%',
+      serviceFee              : '5%',
+      totalAnnualCostSelector : '#cat'
+    });
+
+    expect($('#cat').html()).toBe('31.70%');
   });
 
 
@@ -279,6 +296,28 @@ describe('jQuery Loan Calculator Plugin', function() {
     $element.loanCalculator('update', { valueAddedTax: 0.16 });
 
     expect($loanTotal.html()).toBe('$55,800.33');
+  });
+
+
+  it('displays the correct service fee total', function() {
+    $element.loanCalculator({ loanAmount: '$50,000.00' });
+    expect($serviceFee.html()).toBe('$0.00');
+
+    $element.loanCalculator('update', { serviceFee: '5%' });
+    expect($serviceFee.html()).toBe('$2,500.00');
+  });
+
+
+  it('can update the service fee selector', function() {
+    setFixtures("<div id='widget1'><p id='commission'></p><div>");
+
+    $('#widget1').loanCalculator({
+      loanAmount: '$50,000.00',
+      serviceFeeSelector: '#commission',
+      serviceFee: '5%'
+    });
+
+    expect($('#commission').html()).toBe('$2,500.00');
   });
 
 

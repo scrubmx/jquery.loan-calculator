@@ -58,7 +58,7 @@
       (function($){
 
         // Accepts arguments as strings
-        $widget = $('#widget').loanCalculator({
+        $calculator = $('#widget').loanCalculator({
           loanAmount    : '$1,000.00',
           loanDuration  : '12',
           valueAddedTax : '16%',
@@ -66,23 +66,24 @@
         });
 
         // Can also take numbers as arguments...
-        $widget.loanCalculator('update', {
+        $calculator.loanCalculator('update', {
           loanAmount    : 1000.00,
           loanDuration  : 12,
           valueAddedTax : 0.16,
           serviceFee    : 0.05
         });
 
-        // It can generate an amortization schedule as json.
+        // Generate amortization schedule as json.
         var getAmortizationSchedule = function () {
-          return JSON.stringify($widget.loanCalculator('schedule'), undefined, 2);
+          var scheduleData = $calculator.loanCalculator('schedule');
+          return JSON.stringify(scheduleData, undefined, 2);
         };
 
         // Dump the schedule in the DOM
         var $schedule = $('#amortization').html(getAmortizationSchedule());
 
         // Event handler for the update method.
-        $widget.on('loan:update', function() {
+        $calculator.on('loan:update', function() {
           $schedule.html(getAmortizationSchedule());
         });
 

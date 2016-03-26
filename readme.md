@@ -35,6 +35,8 @@ $('#widget').loanCalculator({
 
 The plugin automatically handles all the `mousemove` and `change` input events for you. 
 
+#### update
+
 * If you need to force the plugin to recalculate values use the `update` method:
 ```js
 $calculator.loanCalculator('update');
@@ -56,15 +58,13 @@ $calculator.loanCalculator('update', {
 });
 ```
 
+#### loan:update
+
 * The plugin fires `loan:update` event when update method is called.
 ```js
-var getAmortizationSchedule = function () {
-  return JSON.stringify($calculator.loanCalculator('schedule'));
-};
-
 // Event handler for the update method.
-$calculator.on('loan:update', function() {
-  $schedule.html(getAmortizationSchedule());
+$calculator.on('loan:update', function(e) {
+  //...
 });
 ```
 
@@ -161,6 +161,10 @@ Example output:
   - Default: `#total-annual-cost`
   - Type: String (CSS selector)
   - Description: Element to display the resulting total annual cost (CAT).
+* **serviceFeeSelector**
+  - Default: `#service-fee`
+  - Type: String (CSS selector)
+  - Description: Element to display the service fee total.
 
 ## Development Setup
 
