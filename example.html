@@ -15,12 +15,12 @@
 
             <div class="form-group">
               <label for="loan-amount">Amount: </label> <span id="selected-amount"></span>
-              <input type="range" id="loan-amount" min="50000" max="250000" step="1000" value="50000">
+              <input type="range" id="loan-amount" min="1000" max="100000" step="1000" value="2000">
             </div>
 
             <div class="form-group">
               <label for="loan-duration">Months:</label> <span id="selected-duration"></span>
-              <input type="range" id="loan-duration" min="12" max="36" step="1" value="12">
+              <input type="range" id="loan-duration" min="6" max="24" step="1" value="12">
             </div>
 
             <div class="form-group">
@@ -36,9 +36,12 @@
               </select>
             </div>
 
-            <h4>Loan total: <span id="loan-total"></span></h4>
-            <h4>Monthly rate: <span id="monthly-rate"></span></h4>
-            <h4>CAT: <span id="total-annual-cost"></span></h4>
+            <ul>
+              <li>Loan total: <span id="loan-total"></span></li>
+              <li>Monthly rate: <span id="monthly-rate"></span></li>
+              <li>Service fee: <span id="service-fee"></span></li>
+              <li>CAT: <span id="total-annual-cost"></span></li>
+            </ul>
 
             <hr>
             <h3>Amortization Schedule</h3>
@@ -56,26 +59,32 @@
 
         // Accepts arguments as strings
         $widget = $('#widget').loanCalculator({
-          loanAmount    : '$50,000.00',
+          loanAmount    : '$1,000.00',
           loanDuration  : '12',
-          interestRate  : '17.9%',
           valueAddedTax : '16%',
           serviceFee    : '5%'
         });
 
         // Can also take numbers as arguments...
         $widget.loanCalculator('update', {
-          loanAmount    : 50000.00,
+          loanAmount    : 1000.00,
           loanDuration  : 12,
-          interestRate  : 17.9,
           valueAddedTax : 0.16,
           serviceFee    : 0.05
-        })
+        });
 
         // It can generate an amortization schedule as json.
-        $('#amortization').html(
-          JSON.stringify($widget.loanCalculator('schedule'), undefined, 2)
-        );
+        var getAmortizationSchedule = function () {
+          return JSON.stringify($widget.loanCalculator('schedule'), undefined, 2);
+        };
+
+        // Dump the schedule in the DOM
+        var $schedule = $('#amortization').html(getAmortizationSchedule());
+
+        // Event handler for the update method.
+        $widget.on('loan:update', function() {
+          $schedule.html(getAmortizationSchedule());
+        });
 
       })(jQuery);
     </script>

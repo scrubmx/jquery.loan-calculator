@@ -1,3 +1,9 @@
+/*!
+* jQuery Loan Calculator 1.2.0
+*
+* Author: Jorge González <scrub.mx@gmail>
+* Released under the MIT license - https://opensource.org/licenses/MIT
+*/
 ;(function($, window, document, undefined) {
 
   "use strict";
@@ -188,6 +194,7 @@
     update: function(args) {
       this.settings = $.extend({}, this._defaults, this.settings, args);
       this.init();
+      this.$el.trigger('loan:update');
     },
 
     /**

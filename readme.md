@@ -55,6 +55,18 @@ $calculator.loanCalculator('update', {
 });
 ```
 
+* The plugin fires `loan:update` event when update method is called.
+```js
+var getAmortizationSchedule = function () {
+  return JSON.stringify($calculator.loanCalculator('schedule'));
+};
+
+// Event handler for the update method.
+$calculator.on('loan:update', function() {
+  $schedule.html(getAmortizationSchedule());
+});
+```
+
 ## Amortization Schedule
 
 You can generate the amortization schedule as a json object:
