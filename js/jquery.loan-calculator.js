@@ -9,7 +9,7 @@
   "use strict";
 
   /**
-   * Table of the credit rates for every calification.
+   * Table of credit rates for every score.
    * @type {Object}
    */
   var CREDIT_RATES = {
@@ -132,7 +132,7 @@
       this.settings.loanDuration = parseFloat(this.settings.loanDuration);
       this.settings.creditScore = $.trim(this.settings.creditScore.toUpperCase());
 
-      // Validate that credit rate is a 'known' value
+      // Validate that credit score is a 'known' value in the CREDIT_RATES table
       if (! CREDIT_RATES.hasOwnProperty(this.settings.creditScore)) {
         throw new Error('The value provided for [creditScore] is not a valid.');
       }
@@ -192,7 +192,9 @@
       );
 
       // Display the annual total cost
-      this.$el.find(this.settings.totalAnnualCostSelector).html(this._CAT());
+      this.$el.find(this.settings.totalAnnualCostSelector).html(
+          this.toPercentage(this._CAT())
+      );
 
       // Display the service fee if any
       this.$el.find(this.settings.serviceFeeSelector).html(
@@ -202,7 +204,7 @@
 
     /**
      * Run the init method again with the provided options.
-     * @param  {Object} args
+     * @param {Object} args
      */
     update: function(args) {
       this.settings = $.extend({}, this._defaults, this.settings, args);
@@ -212,10 +214,9 @@
 
     /**
      * Generate the amortization schedule.
-     * @param  {Object} args
      * @return {Array}
      */
-    schedule: function(args) {
+    schedule: function() {
       var balance  = this.settings.loanAmount;
       var payment  = this._monthlyRate();
       var schedule = [];
@@ -260,7 +261,7 @@
     },
 
     /**
-     * Get the monhtly interest rate for the current credit score.
+     * Get the monthly interest rate for the current credit score.
      * @return {Number}
      */
     _monthlyInterestRate: function() {
@@ -316,13 +317,11 @@
     _CAT: function () {
       var IRR = this._IRR(this._cashFlow());
 
-      var CAT = Math.pow(1 + IRR, 12) - 1;
-
-      return parseFloat(CAT*100).toFixed(2) + '%';
+      return Math.pow(1 + IRR, 12) - 1;
     },
 
     /**
-     * Returns an array with a serires of cash flows for the current loan.
+     * Returns an array with a series of cash flows for the current loan.
      * @return {Array}
      */
     _cashFlow: function () {
@@ -357,7 +356,7 @@
       };
 
       // Calculates the first derivation
-      var irrResultDeriv = function(values, dates, rate) {
+      var irrResultDerivative = function(values, dates, rate) {
         var result = 0;
 
         for (var i = 1; i < values.length; i++) {
@@ -399,7 +398,7 @@
 
       do {
         resultValue = irrResult(values, dates, resultRate);
-        newRate     = resultRate - resultValue / irrResultDeriv(values, dates, resultRate);
+        newRate     = resultRate - resultValue / irrResultDerivative(values, dates, resultRate);
         epsRate     = Math.abs(newRate - resultRate);
         resultRate  = newRate;
         contLoop    = (epsRate > epsMax) && (Math.abs(resultValue) > epsMax);
@@ -414,16 +413,11 @@
      * @return {Number}
      */
     _valueAddedTax: function () {
-      var VAT = this.settings.valueAddedTax || 0;
-      var tax = this.toNumeric(VAT);
+      var tax = this.toNumeric(this.settings.valueAddedTax || 0);
 
       // if tax is greater than 1 means the value
       // must be converted to decimals first.
-      if (tax > 1) {
-        tax = tax / 100;
-      }
-
-      return parseFloat(tax, 2);
+      return (tax > 1) ? tax/100 : tax;
     },
 
     /**
@@ -445,7 +439,21 @@
      * @return {Number}
      */
     toNumeric: function(value) {
-      return value.toString().replace(/[^0-9\.]+/g, '');
+      return parseFloat(
+          value.toString().replace(/[^0-9\.]+/g, '')
+      );
+    },
+
+    /**
+     * To convert the provided value to percent format.
+     * @param {Number} numeric
+     * @returns {String}
+     */
+    toPercentage: function(numeric) {
+      // If numeric is less than 1 means we have to multiply the decimal by 100
+      var numeric = (numeric > 1) ? numeric : (numeric * 100);
+
+      return numeric.toFixed(2) + '%';
     }
 
   });
@@ -455,7 +463,7 @@
    */
   $.fn.loanCalculator = function(options, args) {
     if (options === 'schedule') {
-      return this.data('plugin_loanCalculator').schedule(args);
+      return this.data('plugin_loanCalculator').schedule();
     }
 
     return this.each(function() {
