@@ -241,12 +241,13 @@ describe('jQuery Loan Calculator Plugin', function() {
   });
 
 
-  it('supports css selectors for the results as options', function() {
+  fit('supports css selectors for the results as options', function() {
     setFixtures(
       "<div id='test'>" +
         "<p id='total-container'></p>" +
         "<p id='monthly-rate-container'></p>" +
         "<p id='selected-credit-score'></p>" +
+        "<p id='interest-total-container'></p>" +
       "</div>"
     );
 
@@ -254,11 +255,13 @@ describe('jQuery Loan Calculator Plugin', function() {
       loanAmount: '$120,000.00',
       loanDuration: '12 months',
       loanTotalSelector: '#total-container',
-      monthlyRateSelector: '#monthly-rate-container'
+      monthlyRateSelector: '#monthly-rate-container',
+      interestTotalSelector: '#interest-total-container'
     });
 
     expect($('#total-container')).toHaveText('$123,486.04');
     expect($('#monthly-rate-container')).toHaveText('$10,290.50');
+    expect($('#interest-total-container')).toHaveText('$3,486.04');
   });
 
 

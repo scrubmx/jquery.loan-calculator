@@ -59,6 +59,7 @@
     // display the results
     loanTotalSelector       : '#loan-total',
     monthlyRateSelector     : '#monthly-rate',
+    interestTotalSelector   : '#interest-total',
     totalAnnualCostSelector : '#total-annual-cost',
     serviceFeeSelector      : '#service-fee'
   };
@@ -191,6 +192,11 @@
         this.toMoney(this._monthlyRate())
       );
 
+      // Display the interest total amount
+      this.$el.find(this.settings.interestTotalSelector).html(
+        this.toMoney(this._interestTotal())
+      );
+
       // Display the annual total cost
       this.$el.find(this.settings.totalAnnualCostSelector).html(
           this.toPercentage(this._CAT())
@@ -291,6 +297,14 @@
       }
 
       return (L * i) / (1 - Math.pow(1 + i, -n));
+    },
+
+    /**
+     * Calculate the total interest for the loan.
+     * @returns {Number}
+     */
+    _interestTotal: function() {
+      return this._loanTotal() - this.settings.loanAmount;
     },
 
     /**

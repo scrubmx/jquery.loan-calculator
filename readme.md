@@ -33,7 +33,7 @@ $('#widget').loanCalculator({
 
 ## Event handling
 
-The plugin automatically handles all the `mousemove` and `change` input events for you. 
+The plugin automatically handles all the `mousemove` and `change` input events for you.
 
 #### update
 
@@ -77,15 +77,15 @@ var json = $calculator.loanCalculator('schedule');
 
 Example output:
 ```json
-[  
-   {  
+[
+   {
       "balance": "$5,042.89",
       "payment": "$5,130.15",
       "principal": "$4,957.11",
       "interest": "$149.17",
       "tax": "$23.87"
    },
-   {  
+   {
       "balance": "$0.00",
       "payment": "$5,130.15",
       "principal": "$5,042.89",
@@ -97,12 +97,12 @@ Example output:
 
 ## Options
 
-* **loanAmount** 
+* **loanAmount**
   - Default: `50000`
   - Type: Number|String
   - Default Input: `#loan-amount`
   - Description: The loan amount.
-* **loanDuration** 
+* **loanDuration**
   - Default: `12`
   - Type: Number|String
   - Default Input: `#loan-duration`
@@ -112,10 +112,10 @@ Example output:
   - Type: String
   - Default Input: `#credit-score`
   - Description: If no interest rate is provided, we search the `creditScore` key in the `CREDIT_RATES` object and use that interest rate.
-* **interestRate** 
+* **interestRate**
   - Default: None
   - Type: Number|String
-  - Description: (Number) The annual interest rate for the loan. 
+  - Description: (Number) The annual interest rate for the loan.
   - Note: This value will override the `creditScore` option.
 * **valueAddedTax**
   - Default: `0`
@@ -125,7 +125,7 @@ Example output:
   - Default: `0`
   - Type: Number|String
   - Description: (Number) The loan fees and commissions total.
-* **loanAmountSelector** 
+* **loanAmountSelector**
   - Default: `#loan-amount`
   - Type: String (CSS selector)
   - Description: Input where the user will choose the loan amount.
@@ -137,15 +137,15 @@ Example output:
   - Default: `#credit-score`
   - Type: String (CSS selector)
   - Description: Input where the user will choose the credit score.
-* **selectedAmount**  
+* **selectedAmount**
   - Default: `#selected-amount`
   - Type: String (CSS selector)
   - Description: Element to display the selected amount.
-* **selectedDuration**  
+* **selectedDuration**
   - Default: `#selected-duration`
   - Type: String (CSS selector)
   - Description: Element to display the selected duration.
-* **selectedScore**        
+* **selectedScore**
   - Default: `#selected-score`
   - Type: String (CSS selector)
   - Description: Element to display the selected credit score.
@@ -153,6 +153,10 @@ Example output:
   - Default: `#loan-total`
   - Type: String (CSS selector)
   - Description: Element to display the resulting total loan cost.
+* **interestTotalSelector**
+  - Default: `#interest-total`
+  - Type: String (CSS selector)
+  - Description: Element to display the resulting total interest paid for the loan.
 * **monthlyRateSelector**
   - Default: `#monthly-rate`
   - Type: String (CSS selector)
@@ -190,7 +194,7 @@ npm test
 
 * Accept the following as options:
   - creditScores (JSON or URL)
-  - minimumLoan 
+  - minimumLoan
   - minimumDuration
 
 ## License
