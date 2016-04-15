@@ -219,35 +219,60 @@
     },
 
     /**
+     * Generate the results as an array of objects,
+     * each object contains the values for each period.
+     * @return {Array}
+     */
+    _results: function () {
+      var balance      = this.settings.loanAmount;
+      var initial      = this.settings.loanAmount;
+      var interestRate = this._monthlyInterestRate();
+      var VAT          = this._valueAddedTax();
+      var payment      = this._PMT();
+      var results = [];
+
+      // Loop over n times where n is the loan duration,
+      // each time we extract the data for the period
+      // and finally append to the results array.
+      for (var n=0; n<this.settings.loanDuration; n++) {
+        var interest  = balance * interestRate;
+        var taxesPaid = balance * interestRate * VAT;
+        var principal = payment - interest - taxesPaid;
+
+        // update initial balance for next iteration
+        initial = balance;
+
+        // update final balance for the next iteration.
+        balance = balance - principal;
+
+        results.push({
+          initial   : initial,
+          principal : principal,
+          interest  : interest,
+          tax       : taxesPaid,
+          payment   : payment,
+          balance   : balance
+        })
+      };
+
+      return results;
+    },
+
+    /**
      * Generate the amortization schedule.
      * @return {Array}
      */
     schedule: function() {
-      var balance  = this.settings.loanAmount;
-      var payment  = this._monthlyRate();
-      var schedule = [];
-
-      // Loop over n times where n is the loan duration,
-      // each time we extract the data for the period
-      // and finally append to the schedule array.
-      for (var n=0; n<this.settings.loanDuration; n++) {
-        var interest  = balance * this._monthlyInterestRate();
-        var taxesPaid = balance * this._monthlyInterestRate() * this._valueAddedTax();
-        var principal = payment - interest - taxesPaid;
-
-        // update balance for the next iteration.
-        balance = balance - principal;
-
-        schedule.push({
-          balance   : this.toMoney(balance),
-          payment   : this.toMoney(payment),
-          principal : this.toMoney(principal),
-          interest  : this.toMoney(interest),
-          tax       : this.toMoney(taxesPaid)
-        })
-      };
-
-      return schedule;
+      return $.map(this._results(), function (value) {
+        return {
+            initial   : this.toMoney(value.initial),
+            principal : this.toMoney(value.principal),
+            interest  : this.toMoney(value.interest),
+            tax       : this.toMoney(value.tax),
+            payment   : this.toMoney(value.payment),
+            balance   : this.toMoney(value.balance)
+        }
+      }.bind(this));
     },
 
     /**
@@ -339,11 +364,11 @@
      * @return {Array}
      */
     _cashFlow: function () {
-      var schedule = this.schedule();
+      var results = this._results();
       var cashFlow = [this._serviceFee() - this.settings.loanAmount];
 
-      $.each(schedule, function(index, period){
-          cashFlow.push(this.toNumeric(period.payment) - this.toNumeric(period.tax));
+      $.each(results, function(index, period){
+          cashFlow.push(period.payment - period.tax);
       }.bind(this));
 
       return cashFlow;
