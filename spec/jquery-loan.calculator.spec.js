@@ -128,6 +128,48 @@ describe('jQuery Loan Calculator Plugin', function() {
   });
 
 
+  it('has a weekly payment frequency option', function() {
+    $element.loanCalculator({
+      loanAmount       : '$50,000.00',
+      loanDuration     : '52',
+      interestRate     : '19%',
+      valueAddedTax    : '16%',
+      paymentFrequency : 'weekly'
+    });
+
+    expect($loanTotal.html()).toBe('$55,817.70');
+    expect($payment.html()).toBe('$1,073.42');
+  });
+
+
+  it('has a biweekly payment frequency option', function() {
+    $element.loanCalculator({
+      loanAmount       : '$50,000.00',
+      loanDuration     : '52',
+      interestRate     : '19%',
+      valueAddedTax    : '16%',
+      paymentFrequency : 'biweekly'
+    });
+
+    expect($loanTotal.html()).toBe('$62,035.24');
+    expect($payment.html()).toBe('$1,192.99');
+  });
+
+
+  it('calculates correct total annual cost when different payment frequencies are provided', function() {
+    $element.loanCalculator({
+      loanAmount       : '$50,000.00',
+      loanDuration     : '52',
+      interestRate     : '19%',
+      valueAddedTax    : '16%',
+      paymentFrequency : 'weekly',
+      serviceFee       : '5%'
+    });
+
+    expect($totalAnnualCost.html()).toBe('34.17%');
+  });
+
+
   it('has an update method', function() {
     var plugin = $element.loanCalculator().data('plugin_loanCalculator');
 
@@ -164,6 +206,16 @@ describe('jQuery Loan Calculator Plugin', function() {
 
     expect($loanTotal.html()).toBe('$56,555.04');
     expect($payment.html()).toBe('$1,570.97');
+  });
+
+
+  it('throws exception when invalid payment frequency is provided', function() {
+    expect(function() {
+      $element.loanCalculator({ paymentFrequency: 'NON-EXISTING' })
+    })
+      .toThrow(new Error(
+          'The value provided for [paymentFrequency] is not valid.'
+      ));
   });
 
 

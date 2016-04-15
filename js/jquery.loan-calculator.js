@@ -23,6 +23,16 @@
   };
 
   /**
+   * Table of allowed payment frequencies.
+   * @type {Object}
+   */
+  var PAYMENT_FREQUENCIES = {
+    'weekly'   : 52,
+    'biweekly' : 26,
+    'monthly'  : 12
+  };
+
+  /**
    * The minimum allowed for a loan.
    * @type {Number}
    */
@@ -40,11 +50,12 @@
    */
   var defaults = {
     // default values for a loan
-    loanAmount    : 50000,
-    loanDuration  : 12,
-    creditScore   : 'A',
-    valueAddedTax : 0,
-    serviceFee    : 0,
+    loanAmount       : 50000,
+    loanDuration     : 12,
+    creditScore      : 'A',
+    valueAddedTax    : 0,
+    serviceFee       : 0,
+    paymentFrequency : 'monthly',
 
     // inputs
     loanAmountSelector   : '#loan-amount',
@@ -133,6 +144,10 @@
       this.settings.loanAmount = parseFloat(this.settings.loanAmount);
       this.settings.loanDuration = parseFloat(this.settings.loanDuration);
       this.settings.creditScore = $.trim(this.settings.creditScore.toUpperCase());
+
+      if (! PAYMENT_FREQUENCIES.hasOwnProperty(this.settings.paymentFrequency)) {
+        throw new Error('The value provided for [paymentFrequency] is not valid.');
+      }
 
       // Validate that credit score is a 'known' value in the CREDIT_RATES table
       if (! CREDIT_RATES.hasOwnProperty(this.settings.creditScore)) {
@@ -232,7 +247,7 @@
     _results: function () {
       var balance      = this.settings.loanAmount;
       var initial      = this.settings.loanAmount;
-      var interestRate = this._monthlyInterestRate();
+      var interestRate = this._interestRate();
       var VAT          = this._valueAddedTax();
       var payment      = this._PMT();
       var results = [];
@@ -298,11 +313,20 @@
     },
 
     /**
-     * Get the monthly interest rate for the current credit score.
-     * @return {Number}
+     * Get the periodic interest rate.
+     * @returns {Number}
      */
-    _monthlyInterestRate: function() {
-      return this._annualInterestRate() / 12;
+    _interestRate: function() {
+      return this._annualInterestRate() / this._paymentFrequency();
+    },
+
+
+    /**
+     * Returns the periodic payment frequency
+     * @returns {Number}
+     */
+    _paymentFrequency: function() {
+      return PAYMENT_FREQUENCIES[this.settings.paymentFrequency];
     },
 
     /**
@@ -319,9 +343,9 @@
      * @return {Number}
      */
     _PMT: function() {
-      var i = this._monthlyInterestRate(); // interest rate
-      var L = this.settings.loanAmount;    //  amount borrowed
-      var n = this.settings.loanDuration;  // number of payments
+      var i = this._interestRate();       // interest rate
+      var L = this.settings.loanAmount;   //  amount borrowed
+      var n = this.settings.loanDuration; // number of payments
 
       if (this.settings.valueAddedTax !== 0) {
         i = (1 + this._valueAddedTax()) * i; // interest rate with tax
@@ -377,8 +401,9 @@
      */
     _CAT: function () {
       var IRR = this._IRR(this._cashFlow());
+      var periods = this._paymentFrequency();
 
-      return Math.pow(1 + IRR, 12) - 1;
+      return Math.pow(1 + IRR, periods) - 1;
     },
 
     /**

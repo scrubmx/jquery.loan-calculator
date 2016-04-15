@@ -117,6 +117,11 @@ Example output:
   - Type: Number|String
   - Description: (Number) The annual interest rate for the loan.
   - Note: This value will override the `creditScore` option.
+* **paymentFrequency**
+  - Default: 'monthly'
+  - Type: String
+  - Description: (String) The frequency of payments for the loan.
+  - Note: This option changes the interpretation what loanDuration means (12 weeks or 12 months)
 * **valueAddedTax**
   - Default: `0`
   - Type: Number|String
