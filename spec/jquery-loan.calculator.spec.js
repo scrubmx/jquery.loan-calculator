@@ -241,27 +241,33 @@ describe('jQuery Loan Calculator Plugin', function() {
   });
 
 
-  fit('supports css selectors for the results as options', function() {
+  it('supports css selectors for the results as options', function() {
     setFixtures(
       "<div id='test'>" +
         "<p id='total-container'></p>" +
         "<p id='monthly-rate-container'></p>" +
         "<p id='selected-credit-score'></p>" +
         "<p id='interest-total-container'></p>" +
+        "<p id='tax-total-container'></p>" +
       "</div>"
     );
 
     $('#test').loanCalculator({
-      loanAmount: '$120,000.00',
-      loanDuration: '12 months',
+      loanAmount: 50000,
+      interestRate: 0.0532,
+      loanDuration: 12,
+      valueAddedTax: 0.16,
       loanTotalSelector: '#total-container',
       monthlyRateSelector: '#monthly-rate-container',
-      interestTotalSelector: '#interest-total-container'
+      interestTotalSelector: '#interest-total-container',
+      taxTotalSelector: '#tax-total-container',
+
     });
 
-    expect($('#total-container')).toHaveText('$123,486.04');
-    expect($('#monthly-rate-container')).toHaveText('$10,290.50');
-    expect($('#interest-total-container')).toHaveText('$3,486.04');
+    expect($('#total-container').html()).toBe('$51,687.08');
+    expect($('#monthly-rate-container').html()).toBe('$4,307.26');
+    expect($('#interest-total-container').html()).toBe('$1,454.38');
+    expect($('#tax-total-container').html()).toBe('$232.70');
   });
 
 
@@ -342,19 +348,21 @@ describe('jQuery Loan Calculator Plugin', function() {
     var schedule = $element.loanCalculator('schedule');
 
      expect(schedule[0]).toEqual({
-      balance   : '$46,215.14',
-      payment   : '$4,650.03',
-      principal : '$3,784.86',
-      interest  : '$745.83',
-      tax       : '$119.33'
+      initial: '$50,000.00',
+      principal: '$3,784.86',
+      interest: '$745.83',
+      tax: '$119.33',
+      payment: '$4,650.03',
+      balance: '$46,215.14'
     })
 
     expect(schedule[11]).toEqual({
-      balance   : '$-0.00',
-      payment   : '$4,650.03',
+      initial   : '$4,570.93',
       principal : '$4,570.93',
       interest  : '$68.18',
-      tax       : '$10.91'
+      tax       : '$10.91',
+      payment   : '$4,650.03',
+      balance   : '$-0.00'
     })
   });
 

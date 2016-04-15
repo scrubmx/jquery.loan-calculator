@@ -156,7 +156,11 @@ Example output:
 * **interestTotalSelector**
   - Default: `#interest-total`
   - Type: String (CSS selector)
-  - Description: Element to display the resulting total interest paid for the loan.
+  - Description: Element to display the resulting total interest amount paid for the loan.
+* **taxTotalSelector**
+    - Default: `#tax-total`
+    - Type: String (CSS selector)
+    - Description: Element to display the resulting total tax amount paid for the loan.
 * **monthlyRateSelector**
   - Default: `#monthly-rate`
   - Type: String (CSS selector)

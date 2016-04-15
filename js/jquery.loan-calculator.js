@@ -60,8 +60,9 @@
     loanTotalSelector       : '#loan-total',
     monthlyRateSelector     : '#monthly-rate',
     interestTotalSelector   : '#interest-total',
-    totalAnnualCostSelector : '#total-annual-cost',
-    serviceFeeSelector      : '#service-fee'
+    serviceFeeSelector      : '#service-fee',
+    taxTotalSelector        : '#tax-total',
+    totalAnnualCostSelector : '#total-annual-cost'
   };
 
   /**
@@ -197,6 +198,11 @@
         this.toMoney(this._interestTotal())
       );
 
+      // Display the tax total amount
+      this.$el.find(this.settings.taxTotalSelector).html(
+          this.toMoney(this._taxTotal())
+      );
+
       // Display the annual total cost
       this.$el.find(this.settings.totalAnnualCostSelector).html(
           this.toPercentage(this._CAT())
@@ -329,7 +335,23 @@
      * @returns {Number}
      */
     _interestTotal: function() {
-      return this._loanTotal() - this.settings.loanAmount;
+      var total = 0;
+      $.each(this._results(), function(index, value){
+        total += value.interest;
+      });
+      return total;
+    },
+
+    /**
+     * Calculate the value added tax total for the loan.
+     * @returns {Number}
+     */
+    _taxTotal: function() {
+      var total = 0;
+      $.each(this._results(), function(index, value){
+        total += value.tax;
+      });
+      return total;
     },
 
     /**
