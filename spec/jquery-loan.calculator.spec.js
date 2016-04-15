@@ -317,6 +317,20 @@ describe('jQuery Loan Calculator Plugin', function() {
   });
 
 
+  it('shows the right total for service fee zero', function() {
+    $element.loanCalculator({
+      loanAmount    : '$50,000.00',
+      loanDuration  : '12',
+      interestRate  : '17.9%',
+      valueAddedTax : '16%',
+      serviceFee    : '0%'
+    });
+
+    expect($serviceFee.html()).toBe('$0.00');
+    expect($loanTotal.html()).toBe('$55,800.33');
+  });
+
+
   it('can update the service fee selector', function() {
     setFixtures("<div id='widget1'><p id='commission'></p><div>");
 
