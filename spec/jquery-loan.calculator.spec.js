@@ -1,6 +1,6 @@
 describe('jQuery Loan Calculator Plugin', function() {
 
-  var $element, $loanTotal, $monthlyRate;
+  var $element, $loanTotal, $payment;
 
   beforeEach(function() {
     jasmine.getFixtures().fixturesPath = 'base/spec/fixtures';
@@ -9,7 +9,7 @@ describe('jQuery Loan Calculator Plugin', function() {
 
     $element         = $('#widget');
     $loanTotal       = $('#loan-total');
-    $monthlyRate     = $('#monthly-rate');
+    $payment         = $('#payment');
     $totalAnnualCost = $('#total-annual-cost');
     $serviceFee      = $('#service-fee');
   });
@@ -33,7 +33,7 @@ describe('jQuery Loan Calculator Plugin', function() {
     $element.loanCalculator();
 
     expect($loanTotal.html()).toBe('$51,452.52');
-    expect($monthlyRate.html()).toBe('$4,287.71');
+    expect($payment.html()).toBe('$4,287.71');
   });
 
 
@@ -45,7 +45,7 @@ describe('jQuery Loan Calculator Plugin', function() {
       });
 
       expect($loanTotal.html()).toBe('$54,206.61');
-      expect($monthlyRate.html()).toBe('$1,505.74');
+      expect($payment.html()).toBe('$1,505.74');
   });
 
 
@@ -57,7 +57,7 @@ describe('jQuery Loan Calculator Plugin', function() {
     });
 
     expect($loanTotal.html()).toBe('$63,282.66');
-    expect($monthlyRate.html()).toBe('$1,757.85');
+    expect($payment.html()).toBe('$1,757.85');
   });
 
 
@@ -99,19 +99,19 @@ describe('jQuery Loan Calculator Plugin', function() {
     });
 
     expect($loanTotal.html()).toBe('$63,282.66');
-    expect($monthlyRate.html()).toBe('$1,757.85');
+    expect($payment.html()).toBe('$1,757.85');
 
     // supports integer format
     $element.loanCalculator('update', { interestRate: 25 });
 
     expect($loanTotal.html()).toBe('$71,567.69');
-    expect($monthlyRate.html()).toBe('$1,987.99');
+    expect($payment.html()).toBe('$1,987.99');
 
     // supports floating point format
     $element.loanCalculator('update', { interestRate: 0.33 });
 
     expect($loanTotal.html()).toBe('$79,400.38');
-    expect($monthlyRate.html()).toBe('$2,205.57');
+    expect($payment.html()).toBe('$2,205.57');
   });
 
 
@@ -124,7 +124,7 @@ describe('jQuery Loan Calculator Plugin', function() {
     });
 
     expect($loanTotal.html()).toBe('$71,567.69');
-    expect($monthlyRate.html()).toBe('$1,987.99');
+    expect($payment.html()).toBe('$1,987.99');
   });
 
 
@@ -146,7 +146,7 @@ describe('jQuery Loan Calculator Plugin', function() {
     $element.loanCalculator('update');
 
     expect($loanTotal.html()).toBe('$41,162.01');
-    expect($monthlyRate.html()).toBe('$3,430.17');
+    expect($payment.html()).toBe('$3,430.17');
   });
 
 
@@ -158,12 +158,12 @@ describe('jQuery Loan Calculator Plugin', function() {
     $element.loanCalculator('update', { loanAmount: 50000 });
 
     expect($loanTotal.html()).toBe('$54,206.61');
-    expect($monthlyRate.html()).toBe('$1,505.74');
+    expect($payment.html()).toBe('$1,505.74');
 
     $element.loanCalculator('update', { interestRate: 8.18 });
 
     expect($loanTotal.html()).toBe('$56,555.04');
-    expect($monthlyRate.html()).toBe('$1,570.97');
+    expect($payment.html()).toBe('$1,570.97');
   });
 
 
@@ -245,7 +245,7 @@ describe('jQuery Loan Calculator Plugin', function() {
     setFixtures(
       "<div id='test'>" +
         "<p id='total-container'></p>" +
-        "<p id='monthly-rate-container'></p>" +
+        "<p id='payment-container'></p>" +
         "<p id='selected-credit-score'></p>" +
         "<p id='interest-total-container'></p>" +
         "<p id='tax-total-container'></p>" +
@@ -258,14 +258,14 @@ describe('jQuery Loan Calculator Plugin', function() {
       loanDuration: 12,
       valueAddedTax: 0.16,
       loanTotalSelector: '#total-container',
-      monthlyRateSelector: '#monthly-rate-container',
+      paymentSelector: '#payment-container',
       interestTotalSelector: '#interest-total-container',
       taxTotalSelector: '#tax-total-container',
 
     });
 
     expect($('#total-container').html()).toBe('$51,687.08');
-    expect($('#monthly-rate-container').html()).toBe('$4,307.26');
+    expect($('#payment-container').html()).toBe('$4,307.26');
     expect($('#interest-total-container').html()).toBe('$1,454.38');
     expect($('#tax-total-container').html()).toBe('$232.70');
   });
@@ -288,7 +288,7 @@ describe('jQuery Loan Calculator Plugin', function() {
     $('#loan-amount').val('50000').trigger('change');
 
     expect($loanTotal.html()).toBe('$51,452.52');
-    expect($monthlyRate.html()).toBe('$4,287.71');
+    expect($payment.html()).toBe('$4,287.71');
   });
 
 

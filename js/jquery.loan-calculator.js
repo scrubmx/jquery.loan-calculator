@@ -58,7 +58,7 @@
 
     // display the results
     loanTotalSelector       : '#loan-total',
-    monthlyRateSelector     : '#monthly-rate',
+    paymentSelector         : '#payment',
     interestTotalSelector   : '#interest-total',
     serviceFeeSelector      : '#service-fee',
     taxTotalSelector        : '#tax-total',
@@ -188,8 +188,8 @@
         this.toMoney(this._loanTotal())
       );
 
-      // Display the loan monthly payment
-      this.$el.find(this.settings.monthlyRateSelector).html(
+      // Display the loan periodic payment
+      this.$el.find(this.settings.paymentSelector).html(
         this.toMoney(this._PMT())
       );
 

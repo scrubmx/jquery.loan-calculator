@@ -13,7 +13,7 @@
     <input type="range" id="loan-duration" min="12" max="36" step="1">
     <input id="credit-score" value="A">
     <h4 id="loan-total"></h4>
-    <h4 id="monthly-rate"></h4>
+    <h4 id="payment"></h4>
 </div>
 ```
 
@@ -161,10 +161,10 @@ Example output:
     - Default: `#tax-total`
     - Type: String (CSS selector)
     - Description: Element to display the resulting total tax amount paid for the loan.
-* **monthlyRateSelector**
-  - Default: `#monthly-rate`
+* **paymentSelector**
+  - Default: `#payment`
   - Type: String (CSS selector)
-  - Description: Element to display the resulting monthly payment amount.
+  - Description: Element to display the periodic payment amount.
 * **totalAnnualCostSelector**
   - Default: `#total-annual-cost`
   - Type: String (CSS selector)
