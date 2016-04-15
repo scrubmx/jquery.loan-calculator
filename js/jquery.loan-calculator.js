@@ -189,7 +189,7 @@
 
       // Display the loan monthly payment
       this.$el.find(this.settings.monthlyRateSelector).html(
-        this.toMoney(this._monthlyRate())
+        this.toMoney(this._PMT())
       );
 
       // Display the interest total amount
@@ -279,7 +279,7 @@
      * @return {Number}
      */
     _loanTotal: function() {
-      return this._monthlyRate() * this.settings.loanDuration;
+      return this._PMT() * this.settings.loanDuration;
     },
 
     /**
@@ -287,9 +287,9 @@
      * @see https://en.wikipedia.org/wiki/Compound_interest#Monthly_amortized_loan_or_mortgage_payments
      * @return {Number}
      */
-    _monthlyRate: function() {
+    _PMT: function() {
       var i = this._monthlyInterestRate(); // interest rate
-      var L = this.settings.loanAmount;    // amount borrowed
+      var L = this.settings.loanAmount;    //  amount borrowed
       var n = this.settings.loanDuration;  // number of payments
 
       if (this.settings.valueAddedTax !== 0) {
