@@ -12,11 +12,7 @@ describe('jQuery Loan Calculator Plugin', function() {
     $payment         = $('#payment');
     $totalAnnualCost = $('#total-annual-cost');
     $serviceFee      = $('#service-fee');
-  });
-
-
-  it('should find jQuery as $', function() {
-    expect($).not.toBeNull();
+    $grandTotal      = $('#grand-total');
   });
 
 
@@ -73,6 +69,12 @@ describe('jQuery Loan Calculator Plugin', function() {
      expect($totalAnnualCost.html()).toBe('31.70%');
   });
 
+  it('calculates the correct grand total cost', function() {
+    $element.loanCalculator();
+
+    expect($grandTotal.html()).toBe('$51,452.52');
+  });
+
 
   it('can update the total annual cost (CAT) selector', function() {
     setFixtures("<div id='widget1'><p id='cat'></p><div>");
@@ -87,6 +89,26 @@ describe('jQuery Loan Calculator Plugin', function() {
     });
 
     expect($('#cat').html()).toBe('31.70%');
+  });
+
+
+  it('can update the grand total selector', function() {
+    setFixtures('<div id="widget1"><p id="grand-total"></p></div>');
+
+    $('#widget1').loanCalculator();
+
+    expect($('#grand-total').html()).toBe('$51,452.52');
+  });
+
+
+  it('can update the selected payment frequency selector', function() {
+    setFixtures('<div id="widget1"><p id="selected-payment-frequency"></p></div>');
+
+    $('#widget1').loanCalculator({
+      'paymentFrequency': 'weekly'
+    });
+
+    expect($('#selected-payment-frequency').html()).toBe('weekly');
   });
 
 
@@ -137,8 +159,8 @@ describe('jQuery Loan Calculator Plugin', function() {
       paymentFrequency : 'weekly'
     });
 
-    expect($loanTotal.html()).toBe('$55,817.70');
-    expect($payment.html()).toBe('$1,073.42');
+    expect($loanTotal.html()).toBe('$77,718.96');
+    expect($payment.html()).toBe('$344.91');
   });
 
 
@@ -151,8 +173,8 @@ describe('jQuery Loan Calculator Plugin', function() {
       paymentFrequency : 'biweekly'
     });
 
-    expect($loanTotal.html()).toBe('$62,035.24');
-    expect($payment.html()).toBe('$1,192.99');
+    expect($loanTotal.html()).toBe('$77,817.06');
+    expect($payment.html()).toBe('$690.68');
   });
 
 
@@ -166,7 +188,7 @@ describe('jQuery Loan Calculator Plugin', function() {
       serviceFee       : '5%'
     });
 
-    expect($totalAnnualCost.html()).toBe('34.17%');
+    expect($totalAnnualCost.html()).toBe('24.20%');
   });
 
 
@@ -413,7 +435,7 @@ describe('jQuery Loan Calculator Plugin', function() {
 
     var schedule = $element.loanCalculator('schedule');
 
-     expect(schedule[0]).toEqual({
+    expect(schedule[0]).toEqual({
       initial: '$50,000.00',
       principal: '$3,784.86',
       interest: '$745.83',
@@ -432,5 +454,19 @@ describe('jQuery Loan Calculator Plugin', function() {
     })
   });
 
+
+  it('it can return the credit rates being used', function() {
+    var rates = $element.loanCalculator('rates');
+
+    expect({
+      'A': 5.32,  'A1': 5.32,  'A2': 6.24,  'A3': 6.89,  'A4': 7.26,  'A5': 7.89,
+      'B': 8.18,  'B1': 8.18,  'B2': 9.17,  'B3': 9.99,  'B4': 10.99, 'B5': 11.53,
+      'C': 12.29, 'C1': 12.29, 'C2': 12.69, 'C3': 13.33, 'C4': 13.99, 'C5': 14.65,
+      'D': 15.61, 'D1': 15.61, 'D2': 16.55, 'D3': 16.99, 'D4': 17.57, 'D5': 17.86,
+      'E': 18.25, 'E1': 18.25, 'E2': 18.55, 'E3': 19.19, 'E4': 19.99, 'E5': 20.99,
+      'F': 21.99, 'F1': 21.99, 'F2': 22.99, 'F3': 23.99, 'F4': 24.99, 'F5': 25.78,
+      'G': 26.77, 'G1': 26.77, 'G2': 27.31, 'G3': 27.88, 'G4': 28.49, 'G5': 28.99
+    }).toEqual(rates);
+  });
 
 });

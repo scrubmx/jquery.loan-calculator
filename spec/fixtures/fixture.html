@@ -12,6 +12,15 @@
     </div>
 
     <div class="form-group">
+      <label for="payment-frequency">Payment frequency: </label> <span id="selected-payment-frequency"></span>
+      <select id="payment-frequency" class="form-control">
+        <option value="weekly">Weekly</option>
+        <option value="biweekly">Biweekly</option>
+        <option value="monthly" selected>Monthly</option>
+      </select>
+    </div>
+
+    <div class="form-group">
       <label for="credit-score">Credit Score:</label> <span id="selected-score"></span>
       <select id="credit-score" class="form-control">
         <option value="A" selected>A</option>
@@ -29,6 +38,7 @@
       <li>Monthly rate: <span id="payment"></span></li>
       <li>Service fee: <span id="service-fee"></span></li>
       <li>CAT: <span id="total-annual-cost"></span></li>
+      <li>Grand total: <span id="grand-total"></span></li>
     </ul>
 
 </div>
