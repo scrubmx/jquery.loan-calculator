@@ -159,8 +159,8 @@ describe('jQuery Loan Calculator Plugin', function() {
       paymentFrequency : 'weekly'
     });
 
-    expect($loanTotal.html()).toBe('$77,718.96');
-    expect($payment.html()).toBe('$344.91');
+    expect($loanTotal.html()).toBe('$77,672.75');
+    expect($payment.html()).toBe('$345.21');
   });
 
 
@@ -173,8 +173,8 @@ describe('jQuery Loan Calculator Plugin', function() {
       paymentFrequency : 'biweekly'
     });
 
-    expect($loanTotal.html()).toBe('$77,817.06');
-    expect($payment.html()).toBe('$690.68');
+    expect($loanTotal.html()).toBe('$77,632.42');
+    expect($payment.html()).toBe('$693.15');
   });
 
 
@@ -188,7 +188,7 @@ describe('jQuery Loan Calculator Plugin', function() {
       serviceFee       : '5%'
     });
 
-    expect($totalAnnualCost.html()).toBe('24.20%');
+    expect($totalAnnualCost.html()).toBe('24.21%');
   });
 
 
@@ -467,6 +467,17 @@ describe('jQuery Loan Calculator Plugin', function() {
       'F': 21.99, 'F1': 21.99, 'F2': 22.99, 'F3': 23.99, 'F4': 24.99, 'F5': 25.78,
       'G': 26.77, 'G1': 26.77, 'G2': 27.31, 'G3': 27.88, 'G4': 28.49, 'G5': 28.99
     }).toEqual(rates);
+  });
+
+
+  it('returns a json object with the amortization schedule with equal payments', function() {
+    $element.loanCalculator();
+
+    var schedule = $element.loanCalculator('schedule');
+
+    schedule.forEach(function (period) {
+      expect(period['payment']).toBe('$4,287.71');
+    });
   });
 
 });

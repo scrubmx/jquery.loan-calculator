@@ -268,29 +268,13 @@
       var numberOfPayments = this._numberOfPayments();
       var results          = [];
 
-      // Check if the last period is a fraction of a period
-      var isFractionOfPeriod = function(period) {
-        return period == Math.floor(numberOfPayments) && (period - numberOfPayments) < 0;
-      }
-
       // Loop over n times where n is the loan duration,
       // each time we extract the data for the period
       // and finally append to the results array.
       for (var n=0; n<numberOfPayments; n++) {
-
-        // sometimes when providing a payment frequency in combination with some loan durations
-        // the number of payments can be a non integer.
-        // In this case the last period will only have a fraction of a payment.
-        if (isFractionOfPeriod(n)) {
-          var principal = balance;
-          var interest  = balance * interestRate;
-          var taxesPaid = interest * VAT;
-          payment = principal + interest + taxesPaid;
-        } else {
-          var interest  = balance * interestRate;
-          var taxesPaid = balance * interestRate * VAT;
-          var principal = payment - interest - taxesPaid;
-        }
+        var interest  = balance * interestRate;
+        var taxesPaid = balance * interestRate * VAT;
+        var principal = payment - interest - taxesPaid;
 
         // update initial balance for next iteration
         initial = balance;
@@ -368,7 +352,7 @@
     _numberOfPayments: function () {
       var durationInYears = this.toNumeric(this.settings.loanDuration) / 12;
 
-      return durationInYears * PAYMENT_FREQUENCIES[this.settings.paymentFrequency];
+      return Math.floor(durationInYears * PAYMENT_FREQUENCIES[this.settings.paymentFrequency]);
     },
 
     /**
