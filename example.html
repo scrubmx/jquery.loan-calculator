@@ -24,6 +24,15 @@
             </div>
 
             <div class="form-group">
+              <label for="payment-frequency">Payment frequency: </label> <span id="selected-payment-frequency"></span>
+              <select id="payment-frequency" class="form-control">
+                <option value="weekly">Weekly</option>
+                <option value="biweekly">Biweekly</option>
+                <option value="monthly" selected>Monthly</option>
+              </select>
+            </div>
+
+            <div class="form-group">
               <label for="credit-score">Credit Score:</label> <span id="selected-score"></span>
               <select id="credit-score" class="form-control">
                 <option value="A" selected>A</option>
@@ -42,6 +51,7 @@
               <li>Payment: <span id="payment"></span></li>
               <li>Service fee: <span id="service-fee"></span></li>
               <li>CAT: <span id="total-annual-cost"></span></li>
+              <li>Grand total: <span id="grand-total"></span></li>
             </ul>
 
             <hr>
@@ -60,18 +70,20 @@
 
         // Accepts arguments as strings
         $calculator = $('#widget').loanCalculator({
-          loanAmount    : '$1,000.00',
-          loanDuration  : '12',
-          valueAddedTax : '16%',
-          serviceFee    : '5%'
+          loanAmount       : '$1,000.00',
+          loanDuration     : '12',
+          valueAddedTax    : '16%',
+          serviceFee       : '5%',
+          paymentFrequency : 'monthly'
         });
 
         // Can also take numbers as arguments...
         $calculator.loanCalculator('update', {
-          loanAmount    : 1000.00,
-          loanDuration  : 12,
-          valueAddedTax : 0.16,
-          serviceFee    : 0.05
+          loanAmount       : 1000.00,
+          loanDuration     : 12,
+          valueAddedTax    : 0.16,
+          serviceFee       : 0.05,
+          paymentFrequency : 'monthly'
         });
 
         // Generate amortization schedule as json.

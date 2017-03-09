@@ -1,9 +1,9 @@
 /*!
-* jQuery Loan Calculator 2.0.2
-*
-* Author: Jorge González <scrub.mx@gmail>
-* Released under the MIT license - https://opensource.org/licenses/MIT
-*/
+ * jQuery Loan Calculator 2.0.2
+ *
+ * Author: Jorge González <scrub.mx@gmail>
+ * Released under the MIT license - https://opensource.org/licenses/MIT
+ */
 ;(function($, window, document, undefined) {
 
   "use strict";
@@ -58,14 +58,16 @@
     paymentFrequency : 'monthly',
 
     // inputs
-    loanAmountSelector   : '#loan-amount',
-    loanDurationSelector : '#loan-duration',
-    creditScoreSelector  : '#credit-score',
+    loanAmountSelector       : '#loan-amount',
+    loanDurationSelector     : '#loan-duration',
+    creditScoreSelector      : '#credit-score',
+    paymentFrequencySelector : '#payment-frequency',
 
     // display selected values
-    selectedAmount   : '#selected-amount',
-    selectedDuration : '#selected-duration',
-    selectedScore    : '#selected-score',
+    selectedAmount           : '#selected-amount',
+    selectedDuration         : '#selected-duration',
+    selectedScore            : '#selected-score',
+    selectedPaymentFrequency : '#selected-payment-frequency',
 
     // display the results
     loanTotalSelector       : '#loan-total',
@@ -73,7 +75,8 @@
     interestTotalSelector   : '#interest-total',
     serviceFeeSelector      : '#service-fee',
     taxTotalSelector        : '#tax-total',
-    totalAnnualCostSelector : '#total-annual-cost'
+    totalAnnualCostSelector : '#total-annual-cost',
+    loanGrandTotalSelector  : '#grand-total'
   };
 
   /**
@@ -110,7 +113,8 @@
       var eventEmitters = [
         this.settings.loanAmountSelector,
         this.settings.loanDurationSelector,
-        this.settings.creditScoreSelector
+        this.settings.creditScoreSelector,
+        this.settings.paymentFrequencySelector
       ];
 
       $(eventEmitters.join())
@@ -124,9 +128,10 @@
      */
     eventHandler: function() {
       this.update({
-        loanAmount   : this.$el.find(this.settings.loanAmountSelector).val(),
-        loanDuration : this.$el.find(this.settings.loanDurationSelector).val(),
-        creditScore  : this.$el.find(this.settings.creditScoreSelector).val()
+        loanAmount       : this.$el.find(this.settings.loanAmountSelector).val(),
+        loanDuration     : this.$el.find(this.settings.loanDurationSelector).val(),
+        creditScore      : this.$el.find(this.settings.creditScoreSelector).val(),
+        paymentFrequency : this.$el.find(this.settings.paymentFrequencySelector).val()
       });
     },
 
@@ -140,16 +145,20 @@
         this.settings.loanAmount = this.toNumeric(this.settings.loanAmount);
       }
 
+      if (typeof this.settings.serviceFee === 'string') {
+        this.settings.serviceFee = this.toNumeric(this.settings.serviceFee);
+      }
+
       // Sanitize the input
       this.settings.loanAmount = parseFloat(this.settings.loanAmount);
       this.settings.loanDuration = parseFloat(this.settings.loanDuration);
+      this.settings.serviceFee = parseFloat(this.settings.serviceFee);
       this.settings.creditScore = $.trim(this.settings.creditScore.toUpperCase());
 
       if (! PAYMENT_FREQUENCIES.hasOwnProperty(this.settings.paymentFrequency)) {
         throw new Error('The value provided for [paymentFrequency] is not valid.');
       }
 
-      // Validate that credit score is a 'known' value in the CREDIT_RATES table
       if (! CREDIT_RATES.hasOwnProperty(this.settings.creditScore)) {
         throw new Error('The value provided for [creditScore] is not a valid.');
       }
@@ -160,6 +169,10 @@
 
       if (this.settings.loanDuration < MINIMUM_DURATION) {
         throw new Error('The value provided for [loanDuration] must me at least 1.');
+      }
+
+      if (! $.isNumeric(this.settings.serviceFee)) {
+        throw new Error('The value provided for [serviceFee] is not a valid.');
       }
     },
 
@@ -191,6 +204,11 @@
       this.$el.find(this.settings.selectedScore).html(
         this.settings.creditScore
       );
+
+      // Display the selected payment frequency
+      this.$el.find(this.settings.selectedPaymentFrequency).html(
+        this.settings.paymentFrequency
+      );
     },
 
     /**
@@ -215,17 +233,21 @@
 
       // Display the tax total amount
       this.$el.find(this.settings.taxTotalSelector).html(
-          this.toMoney(this._taxTotal())
+        this.toMoney(this._taxTotal())
       );
 
       // Display the annual total cost
       this.$el.find(this.settings.totalAnnualCostSelector).html(
-          this.toPercentage(this._CAT())
+        this.toPercentage(this._CAT())
       );
 
       // Display the service fee if any
       this.$el.find(this.settings.serviceFeeSelector).html(
         this.toMoney(this._serviceFee())
+      );
+
+      this.$el.find(this.settings.loanGrandTotalSelector).html(
+        this.toMoney(this._grandTotal())
       );
     },
 
@@ -245,17 +267,18 @@
      * @return {Array}
      */
     _results: function () {
-      var balance      = this.settings.loanAmount;
-      var initial      = this.settings.loanAmount;
-      var interestRate = this._interestRate();
-      var VAT          = this._valueAddedTax();
-      var payment      = this._PMT();
-      var results = [];
+      var balance          = this.settings.loanAmount;
+      var initial          = this.settings.loanAmount;
+      var interestRate     = this._interestRate();
+      var VAT              = this._valueAddedTax();
+      var payment          = this._PMT();
+      var numberOfPayments = this._numberOfPayments();
+      var results          = [];
 
-      // Loop over n times where n is the loan duration,
-      // each time we extract the data for the period
-      // and finally append to the results array.
-      for (var n=0; n<this.settings.loanDuration; n++) {
+      // We loop over the number of payments and each time
+      // we extract the information to build the period
+      // that will be appended to the results array.
+      for (var n=0; n<numberOfPayments; n++) {
         var interest  = balance * interestRate;
         var taxesPaid = balance * interestRate * VAT;
         var principal = payment - interest - taxesPaid;
@@ -286,12 +309,12 @@
     schedule: function() {
       return $.map(this._results(), function (value) {
         return {
-            initial   : this.toMoney(value.initial),
-            principal : this.toMoney(value.principal),
-            interest  : this.toMoney(value.interest),
-            tax       : this.toMoney(value.tax),
-            payment   : this.toMoney(value.payment),
-            balance   : this.toMoney(value.balance)
+          initial   : this.toMoney(value.initial),
+          principal : this.toMoney(value.principal),
+          interest  : this.toMoney(value.interest),
+          tax       : this.toMoney(value.tax),
+          payment   : this.toMoney(value.payment),
+          balance   : this.toMoney(value.balance)
         }
       }.bind(this));
     },
@@ -330,11 +353,21 @@
     },
 
     /**
+     * Returns number of payments for the loan.
+     * @returns {Number}
+     */
+    _numberOfPayments: function () {
+      var durationInYears = this.toNumeric(this.settings.loanDuration) / 12;
+
+      return Math.floor(durationInYears * PAYMENT_FREQUENCIES[this.settings.paymentFrequency]);
+    },
+
+    /**
      * Calculates the total cost of the loan.
      * @return {Number}
      */
     _loanTotal: function() {
-      return this._PMT() * this.settings.loanDuration;
+      return this._PMT() * this._numberOfPayments();
     },
 
     /**
@@ -343,9 +376,9 @@
      * @return {Number}
      */
     _PMT: function() {
-      var i = this._interestRate();       // interest rate
-      var L = this.settings.loanAmount;   //  amount borrowed
-      var n = this.settings.loanDuration; // number of payments
+      var i = this._interestRate();
+      var L = this.settings.loanAmount;
+      var n = this._numberOfPayments();
 
       if (this.settings.valueAddedTax !== 0) {
         i = (1 + this._valueAddedTax()) * i; // interest rate with tax
@@ -383,7 +416,7 @@
      * @return {Number}
      */
     _serviceFee: function () {
-      var serviceFee = this.toNumeric(this.settings.serviceFee);
+      var serviceFee = this.settings.serviceFee;
 
       // if the service fee is greater than 1 then the
       // value must be converted to decimals first.
@@ -392,6 +425,14 @@
       }
 
       return this.settings.loanAmount * serviceFee;
+    },
+
+    /**
+     * Calculates the total cost of the loan including the service fee.
+     * @return {Number}
+     */
+    _grandTotal: function() {
+      return this._loanTotal() + this. _serviceFee();
     },
 
     /**
@@ -415,7 +456,7 @@
       var cashFlow = [this._serviceFee() - this.settings.loanAmount];
 
       $.each(results, function(index, period){
-          cashFlow.push(period.payment - period.tax);
+        cashFlow.push(period.payment - period.tax);
       }.bind(this));
 
       return cashFlow;
@@ -526,7 +567,7 @@
      */
     toNumeric: function(value) {
       return parseFloat(
-          value.toString().replace(/[^0-9\.]+/g, '')
+        value.toString().replace(/[^0-9\.]+/g, '')
       );
     },
 
@@ -550,6 +591,10 @@
   $.fn.loanCalculator = function(options, args) {
     if (options === 'schedule') {
       return this.data('plugin_loanCalculator').schedule();
+    }
+
+    if (options === 'rates') {
+      return CREDIT_RATES;
     }
 
     return this.each(function() {
