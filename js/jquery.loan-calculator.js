@@ -1,5 +1,5 @@
 /*!
-* jQuery Loan Calculator 1.2.0
+* jQuery Loan Calculator 2.0.2
 *
 * Author: Jorge González <scrub.mx@gmail>
 * Released under the MIT license - https://opensource.org/licenses/MIT
