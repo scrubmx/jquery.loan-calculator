@@ -150,12 +150,12 @@
       this.settings.loanDuration = parseFloat(this.settings.loanDuration);
       this.settings.creditScore = $.trim(this.settings.creditScore.toUpperCase());
 
-      // Validate that payment frequency is a 'known' value in the PAYMENT_FREQUENCIES object
+      // Validate that payment frequency is a known value in the PAYMENT_FREQUENCIES object
       if (! PAYMENT_FREQUENCIES.hasOwnProperty(this.settings.paymentFrequency)) {
         throw new Error('The value provided for [paymentFrequency] is not valid.');
       }
 
-      // Validate that credit score is a 'known' value in the CREDIT_RATES object
+      // Validate that credit score is a known value in the CREDIT_RATES object
       if (! CREDIT_RATES.hasOwnProperty(this.settings.creditScore)) {
         throw new Error('The value provided for [creditScore] is not a valid.');
       }
@@ -268,9 +268,9 @@
       var numberOfPayments = this._numberOfPayments();
       var results          = [];
 
-      // Loop over n times where n is the loan duration,
-      // each time we extract the data for the period
-      // and finally append to the results array.
+      // We loop over the number of payments and each time
+      // we extract the information to build the period
+      // that will be appended to the results array.
       for (var n=0; n<numberOfPayments; n++) {
         var interest  = balance * interestRate;
         var taxesPaid = balance * interestRate * VAT;

@@ -93,22 +93,25 @@ describe('jQuery Loan Calculator Plugin', function() {
 
 
   it('can update the grand total selector', function() {
-    setFixtures('<div id="widget1"><p id="grand-total"></p></div>');
+    setFixtures('<div id="widget1"><p id="custom-grand-total"></p></div>');
 
-    $('#widget1').loanCalculator();
+    $('#widget1').loanCalculator({
+      'loanGrandTotalSelector': '#custom-grand-total',
+    });
 
-    expect($('#grand-total').html()).toBe('$51,452.52');
+    expect($('#custom-grand-total').html()).toBe('$51,452.52');
   });
 
 
   it('can update the selected payment frequency selector', function() {
-    setFixtures('<div id="widget1"><p id="selected-payment-frequency"></p></div>');
+    setFixtures('<div id="widget1"><p id="custom-payment-frequency"></p></div>');
 
     $('#widget1').loanCalculator({
-      'paymentFrequency': 'weekly'
+      'paymentFrequency': 'weekly',
+      'selectedPaymentFrequency': '#custom-payment-frequency',
     });
 
-    expect($('#selected-payment-frequency').html()).toBe('weekly');
+    expect($('#custom-payment-frequency').html()).toBe('weekly');
   });
 
 
