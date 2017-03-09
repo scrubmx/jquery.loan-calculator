@@ -274,6 +274,16 @@ describe('jQuery Loan Calculator Plugin', function() {
   });
 
 
+  it('throws exception when invalid serviceFee is supplied', function() {
+    expect(function() {
+      $element.loanCalculator({ serviceFee: 'INVALID' })
+    })
+    .toThrow(new Error(
+      'The value provided for [serviceFee] is not a valid.'
+    ));
+  });
+
+
   it('supports multiple instances', function() {
     setFixtures(
       "<div id='widget1'><div id='loan-total1'></div><div>" +

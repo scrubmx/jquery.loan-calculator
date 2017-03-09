@@ -145,17 +145,20 @@
         this.settings.loanAmount = this.toNumeric(this.settings.loanAmount);
       }
 
+      if (typeof this.settings.serviceFee === 'string') {
+        this.settings.serviceFee = this.toNumeric(this.settings.serviceFee);
+      }
+
       // Sanitize the input
       this.settings.loanAmount = parseFloat(this.settings.loanAmount);
       this.settings.loanDuration = parseFloat(this.settings.loanDuration);
+      this.settings.serviceFee = parseFloat(this.settings.serviceFee);
       this.settings.creditScore = $.trim(this.settings.creditScore.toUpperCase());
 
-      // Validate that payment frequency is a known value in the PAYMENT_FREQUENCIES object
       if (! PAYMENT_FREQUENCIES.hasOwnProperty(this.settings.paymentFrequency)) {
         throw new Error('The value provided for [paymentFrequency] is not valid.');
       }
 
-      // Validate that credit score is a known value in the CREDIT_RATES object
       if (! CREDIT_RATES.hasOwnProperty(this.settings.creditScore)) {
         throw new Error('The value provided for [creditScore] is not a valid.');
       }
@@ -166,6 +169,10 @@
 
       if (this.settings.loanDuration < MINIMUM_DURATION) {
         throw new Error('The value provided for [loanDuration] must me at least 1.');
+      }
+
+      if (! $.isNumeric(this.settings.serviceFee)) {
+        throw new Error('The value provided for [serviceFee] is not a valid.');
       }
     },
 
@@ -409,7 +416,7 @@
      * @return {Number}
      */
     _serviceFee: function () {
-      var serviceFee = this.toNumeric(this.settings.serviceFee);
+      var serviceFee = this.settings.serviceFee;
 
       // if the service fee is greater than 1 then the
       // value must be converted to decimals first.
