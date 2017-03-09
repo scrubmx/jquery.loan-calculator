@@ -106,7 +106,7 @@ Example output:
   - Default: `12`
   - Type: Number|String
   - Default Input: `#loan-duration`
-  - Description: The loan duration.
+  - Description: The loan duration expressed in months.
 * **creditScore**
   - Default: `A`
   - Type: String
