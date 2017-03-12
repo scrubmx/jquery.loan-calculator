@@ -1,6 +1,7 @@
 {
   "name": "jquery.loan-calculator",
   "version": "2.0.2",
+  "main": "js/jquery.loan-calculator.js",
   "description": "Amortized Loan Calculator jQuery Plugin",
   "author": "Jorge González",
   "repository": {
