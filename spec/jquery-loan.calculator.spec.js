@@ -379,7 +379,7 @@ describe('jQuery Loan Calculator Plugin', function() {
   });
 
 
-  it('can recive value added tax as a parameter', function() {
+  it('can receive value added tax as a parameter', function() {
     $element.loanCalculator({
       loanAmount    : '$50,000.00',
       loanDuration  : '12',
@@ -469,7 +469,7 @@ describe('jQuery Loan Calculator Plugin', function() {
 
 
   it('it can return the credit rates being used', function() {
-    var rates = $element.loanCalculator('rates');
+    $element.loanCalculator();
 
     expect({
       'A': 5.32,  'A1': 5.32,  'A2': 6.24,  'A3': 6.89,  'A4': 7.26,  'A5': 7.89,
@@ -479,7 +479,20 @@ describe('jQuery Loan Calculator Plugin', function() {
       'E': 18.25, 'E1': 18.25, 'E2': 18.55, 'E3': 19.19, 'E4': 19.99, 'E5': 20.99,
       'F': 21.99, 'F1': 21.99, 'F2': 22.99, 'F3': 23.99, 'F4': 24.99, 'F5': 25.78,
       'G': 26.77, 'G1': 26.77, 'G2': 27.31, 'G3': 27.88, 'G4': 28.49, 'G5': 28.99
-    }).toEqual(rates);
+    }).toEqual($element.loanCalculator('rates'));
+  });
+
+
+  it('can receive credit rates as a parameter', function() {
+    $element.loanCalculator({
+      creditScore: 'A',
+      creditRates: {
+        'A': 12,
+      }
+    });
+
+    expect($loanTotal.html()).toBe('$53,309.27');
+    expect({'A': 12}).toEqual($element.loanCalculator('rates'));
   });
 
 

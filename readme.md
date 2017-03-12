@@ -202,7 +202,7 @@ npm test
 ## Todo
 
 * Accept the following as options:
-  - creditScores (JSON or URL)
+  - creditScores (URL)
   - minimumLoan
   - minimumDuration
 

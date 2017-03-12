@@ -52,6 +52,7 @@
     // default values for a loan
     loanAmount       : 50000,
     loanDuration     : 12,
+    creditRates      : CREDIT_RATES,
     creditScore      : 'A',
     valueAddedTax    : 0,
     serviceFee       : 0,
@@ -159,7 +160,7 @@
         throw new Error('The value provided for [paymentFrequency] is not valid.');
       }
 
-      if (! CREDIT_RATES.hasOwnProperty(this.settings.creditScore)) {
+      if (! this.settings.creditRates.hasOwnProperty(this.settings.creditScore)) {
         throw new Error('The value provided for [creditScore] is not a valid.');
       }
 
@@ -320,6 +321,14 @@
     },
 
     /**
+     * Return the credit rates being used.
+     * @return {Object}
+     */
+    creditRates: function() {
+      return this.settings.creditRates;
+    },
+
+    /**
      * Get the credit rate corresponding to the current credit score.
      * @return {Number}
      */
@@ -332,7 +341,7 @@
         return this.toNumeric(this.settings.interestRate) / 100;
       }
 
-      return CREDIT_RATES[ this.settings.creditScore ] / 100;
+      return this.settings.creditRates[ this.settings.creditScore ] / 100;
     },
 
     /**
@@ -594,7 +603,7 @@
     }
 
     if (options === 'rates') {
-      return CREDIT_RATES;
+      return this.data('plugin_loanCalculator').creditRates();
     }
 
     return this.each(function() {
