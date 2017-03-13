@@ -112,6 +112,10 @@ Example output:
   - Type: String
   - Default Input: `#credit-score`
   - Description: If no interest rate is provided, we search the `creditScore` key in the `CREDIT_RATES` object and use that interest rate.
+* **creditRates**
+  - Default: See default credit rates table
+  - Type: Object
+  - Description: The credit rates that will be used for the given `creditScore`
 * **interestRate**
   - Default: None
   - Type: Number|String
@@ -178,6 +182,19 @@ Example output:
   - Default: `#service-fee`
   - Type: String (CSS selector)
   - Description: Element to display the service fee total.
+
+## Default credit rates
+
+| Grade | Value | Grade | Value | Grade | Value | Grade | Value | Grade | Value | Grade | Value |
+| ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- |
+| A | 5.32 | A1 | 5.32 | A2 | 6.24 | A3 | 6.89 | A4 | 7.26 | A5 | 7.89 |
+| B | 8.18 | B1 | 8.18 | B2 | 9.17 | B3 | 9.99 | B4 | 10.99 | B5 | 11.53 |
+| C | 12.29 | C1 | 12.29 | C2 | 12.69 | C3 | 13.33 | C4 | 13.99 | C5 | 14.65 |
+| D | 15.61 | D1 | 15.61 | D2 | 16.55 | D3 | 16.99 | D4 | 17.57 | D5 | 17.86 |
+| E | 18.25 | E1 | 18.25 | E2 | 18.55 | E3 | 19.19 | E4 | 19.99 | E5 | 20.99 |
+| F | 21.99 | F1 | 21.99 | F2 | 22.99 | F3 | 23.99 | F4 | 24.99 | F5 | 25.78 |
+| G | 26.77 | G1 | 26.77 | G2 | 27.31 | G3 | 27.88 | G4 | 28.49 | G5 | 28.99 |
+
 
 ## Development Setup
 
