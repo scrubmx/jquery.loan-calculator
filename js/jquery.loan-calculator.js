@@ -150,6 +150,20 @@
         this.settings.serviceFee = this.toNumeric(this.settings.serviceFee);
       }
 
+      for (var creditRate in this.settings.creditRates) {
+        if (typeof this.settings.creditRates[creditRate] === 'string') {
+          this.settings.creditRates[creditRate] = this.toNumeric(this.settings.creditRates[creditRate])
+        }
+
+        if (! $.isNumeric(this.settings.creditRates[creditRate])) {
+          throw new Error('The value provided for [creditRates] is not valid.')
+        }
+
+        if (this.settings.creditRates[creditRate] < 1) {
+          this.settings.creditRates[creditRate] = this.settings.creditRates[creditRate] * 100;
+        }
+      }
+
       // Sanitize the input
       this.settings.loanAmount = parseFloat(this.settings.loanAmount);
       this.settings.loanDuration = parseFloat(this.settings.loanDuration);
@@ -161,7 +175,7 @@
       }
 
       if (! this.settings.creditRates.hasOwnProperty(this.settings.creditScore)) {
-        throw new Error('The value provided for [creditScore] is not a valid.');
+        throw new Error('The value provided for [creditScore] is not valid.');
       }
 
       if (this.settings.loanAmount < MINIMUM_LOAN) {
@@ -173,7 +187,7 @@
       }
 
       if (! $.isNumeric(this.settings.serviceFee)) {
-        throw new Error('The value provided for [serviceFee] is not a valid.');
+        throw new Error('The value provided for [serviceFee] is not valid.');
       }
     },
 

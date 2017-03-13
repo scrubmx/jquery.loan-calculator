@@ -269,7 +269,7 @@ describe('jQuery Loan Calculator Plugin', function() {
       $element.loanCalculator({ creditScore: 'INVALID' })
     })
     .toThrow(new Error(
-      'The value provided for [creditScore] is not a valid.'
+      'The value provided for [creditScore] is not valid.'
     ));
   });
 
@@ -279,7 +279,21 @@ describe('jQuery Loan Calculator Plugin', function() {
       $element.loanCalculator({ serviceFee: 'INVALID' })
     })
     .toThrow(new Error(
-      'The value provided for [serviceFee] is not a valid.'
+      'The value provided for [serviceFee] is not valid.'
+    ));
+  });
+
+
+  it('throws exception when it has an invalid credit rate', function() {
+    expect(function () {
+      $element.loanCalculator({
+        creditRates: {
+          A: 'INVALID'
+        }
+      })
+    })
+    .toThrow(new Error(
+      'The value provided for [creditRates] is not valid.'
     ));
   });
 
@@ -487,7 +501,27 @@ describe('jQuery Loan Calculator Plugin', function() {
     $element.loanCalculator({
       creditScore: 'A',
       creditRates: {
-        'A': 12,
+        'A': 12
+      }
+    });
+
+    expect($loanTotal.html()).toBe('$53,309.27');
+    expect({'A': 12}).toEqual($element.loanCalculator('rates'));
+
+    $element.loanCalculator('update', {
+      creditScore: 'A',
+      creditRates: {
+        'A': '12%'
+      }
+    });
+
+    expect($loanTotal.html()).toBe('$53,309.27');
+    expect({'A': 12}).toEqual($element.loanCalculator('rates'));
+
+    $element.loanCalculator('update', {
+      creditScore: 'A',
+      creditRates: {
+        'A': 0.12,
       }
     });
 
