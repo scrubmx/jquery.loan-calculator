@@ -287,6 +287,14 @@ describe('jQuery Loan Calculator Plugin', function() {
   it('throws exception when it has an invalid credit rate', function() {
     expect(function () {
       $element.loanCalculator({
+        creditRates: 'INVALID'
+      })
+    }).toThrow(new Error(
+      'The value provided for [creditRates] is not valid.'
+    ));
+
+    expect(function () {
+      $element.loanCalculator({
         creditRates: {
           A: 'INVALID'
         }

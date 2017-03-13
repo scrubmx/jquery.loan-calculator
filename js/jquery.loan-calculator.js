@@ -150,6 +150,10 @@
         this.settings.serviceFee = this.toNumeric(this.settings.serviceFee);
       }
 
+      if (! $.isPlainObject(this.settings.creditRates)) {
+        throw new Error('The value provided for [creditRates] is not valid.');
+      }
+
       for (var creditRate in this.settings.creditRates) {
         if (typeof this.settings.creditRates[creditRate] === 'string') {
           this.settings.creditRates[creditRate] = this.toNumeric(this.settings.creditRates[creditRate])
