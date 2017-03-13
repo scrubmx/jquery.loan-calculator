@@ -13,13 +13,13 @@
    * @type {Object}
    */
   var CREDIT_RATES = {
-    'A': 5.32,  'A1': 5.32,  'A2': 6.24,  'A3': 6.89,  'A4': 7.26,  'A5': 7.89,
-    'B': 8.18,  'B1': 8.18,  'B2': 9.17,  'B3': 9.99,  'B4': 10.99, 'B5': 11.53,
-    'C': 12.29, 'C1': 12.29, 'C2': 12.69, 'C3': 13.33, 'C4': 13.99, 'C5': 14.65,
-    'D': 15.61, 'D1': 15.61, 'D2': 16.55, 'D3': 16.99, 'D4': 17.57, 'D5': 17.86,
-    'E': 18.25, 'E1': 18.25, 'E2': 18.55, 'E3': 19.19, 'E4': 19.99, 'E5': 20.99,
-    'F': 21.99, 'F1': 21.99, 'F2': 22.99, 'F3': 23.99, 'F4': 24.99, 'F5': 25.78,
-    'G': 26.77, 'G1': 26.77, 'G2': 27.31, 'G3': 27.88, 'G4': 28.49, 'G5': 28.99
+    'A': 5.32,
+    'B': 8.18,
+    'C': 12.29,
+    'D': 15.61,
+    'E': 18.25,
+    'F': 21.99,
+    'G': 26.77
   };
 
   /**
@@ -52,6 +52,7 @@
     // default values for a loan
     loanAmount       : 50000,
     loanDuration     : 12,
+    creditRates      : CREDIT_RATES,
     creditScore      : 'A',
     valueAddedTax    : 0,
     serviceFee       : 0,
@@ -149,6 +150,24 @@
         this.settings.serviceFee = this.toNumeric(this.settings.serviceFee);
       }
 
+      if (! $.isPlainObject(this.settings.creditRates)) {
+        throw new Error('The value provided for [creditRates] is not valid.');
+      }
+
+      for (var creditRate in this.settings.creditRates) {
+        if (typeof this.settings.creditRates[creditRate] === 'string') {
+          this.settings.creditRates[creditRate] = this.toNumeric(this.settings.creditRates[creditRate])
+        }
+
+        if (! $.isNumeric(this.settings.creditRates[creditRate])) {
+          throw new Error('The value provided for [creditRates] is not valid.')
+        }
+
+        if (this.settings.creditRates[creditRate] < 1) {
+          this.settings.creditRates[creditRate] = this.settings.creditRates[creditRate] * 100;
+        }
+      }
+
       // Sanitize the input
       this.settings.loanAmount = parseFloat(this.settings.loanAmount);
       this.settings.loanDuration = parseFloat(this.settings.loanDuration);
@@ -159,8 +178,8 @@
         throw new Error('The value provided for [paymentFrequency] is not valid.');
       }
 
-      if (! CREDIT_RATES.hasOwnProperty(this.settings.creditScore)) {
-        throw new Error('The value provided for [creditScore] is not a valid.');
+      if (! this.settings.creditRates.hasOwnProperty(this.settings.creditScore)) {
+        throw new Error('The value provided for [creditScore] is not valid.');
       }
 
       if (this.settings.loanAmount < MINIMUM_LOAN) {
@@ -172,7 +191,7 @@
       }
 
       if (! $.isNumeric(this.settings.serviceFee)) {
-        throw new Error('The value provided for [serviceFee] is not a valid.');
+        throw new Error('The value provided for [serviceFee] is not valid.');
       }
     },
 
@@ -320,6 +339,14 @@
     },
 
     /**
+     * Return the credit rates being used.
+     * @return {Object}
+     */
+    creditRates: function() {
+      return this.settings.creditRates;
+    },
+
+    /**
      * Get the credit rate corresponding to the current credit score.
      * @return {Number}
      */
@@ -332,7 +359,7 @@
         return this.toNumeric(this.settings.interestRate) / 100;
       }
 
-      return CREDIT_RATES[ this.settings.creditScore ] / 100;
+      return this.settings.creditRates[ this.settings.creditScore ] / 100;
     },
 
     /**
@@ -594,7 +621,7 @@
     }
 
     if (options === 'rates') {
-      return CREDIT_RATES;
+      return this.data('plugin_loanCalculator').creditRates();
     }
 
     return this.each(function() {

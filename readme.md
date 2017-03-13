@@ -112,6 +112,10 @@ Example output:
   - Type: String
   - Default Input: `#credit-score`
   - Description: If no interest rate is provided, we search the `creditScore` key in the `CREDIT_RATES` object and use that interest rate.
+* **creditRates**
+  - Default: See default credit rates table
+  - Type: Object
+  - Description: The credit rates that will be used for the given `creditScore`
 * **interestRate**
   - Default: None
   - Type: Number|String
@@ -179,6 +183,19 @@ Example output:
   - Type: String (CSS selector)
   - Description: Element to display the service fee total.
 
+## Default credit rates
+
+| Grade | Value |
+| ----- | ----- |
+| A | 5.32 | A1 |
+| B | 8.18 | B1 |
+| C | 12.29 | C1 |
+| D | 15.61 | D1 |
+| E | 18.25 | E1 |
+| F | 21.99 | F1 |
+| G | 26.77 | G1 |
+
+
 ## Development Setup
 
 * Clone the repository
@@ -202,7 +219,7 @@ npm test
 ## Todo
 
 * Accept the following as options:
-  - creditScores (JSON or URL)
+  - creditScores (URL)
   - minimumLoan
   - minimumDuration
 
