@@ -269,7 +269,7 @@ describe('jQuery Loan Calculator Plugin', function() {
       $element.loanCalculator({ creditScore: 'INVALID' })
     })
     .toThrow(new Error(
-      'The value provided for [creditScore] is not a valid.'
+      'The value provided for [creditScore] is not valid.'
     ));
   });
 
@@ -279,7 +279,29 @@ describe('jQuery Loan Calculator Plugin', function() {
       $element.loanCalculator({ serviceFee: 'INVALID' })
     })
     .toThrow(new Error(
-      'The value provided for [serviceFee] is not a valid.'
+      'The value provided for [serviceFee] is not valid.'
+    ));
+  });
+
+
+  it('throws exception when it has an invalid credit rate', function() {
+    expect(function () {
+      $element.loanCalculator({
+        creditRates: 'INVALID'
+      })
+    }).toThrow(new Error(
+      'The value provided for [creditRates] is not valid.'
+    ));
+
+    expect(function () {
+      $element.loanCalculator({
+        creditRates: {
+          A: 'INVALID'
+        }
+      })
+    })
+    .toThrow(new Error(
+      'The value provided for [creditRates] is not valid.'
     ));
   });
 
@@ -379,7 +401,7 @@ describe('jQuery Loan Calculator Plugin', function() {
   });
 
 
-  it('can recive value added tax as a parameter', function() {
+  it('can receive value added tax as a parameter', function() {
     $element.loanCalculator({
       loanAmount    : '$50,000.00',
       loanDuration  : '12',
@@ -469,17 +491,50 @@ describe('jQuery Loan Calculator Plugin', function() {
 
 
   it('it can return the credit rates being used', function() {
-    var rates = $element.loanCalculator('rates');
+    $element.loanCalculator();
 
     expect({
-      'A': 5.32,  'A1': 5.32,  'A2': 6.24,  'A3': 6.89,  'A4': 7.26,  'A5': 7.89,
-      'B': 8.18,  'B1': 8.18,  'B2': 9.17,  'B3': 9.99,  'B4': 10.99, 'B5': 11.53,
-      'C': 12.29, 'C1': 12.29, 'C2': 12.69, 'C3': 13.33, 'C4': 13.99, 'C5': 14.65,
-      'D': 15.61, 'D1': 15.61, 'D2': 16.55, 'D3': 16.99, 'D4': 17.57, 'D5': 17.86,
-      'E': 18.25, 'E1': 18.25, 'E2': 18.55, 'E3': 19.19, 'E4': 19.99, 'E5': 20.99,
-      'F': 21.99, 'F1': 21.99, 'F2': 22.99, 'F3': 23.99, 'F4': 24.99, 'F5': 25.78,
-      'G': 26.77, 'G1': 26.77, 'G2': 27.31, 'G3': 27.88, 'G4': 28.49, 'G5': 28.99
-    }).toEqual(rates);
+      'A': 5.32,
+      'B': 8.18,
+      'C': 12.29,
+      'D': 15.61,
+      'E': 18.25,
+      'F': 21.99,
+      'G': 26.77,
+    }).toEqual($element.loanCalculator('rates'));
+  });
+
+
+  it('can receive credit rates as a parameter', function() {
+    $element.loanCalculator({
+      creditScore: 'A',
+      creditRates: {
+        'A': 12
+      }
+    });
+
+    expect($loanTotal.html()).toBe('$53,309.27');
+    expect({'A': 12}).toEqual($element.loanCalculator('rates'));
+
+    $element.loanCalculator('update', {
+      creditScore: 'A',
+      creditRates: {
+        'A': '12%'
+      }
+    });
+
+    expect($loanTotal.html()).toBe('$53,309.27');
+    expect({'A': 12}).toEqual($element.loanCalculator('rates'));
+
+    $element.loanCalculator('update', {
+      creditScore: 'A',
+      creditRates: {
+        'A': 0.12,
+      }
+    });
+
+    expect($loanTotal.html()).toBe('$53,309.27');
+    expect({'A': 12}).toEqual($element.loanCalculator('rates'));
   });
 
 
