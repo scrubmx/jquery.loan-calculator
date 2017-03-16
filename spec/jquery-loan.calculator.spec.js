@@ -58,7 +58,7 @@ describe('jQuery Loan Calculator Plugin', function() {
 
 
   it('calculates the correct total annual cost (CAT)', function() {
-     $element.loanCalculator({
+    $element.loanCalculator({
       loanAmount    : '$50,000.00',
       loanDuration  : '12',
       interestRate  : '17.9%',
@@ -66,7 +66,14 @@ describe('jQuery Loan Calculator Plugin', function() {
       serviceFee    : '5%'
     });
 
-     expect($totalAnnualCost.html()).toBe('31.70%');
+    expect($totalAnnualCost.html()).toBe('31.70%');
+
+    $element.loanCalculator('update', {
+      loanDuration     : '1',
+      paymentFrequency : 'weekly',
+    });
+
+     expect($totalAnnualCost.html()).toBe('249.97%');
   });
 
   it('calculates the correct grand total cost', function() {
