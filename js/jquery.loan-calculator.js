@@ -604,10 +604,7 @@
      * @returns {String}
      */
     toPercentage: function(numeric) {
-      // If numeric is less than 1 means we have to multiply the decimal by 100
-      var numeric = (numeric > 1) ? numeric : (numeric * 100);
-
-      return numeric.toFixed(2) + '%';
+      return (numeric * 100).toFixed(2) + '%';
     }
 
   });
