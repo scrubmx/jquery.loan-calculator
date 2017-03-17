@@ -143,11 +143,11 @@
      */
     validate: function() {
       if (typeof this.settings.loanAmount === 'string') {
-        this.settings.loanAmount = this.toNumeric(this.settings.loanAmount);
+        this.settings.loanAmount = this._toNumeric(this.settings.loanAmount);
       }
 
       if (typeof this.settings.serviceFee === 'string') {
-        this.settings.serviceFee = this.toNumeric(this.settings.serviceFee);
+        this.settings.serviceFee = this._toNumeric(this.settings.serviceFee);
       }
 
       if (! $.isPlainObject(this.settings.creditRates)) {
@@ -156,7 +156,7 @@
 
       for (var creditRate in this.settings.creditRates) {
         if (typeof this.settings.creditRates[creditRate] === 'string') {
-          this.settings.creditRates[creditRate] = this.toNumeric(this.settings.creditRates[creditRate])
+          this.settings.creditRates[creditRate] = this._toNumeric(this.settings.creditRates[creditRate])
         }
 
         if (! $.isNumeric(this.settings.creditRates[creditRate])) {
@@ -211,7 +211,7 @@
     _displaySelectedValues: function() {
       // Display the selected loan amount
       this.$el.find(this.settings.selectedAmount).html(
-        this.toMoney(this.settings.loanAmount)
+        this._toMoney(this.settings.loanAmount)
       );
 
       // Display the selected loan duration
@@ -237,36 +237,36 @@
     _displayResults: function() {
       // Display the loan total
       this.$el.find(this.settings.loanTotalSelector).html(
-        this.toMoney(this._loanTotal())
+        this._toMoney(this._loanTotal())
       );
 
       // Display the loan periodic payment
       this.$el.find(this.settings.paymentSelector).html(
-        this.toMoney(this._PMT())
+        this._toMoney(this._PMT())
       );
 
       // Display the interest total amount
       this.$el.find(this.settings.interestTotalSelector).html(
-        this.toMoney(this._interestTotal())
+        this._toMoney(this._interestTotal())
       );
 
       // Display the tax total amount
       this.$el.find(this.settings.taxTotalSelector).html(
-        this.toMoney(this._taxTotal())
+        this._toMoney(this._taxTotal())
       );
 
       // Display the annual total cost
       this.$el.find(this.settings.totalAnnualCostSelector).html(
-        this.toPercentage(this._CAT())
+        this._toPercentage(this._CAT())
       );
 
       // Display the service fee if any
       this.$el.find(this.settings.serviceFeeSelector).html(
-        this.toMoney(this._serviceFee())
+        this._toMoney(this._serviceFee())
       );
 
       this.$el.find(this.settings.loanGrandTotalSelector).html(
-        this.toMoney(this._grandTotal())
+        this._toMoney(this._grandTotal())
       );
     },
 
@@ -328,12 +328,12 @@
     schedule: function() {
       return $.map(this._results(), function (value) {
         return {
-          initial   : this.toMoney(value.initial),
-          principal : this.toMoney(value.principal),
-          interest  : this.toMoney(value.interest),
-          tax       : this.toMoney(value.tax),
-          payment   : this.toMoney(value.payment),
-          balance   : this.toMoney(value.balance)
+          initial   : this._toMoney(value.initial),
+          principal : this._toMoney(value.principal),
+          interest  : this._toMoney(value.interest),
+          tax       : this._toMoney(value.tax),
+          payment   : this._toMoney(value.payment),
+          balance   : this._toMoney(value.balance)
         }
       }.bind(this));
     },
@@ -356,7 +356,7 @@
           return this.settings.interestRate;
         }
 
-        return this.toNumeric(this.settings.interestRate) / 100;
+        return this._toNumeric(this.settings.interestRate) / 100;
       }
 
       return this.settings.creditRates[ this.settings.creditScore ] / 100;
@@ -384,7 +384,7 @@
      * @returns {Number}
      */
     _numberOfPayments: function () {
-      var durationInYears = this.toNumeric(this.settings.loanDuration) / 12;
+      var durationInYears = this._toNumeric(this.settings.loanDuration) / 12;
 
       return Math.floor(durationInYears * PAYMENT_FREQUENCIES[this.settings.paymentFrequency]);
     },
@@ -567,7 +567,7 @@
      * @return {Number}
      */
     _valueAddedTax: function () {
-      var tax = this.toNumeric(this.settings.valueAddedTax || 0);
+      var tax = this._toNumeric(this.settings.valueAddedTax || 0);
 
       // if tax is greater than 1 means the value
       // must be converted to decimals first.
@@ -579,7 +579,7 @@
      * @param  {Number} numeric
      * @return {String}
      */
-    toMoney: function(numeric) {
+    _toMoney: function(numeric) {
       if (typeof numeric == 'string') {
         numeric = parseFloat(numeric);
       }
@@ -592,7 +592,7 @@
      * @param  {String} value
      * @return {Number}
      */
-    toNumeric: function(value) {
+    _toNumeric: function(value) {
       return parseFloat(
         value.toString().replace(/[^0-9\.]+/g, '')
       );
@@ -603,7 +603,7 @@
      * @param {Number} numeric
      * @returns {String}
      */
-    toPercentage: function(numeric) {
+    _toPercentage: function(numeric) {
       return (numeric * 100).toFixed(2) + '%';
     }
 
