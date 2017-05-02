@@ -4,7 +4,7 @@
  * Author: Jorge González <scrub.mx@gmail>
  * Released under the MIT license - https://opensource.org/licenses/MIT
  */
-;(function($, window, document, undefined) {
+;(function ($, window, document, undefined) {
 
   "use strict";
 
@@ -101,7 +101,7 @@
      * Validates the data and shows the results.
      * @return {void}
      */
-    init: function() {
+    init: function () {
       this.validate();
       this.render();
     },
@@ -110,7 +110,7 @@
      * Attach event listeners to the event handlers.
      * @return {void}
      */
-    attachListeners: function() {
+    attachListeners: function () {
       var eventEmitters = [
         this.settings.loanAmountSelector,
         this.settings.loanDurationSelector,
@@ -127,7 +127,7 @@
      * Handle events from the DOM.
      * @return {void}
      */
-    eventHandler: function() {
+    eventHandler: function () {
       this.update({
         loanAmount       : this.$el.find(this.settings.loanAmountSelector).val(),
         loanDuration     : this.$el.find(this.settings.loanDurationSelector).val(),
@@ -141,7 +141,7 @@
      * @throws Error
      * @return {void}
      */
-    validate: function() {
+    validate: function () {
       if (typeof this.settings.loanAmount === 'string') {
         this.settings.loanAmount = this._toNumeric(this.settings.loanAmount);
       }
@@ -199,7 +199,7 @@
      * Show the results in the DOM.
      * @return {void}
      */
-    render: function() {
+    render: function () {
       this._displaySelectedValues();
       this._displayResults();
     },
@@ -208,7 +208,7 @@
      * Show the selected values in the DOM.
      * @return {void}
      */
-    _displaySelectedValues: function() {
+    _displaySelectedValues: function () {
       // Display the selected loan amount
       this.$el.find(this.settings.selectedAmount).html(
         this._toMoney(this.settings.loanAmount)
@@ -234,7 +234,7 @@
      * Display the results for the current values.
      * @return {void}
      */
-    _displayResults: function() {
+    _displayResults: function () {
       // Display the loan total
       this.$el.find(this.settings.loanTotalSelector).html(
         this._toMoney(this._loanTotal())
@@ -262,7 +262,7 @@
 
       // Display the service fee if any
       this.$el.find(this.settings.serviceFeeSelector).html(
-        this._toMoney(this._serviceFee())
+        this._toMoney(this._serviceFeeWithVAT())
       );
 
       this.$el.find(this.settings.loanGrandTotalSelector).html(
@@ -274,7 +274,7 @@
      * Run the init method again with the provided options.
      * @param {Object} args
      */
-    update: function(args) {
+    update: function (args) {
       this.settings = $.extend({}, this._defaults, this.settings, args);
       this.init();
       this.$el.trigger('loan:update');
@@ -297,7 +297,7 @@
       // We loop over the number of payments and each time
       // we extract the information to build the period
       // that will be appended to the results array.
-      for (var n=0; n<numberOfPayments; n++) {
+      for (var paymentNumber = 0; paymentNumber < numberOfPayments; paymentNumber++) {
         var interest  = balance * interestRate;
         var taxesPaid = balance * interestRate * VAT;
         var principal = payment - interest - taxesPaid;
@@ -325,7 +325,7 @@
      * Generate the amortization schedule.
      * @return {Array}
      */
-    schedule: function() {
+    schedule: function () {
       return $.map(this._results(), function (value) {
         return {
           initial   : this._toMoney(value.initial),
@@ -342,7 +342,7 @@
      * Return the credit rates being used.
      * @return {Object}
      */
-    creditRates: function() {
+    creditRates: function () {
       return this.settings.creditRates;
     },
 
@@ -350,7 +350,7 @@
      * Get the credit rate corresponding to the current credit score.
      * @return {Number}
      */
-    _annualInterestRate: function() {
+    _annualInterestRate: function () {
       if (this.settings.hasOwnProperty('interestRate')) {
         if (this.settings.interestRate <= 1) {
           return this.settings.interestRate;
@@ -366,7 +366,7 @@
      * Get the periodic interest rate.
      * @returns {Number}
      */
-    _interestRate: function() {
+    _interestRate: function () {
       return this._annualInterestRate() / this._paymentFrequency();
     },
 
@@ -375,7 +375,7 @@
      * Returns the periodic payment frequency
      * @returns {Number}
      */
-    _paymentFrequency: function() {
+    _paymentFrequency: function () {
       return PAYMENT_FREQUENCIES[this.settings.paymentFrequency];
     },
 
@@ -393,7 +393,7 @@
      * Calculates the total cost of the loan.
      * @return {Number}
      */
-    _loanTotal: function() {
+    _loanTotal: function () {
       return this._PMT() * this._numberOfPayments();
     },
 
@@ -402,7 +402,7 @@
      * @see https://en.wikipedia.org/wiki/Compound_interest#Monthly_amortized_loan_or_mortgage_payments
      * @return {Number}
      */
-    _PMT: function() {
+    _PMT: function () {
       var i = this._interestRate();
       var L = this.settings.loanAmount;
       var n = this._numberOfPayments();
@@ -418,9 +418,9 @@
      * Calculate the total interest for the loan.
      * @returns {Number}
      */
-    _interestTotal: function() {
+    _interestTotal: function () {
       var total = 0;
-      $.each(this._results(), function(index, value){
+      $.each(this._results(), function (index, value) {
         total += value.interest;
       });
       return total;
@@ -430,9 +430,9 @@
      * Calculate the value added tax total for the loan.
      * @returns {Number}
      */
-    _taxTotal: function() {
+    _taxTotal: function () {
       var total = 0;
-      $.each(this._results(), function(index, value){
+      $.each(this._results(), function (index, value) {
         total += value.tax;
       });
       return total;
@@ -455,11 +455,19 @@
     },
 
     /**
+     * Return the loan fees and commissions total with VAT included.
+     * @return {Number}
+     */
+    _serviceFeeWithVAT: function () {
+      return this._serviceFee() * (this._valueAddedTax() + 1)
+    },
+
+    /**
      * Calculates the total cost of the loan including the service fee.
      * @return {Number}
      */
-    _grandTotal: function() {
-      return this._loanTotal() + this. _serviceFee();
+    _grandTotal: function () {
+      return this._loanTotal() + this. _serviceFeeWithVAT();
     },
 
     /**
@@ -482,7 +490,7 @@
       var results = this._results();
       var cashFlow = [this._serviceFee() - this.settings.loanAmount];
 
-      $.each(results, function(index, period){
+      $.each(results, function (index, period) {
         cashFlow.push(period.payment - period.tax);
       }.bind(this));
 
@@ -495,11 +503,11 @@
      * @param  {Number} guess
      * @return {Number}
      */
-    _IRR: function(values, guess) {
+    _IRR: function (values, guess) {
       guess = guess || 0;
 
       // Calculates the resulting amount
-      var irrResult = function(values, dates, rate) {
+      var irrResult = function (values, dates, rate) {
         var result = values[0];
 
         for (var i = 1; i < values.length; i++) {
@@ -510,7 +518,7 @@
       };
 
       // Calculates the first derivation
-      var irrResultDerivative = function(values, dates, rate) {
+      var irrResultDerivative = function (values, dates, rate) {
         var result = 0;
 
         for (var i = 1; i < values.length; i++) {
@@ -579,7 +587,7 @@
      * @param  {Number} numeric
      * @return {String}
      */
-    _toMoney: function(numeric) {
+    _toMoney: function (numeric) {
       if (typeof numeric == 'string') {
         numeric = parseFloat(numeric);
       }
@@ -592,7 +600,7 @@
      * @param  {String} value
      * @return {Number}
      */
-    _toNumeric: function(value) {
+    _toNumeric: function (value) {
       return parseFloat(
         value.toString().replace(/[^0-9\.]+/g, '')
       );
@@ -603,7 +611,7 @@
      * @param {Number} numeric
      * @returns {String}
      */
-    _toPercentage: function(numeric) {
+    _toPercentage: function (numeric) {
       return (numeric * 100).toFixed(2) + '%';
     }
 
@@ -612,7 +620,7 @@
   /**
    * Wrapper around the constructor to prevent multiple instantiations.
    */
-  $.fn.loanCalculator = function(options, args) {
+  $.fn.loanCalculator = function (options, args) {
     if (options === 'schedule') {
       return this.data('plugin_loanCalculator').schedule();
     }
@@ -621,7 +629,7 @@
       return this.data('plugin_loanCalculator').creditRates();
     }
 
-    return this.each(function() {
+    return this.each(function () {
       var instance = $.data(this, 'plugin_loanCalculator');
       if (! instance) {
         $.data(this, 'plugin_loanCalculator', new Plugin(this, options));

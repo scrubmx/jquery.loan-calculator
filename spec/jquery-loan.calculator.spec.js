@@ -430,6 +430,9 @@ describe('jQuery Loan Calculator Plugin', function() {
 
     $element.loanCalculator('update', { serviceFee: '5%' });
     expect($serviceFee.html()).toBe('$2,500.00');
+
+    $element.loanCalculator('update', { serviceFee: '5%', valueAddedTax: '16%'});
+    expect($serviceFee.html()).toBe('$2,900.00');
   });
 
 
