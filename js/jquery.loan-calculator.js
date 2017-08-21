@@ -1,5 +1,5 @@
 /*!
- * jQuery Loan Calculator 3.1.2
+ * jQuery Loan Calculator 3.1.3
  *
  * Author: Jorge González <scrub.mx@gmail>
  * Released under the MIT license - https://opensource.org/licenses/MIT
@@ -118,9 +118,11 @@
         this.settings.paymentFrequencySelector
       ];
 
-      $(eventEmitters.join())
-        .mousemove(this.eventHandler.bind(this))
-        .change(this.eventHandler.bind(this));
+      $(eventEmitters.join()).on({
+        change    : this.eventHandler.bind(this),
+        mousemove : this.eventHandler.bind(this),
+        touchmove : this.eventHandler.bind(this)
+      });
     },
 
     /**
