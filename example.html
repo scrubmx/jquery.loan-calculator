@@ -1,106 +1,143 @@
 <!doctype html>
-<html>
-  <head>
+<html class="h-100">
+
+<head>
     <title>Loan Calculator Demo</title>
-    <link rel="stylesheet" href="libs/bootstrap/bootstrap-3.3.4.min.css">
-  </head>
-  <body>
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-8 col-sm-offset-2">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.9/css/mdb.min.css" rel="stylesheet">
+    <!-- JQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.9/js/mdb.min.js"></script>
+    <style></style>
+</head>
 
-          <h1 class="page-header">Loan Calculator</h1>
-
-          <div id="widget">
-
-            <div class="form-group">
-              <label for="loan-amount">Amount: </label> <span id="selected-amount"></span>
-              <input type="range" id="loan-amount" min="1000" max="100000" step="1000" value="2000">
+<body class="h-100 d-flex">
+    <div class="container my-auto align-self-center">
+        <div id="widget" class="row my-auto">
+            <div class="col-sm-8 d-flex flex-column">
+                <h4>Build your loan</h4>
+                <div class="options">
+                    <ul class="nav nav-tabs md-tabs" id="LoanTypes" role="tablist">
+                        <li class="nav-item"> <a class="nav-link active show" id="home-tab-ex" data-toggle="tab" href="#home-ex" role="tab" data-step="50" data-apr="4.5" data-min-term="1" data-max-term="60" data-max-value="15000" data-min-value="500" aria-controls="home-ex" aria-selected="true">Personal Loan</a> </li>
+                        <li class="nav-item"> <a class="nav-link" id="cuok" data-toggle="tab" href="#profile-ex" data-apr="42.6" data-step="10" data-min-term="1" data-max-term="3" data-max-value="400" data-min-value="100" role="tab" aria-controls="profile-ex" aria-selected="false">CUOK</a> </li>
+                        <li class="nav-item"> <a class="nav-link" id="profile-tab-ex" data-toggle="tab" href="#short-term" data-step="25" role="tab" data-apr="6.9" data-min-term="5" data-max-term="12" data-max-value="5000" data-min-value="100" aria-controls="profile-ex" aria-selected="false">Salary deducted</a> </li>
+                        <li class="nav-item"> <a class="nav-link" id="saver-loan" data-toggle="tab" href="#contact-ex" role="tab" data-apr="4.5" data-step="1" data-min-term="1" data-max-term="12" data-max-value="25000" data-min-value="100" aria-controls="contact-ex" aria-selected="false">Saver</a> </li>
+                    </ul>
+                </div>
+                <div class="align-self-center w-100 my-auto">
+                    <div id="savings-box" class="row">
+                        <div class="col-3">
+                            <label for="amount-saved">I have</label>
+                        </div>
+                        <div class="col-6">
+                            <input class="form-control" type="number" value="500" /> </div>
+                        <div class="col-md-3"> saved</div>
+                    </div>
+                    <div class="form-group save-hide">
+                        <label for="loan-amount">I want to borrow <span id="selected-amount"></span></label>
+                        <input type="range" class="form-control-range custom-range" id="loan-amount" min="1000" max="10000" step="25" value="1000"> <span id="minValue" class="small d-block float-left">£500</span> <span id="maxValue" class="d-block float-right small">£15000</span> </div>
+                    <div class="form-group save-hide">
+                        <label for="loan-duration">Over <span id="selected-duration"></span> months</label>
+                        <input type="range" id="loan-duration" class="form-control-range custom-range" min="1" max="60" step="1" value="12"><span class="small d-block float-left" id="minTerm"></span> <span class="d-block float-right small" id="maxTerm"></span> </div>
+                    <!-- #widget -->
+                </div>
             </div>
-
-            <div class="form-group">
-              <label for="loan-duration">Months:</label> <span id="selected-duration"></span>
-              <input type="range" id="loan-duration" min="6" max="24" step="1" value="12">
+            <div class="col-sm-4">
+                <!-- Card -->
+                <div class="card">
+                    <!-- Card content -->
+                    <div class="card-body">
+                        <!-- Title -->
+                        <h4 class="card-title">Summary</h4>
+                        <!-- Text -->
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Monthly payment: <span class="strong" id="payment"></span></li>
+                            <li class="list-group-item"><span class="strong" id="total-annual-cost"></span> APR</li>
+                            <li class="list-group-item"><span class="strong " id="loan-total"></span> in total
+                                <p class="mb-0 text-muted"><small>(including <span id="interest-total"></span> in interest)</small></p>
+                            </li>
+                        </ul>
+                        <!-- Button --><a id="ApplyLink" href="https://www.cuonline.org.uk/v3/ApplyLoanV3-3.aspx?newmember=no&amount=1000&months=12&skipcalc=true" class="btn btn-block mt-3 btn-lg btn-primary">Apply for this loan</a> </div>
+                </div>
+                <!-- Card -->
             </div>
-
-            <div class="form-group">
-              <label for="payment-frequency">Payment frequency: </label> <span id="selected-payment-frequency"></span>
-              <select id="payment-frequency" class="form-control">
-                <option value="weekly">Weekly</option>
-                <option value="biweekly">Biweekly</option>
-                <option value="monthly" selected>Monthly</option>
-              </select>
-            </div>
-
-            <div class="form-group">
-              <label for="credit-score">Credit Score:</label> <span id="selected-score"></span>
-              <select id="credit-score" class="form-control">
-                <option value="A" selected>A</option>
-                <option value="B">B</option>
-                <option value="C">C</option>
-                <option value="D">D</option>
-                <option value="E">E</option>
-                <option value="F">F</option>
-                <option value="G">G</option>
-              </select>
-            </div>
-
-            <ul>
-              <li>Loan total: <span id="loan-total"></span></li>
-              <li>Interest total: <span id="interest-total"></span></li>
-              <li>Payment: <span id="payment"></span></li>
-              <li>Service fee: <span id="service-fee"></span></li>
-              <li>CAT: <span id="total-annual-cost"></span></li>
-              <li>Grand total: <span id="grand-total"></span></li>
-            </ul>
-
-            <hr>
-            <h3>Amortization Schedule</h3>
-            <pre id="amortization"></pre>
-
-          </div><!-- #widget -->
-
-        </div><!-- col-sm-10 -->
-      </div><!-- row -->
-    </div><!-- container -->
-    <script src="libs/jquery/jquery-1.11.1.min.js"></script>
+            <!-- col-sm-10 -->
+        </div>
+        <!-- row -->
+    </div>
+    <!-- container -->
     <script src="js/jquery.loan-calculator.js"></script>
     <script>
-      (function($){
-
-        // Accepts arguments as strings
-        $calculator = $('#widget').loanCalculator({
-          loanAmount       : '$1,000.00',
-          loanDuration     : '12',
-          valueAddedTax    : '16%',
-          serviceFee       : '5%',
-          paymentFrequency : 'monthly'
-        });
-
-        // Can also take numbers as arguments...
-        $calculator.loanCalculator('update', {
-          loanAmount       : 1000.00,
-          loanDuration     : 12,
-          valueAddedTax    : 0.16,
-          serviceFee       : 0.05,
-          paymentFrequency : 'monthly'
-        });
-
-        // Generate amortization schedule as json.
-        var getAmortizationSchedule = function () {
-          var scheduleData = $calculator.loanCalculator('schedule');
-          return JSON.stringify(scheduleData, undefined, 2);
-        };
-
-        // Dump the schedule in the DOM
-        var $schedule = $('#amortization').html(getAmortizationSchedule());
-
-        // Event handler for the update method.
-        $calculator.on('loan:update', function() {
-          $schedule.html(getAmortizationSchedule());
-        });
-
-      })(jQuery);
+        (function ($) {
+            // Accepts arguments as strings
+            $calculator = $('#widget').loanCalculator({
+                loanAmount: '£1,000.00'
+                , loanDuration: '12'
+                , interestRate: '12.89%'
+                , paymentFrequency: 'monthly'
+            });
+            // Populate URL
+            $("input").change(function () {
+                loanAmount = $("#loan-amount").val();
+                loanTerm = $("#loan-duration").val();
+                applyurl = "https://www.cuonline.org.uk/v3/ApplyLoanV3-3.aspx?newmember=no&amount=" + loanAmount + "&months=" + loanTerm + "&skipcalc=true";
+                $('#ApplyLink').attr("href", applyurl);
+            });
+            // Change params based on product type
+            $('#LoanTypes .nav-link').on('click', function (e) {
+                $('#savings-box').hide();
+                var minTerm = $(this).attr('data-min-term');
+                var maxTerm = $(this).attr('data-max-term');
+                var minValue = $(this).attr('data-min-value');
+                var maxValue = $(this).attr('data-max-value');
+                var rangeStep = $(this).attr('data-step');
+                var aprRate = $(this).attr('data-apr');
+                var interestRate = (Math.pow((1 + (Math.pow(((aprRate * 1 / 100) + 1), (1 / 12)) - 1) / 100), 12) - 1) * 100 * 100;
+                //Change Range attribs
+                $("#loan-duration").attr({
+                    min: minTerm
+                    , max: maxTerm
+                });
+                $("#loan-amount").attr({
+                    min: minValue
+                    , max: maxValue
+                    , step: rangeStep
+                });
+                // Recalculate
+                $calculator.loanCalculator('update', {
+                    interestRate: interestRate
+                });
+                // Min Max Labels
+                $("#minValue").text("£" + minValue);
+                $("#maxValue").text("£" + maxValue);
+                $("#minTerm").text(minTerm + " months");
+                $("#maxTerm").text(maxTerm + " months");
+            });
+            //Savings box
+            $('#savings-box').hide();
+            $('#saver-loan').on('click', function (e) {
+                $('.save-hide').hide();
+                $('#savings-box').show();
+                $('#savings-box input').change(function (e) {
+                    var maxValue = $(this).val();
+                    $('.save-hide').show();
+                    $("#loan-amount").attr({
+                        max: maxValue
+                    });
+                    $("#maxValue").text("£" + maxValue);
+                });
+            });
+        })(jQuery);
     </script>
-  </body>
+</body>
+
 </html>
