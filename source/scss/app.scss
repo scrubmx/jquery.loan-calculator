@@ -1,0 +1,439 @@
+    @import "bootstrap-variables";
+    @import "spacing";
+    @import "node_modules/@fortawesome/fontawesome-free/scss/fontawesome";
+    @import "node_modules/@fortawesome/fontawesome-free/scss/solid";
+    @import "node_modules/@fortawesome/fontawesome-free/scss/v4-shims";
+    @import "node_modules/bootstrap/scss/bootstrap";
+    @mixin tabicon($icon) {
+        &:before {
+            @extend %fa-icon;
+            @extend .fas;
+            content: fa-content($icon);
+            @include media-breakpoint-up(xl) {
+                @include mr(2);
+            }
+        }
+    }
+    
+    @mixin makesquare {
+        position: relative;
+        &:before {
+            content: '';
+            display: block;
+            padding-top: 100%;
+        }
+        .inner {
+            position: absolute;
+            left: 0;
+            top: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%
+        }
+    }
+    
+    #lmcu-calculator {
+        ul {
+            list-style-type: none;
+            @include m(0);
+            @include p(0);
+        }
+        .product-showcase {
+            @include make-container(0);
+            @include my(5);
+            @include py(3);
+            .nav {
+                @include make-col-ready(0);
+                @include media-breakpoint-up(xl) {
+                    @include make-col(9);
+                }
+                @extend .nav-pills;
+                @extend .nav-justified;
+                @include mx(-2);
+                flex-direction: column;
+                li {
+                    @extend .nav-item;
+                    @include mb(2);
+                    >div {
+                        @extend .nav-link;
+                        @include p(0);
+                        cursor: pointer;
+                        box-shadow: 0 .35rem 1rem rgba(0, 0, 0, .15);
+                        @include transition(all 0.6s);
+                        &:hover {
+                            box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .25)
+                        }
+                        &.active {
+                            box-shadow: 0 .5rem 0.75rem rgba(0, 0, 0, .35);
+                            background-color: $charcoal;
+                            .inner {
+                                color: $white;
+                                h3 {
+                                    color: $white;
+                                }
+                                svg {
+                                    path {
+                                        fill: $white;
+                                    }
+                                }
+                            }
+                        }
+                        .inner {
+                            display: flex;
+                            flex-direction: row;
+                            color: $charcoal;
+                            @include p(3);
+                            h3 {
+                                align-self: center;
+                                font-size: 1rem;
+                                font-weight: 600;
+                                @include p(0);
+                                @include my(auto);
+                                text-align: left;
+                            }
+                            svg {
+                                @include ml(0);
+                                @include mr(3);
+                                max-width: 30px;
+                                path {
+                                    fill: $charcoal
+                                }
+                            }
+                        }
+                    }
+                }
+                @include media-breakpoint-up(sm) {
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                    li {
+                        max-width: 50%!important;
+                        flex: 1 1 50%!important;
+                        >div {
+                            @include mx(2);
+                        }
+                    }
+                }
+                @include media-breakpoint-up(lg) {
+                    flex-wrap: nowrap;
+                    li {
+                        @include mb(0);
+                        @include mx(2);
+                        >div {
+                            @include mx(0);
+                            @include makesquare();
+                            .inner {
+                                svg {
+                                    width: 33.33%;
+                                    max-width: none;
+                                    margin-right: auto;
+                                    align-self: flex-end;
+                                }
+                                h3 {
+                                    width: 100%;
+                                    @include mt(auto);
+                                    @include mb(0);
+                                    align-self: flex-end;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .calculator {
+            @include make-container(0);
+            display: flex;
+            flex-direction: column;
+            .inner {
+                @include make-row(0);
+                width: 100%;
+                @include my(auto);
+            }
+            a[data-target] {
+                cursor: pointer;
+            }
+            .column-left {
+                display: flex;
+                flex-direction: column;
+                @include make-col-ready(0);
+                @include media-breakpoint-up(md) {
+                    @include pr(5);
+                }
+                @include media-breakpoint-up(md) {
+                    @include make-col(8);
+                }
+                @include media-breakpoint-up(xl) {
+                    @include make-col(9);
+                }
+                nav {
+                    @extend .d-flex;
+                    .calculator-tabs {
+                        @extend .nav;
+                        @include px(0);
+                        width: 100%;
+                        @include pb(0);
+                        @extend .nav-tabs;
+                        li {
+                            border-bottom: 1px solid gray("200");
+                            &.tab-title {
+                                @include ml(0);
+                                @include pl(0);
+                                @include mr(auto);
+                                @extend .nav-link;
+                                font-size: 1.2rem;
+                                font-weight: 600;
+                                color: $charcoal;
+                                width: 100%;
+                                &:hover {
+                                    border: none;
+                                    background: transparent;
+                                }
+                                @include media-breakpoint-up(xs) {
+                                    width: auto;
+                                }
+                            }
+                            @include mt(auto);
+                            @extend .nav-item;
+                            a {
+                                @extend .nav-link;
+                                @include ml(1);
+                                color: gray("600");
+                                background-color: gray("100");
+                                span {
+                                    display: none;
+                                }
+                                @include media-breakpoint-up(xl) {
+                                    span {
+                                        display: inline-block;
+                                    }
+                                }
+                                &:hover {
+                                    background-color: gray("200");
+                                }
+                                &.active {
+                                    color: $charcoal;
+                                    border-bottom: $white solid 1px;
+                                    margin-bottom: -1px;
+                                    &:hover {
+                                        background-color: $white;
+                                    }
+                                }
+                                &.tab-calculator {
+                                    @include tabicon($fa-var-calculator);
+                                }
+                                &.tab-info {
+                                    @include tabicon($fa-var-info-circle);
+                                }
+                                &.tab-legal {
+                                    @include tabicon($fa-var-file-contract);
+                                }
+                                &.tab-remind {
+                                    @include tabicon($fa-var-bell);
+                                }
+                            }
+                        }
+                    }
+                    h3 {
+                        @include media-breakpoint-up(sm) {
+                            font-size: 1.3rem;
+                        }
+                        @include media-breakpoint-up(lg) {
+                            font-size: 1.75rem;
+                        }
+                    }
+                }
+                .calculator-body {
+                    >.tab-pane {
+                        @include my(5);
+                        &.sliders {
+                            p#product-description {
+                                @extend .lead;
+                                @include mb(5);
+                            }
+                            #saver {
+                                display: none;
+                                .form-group {
+                                    display: flex;
+                                    flex-direction: row;
+                                    @include pb(3);
+                                    @include mb(3);
+                                    input {
+                                        font-size: 1.1rem;
+                                        @include mx(3);
+                                        border: none;
+                                        border-bottom: 4px #dee2e6 solid;
+                                        box-shadow: none;
+                                        font-weight: 600;
+                                        color: $charcoal;
+                                    }
+                                    label {
+                                        font-size: 1.1rem;
+                                        display: flex
+                                    }
+                                }
+                            }
+                            width: 100%;
+                            align-self: center;
+                            .slider {
+                                @include pb(5);
+                                @include media-breakpoint-up(sm) {
+                                    @include mb(3);
+                                }
+                                label {
+                                    span {
+                                        font-weight: 600;
+                                        color: $charcoal;
+                                    }
+                                    font-size: 1.1rem;
+                                }
+                            }
+                        }
+                        #info-tabs {
+                            nav {
+                                @extend .nav;
+                                @extend .flex-column;
+                                @extend .nav-pills;
+                                @include make-col(4);
+                                .nav-link.active {
+                                    background-color: $charcoal;
+                                }
+                            }
+                            .tab-content {
+                                @include pl(4);
+                                @include make-col(8);
+                            }
+                        }
+                        &#remind-tab {
+                            .controls {
+                                @include my(5);
+                                .fields-primary {
+                                    @include make-row(0);
+                                    .field-left {
+                                        @include make-col-ready(0);
+                                        @include make-col(8);
+                                        input {
+                                            font-size: 1.1rem;
+                                            @include mr(3);
+                                            border: none;
+                                            border-bottom: 4px #dee2e6 solid;
+                                            box-shadow: none;
+                                            font-weight: 600;
+                                            color: $charcoal;
+                                        }
+                                    }
+                                    .field-right {
+                                        @include make-col-ready(0);
+                                        @include make-col(4);
+                                        display: flex;
+                                        .btn {
+                                            align-self: flex-end;
+                                            @include mt(auto);
+                                            @include mb(3);
+                                            @include ml(3);
+                                            @include button-variant($charcoal, $charcoal, $white);
+                                            @include transition(all 1s);
+                                            &:before {
+                                                content: '';
+                                            }
+                                            &:hover {
+                                                background-color: $charcoal;
+                                                color: $white;
+                                                &:before {
+                                                    @include pr(3);
+                                                    @extend %fa-icon;
+                                                    @extend .fas;
+                                                    content: fa-content($fa-var-envelope);
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                .fields-secondary {
+                                    @include make-row(0);
+                                    .fields {
+                                        @include make-col-ready(0);
+                                        @include make-col(12);
+                                        #message {
+                                            @include media-breakpoint-up(md) {
+                                                @include make-col-ready(0);
+                                                @include make-col(8);
+                                                @include mt(4);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .column-right {
+                @include make-col-ready(0);
+                @include media-breakpoint-up(md) {
+                    @include make-col(4);
+                }
+                @include media-breakpoint-up(xl) {
+                    @include make-col(3);
+                }
+                .btn-apply {
+                    @extend .btn;
+                    @extend .btn-block;
+                    @include button-variant($lmcu-red, $lmcu-red, $white);
+                    @include transition(all 1s);
+                    &:hover {
+                        background-color: $charcoal;
+                        color: $white;
+                        &:before {
+                            @include pr(3);
+                            @extend %fa-icon;
+                            @extend .fas;
+                            content: fa-content($fa-var-angle-right);
+                        }
+                    }
+                }
+                .representative-example {
+                    @include media-breakpoint-down(md) {
+                        @include mb(5);
+                    }
+                    @extend .card;
+                    border: none;
+                    @extend .shadow;
+                    .example-body {
+                        @extend .card-body;
+                        h5 {
+                            @extend .card-title;
+                        }
+                        .summary {
+                            @extend .list-group;
+                            @extend .list-group-flush;
+                            @include mb(3);
+                            li {
+                                @extend .list-group-item;
+                                @include py(1);
+                                @include px(0);
+                                border-color: #ddd;
+                                span {
+                                    display: block;
+                                    float: right;
+                                    color: $charcoal;
+                                    font-weight: 400;
+                                    &#payment {
+                                        font-size: 1.1rem;
+                                        font-weight: 600;
+                                    }
+                                }
+                                &:last-child {
+                                    border-bottom: none;
+                                }
+                            }
+                        }
+                        .interest-detail {
+                            @extend .text-muted;
+                            @include mb(0);
+                        }
+                    }
+                }
+            }
+        }
+    }
