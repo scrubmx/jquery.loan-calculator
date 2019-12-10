@@ -1,4 +1,6 @@
 jQuery(document).ready(function ($) {
+    //Move modal in DOM and set up tabs and popovers
+    $('#currentMember').appendTo("body")
     $('[data-toggle="popover"]').popover();
     $('#option-tabs a').click(function (e) {
         e.preventDefault();
@@ -10,6 +12,16 @@ jQuery(document).ready(function ($) {
         $(this).tab('show');
         $('#info-tabs a').not(this).removeClass('active');
     });
+    $('[data-toggle="product"]').on('click', function (e) {
+        $('[data-toggle="product"]').not(this).removeClass('active');
+        $(this).addClass('active');
+        $('#saver').hide();
+        if ($(window).width() < 576) {
+            $('html, body').animate({
+                scrollTop: $('#widget').offset().top - 25
+            }, 500);
+        };
+    });
     $("input[data-type='currency']").on({
         keyup: function () {
             formatCurrency($(this));
@@ -19,7 +31,7 @@ jQuery(document).ready(function ($) {
         }
     });
     /* 
-    HELPER FUNCTIONS
+    HELPER FUNCTIONS.
     */
     //Convert months into year
     function monthstoYears(value) {
@@ -55,17 +67,92 @@ jQuery(document).ready(function ($) {
     function convertAPR(value) {
         return (Math.pow((1 + (Math.pow(((value * 1 / 100) + 1), (1 / 12)) - 1) / 100), 12) - 1) * 100 * 100
     }
+    // Change interest rates based on amount
+    var SaverLoan = $('#saver-loan');
+    var BoosterLoan = $('#booster-loan');
+    var CUOKLoan = $('#cuok');
+    var Salary = $('#salary');
+    var Personal = $('#personal-loan');
+
+    function variableInterest(value) {
+        var InterestRate = ProductDefaults.rate;
+        switch (true) {
+        case (SaverLoan.hasClass('active')):
+            InterestRate = 4.41;
+            break;
+        case (BoosterLoan.hasClass('active')):
+            InterestRate = 36;
+            break;
+        case (CUOKLoan.hasClass('active')):
+            InterestRate = 36;
+            break;
+        case (value < 500 && !Personal.hasClass('active') && !SaverLoan.hasClass('active') && !Salary.hasClass('active')):
+            InterestRate = 36;
+            break;
+        case (value < 5000):
+            InterestRate = 12.89;
+            break;
+        case (value < 7500):
+            InterestRate = 6.69;
+            break;
+        case (value < 15001):
+            InterestRate = 5.75;
+            break;
+        case (value < 25001):
+            InterestRate = 4.75;
+            break;
+        }
+        return InterestRate;
+    };
+    // Change time period based on amount
+    function variableTerm(value) {
+        switch (true) {
+        case (SaverLoan.hasClass('active')):
+            MaxTerm = 120;
+            MinTerm = 1;
+            break;
+        case (CUOKLoan.hasClass('active')):
+            MaxTerm = 3;
+            MinTerm = 1;
+            break;
+        case (BoosterLoan.hasClass('active')):
+            MaxTerm = 24;
+            MinTerm = 1;
+            break;
+        case (value < 500 && !Personal.hasClass('active') && !SaverLoan.hasClass('active') && !Salary.hasClass('active')):
+            MaxTerm = 3;
+            MinTerm = 1;
+            break;
+        case (value < 3001):
+            MaxTerm = 36;
+            MinTerm = 1;
+            break;
+        case (value < 15000):
+            MaxTerm = 60;
+            MinTerm = 1;
+            break;
+        case (value < 25001):
+            MaxTerm = 84;
+            MinTerm = 12;
+            break;
+        }
+        var Term = {
+            min: MinTerm
+            , max: MaxTerm
+        }
+        return Term;
+    }
     /* 
     UNLEASH THE SLIDERS
     */
     // Loan value slider
     loanamountslider = document.getElementById('loanamount');
     noUiSlider.create(loanamountslider, {
-        start: parseInt(LoanProduct.defaultamount)
+        start: ProductDefaults.amount
         , animate: true
         , pips: {
             mode: 'positions'
-            , values: [0, 50, 100]
+            , values: [0, 100]
             , density: 10
             , stepped: true
             , format: wNumb({
@@ -75,22 +162,24 @@ jQuery(document).ready(function ($) {
             })
         }
         , connect: [true, false]
-        , step: parseInt(LoanProduct.step)
+        , step: ProductDefaults.step
         , range: {
-            'min': parseInt(LoanProduct.minamount)
-            , 'max': parseInt(LoanProduct.maxamount)
+            'min': ProductDefaults.minamount
+            , 'max': ProductDefaults.maxamount
         }
     });
-    //Loan term slider
+    //Set default values for loan term
     loantermslider = document.getElementById('loanterm');
+    variableMinTerm = variableTerm(ProductDefaults.minamount).min;
+    variableMaxTerm = variableTerm(ProductDefaults.maxamount).max;
     noUiSlider.create(loantermslider, {
-        start: parseInt(LoanProduct.defaultterm)
+        start: ProductDefaults.term
         , animate: true
         , connect: [true, false]
         , step: 1
         , pips: {
             mode: 'positions'
-            , values: [0, 50, 100]
+            , values: [0, 100]
             , density: 10
             , format: wNumb({
                 decimals: 0
@@ -99,20 +188,20 @@ jQuery(document).ready(function ($) {
             })
         }
         , range: {
-            'min': parseInt(LoanProduct.minterm)
-            , 'max': parseInt(LoanProduct.maxterm)
+            'min': variableMinTerm
+            , 'max': variableMaxTerm
         }
     });
-    // Set initial title description
-    $('#product-name').text(LoanProduct.product);
-    $('#product-description').text(LoanProduct.desc);
+    // Set default title description
+    $('#product-name').text(ProductDefaults.product);
+    $('#product-description').text(ProductDefaults.desc);
     /* 
     FIRE UP THE CALCULATOR
     */
     $calculator = $('#widget').loanCalculator({
-        loanAmount: parseInt(LoanProduct.defaultamount)
-        , loanDuration: parseInt(LoanProduct.defaultterm)
-        , interestRate: parseFloat(LoanProduct.rate)
+        loanAmount: ProductDefaults.amount
+        , loanDuration: ProductDefaults.term
+        , interestRate: ProductDefaults.rate
         , paymentFrequency: 'monthly'
     });
     /*
@@ -120,88 +209,79 @@ jQuery(document).ready(function ($) {
     */
     // When amount slider is updated
     loanamountslider.noUiSlider.on('update', function () {
-        var LoanAmount = loanamountslider.noUiSlider.get();
+        CurrentAmount = loanamountslider.noUiSlider.get();
+        CurrentRate = variableInterest(CurrentAmount);
         $calculator.loanCalculator('update', {
-            loanAmount: LoanAmount
+            loanAmount: CurrentAmount
+            , interestRate: CurrentRate
         });
-        $('.selected-amount').text(formatMoney(LoanAmount));
+        $('.selected-amount').text(formatMoney(CurrentAmount));
+        loantermslider.noUiSlider.updateOptions({
+            range: {
+                'min': variableTerm(CurrentAmount).min
+                , 'max': variableTerm(CurrentAmount).max
+            }
+        });
     });
-    // When amount slider is updated
+    // When term slider is updated
     loantermslider.noUiSlider.on('update', function () {
-        var Loanterm = loantermslider.noUiSlider.get();
+        var CurrentTerm = loantermslider.noUiSlider.get();
         $calculator.loanCalculator('update', {
-            loanDuration: Loanterm
+            loanDuration: CurrentTerm
         });
-        $('.selected-term').text(monthstoYears(parseInt(Loanterm)));
+        $('.selected-term').text(monthstoYears(parseInt(CurrentTerm)));
     });
     // When the calculator changes, update the application URL
     $calculator.on('loan:update', function (e) {
-        loanAmount = parseInt(loanamountslider.noUiSlider.get());
-        loanTerm = parseInt(loantermslider.noUiSlider.get());
-        applyurl = "https://www.cuonline.org.uk/v3/ApplyLoanV3-3.aspx?newmember=no&amount=" + loanAmount + "&months=" + loanTerm + "&skipcalc=true";
-        $('#ApplyLink').attr("href", applyurl);
-    });
-    // When apply button is clicked, send info to datalayer
-    $('#ApplyLink').on('click', function (e) {
-        dataLayer.push({
-            'loanAmount': parseInt(loanamountslider.noUiSlider.get())
-            , 'loanTerm': parseInt(loantermslider.noUiSlider.get())
-            , 'loanProduct': LoanProduct.product
-        })
+        var loanAmount = parseInt(loanamountslider.noUiSlider.get());
+        var loanTerm = parseInt(loantermslider.noUiSlider.get());
+        if (CUOKLoan.hasClass('active')) {
+            applyurlMember = "https://www.cuonline.org.uk/PDL2/Default.aspx?CU=LMCU&amount=" + loanAmount + "&months=" + loanTerm + "&FP=1";
+            applyurlGuest = "https://www.cuonline.org.uk/PDL2/Default.aspx?CU=LMCU&amount=" + loanAmount + "&months=" + loanTerm + "&FP=1";
+        }
+        else {
+            applyurlMember = "https://www.cuonline.org.uk/v3/ApplyLoanV3-3.aspx?newmember=no&amount=" + loanAmount + "&months=" + loanTerm + "&skipcalc=true";
+            applyurlGuest = "https://www.cuonline.org.uk/v3/ApplyLoanV3-2.aspx?newmember=yes&amount=" + loanAmount + "&months=" + loanTerm + "&skipcalc=true";
+        };
+        $('#GuestApplyLink').attr("href", applyurlGuest);
+        $('#MemberApplyLink').attr("href", applyurlMember);
     });
     /*
-    DYNAMICALLY CHANGE PARAMS USING ANCHOR LINK AND DATA ATTRIBS
+    When a new product is selected, change values
     */
     $('[data-toggle="product"]').on('click', function (e) {
-        var minTerm = parseInt($(this).attr('data-min-term'));
-        var maxTerm = parseInt($(this).attr('data-max-term'));
-        var minValue = parseInt($(this).attr('data-min-value'));
-        var maxValue = parseInt($(this).attr('data-max-value'));
-        var rangeStep = parseInt($(this).attr('data-step'));
-        //var aprRate = $(this).attr('data-apr');
-        var interestRate = $(this).attr('data-interest');
-        var productName = $(this).attr('data-product');
-        var productDesc = $(this).attr('data-description');
-        //interestRate = convertAPR(aprRate);
-        //Change Range attribs
-        $('[data-toggle="product"]').not(this).removeClass('active');
-        $(this).addClass('active');
-        $('#saver').hide();
-        $('#product-name').text(productName);
-        $('#product-description').text(productDesc);
-        if ($(window).width() < 576) {
-            $('html, body').animate({
-                scrollTop: $('#widget').offset().top - 25
-            }, 500);
-        };
-        // If currently selected amount is greater than the max or less than the minumum for this product, move it back to the centre
-        function getDefaultamount() {
-            if (loanamountslider.noUiSlider.get() > maxValue || loanamountslider.noUiSlider.get() < minValue) {
-                defaultvalue = (maxValue - minValue) / 2;
+        var SelectedProduct = {
+                minValue: $(this).data('min-value')
+                , maxValue: $(this).data('max-value')
+                , step: $(this).data('step')
+                , rate: $(this).data('interest')
+                , name: $(this).data('product')
+                , desc: $(this).data('description')
+                , term: $(this).data('default-term')
+                , amount: $(this).data('default-value')
             }
-            else {
-                defaultvalue = loanamountslider.noUiSlider.get();
-            }
-            return defaultvalue
-        }
-        loanamountslider.noUiSlider.set(getDefaultamount);
+            //Change Range attribs
+        $('#product-name').text(SelectedProduct.name);
+        $('#product-description').text(SelectedProduct.desc);
         // Update the rest of the options
         loanamountslider.noUiSlider.updateOptions({
             range: {
-                'min': minValue
-                , 'max': maxValue
+                'min': SelectedProduct.minValue
+                , 'max': SelectedProduct.maxValue
             }
-            , step: rangeStep
+            , step: SelectedProduct.step
         });
         loantermslider.noUiSlider.updateOptions({
             range: {
-                'min': minTerm
-                , 'max': maxTerm
+                'min': variableTerm(SelectedProduct.minValue).min
+                , 'max': variableTerm(SelectedProduct.maxValue).max
             }
         });
+        loanamountslider.noUiSlider.set(SelectedProduct.amount);
+        loantermslider.noUiSlider.set(SelectedProduct.term);
         // Recalculate
         $calculator.loanCalculator('update', {
-            interestRate: interestRate
+            interestRate: SelectedProduct.rate
         });
     });
     /* 

@@ -437,3 +437,31 @@
             }
         }
     }
+    /*! purgecss start ignore */
+    
+    .modal .modal-content {
+        border: none;
+        box-shadow: none
+    }
+    
+    .modal-backdrop {
+        position: fixed;
+        pointer-events: none;
+        top: 0;
+        left: 0;
+        z-index: 1040;
+        width: 100vw;
+        height: 100vh;
+        background-color: #fff
+    }
+    
+    .modal-backdrop.fade {
+        opacity: 0
+    }
+    
+    .modal-backdrop.show {
+        opacity: 1
+    }
+    
+
+    /*! purgecss end ignore */

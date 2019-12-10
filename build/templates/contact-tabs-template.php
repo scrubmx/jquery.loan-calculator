@@ -19,7 +19,7 @@
                 <button type="submit" class="btn"> Send</button>
             </div>
         </div>
-        <div class="fields-secondary">
+        <!--<div class="fields-secondary">
             <div class="fields">
                 <div class="form-check custom-control custom-checkbox">
                     <input type="checkbox" class="form-check-input custom-control-input" id="toggle-message">
@@ -31,6 +31,5 @@
                     <div class="help-block with-errors"></div>
                 </div>
             </div>
-        </div>
-    </div>
+        </div>--></div>
 </form>

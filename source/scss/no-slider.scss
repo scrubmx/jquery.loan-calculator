@@ -23,114 +23,110 @@ $fill-color: $control-color;
 /// @type String
 $gutter-height: 16px;
 /// noUiSlider Gutter
+$color_1: #272d37;
+$background_color_1: #dee2e6;
+$background_color_2: #e31837;
+$background_color_3: #eb435d;
+$background_color_4: #b5132c;
+
 .noUi-background {
-    height: $gutter-height;
+	height: 16px;
 }
-
 .noUi-target {
-    border-radius: 8px;
-    border: none;
-    background-color: #dee2e6;
-    box-shadow: none;
+	border-radius: 8px;
+	border: none;
+	background-color: $background_color_1;
+	box-shadow: none;
 }
-
 .noUi-horizontal {
-    height: 8px
+	height: 8px;
 }
-
 .noUi-pips-horizontal {
-    padding: 4px 0;
-    height: 24px;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    .noUi-marker-horizontal {
-        &.noUi-marker {
-            width: 1px;
-        }
-        &.noUi-marker-large {
-            height: 12px;
-        }
-    }
-    .noUi-value-large {
-        color: $charcoal;
-        webkit-transform: translate(0, 50%);
-        transform: translate(0, 50%);
-        font-weight: 600;
-        & ~ .noUi-value-large {
-            webkit-transform: translate(-50%, 50%);
-            transform: translate(-50%, 50%);
-            font-weight: normal;
-        }
-        &:last-of-type {
-            webkit-transform: translate(-100%, 50%);
-            transform: translate(-100%, 50%);
-            font-weight: 600;
-        }
-    }
+	padding: 4px 0;
+	height: 24px;
+	top: 100%;
+	left: 0;
+	width: 100%;
+	.noUi-marker-horizontal.noUi-marker {
+		width: 1px;
+	}
+	.noUi-marker-horizontal.noUi-marker-large {
+		height: 12px;
+	}
+	.noUi-value-large {
+		color: $color_1;
+		webkit-transform: translate(0,50%);
+		transform: translate(0,50%);
+		font-weight: 600;
+		&:last-of-type {
+			webkit-transform: translate(-100%,50%);
+			transform: translate(-100%,50%);
+			font-weight: 600;
+		}
+	}
+	.noUi-value-large&~.noUi-value-large {
+		webkit-transform: translate(-50%,50%);
+		transform: translate(-50%,50%);
+		font-weight: 400;
+	}
 }
-
 .noUi-base {
-    .noUi-connects {
-        border-radius: 8px;
-        cursor: pointer;
-        .noUi-connect {
-            background-color: $fill-color;
-        }
-    }
-    /// noUiSlider Handle
-    .noUi-handle {
-        background-color: $control-color;
-        border: none;
-        border-radius: 50%;
-        box-shadow: -0.06125rem 0.06125rem 0.125rem rgba(0, 0, 0, 0.5);
-        height: $control-height;
-        width: $control-width;
-        z-index: 2;
-        top: -4px;
-        right: unset;
-        left: calc(100% - 8px)!important;
-        cursor: pointer;
-        position: relative;
-        cursor: grab;
-        &:focus {
-            box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075)!important;
-            outline-width: 0;
-        }
-        &.noUi-active {
-            cursor: grabbing;
-        }
-        .noUi-touch-area {
-            position: absolute;
-            top: -8px;
-            width: 36px;
-            height: 36px;
-            left: -8px;
-            &:focus {
-                outline-width: 0;
-            }
-        }
-        &:hover {
-            background-color: lighten($control-color, 10%);
-        }
-        &.noUi-active {
-            background-color: darken($control-color, 10%);
-            z-index: 3;
-        }
-        &::before {
-            background: transparent;
-            content: attr(data-value);
-            font-size: $control-font-size;
-            font-weight: $control-font-weight;
-            position: static;
-            width: 100%;
-            vertical-align: middle;
-        }
-        &::after {
-            display: none;
-        }
-    }
+	.noUi-connects {
+		border-radius: 8px;
+		cursor: pointer;
+		.noUi-connect {
+			background-color: $background_color_2;
+		}
+	}
+	.noUi-handle {
+		background-color: $background_color_2;
+		border: none;
+		border-radius: 50%;
+		box-shadow: -.06125rem .06125rem .125rem rgba(0,0,0,.5);
+		height: 16px;
+		width: 16px;
+		z-index: 2;
+		top: -4px;
+		right: unset;
+		left: calc(100% - 8px) !important;
+		cursor: pointer;
+		position: relative;
+		cursor: grab;
+		&:focus {
+			box-shadow: 0 .125rem .25rem rgba(0,0,0,.075) !important;
+			outline-width: 0;
+		}
+		.noUi-touch-area {
+			position: absolute;
+			top: -8px;
+			width: 36px;
+			height: 36px;
+			left: -8px;
+			&:focus {
+				outline-width: 0;
+			}
+		}
+		&:hover {
+			background-color: $background_color_3;
+		}
+		&::before {
+			background: 0 0;
+			content: attr(data-value);
+			font-size: 18px;
+			font-weight: 100;
+			position: static;
+			width: 100%;
+			vertical-align: middle;
+		}
+		&::after {
+			display: none;
+		}
+	}
+	.noUi-handle.noUi-active {
+		cursor: grabbing;
+		background-color: $background_color_4;
+		z-index: 3;
+	}
 }
-
 
 /*! purgecss end ignore */
