@@ -39,15 +39,10 @@ gulp.task('icons', function () {
     return gulp.src(dir.node + '@fortawesome/fontawesome-free/webfonts/*').pipe(gulp.dest(dir.build + 'css/webfonts/'));
 });
 gulp.task('pack-js', function () {
-    return gulp.src([dir.source + paths.js + package.currency, dir.node + package.popper, dir.node + package.bootstrap, dir.node + package.wnumb, dir.node + package.loancalculator, dir.node + package.nouislider,dir.source + paths.js + package.reminder, dir.source + paths.js + package.init]).pipe(concat('scripts.js')).pipe(gulp.dest(dir.build + paths.js));
+    return gulp.src([dir.source + paths.js + package.currency, dir.node + package.popper, dir.node + package.bootstrap, dir.node + package.wnumb, dir.node + package.loancalculator, dir.node + package.nouislider, dir.source + paths.js + package.reminder, dir.source + paths.js + package.init]).pipe(concat('scripts.js')).pipe(gulp.dest(dir.build + paths.js));
 });
 gulp.task('pack-css', function () {
-    return gulp.src([dir.node + 'nouislider/distribute/*.min.css', dir.source + 'scss/*.scss']).pipe(sass()).pipe(concat('styles.css')).pipe(purgecss({
-        content: [dir.build + 'templates/*.php']
-    })).pipe(cleanCSS({
-        compatibility: 'ie8'
-        , level: 2
-    })).pipe(gulp.dest(dir.build + paths.css));
+    return gulp.src([dir.node + 'nouislider/distribute/*.min.css', dir.source + 'scss/*.scss']).pipe(sass()).pipe(concat('styles.css')).pipe(gulp.dest(dir.build + paths.css));
 });
 gulp.task('default', gulp.parallel('pack-js', 'pack-css'));
 gulp.task('watch', function () {
