@@ -23,12 +23,111 @@ $fill-color: $control-color;
 /// @type String
 $gutter-height: 16px;
 /// noUiSlider Gutter
-$color_1: #272d37;
+
 $background_color_1: #dee2e6;
-$background_color_2: #e31837;
 $background_color_3: #eb435d;
 $background_color_4: #b5132c;
-.noUi-base .noUi-handle.noUi-active{cursor:grabbing}.noUi-background{height:16px}.noUi-target{border-radius:8px;border:none;background-color:#dee2e6;box-shadow:none}.noUi-horizontal{height:8px}.noUi-pips-horizontal{padding:4px 0;height:24px;top:100%;left:0;width:100%}.noUi-pips-horizontal .noUi-marker-horizontal.noUi-marker{width:1px}.noUi-pips-horizontal .noUi-marker-horizontal.noUi-marker-large{height:12px}.noUi-pips-horizontal .noUi-value-large{color:#272d37;webkit-transform:translate(0,50%);transform:translate(0,50%);font-weight:600}.noUi-pips-horizontal .noUi-value-large~.noUi-value-large{webkit-transform:translate(-50%,50%);transform:translate(-50%,50%);font-weight:400}.noUi-pips-horizontal .noUi-value-large:last-of-type{webkit-transform:translate(-100%,50%);transform:translate(-100%,50%);font-weight:600}.noUi-base .noUi-connects{border-radius:8px;cursor:pointer}.noUi-base .noUi-connects .noUi-connect{background-color:#e31837}.noUi-base .noUi-handle{background-color:#e31837;border:none;border-radius:50%;box-shadow:-.06125rem .06125rem .125rem rgba(0,0,0,.5);height:16px;width:16px;z-index:2;top:-4px;right:unset;left:calc(100% - 8px)!important;cursor:pointer;position:relative;cursor:grab}.noUi-base .noUi-handle:focus{box-shadow:0 .125rem .25rem rgba(0,0,0,.075)!important;outline-width:0}.noUi-base .noUi-handle .noUi-touch-area{position:absolute;top:-8px;width:36px;height:36px;left:-8px}.noUi-base .noUi-handle .noUi-touch-area:focus{outline-width:0}.noUi-base .noUi-handle:hover{background-color:#eb435d}.noUi-base .noUi-handle.noUi-active{cursor:grabbing;background-color:#b5132c;z-index:3}.noUi-base .noUi-handle::before{background:0 0;content:attr(data-value);font-size:18px;font-weight:100;position:static;width:100%;vertical-align:middle}.noUi-base .noUi-handle::after{display:none}
+
+.noUi-base {
+	.noUi-handle.noUi-active {
+		cursor: grabbing;
+	}
+}
+.noUi-background {
+	height: 16px;
+}
+.noUi-target {
+	border-radius: 8px;
+	border: none;
+	background-color: $background_color_1;
+	box-shadow: none;
+}
+.noUi-horizontal {
+	height: 8px;
+}
+.noUi-pips-horizontal {
+	padding: 4px 0;
+	height: 24px;
+	top: 100%;
+	left: 0;
+	width: 100%;
+	.noui-marker-horizontal { &.noui-marker { width: 1px;
+}
+&.noUi-marker-large {
+	height: 12px;
+}
+} {
+	.noUi-value-large {
+		color: $charcoal;
+		webkit-transform: translate(0, 50%);
+		transform: translate(0, 50%);
+		font-weight: 600;
+		~ .noui-value-large { webkit-transform: translate(-50%, 50%);
+		transform: translate(-50%, 50%);
+		font-weight: 400;
+	}
+	} {
+		.noUi-base {
+			.noui-connects { border-radius: 8px;
+			cursor: pointer;
+			.noui-connect { background-color: $lmcu-red;
+		}
+	}
+	.noUi-handle {
+		background-color: $lmcu-red;
+		border: none;
+		border-radius: 50%;
+		box-shadow: -0.06125rem 0.06125rem 0.125rem rgba(0, 0, 0, 0.5);
+		height: 16px;
+		width: 16px;
+		z-index: 2;
+		top: -4px;
+		right: unset;
+		left: calc(100% - 8px) !important;
+		cursor: pointer;
+		position: relative;
+		cursor: grab;
+		&: focus { box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
+		outline-width: 0;
+	}
+	& {
+		&:hover {
+			background-color: $background_color_3;
+		}
+	}
+}
+& {
+	&:last-of-type {
+		webkit-transform: translate(-100%, 50%);
+		transform: translate(-100%, 50%);
+		font-weight: 600;
+	}
+	&::before {
+		background: 0 0;
+		content: attr(data-value);
+		font-size: 18px;
+		font-weight: 100;
+		position: static;
+		width: 100%;
+		vertical-align: middle;
+	}
+	&::after {
+		display: none;
+	}
+}
+.noUi-touch-area {
+	position: absolute;
+	top: -8px;
+	width: 36px;
+	height: 36px;
+	left: -8px;
+	&: focus { outline-width: 0;
+}
+&.noUi-active {
+	cursor: grabbing;
+	background-color: $background_color_4;
+	z-index: 3;
+}
 
 
 /*! purgecss end ignore */
