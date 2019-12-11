@@ -4,6 +4,14 @@
     @import "node_modules/@fortawesome/fontawesome-free/scss/solid";
     @import "node_modules/@fortawesome/fontawesome-free/scss/v4-shims";
     @import "node_modules/bootstrap/scss/bootstrap";
+    @mixin btnicon($icon) {
+        &:before {
+            @extend %fa-icon;
+            @extend .fas;
+            content: fa-content($icon);
+        }
+    }
+    
     @mixin tabicon($icon) {
         &:before {
             @extend %fa-icon;
@@ -437,6 +445,39 @@
             }
         }
     }
+    
+    #consolidation {
+        .header-row {
+            font-weight: 700;
+            @include mb(3);
+        }
+        .repeat-row:not(:first-child) {
+            display: none;
+
+        }
+        .repeat-row {
+            @include mb(3);
+        }
+                    .btn {
+                width: 1.5rem;
+                height: 1.5rem;
+                padding: 0;
+                line-height: 1.5rem;
+                font-size: 0.75rem;
+                        margin: auto 0;
+                        cursor: pointer;
+            }
+        .btn-add {
+            @extend .btn-outline-secondary;
+            @include btnicon($fa-var-plus);
+            border-radius: 50%;
+        }
+        .btn-remove {
+            @extend .btn-outline-secondary;
+            @include btnicon($fa-var-minus);
+            border-radius: 50%;
+        }
+    }
     /*! purgecss start ignore */
     
     .modal .modal-content {
@@ -462,6 +503,4 @@
     .modal-backdrop.show {
         opacity: 1
     }
-    
-
     /*! purgecss end ignore */

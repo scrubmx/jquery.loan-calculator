@@ -265,6 +265,8 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle {
 #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .column-right .btn-apply:hover:before,
 #lmcu-calculator .calculator .column-right .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .btn-apply:hover:before,
 #lmcu-calculator .calculator .column-right .btn-apply:hover:before,
+#consolidation .btn-add:before,
+#consolidation .btn-remove:before,
 .far,
 .fal,
 .fad,
@@ -277,7 +279,7 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle {
   text-rendering: auto;
   line-height: 1; }
 
-#lmcu-calculator .calculator .column-left nav .calculator-tabs li a.tab-calculator:before, #lmcu-calculator .calculator .column-left nav .calculator-tabs li a.tab-info:before, #lmcu-calculator .calculator .column-left nav .calculator-tabs li a.tab-legal:before, #lmcu-calculator .calculator .column-left nav .calculator-tabs li a.tab-remind:before, #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .btn:hover:before, #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .column-right .btn-apply:hover:before, #lmcu-calculator .calculator .column-right .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .btn-apply:hover:before, #lmcu-calculator .calculator .column-right .btn-apply:hover:before {
+#lmcu-calculator .calculator .column-left nav .calculator-tabs li a.tab-calculator:before, #lmcu-calculator .calculator .column-left nav .calculator-tabs li a.tab-info:before, #lmcu-calculator .calculator .column-left nav .calculator-tabs li a.tab-legal:before, #lmcu-calculator .calculator .column-left nav .calculator-tabs li a.tab-remind:before, #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .btn:hover:before, #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .column-right .btn-apply:hover:before, #lmcu-calculator .calculator .column-right .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .btn-apply:hover:before, #lmcu-calculator .calculator .column-right .btn-apply:hover:before, #consolidation .btn-add:before, #consolidation .btn-remove:before {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   display: inline-block;
@@ -366,6 +368,8 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle {
 #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .column-right .fa-pull-left.btn-apply:hover:before,
 #lmcu-calculator .calculator .column-right .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .fa-pull-left.btn-apply:hover:before,
 #lmcu-calculator .calculator .column-right .fa-pull-left.btn-apply:hover:before,
+#consolidation .fa-pull-left.btn-add:before,
+#consolidation .fa-pull-left.btn-remove:before,
 .far.fa-pull-left,
 .fal.fa-pull-left,
 .fab.fa-pull-left {
@@ -381,6 +385,8 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle {
 #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .column-right .fa-pull-right.btn-apply:hover:before,
 #lmcu-calculator .calculator .column-right .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .fa-pull-right.btn-apply:hover:before,
 #lmcu-calculator .calculator .column-right .fa-pull-right.btn-apply:hover:before,
+#consolidation .fa-pull-right.btn-add:before,
+#consolidation .fa-pull-right.btn-remove:before,
 .far.fa-pull-right,
 .fal.fa-pull-right,
 .fab.fa-pull-right {
@@ -4677,7 +4683,9 @@ readers do not read off random characters that represent icons */
 #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .btn:hover:before,
 #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .column-right .btn-apply:hover:before,
 #lmcu-calculator .calculator .column-right .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .btn-apply:hover:before,
-#lmcu-calculator .calculator .column-right .btn-apply:hover:before {
+#lmcu-calculator .calculator .column-right .btn-apply:hover:before,
+#consolidation .btn-add:before,
+#consolidation .btn-remove:before {
   font-family: 'Font Awesome 5 Free';
   font-weight: 900; }
 
@@ -8873,25 +8881,29 @@ fieldset:disabled #lmcu-calculator .calculator .column-right a.btn-apply,
     .show > .btn-outline-primary.dropdown-toggle:focus {
       box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125), 0 0 0 0.2rem rgba(227, 24, 55, 0.5); }
 
-.btn-outline-secondary {
+.btn-outline-secondary, #consolidation .btn-add, #consolidation .btn-remove {
   color: #6c757d;
   border-color: #6c757d; }
-  .btn-outline-secondary:hover {
+  .btn-outline-secondary:hover, #consolidation .btn-add:hover, #consolidation .btn-remove:hover {
     color: #ffffff;
     background-color: #6c757d;
     border-color: #6c757d; }
-  .btn-outline-secondary:focus, .btn-outline-secondary.focus {
+  .btn-outline-secondary:focus, #consolidation .btn-add:focus, #consolidation .btn-remove:focus, .btn-outline-secondary.focus, #consolidation .focus.btn-add, #consolidation .focus.btn-remove {
     box-shadow: 0 0 0 0.2rem rgba(108, 117, 125, 0.5); }
-  .btn-outline-secondary.disabled, .btn-outline-secondary:disabled {
+  .btn-outline-secondary.disabled, #consolidation .disabled.btn-add, #consolidation .disabled.btn-remove, .btn-outline-secondary:disabled, #consolidation .btn-add:disabled, #consolidation .btn-remove:disabled {
     color: #6c757d;
     background-color: transparent; }
-  .btn-outline-secondary:not(:disabled):not(.disabled):active, .btn-outline-secondary:not(:disabled):not(.disabled).active,
-  .show > .btn-outline-secondary.dropdown-toggle {
+  .btn-outline-secondary:not(:disabled):not(.disabled):active, #consolidation .btn-add:not(:disabled):not(.disabled):active, #consolidation .btn-remove:not(:disabled):not(.disabled):active, .btn-outline-secondary:not(:disabled):not(.disabled).active, #consolidation .btn-add:not(:disabled):not(.disabled).active, #consolidation .btn-remove:not(:disabled):not(.disabled).active,
+  .show > .btn-outline-secondary.dropdown-toggle,
+  #consolidation .show > .dropdown-toggle.btn-add,
+  #consolidation .show > .dropdown-toggle.btn-remove {
     color: #ffffff;
     background-color: #6c757d;
     border-color: #6c757d; }
-    .btn-outline-secondary:not(:disabled):not(.disabled):active:focus, .btn-outline-secondary:not(:disabled):not(.disabled).active:focus,
-    .show > .btn-outline-secondary.dropdown-toggle:focus {
+    .btn-outline-secondary:not(:disabled):not(.disabled):active:focus, #consolidation .btn-add:not(:disabled):not(.disabled):active:focus, #consolidation .btn-remove:not(:disabled):not(.disabled):active:focus, .btn-outline-secondary:not(:disabled):not(.disabled).active:focus, #consolidation .btn-add:not(:disabled):not(.disabled).active:focus, #consolidation .btn-remove:not(:disabled):not(.disabled).active:focus,
+    .show > .btn-outline-secondary.dropdown-toggle:focus,
+    #consolidation .show > .dropdown-toggle.btn-add:focus,
+    #consolidation .show > .dropdown-toggle.btn-remove:focus {
       box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125), 0 0 0 0.2rem rgba(108, 117, 125, 0.5); }
 
 .btn-outline-success {
@@ -15029,6 +15041,35 @@ a.text-dark:hover, a.text-dark:focus {
       #lmcu-calculator .calculator .column-right .representative-example .example-body .interest-detail {
         margin-bottom: 0; }
 
+#consolidation .header-row {
+  font-weight: 700;
+  margin-bottom: 1rem; }
+
+#consolidation .repeat-row:not(:first-child) {
+  display: none; }
+
+#consolidation .repeat-row {
+  margin-bottom: 1rem; }
+
+#consolidation .btn, #consolidation #lmcu-calculator .calculator .column-right .btn-apply, #lmcu-calculator .calculator .column-right #consolidation .btn-apply {
+  width: 1.5rem;
+  height: 1.5rem;
+  padding: 0;
+  line-height: 1.5rem;
+  font-size: 0.75rem;
+  margin: auto 0;
+  cursor: pointer; }
+
+#consolidation .btn-add {
+  border-radius: 50%; }
+  #consolidation .btn-add:before {
+    content: "\f067"; }
+
+#consolidation .btn-remove {
+  border-radius: 50%; }
+  #consolidation .btn-remove:before {
+    content: "\f068"; }
+
 /*! purgecss start ignore */
 .modal .modal-content {
   border: none;
@@ -15054,9 +15095,6 @@ a.text-dark:hover, a.text-dark:focus {
 
 
 /*! purgecss start ignore */
-.noUi-base .noUi-handle.noUi-active {
-  cursor: grabbing; }
-
 .noUi-background {
   height: 16px; }
 
@@ -15075,35 +15113,29 @@ a.text-dark:hover, a.text-dark:focus {
   top: 100%;
   left: 0;
   width: 100%; }
-
-.noUi-pips-horizontal .noUi-marker-horizontal.noUi-marker {
-  width: 1px; }
-
-.noUi-pips-horizontal .noUi-marker-horizontal.noUi-marker-large {
-  height: 12px; }
-
-.noUi-pips-horizontal .noUi-value-large {
-  color: #272d37;
-  webkit-transform: translate(0, 50%);
-  transform: translate(0, 50%);
-  font-weight: 600; }
-
-.noUi-pips-horizontal .noUi-value-large ~ .noUi-value-large {
-  webkit-transform: translate(-50%, 50%);
-  transform: translate(-50%, 50%);
-  font-weight: 400; }
-
-.noUi-pips-horizontal .noUi-value-large:last-of-type {
-  webkit-transform: translate(-100%, 50%);
-  transform: translate(-100%, 50%);
-  font-weight: 600; }
+  .noUi-pips-horizontal .noUi-marker-horizontal.noUi-marker {
+    width: 1px; }
+  .noUi-pips-horizontal .noUi-marker-horizontal.noUi-marker-large {
+    height: 12px; }
+  .noUi-pips-horizontal .noUi-value-large {
+    color: #272d37;
+    webkit-transform: translate(0, 50%);
+    transform: translate(0, 50%);
+    font-weight: 600; }
+    .noUi-pips-horizontal .noUi-value-large ~ .noUi-value-large {
+      webkit-transform: translate(-50%, 50%);
+      transform: translate(-50%, 50%);
+      font-weight: normal; }
+    .noUi-pips-horizontal .noUi-value-large:last-of-type {
+      webkit-transform: translate(-100%, 50%);
+      transform: translate(-100%, 50%);
+      font-weight: 600; }
 
 .noUi-base .noUi-connects {
   border-radius: 8px;
   cursor: pointer; }
-
-.noUi-base .noUi-connects .noUi-connect {
-  background-color: #e31837; }
+  .noUi-base .noUi-connects .noUi-connect {
+    background-color: #e31837; }
 
 .noUi-base .noUi-handle {
   background-color: #e31837;
@@ -15119,40 +15151,34 @@ a.text-dark:hover, a.text-dark:focus {
   cursor: pointer;
   position: relative;
   cursor: grab; }
-
-.noUi-base .noUi-handle:focus {
-  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
-  outline-width: 0; }
-
-.noUi-base .noUi-handle .noUi-touch-area {
-  position: absolute;
-  top: -8px;
-  width: 36px;
-  height: 36px;
-  left: -8px; }
-
-.noUi-base .noUi-handle .noUi-touch-area:focus {
-  outline-width: 0; }
-
-.noUi-base .noUi-handle:hover {
-  background-color: #eb435d; }
-
-.noUi-base .noUi-handle.noUi-active {
-  cursor: grabbing;
-  background-color: #b5132c;
-  z-index: 3; }
-
-.noUi-base .noUi-handle::before {
-  background: 0 0;
-  content: attr(data-value);
-  font-size: 18px;
-  font-weight: 100;
-  position: static;
-  width: 100%;
-  vertical-align: middle; }
-
-.noUi-base .noUi-handle::after {
-  display: none; }
+  .noUi-base .noUi-handle:focus {
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
+    outline-width: 0; }
+  .noUi-base .noUi-handle.noUi-active {
+    cursor: grabbing; }
+  .noUi-base .noUi-handle .noUi-touch-area {
+    position: absolute;
+    top: -8px;
+    width: 36px;
+    height: 36px;
+    left: -8px; }
+    .noUi-base .noUi-handle .noUi-touch-area:focus {
+      outline-width: 0; }
+  .noUi-base .noUi-handle:hover {
+    background-color: #eb435d; }
+  .noUi-base .noUi-handle.noUi-active {
+    background-color: #b5132c;
+    z-index: 3; }
+  .noUi-base .noUi-handle::before {
+    background: transparent;
+    content: attr(data-value);
+    font-size: 18px;
+    font-weight: 100;
+    position: static;
+    width: 100%;
+    vertical-align: middle; }
+  .noUi-base .noUi-handle::after {
+    display: none; }
 
 /*! purgecss end ignore */
 

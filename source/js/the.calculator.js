@@ -147,51 +147,55 @@ jQuery(document).ready(function ($) {
     */
     // Loan value slider
     loanamountslider = document.getElementById('loanamount');
-    noUiSlider.create(loanamountslider, {
-        start: ProductDefaults.amount
-        , animate: true
-        , pips: {
-            mode: 'positions'
-            , values: [0, 100]
-            , density: 10
-            , stepped: true
-            , format: wNumb({
-                decimals: 0
-                , thousand: ','
-                , prefix: '£'
-            })
-        }
-        , connect: [true, false]
-        , step: ProductDefaults.step
-        , range: {
-            'min': ProductDefaults.minamount
-            , 'max': ProductDefaults.maxamount
-        }
-    });
+    if (loanamountslider) {
+        noUiSlider.create(loanamountslider, {
+            start: ProductDefaults.amount
+            , animate: true
+            , pips: {
+                mode: 'positions'
+                , values: [0, 100]
+                , density: 10
+                , stepped: true
+                , format: wNumb({
+                    decimals: 0
+                    , thousand: ','
+                    , prefix: '£'
+                })
+            }
+            , connect: [true, false]
+            , step: ProductDefaults.step
+            , range: {
+                'min': ProductDefaults.minamount
+                , 'max': ProductDefaults.maxamount
+            }
+        });
+    };
     //Set default values for loan term
     loantermslider = document.getElementById('loanterm');
     variableMinTerm = variableTerm(ProductDefaults.minamount).min;
     variableMaxTerm = variableTerm(ProductDefaults.maxamount).max;
-    noUiSlider.create(loantermslider, {
-        start: ProductDefaults.term
-        , animate: true
-        , connect: [true, false]
-        , step: 1
-        , pips: {
-            mode: 'positions'
-            , values: [0, 100]
-            , density: 10
-            , format: wNumb({
-                decimals: 0
-                , thousand: ','
-                , suffix: ' months'
-            })
-        }
-        , range: {
-            'min': variableMinTerm
-            , 'max': variableMaxTerm
-        }
-    });
+    if (loantermslider) {
+        noUiSlider.create(loantermslider, {
+            start: ProductDefaults.term
+            , animate: true
+            , connect: [true, false]
+            , step: 1
+            , pips: {
+                mode: 'positions'
+                , values: [0, 100]
+                , density: 10
+                , format: wNumb({
+                    decimals: 0
+                    , thousand: ','
+                    , suffix: ' months'
+                })
+            }
+            , range: {
+                'min': variableMinTerm
+                , 'max': variableMaxTerm
+            }
+        });
+    };
     // Set default title description
     $('#product-name').text(ProductDefaults.product);
     $('#product-description').text(ProductDefaults.desc);
@@ -208,29 +212,33 @@ jQuery(document).ready(function ($) {
     UPDATE THE CALCULATOR
     */
     // When amount slider is updated
-    loanamountslider.noUiSlider.on('update', function () {
-        CurrentAmount = loanamountslider.noUiSlider.get();
-        CurrentRate = variableInterest(CurrentAmount);
-        $calculator.loanCalculator('update', {
-            loanAmount: CurrentAmount
-            , interestRate: CurrentRate
+    if (loanamountslider) {
+        loanamountslider.noUiSlider.on('update', function () {
+            CurrentAmount = loanamountslider.noUiSlider.get();
+            CurrentRate = variableInterest(CurrentAmount);
+            $calculator.loanCalculator('update', {
+                loanAmount: CurrentAmount
+                , interestRate: CurrentRate
+            });
+            $('.selected-amount').text(formatMoney(CurrentAmount));
+            loantermslider.noUiSlider.updateOptions({
+                range: {
+                    'min': variableTerm(CurrentAmount).min
+                    , 'max': variableTerm(CurrentAmount).max
+                }
+            });
         });
-        $('.selected-amount').text(formatMoney(CurrentAmount));
-        loantermslider.noUiSlider.updateOptions({
-            range: {
-                'min': variableTerm(CurrentAmount).min
-                , 'max': variableTerm(CurrentAmount).max
-            }
-        });
-    });
+    };
     // When term slider is updated
-    loantermslider.noUiSlider.on('update', function () {
-        var CurrentTerm = loantermslider.noUiSlider.get();
-        $calculator.loanCalculator('update', {
-            loanDuration: CurrentTerm
+    if (loanamountslider) {
+        loantermslider.noUiSlider.on('update', function () {
+            var CurrentTerm = loantermslider.noUiSlider.get();
+            $calculator.loanCalculator('update', {
+                loanDuration: CurrentTerm
+            });
+            $('.selected-term').text(monthstoYears(parseInt(CurrentTerm)));
         });
-        $('.selected-term').text(monthstoYears(parseInt(CurrentTerm)));
-    });
+    };
     // When the calculator changes, update the application URL
     $calculator.on('loan:update', function (e) {
         var loanAmount = parseInt(loanamountslider.noUiSlider.get());
