@@ -444,38 +444,103 @@
                 }
             }
         }
-    }
-    
-    #consolidation {
-        .header-row {
-            font-weight: 700;
-            @include mb(3);
+        .consolidation {
+            .column-left {
+                @include make-col-ready();
+                @include make-col(7);
+            }
+            .column-right {
+                @include make-col-ready();
+                @include make-col(5);
+            }
         }
-        .repeat-row:not(:first-child) {
-            display: none;
-
-        }
-        .repeat-row {
-            @include mb(3);
-        }
+        #consolidation {
+            .header-row {
+                font-weight: 700;
+                @include mb(3);
+            }
+            .repeat-row,
+            .header-row {
+                @include mb(3);
+                @extend .form-row;
+                &:not(:first-child) {
+                    display: none
+                }
+                input,
+                select {
+                    @extend .form-control;
+                }
+                .type {
+                    @include make-col-ready();
+                    @include make-col(4);
+                    padding-right: 5px;
+                    padding-left: 5px;
+                }
+                .balance {
+                    @include make-col-ready();
+                    @include make-col(3);
+                    padding-right: 5px;
+                    padding-left: 5px;
+                }
+                .repayment {
+                    @include make-col-ready();
+                    @include make-col(3);
+                    padding-right: 5px;
+                    padding-left: 5px;
+                }
+                .controls {
+                    @include make-col-ready();
+                    display: flex;
+                    width: auto;
                     .btn {
-                width: 1.5rem;
-                height: 1.5rem;
-                padding: 0;
-                line-height: 1.5rem;
-                font-size: 0.75rem;
+                        width: 1.5rem;
+                        height: 1.5rem;
+                        padding: 0;
+                        line-height: 1.5rem;
+                        font-size: 0.75rem;
                         margin: auto 0;
                         cursor: pointer;
+                    }
+                    .btn-add {
+                        @extend .btn-outline-secondary;
+                        @include btnicon($fa-var-plus);
+                        border-radius: 50%;
+                    }
+                    .btn-remove {
+                        @extend .btn-outline-secondary;
+                        @include btnicon($fa-var-minus);
+                        border-radius: 50%;
+                    }
+                }
             }
-        .btn-add {
-            @extend .btn-outline-secondary;
-            @include btnicon($fa-var-plus);
-            border-radius: 50%;
-        }
-        .btn-remove {
-            @extend .btn-outline-secondary;
-            @include btnicon($fa-var-minus);
-            border-radius: 50%;
+            .repayment-calc {
+                @extend .form-row;
+                @include my(5);
+                @include pt(4);
+                @extend .border-top;
+                .repayment-calc-label {
+                    @include make-col-ready();
+                    @include make-col(7);
+                    padding-right: 5px;
+                    padding-left: 5px;
+                    display: flex;
+                    flex-direction: column;
+                    label {
+                        @include my(auto);
+                        font-weight: 700;
+                    }
+                    p {
+                        @extend .small;
+                        @extend .text-muted;
+                    }
+                }
+                .repayment-calc-total {
+                    @include make-col-ready();
+                    @include make-col(3);
+                    padding-right: 5px;
+                    padding-left: 5px;
+                }
+            }
         }
     }
     /*! purgecss start ignore */

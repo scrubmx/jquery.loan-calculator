@@ -1,5 +1,5 @@
 <div id="lmcu-calculator">
-    <div class="calculator">
+    <div class="calculator consolidation">
         <div id="widget" class="inner">
             <div class="column-left">
                 <nav>
@@ -31,14 +31,18 @@
                 <!-- Card -->
                 <div class="representative-example">
                     <div class="example-body">
-                        <h5>Representative example</h5>
+                        <h5>Summary</h5>
+                        <p class="pb-4">Based on what you've told us, a consolidation loan could save you <strong>£XXX</strong> in interest and allow to clear your debts <strong>XX</strong> months early.</p>
                         <ul class="summary">
-                            <li>Monthly repayment: <span class="strong" id="payment"></span></li>
+                            <li>Amount to consolidate: <span class="strong" id="total-loan">£0.00</span></li>
                             <li>Representative APR: <span class="strong" id="total-annual-cost"></span></li>
+                            <li>You will have paid everything off in: <span class="strong" id="total-term">0 months</span></li>
                             <li>Total repayable: <span class="strong " id="loan-total"></span> </li>
+                            
                         </ul>
+                        
                         <!-- Button -->
-                        <button type="button" class="btn-apply" data-toggle="modal" data-target="#currentMember"> Apply for this loan </button>
+                        <button type="button" class="btn-apply" data-toggle="modal" data-target="#currentMember"> Apply for consolidation loan </button>
                     </div>
                 </div>
                 <!-- Card -->

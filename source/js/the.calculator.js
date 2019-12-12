@@ -1,3 +1,23 @@
+    //Convert months into year
+    function monthstoYears(value) {
+        function getPlural(number, word) {
+            return number === 1 && word.one || word.other;
+        }
+        var months = {
+                one: 'month'
+                , other: 'months'
+            }
+            , years = {
+                one: 'year'
+                , other: 'years'
+            }
+            , m = value % 12
+            , y = Math.floor(value / 12)
+            , result = [];
+        y && result.push(y + ' ' + getPlural(y, years));
+        m && result.push(m + ' ' + getPlural(m, months));
+        return result.join(' and ');
+    }
 jQuery(document).ready(function ($) {
     //Move modal in DOM and set up tabs and popovers
     $('#currentMember').appendTo("body")
@@ -29,30 +49,16 @@ jQuery(document).ready(function ($) {
         , blur: function () {
             formatCurrency($(this), "blur");
         }
+        , change: function() {
+            formatCurrency($(this));
+        }
+        , paste: function() {
+            formatCurrency($(this));
+        }
     });
     /* 
     HELPER FUNCTIONS.
     */
-    //Convert months into year
-    function monthstoYears(value) {
-        function getPlural(number, word) {
-            return number === 1 && word.one || word.other;
-        }
-        var months = {
-                one: 'month'
-                , other: 'months'
-            }
-            , years = {
-                one: 'year'
-                , other: 'years'
-            }
-            , m = value % 12
-            , y = Math.floor(value / 12)
-            , result = [];
-        y && result.push(y + ' ' + getPlural(y, years));
-        m && result.push(m + ' ' + getPlural(m, months));
-        return result.join(' and ');
-    }
     // Format money correctly
     function formatMoney(value) {
         var moneyFormat = wNumb({
@@ -74,7 +80,7 @@ jQuery(document).ready(function ($) {
     var Salary = $('#salary');
     var Personal = $('#personal-loan');
 
-    function variableInterest(value) {
+    window.variableInterest = function(value) {
         var InterestRate = ProductDefaults.rate;
         switch (true) {
         case (SaverLoan.hasClass('active')):

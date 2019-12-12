@@ -265,8 +265,10 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle {
 #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .column-right .btn-apply:hover:before,
 #lmcu-calculator .calculator .column-right .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .btn-apply:hover:before,
 #lmcu-calculator .calculator .column-right .btn-apply:hover:before,
-#consolidation .btn-add:before,
-#consolidation .btn-remove:before,
+#lmcu-calculator #consolidation .repeat-row .controls .btn-add:before,
+#lmcu-calculator #consolidation .header-row .controls .btn-add:before,
+#lmcu-calculator #consolidation .repeat-row .controls .btn-remove:before,
+#lmcu-calculator #consolidation .header-row .controls .btn-remove:before,
 .far,
 .fal,
 .fad,
@@ -279,7 +281,9 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle {
   text-rendering: auto;
   line-height: 1; }
 
-#lmcu-calculator .calculator .column-left nav .calculator-tabs li a.tab-calculator:before, #lmcu-calculator .calculator .column-left nav .calculator-tabs li a.tab-info:before, #lmcu-calculator .calculator .column-left nav .calculator-tabs li a.tab-legal:before, #lmcu-calculator .calculator .column-left nav .calculator-tabs li a.tab-remind:before, #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .btn:hover:before, #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .column-right .btn-apply:hover:before, #lmcu-calculator .calculator .column-right .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .btn-apply:hover:before, #lmcu-calculator .calculator .column-right .btn-apply:hover:before, #consolidation .btn-add:before, #consolidation .btn-remove:before {
+#lmcu-calculator .calculator .column-left nav .calculator-tabs li a.tab-calculator:before, #lmcu-calculator .calculator .column-left nav .calculator-tabs li a.tab-info:before, #lmcu-calculator .calculator .column-left nav .calculator-tabs li a.tab-legal:before, #lmcu-calculator .calculator .column-left nav .calculator-tabs li a.tab-remind:before, #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .btn:hover:before, #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .column-right .btn-apply:hover:before, #lmcu-calculator .calculator .column-right .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .btn-apply:hover:before, #lmcu-calculator .calculator .column-right .btn-apply:hover:before, #lmcu-calculator #consolidation .repeat-row .controls .btn-add:before,
+#lmcu-calculator #consolidation .header-row .controls .btn-add:before, #lmcu-calculator #consolidation .repeat-row .controls .btn-remove:before,
+#lmcu-calculator #consolidation .header-row .controls .btn-remove:before {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   display: inline-block;
@@ -368,8 +372,10 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle {
 #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .column-right .fa-pull-left.btn-apply:hover:before,
 #lmcu-calculator .calculator .column-right .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .fa-pull-left.btn-apply:hover:before,
 #lmcu-calculator .calculator .column-right .fa-pull-left.btn-apply:hover:before,
-#consolidation .fa-pull-left.btn-add:before,
-#consolidation .fa-pull-left.btn-remove:before,
+#lmcu-calculator #consolidation .repeat-row .controls .fa-pull-left.btn-add:before,
+#lmcu-calculator #consolidation .header-row .controls .fa-pull-left.btn-add:before,
+#lmcu-calculator #consolidation .repeat-row .controls .fa-pull-left.btn-remove:before,
+#lmcu-calculator #consolidation .header-row .controls .fa-pull-left.btn-remove:before,
 .far.fa-pull-left,
 .fal.fa-pull-left,
 .fab.fa-pull-left {
@@ -385,8 +391,10 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle {
 #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .column-right .fa-pull-right.btn-apply:hover:before,
 #lmcu-calculator .calculator .column-right .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .fa-pull-right.btn-apply:hover:before,
 #lmcu-calculator .calculator .column-right .fa-pull-right.btn-apply:hover:before,
-#consolidation .fa-pull-right.btn-add:before,
-#consolidation .fa-pull-right.btn-remove:before,
+#lmcu-calculator #consolidation .repeat-row .controls .fa-pull-right.btn-add:before,
+#lmcu-calculator #consolidation .header-row .controls .fa-pull-right.btn-add:before,
+#lmcu-calculator #consolidation .repeat-row .controls .fa-pull-right.btn-remove:before,
+#lmcu-calculator #consolidation .header-row .controls .fa-pull-right.btn-remove:before,
 .far.fa-pull-right,
 .fal.fa-pull-right,
 .fab.fa-pull-right {
@@ -4684,8 +4692,10 @@ readers do not read off random characters that represent icons */
 #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .column-right .btn-apply:hover:before,
 #lmcu-calculator .calculator .column-right .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .btn-apply:hover:before,
 #lmcu-calculator .calculator .column-right .btn-apply:hover:before,
-#consolidation .btn-add:before,
-#consolidation .btn-remove:before {
+#lmcu-calculator #consolidation .repeat-row .controls .btn-add:before,
+#lmcu-calculator #consolidation .header-row .controls .btn-add:before,
+#lmcu-calculator #consolidation .repeat-row .controls .btn-remove:before,
+#lmcu-calculator #consolidation .header-row .controls .btn-remove:before {
   font-family: 'Font Awesome 5 Free';
   font-weight: 900; }
 
@@ -7210,7 +7220,8 @@ hr {
   border-top: 1px solid rgba(0, 0, 0, 0.1); }
 
 small,
-.small {
+.small,
+#lmcu-calculator #consolidation .repayment-calc .repayment-calc-label p {
   font-size: 80%;
   font-weight: 400; }
 
@@ -8256,7 +8267,10 @@ pre {
   .table-responsive > .table-bordered {
     border: 0; }
 
-.form-control {
+.form-control, #lmcu-calculator #consolidation .repeat-row input,
+#lmcu-calculator #consolidation .repeat-row select,
+#lmcu-calculator #consolidation .header-row input,
+#lmcu-calculator #consolidation .header-row select {
   display: block;
   width: 100%;
   height: calc(1.5em + 0.75rem + 2px);
@@ -8272,25 +8286,45 @@ pre {
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; }
   @media (prefers-reduced-motion: reduce) {
-    .form-control {
+    .form-control, #lmcu-calculator #consolidation .repeat-row input,
+    #lmcu-calculator #consolidation .repeat-row select,
+    #lmcu-calculator #consolidation .header-row input,
+    #lmcu-calculator #consolidation .header-row select {
       transition: none; } }
-  .form-control::-ms-expand {
+  .form-control::-ms-expand, #lmcu-calculator #consolidation .repeat-row input::-ms-expand,
+  #lmcu-calculator #consolidation .repeat-row select::-ms-expand,
+  #lmcu-calculator #consolidation .header-row input::-ms-expand,
+  #lmcu-calculator #consolidation .header-row select::-ms-expand {
     background-color: transparent;
     border: 0; }
-  .form-control:focus {
+  .form-control:focus, #lmcu-calculator #consolidation .repeat-row input:focus,
+  #lmcu-calculator #consolidation .repeat-row select:focus,
+  #lmcu-calculator #consolidation .header-row input:focus,
+  #lmcu-calculator #consolidation .header-row select:focus {
     color: #495057;
     background-color: #ffffff;
     border-color: #f28898;
     outline: 0;
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 0 0.2rem rgba(227, 24, 55, 0.25); }
-  .form-control::placeholder {
+  .form-control::placeholder, #lmcu-calculator #consolidation .repeat-row input::placeholder,
+  #lmcu-calculator #consolidation .repeat-row select::placeholder,
+  #lmcu-calculator #consolidation .header-row input::placeholder,
+  #lmcu-calculator #consolidation .header-row select::placeholder {
     color: #6c757d;
     opacity: 1; }
-  .form-control:disabled, .form-control[readonly] {
+  .form-control:disabled, #lmcu-calculator #consolidation .repeat-row input:disabled,
+  #lmcu-calculator #consolidation .repeat-row select:disabled,
+  #lmcu-calculator #consolidation .header-row input:disabled,
+  #lmcu-calculator #consolidation .header-row select:disabled, .form-control[readonly], #lmcu-calculator #consolidation .repeat-row input[readonly],
+  #lmcu-calculator #consolidation .repeat-row select[readonly],
+  #lmcu-calculator #consolidation .header-row input[readonly],
+  #lmcu-calculator #consolidation .header-row select[readonly] {
     background-color: #e9ecef;
     opacity: 1; }
 
-select.form-control:focus::-ms-value {
+select.form-control:focus::-ms-value,
+#lmcu-calculator #consolidation .repeat-row select:focus::-ms-value,
+#lmcu-calculator #consolidation .header-row select:focus::-ms-value {
   color: #495057;
   background-color: #ffffff; }
 
@@ -8345,7 +8379,11 @@ select.form-control:focus::-ms-value {
   font-size: 1.25rem;
   line-height: 1.5; }
 
-select.form-control[size], select.form-control[multiple] {
+select.form-control[size],
+#lmcu-calculator #consolidation .repeat-row select[size],
+#lmcu-calculator #consolidation .header-row select[size], select.form-control[multiple],
+#lmcu-calculator #consolidation .repeat-row select[multiple],
+#lmcu-calculator #consolidation .header-row select[multiple] {
   height: auto; }
 
 textarea.form-control {
@@ -8358,13 +8396,17 @@ textarea.form-control {
   display: block;
   margin-top: 0.25rem; }
 
-.form-row {
+.form-row, #lmcu-calculator #consolidation .repeat-row,
+#lmcu-calculator #consolidation .header-row, #lmcu-calculator #consolidation .repayment-calc {
   display: flex;
   flex-wrap: wrap;
   margin-right: -5px;
   margin-left: -5px; }
-  .form-row > .col,
-  .form-row > [class*="col-"] {
+  .form-row > .col, #lmcu-calculator #consolidation .repeat-row > .col, #lmcu-calculator #consolidation .header-row > .col, #lmcu-calculator #consolidation .repayment-calc > .col,
+  .form-row > [class*="col-"],
+  #lmcu-calculator #consolidation .repeat-row > [class*="col-"],
+  #lmcu-calculator #consolidation .header-row > [class*="col-"],
+  #lmcu-calculator #consolidation .repayment-calc > [class*="col-"] {
     padding-right: 5px;
     padding-left: 5px; }
 
@@ -8414,19 +8456,43 @@ textarea.form-control {
   color: #ffffff;
   background-color: rgba(40, 167, 69, 0.9); }
 
-.was-validated .form-control:valid, .form-control.is-valid {
+.was-validated .form-control:valid, .was-validated #lmcu-calculator #consolidation .repeat-row input:valid, #lmcu-calculator #consolidation .repeat-row .was-validated input:valid,
+.was-validated #lmcu-calculator #consolidation .repeat-row select:valid, #lmcu-calculator #consolidation .repeat-row .was-validated select:valid,
+.was-validated #lmcu-calculator #consolidation .header-row input:valid, #lmcu-calculator #consolidation .header-row .was-validated input:valid,
+.was-validated #lmcu-calculator #consolidation .header-row select:valid, #lmcu-calculator #consolidation .header-row .was-validated select:valid, .form-control.is-valid, #lmcu-calculator #consolidation .repeat-row input.is-valid,
+#lmcu-calculator #consolidation .repeat-row select.is-valid,
+#lmcu-calculator #consolidation .header-row input.is-valid,
+#lmcu-calculator #consolidation .header-row select.is-valid {
   border-color: #28a745;
   padding-right: calc(1.5em + 0.75rem);
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%2328a745' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e");
   background-repeat: no-repeat;
   background-position: center right calc(0.375em + 0.1875rem);
   background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem); }
-  .was-validated .form-control:valid:focus, .form-control.is-valid:focus {
+  .was-validated .form-control:valid:focus, .was-validated #lmcu-calculator #consolidation .repeat-row input:valid:focus, #lmcu-calculator #consolidation .repeat-row .was-validated input:valid:focus,
+  .was-validated #lmcu-calculator #consolidation .repeat-row select:valid:focus, #lmcu-calculator #consolidation .repeat-row .was-validated select:valid:focus,
+  .was-validated #lmcu-calculator #consolidation .header-row input:valid:focus, #lmcu-calculator #consolidation .header-row .was-validated input:valid:focus,
+  .was-validated #lmcu-calculator #consolidation .header-row select:valid:focus, #lmcu-calculator #consolidation .header-row .was-validated select:valid:focus, .form-control.is-valid:focus, #lmcu-calculator #consolidation .repeat-row input.is-valid:focus,
+  #lmcu-calculator #consolidation .repeat-row select.is-valid:focus,
+  #lmcu-calculator #consolidation .header-row input.is-valid:focus,
+  #lmcu-calculator #consolidation .header-row select.is-valid:focus {
     border-color: #28a745;
     box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25); }
-  .was-validated .form-control:valid ~ .valid-feedback,
-  .was-validated .form-control:valid ~ .valid-tooltip, .form-control.is-valid ~ .valid-feedback,
-  .form-control.is-valid ~ .valid-tooltip {
+  .was-validated .form-control:valid ~ .valid-feedback, .was-validated #lmcu-calculator #consolidation .repeat-row input:valid ~ .valid-feedback, #lmcu-calculator #consolidation .repeat-row .was-validated input:valid ~ .valid-feedback, .was-validated #lmcu-calculator #consolidation .repeat-row select:valid ~ .valid-feedback, #lmcu-calculator #consolidation .repeat-row .was-validated select:valid ~ .valid-feedback, .was-validated #lmcu-calculator #consolidation .header-row input:valid ~ .valid-feedback, #lmcu-calculator #consolidation .header-row .was-validated input:valid ~ .valid-feedback, .was-validated #lmcu-calculator #consolidation .header-row select:valid ~ .valid-feedback, #lmcu-calculator #consolidation .header-row .was-validated select:valid ~ .valid-feedback,
+  .was-validated .form-control:valid ~ .valid-tooltip,
+  .was-validated #lmcu-calculator #consolidation .repeat-row input:valid ~ .valid-tooltip,
+  #lmcu-calculator #consolidation .repeat-row .was-validated input:valid ~ .valid-tooltip,
+  .was-validated #lmcu-calculator #consolidation .repeat-row select:valid ~ .valid-tooltip,
+  #lmcu-calculator #consolidation .repeat-row .was-validated select:valid ~ .valid-tooltip,
+  .was-validated #lmcu-calculator #consolidation .header-row input:valid ~ .valid-tooltip,
+  #lmcu-calculator #consolidation .header-row .was-validated input:valid ~ .valid-tooltip,
+  .was-validated #lmcu-calculator #consolidation .header-row select:valid ~ .valid-tooltip,
+  #lmcu-calculator #consolidation .header-row .was-validated select:valid ~ .valid-tooltip, .form-control.is-valid ~ .valid-feedback, #lmcu-calculator #consolidation .repeat-row input.is-valid ~ .valid-feedback, #lmcu-calculator #consolidation .repeat-row select.is-valid ~ .valid-feedback, #lmcu-calculator #consolidation .header-row input.is-valid ~ .valid-feedback, #lmcu-calculator #consolidation .header-row select.is-valid ~ .valid-feedback,
+  .form-control.is-valid ~ .valid-tooltip,
+  #lmcu-calculator #consolidation .repeat-row input.is-valid ~ .valid-tooltip,
+  #lmcu-calculator #consolidation .repeat-row select.is-valid ~ .valid-tooltip,
+  #lmcu-calculator #consolidation .header-row input.is-valid ~ .valid-tooltip,
+  #lmcu-calculator #consolidation .header-row select.is-valid ~ .valid-tooltip {
     display: block; }
 
 .was-validated textarea.form-control:valid, textarea.form-control.is-valid {
@@ -8510,19 +8576,43 @@ textarea.form-control {
   color: #ffffff;
   background-color: rgba(220, 53, 69, 0.9); }
 
-.was-validated .form-control:invalid, .form-control.is-invalid {
+.was-validated .form-control:invalid, .was-validated #lmcu-calculator #consolidation .repeat-row input:invalid, #lmcu-calculator #consolidation .repeat-row .was-validated input:invalid,
+.was-validated #lmcu-calculator #consolidation .repeat-row select:invalid, #lmcu-calculator #consolidation .repeat-row .was-validated select:invalid,
+.was-validated #lmcu-calculator #consolidation .header-row input:invalid, #lmcu-calculator #consolidation .header-row .was-validated input:invalid,
+.was-validated #lmcu-calculator #consolidation .header-row select:invalid, #lmcu-calculator #consolidation .header-row .was-validated select:invalid, .form-control.is-invalid, #lmcu-calculator #consolidation .repeat-row input.is-invalid,
+#lmcu-calculator #consolidation .repeat-row select.is-invalid,
+#lmcu-calculator #consolidation .header-row input.is-invalid,
+#lmcu-calculator #consolidation .header-row select.is-invalid {
   border-color: #dc3545;
   padding-right: calc(1.5em + 0.75rem);
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23dc3545' viewBox='-2 -2 7 7'%3e%3cpath stroke='%23dc3545' d='M0 0l3 3m0-3L0 3'/%3e%3ccircle r='.5'/%3e%3ccircle cx='3' r='.5'/%3e%3ccircle cy='3' r='.5'/%3e%3ccircle cx='3' cy='3' r='.5'/%3e%3c/svg%3E");
   background-repeat: no-repeat;
   background-position: center right calc(0.375em + 0.1875rem);
   background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem); }
-  .was-validated .form-control:invalid:focus, .form-control.is-invalid:focus {
+  .was-validated .form-control:invalid:focus, .was-validated #lmcu-calculator #consolidation .repeat-row input:invalid:focus, #lmcu-calculator #consolidation .repeat-row .was-validated input:invalid:focus,
+  .was-validated #lmcu-calculator #consolidation .repeat-row select:invalid:focus, #lmcu-calculator #consolidation .repeat-row .was-validated select:invalid:focus,
+  .was-validated #lmcu-calculator #consolidation .header-row input:invalid:focus, #lmcu-calculator #consolidation .header-row .was-validated input:invalid:focus,
+  .was-validated #lmcu-calculator #consolidation .header-row select:invalid:focus, #lmcu-calculator #consolidation .header-row .was-validated select:invalid:focus, .form-control.is-invalid:focus, #lmcu-calculator #consolidation .repeat-row input.is-invalid:focus,
+  #lmcu-calculator #consolidation .repeat-row select.is-invalid:focus,
+  #lmcu-calculator #consolidation .header-row input.is-invalid:focus,
+  #lmcu-calculator #consolidation .header-row select.is-invalid:focus {
     border-color: #dc3545;
     box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25); }
-  .was-validated .form-control:invalid ~ .invalid-feedback,
-  .was-validated .form-control:invalid ~ .invalid-tooltip, .form-control.is-invalid ~ .invalid-feedback,
-  .form-control.is-invalid ~ .invalid-tooltip {
+  .was-validated .form-control:invalid ~ .invalid-feedback, .was-validated #lmcu-calculator #consolidation .repeat-row input:invalid ~ .invalid-feedback, #lmcu-calculator #consolidation .repeat-row .was-validated input:invalid ~ .invalid-feedback, .was-validated #lmcu-calculator #consolidation .repeat-row select:invalid ~ .invalid-feedback, #lmcu-calculator #consolidation .repeat-row .was-validated select:invalid ~ .invalid-feedback, .was-validated #lmcu-calculator #consolidation .header-row input:invalid ~ .invalid-feedback, #lmcu-calculator #consolidation .header-row .was-validated input:invalid ~ .invalid-feedback, .was-validated #lmcu-calculator #consolidation .header-row select:invalid ~ .invalid-feedback, #lmcu-calculator #consolidation .header-row .was-validated select:invalid ~ .invalid-feedback,
+  .was-validated .form-control:invalid ~ .invalid-tooltip,
+  .was-validated #lmcu-calculator #consolidation .repeat-row input:invalid ~ .invalid-tooltip,
+  #lmcu-calculator #consolidation .repeat-row .was-validated input:invalid ~ .invalid-tooltip,
+  .was-validated #lmcu-calculator #consolidation .repeat-row select:invalid ~ .invalid-tooltip,
+  #lmcu-calculator #consolidation .repeat-row .was-validated select:invalid ~ .invalid-tooltip,
+  .was-validated #lmcu-calculator #consolidation .header-row input:invalid ~ .invalid-tooltip,
+  #lmcu-calculator #consolidation .header-row .was-validated input:invalid ~ .invalid-tooltip,
+  .was-validated #lmcu-calculator #consolidation .header-row select:invalid ~ .invalid-tooltip,
+  #lmcu-calculator #consolidation .header-row .was-validated select:invalid ~ .invalid-tooltip, .form-control.is-invalid ~ .invalid-feedback, #lmcu-calculator #consolidation .repeat-row input.is-invalid ~ .invalid-feedback, #lmcu-calculator #consolidation .repeat-row select.is-invalid ~ .invalid-feedback, #lmcu-calculator #consolidation .header-row input.is-invalid ~ .invalid-feedback, #lmcu-calculator #consolidation .header-row select.is-invalid ~ .invalid-feedback,
+  .form-control.is-invalid ~ .invalid-tooltip,
+  #lmcu-calculator #consolidation .repeat-row input.is-invalid ~ .invalid-tooltip,
+  #lmcu-calculator #consolidation .repeat-row select.is-invalid ~ .invalid-tooltip,
+  #lmcu-calculator #consolidation .header-row input.is-invalid ~ .invalid-tooltip,
+  #lmcu-calculator #consolidation .header-row select.is-invalid ~ .invalid-tooltip {
     display: block; }
 
 .was-validated textarea.form-control:invalid, textarea.form-control.is-invalid {
@@ -8604,7 +8694,10 @@ textarea.form-control {
       flex-flow: row wrap;
       align-items: center;
       margin-bottom: 0; }
-    .form-inline .form-control {
+    .form-inline .form-control, .form-inline #lmcu-calculator #consolidation .repeat-row input, #lmcu-calculator #consolidation .repeat-row .form-inline input,
+    .form-inline #lmcu-calculator #consolidation .repeat-row select, #lmcu-calculator #consolidation .repeat-row .form-inline select,
+    .form-inline #lmcu-calculator #consolidation .header-row input, #lmcu-calculator #consolidation .header-row .form-inline input,
+    .form-inline #lmcu-calculator #consolidation .header-row select, #lmcu-calculator #consolidation .header-row .form-inline select {
       display: inline-block;
       width: auto;
       vertical-align: middle; }
@@ -8881,29 +8974,53 @@ fieldset:disabled #lmcu-calculator .calculator .column-right a.btn-apply,
     .show > .btn-outline-primary.dropdown-toggle:focus {
       box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125), 0 0 0 0.2rem rgba(227, 24, 55, 0.5); }
 
-.btn-outline-secondary, #consolidation .btn-add, #consolidation .btn-remove {
+.btn-outline-secondary, #lmcu-calculator #consolidation .repeat-row .controls .btn-add,
+#lmcu-calculator #consolidation .header-row .controls .btn-add, #lmcu-calculator #consolidation .repeat-row .controls .btn-remove,
+#lmcu-calculator #consolidation .header-row .controls .btn-remove {
   color: #6c757d;
   border-color: #6c757d; }
-  .btn-outline-secondary:hover, #consolidation .btn-add:hover, #consolidation .btn-remove:hover {
+  .btn-outline-secondary:hover, #lmcu-calculator #consolidation .repeat-row .controls .btn-add:hover,
+  #lmcu-calculator #consolidation .header-row .controls .btn-add:hover, #lmcu-calculator #consolidation .repeat-row .controls .btn-remove:hover,
+  #lmcu-calculator #consolidation .header-row .controls .btn-remove:hover {
     color: #ffffff;
     background-color: #6c757d;
     border-color: #6c757d; }
-  .btn-outline-secondary:focus, #consolidation .btn-add:focus, #consolidation .btn-remove:focus, .btn-outline-secondary.focus, #consolidation .focus.btn-add, #consolidation .focus.btn-remove {
+  .btn-outline-secondary:focus, #lmcu-calculator #consolidation .repeat-row .controls .btn-add:focus,
+  #lmcu-calculator #consolidation .header-row .controls .btn-add:focus, #lmcu-calculator #consolidation .repeat-row .controls .btn-remove:focus,
+  #lmcu-calculator #consolidation .header-row .controls .btn-remove:focus, .btn-outline-secondary.focus, #lmcu-calculator #consolidation .repeat-row .controls .focus.btn-add,
+  #lmcu-calculator #consolidation .header-row .controls .focus.btn-add, #lmcu-calculator #consolidation .repeat-row .controls .focus.btn-remove,
+  #lmcu-calculator #consolidation .header-row .controls .focus.btn-remove {
     box-shadow: 0 0 0 0.2rem rgba(108, 117, 125, 0.5); }
-  .btn-outline-secondary.disabled, #consolidation .disabled.btn-add, #consolidation .disabled.btn-remove, .btn-outline-secondary:disabled, #consolidation .btn-add:disabled, #consolidation .btn-remove:disabled {
+  .btn-outline-secondary.disabled, #lmcu-calculator #consolidation .repeat-row .controls .disabled.btn-add,
+  #lmcu-calculator #consolidation .header-row .controls .disabled.btn-add, #lmcu-calculator #consolidation .repeat-row .controls .disabled.btn-remove,
+  #lmcu-calculator #consolidation .header-row .controls .disabled.btn-remove, .btn-outline-secondary:disabled, #lmcu-calculator #consolidation .repeat-row .controls .btn-add:disabled,
+  #lmcu-calculator #consolidation .header-row .controls .btn-add:disabled, #lmcu-calculator #consolidation .repeat-row .controls .btn-remove:disabled,
+  #lmcu-calculator #consolidation .header-row .controls .btn-remove:disabled {
     color: #6c757d;
     background-color: transparent; }
-  .btn-outline-secondary:not(:disabled):not(.disabled):active, #consolidation .btn-add:not(:disabled):not(.disabled):active, #consolidation .btn-remove:not(:disabled):not(.disabled):active, .btn-outline-secondary:not(:disabled):not(.disabled).active, #consolidation .btn-add:not(:disabled):not(.disabled).active, #consolidation .btn-remove:not(:disabled):not(.disabled).active,
+  .btn-outline-secondary:not(:disabled):not(.disabled):active, #lmcu-calculator #consolidation .repeat-row .controls .btn-add:not(:disabled):not(.disabled):active,
+  #lmcu-calculator #consolidation .header-row .controls .btn-add:not(:disabled):not(.disabled):active, #lmcu-calculator #consolidation .repeat-row .controls .btn-remove:not(:disabled):not(.disabled):active,
+  #lmcu-calculator #consolidation .header-row .controls .btn-remove:not(:disabled):not(.disabled):active, .btn-outline-secondary:not(:disabled):not(.disabled).active, #lmcu-calculator #consolidation .repeat-row .controls .btn-add:not(:disabled):not(.disabled).active,
+  #lmcu-calculator #consolidation .header-row .controls .btn-add:not(:disabled):not(.disabled).active, #lmcu-calculator #consolidation .repeat-row .controls .btn-remove:not(:disabled):not(.disabled).active,
+  #lmcu-calculator #consolidation .header-row .controls .btn-remove:not(:disabled):not(.disabled).active,
   .show > .btn-outline-secondary.dropdown-toggle,
-  #consolidation .show > .dropdown-toggle.btn-add,
-  #consolidation .show > .dropdown-toggle.btn-remove {
+  #lmcu-calculator #consolidation .repeat-row .controls .show > .dropdown-toggle.btn-add,
+  #lmcu-calculator #consolidation .header-row .controls .show > .dropdown-toggle.btn-add,
+  #lmcu-calculator #consolidation .repeat-row .controls .show > .dropdown-toggle.btn-remove,
+  #lmcu-calculator #consolidation .header-row .controls .show > .dropdown-toggle.btn-remove {
     color: #ffffff;
     background-color: #6c757d;
     border-color: #6c757d; }
-    .btn-outline-secondary:not(:disabled):not(.disabled):active:focus, #consolidation .btn-add:not(:disabled):not(.disabled):active:focus, #consolidation .btn-remove:not(:disabled):not(.disabled):active:focus, .btn-outline-secondary:not(:disabled):not(.disabled).active:focus, #consolidation .btn-add:not(:disabled):not(.disabled).active:focus, #consolidation .btn-remove:not(:disabled):not(.disabled).active:focus,
+    .btn-outline-secondary:not(:disabled):not(.disabled):active:focus, #lmcu-calculator #consolidation .repeat-row .controls .btn-add:not(:disabled):not(.disabled):active:focus,
+    #lmcu-calculator #consolidation .header-row .controls .btn-add:not(:disabled):not(.disabled):active:focus, #lmcu-calculator #consolidation .repeat-row .controls .btn-remove:not(:disabled):not(.disabled):active:focus,
+    #lmcu-calculator #consolidation .header-row .controls .btn-remove:not(:disabled):not(.disabled):active:focus, .btn-outline-secondary:not(:disabled):not(.disabled).active:focus, #lmcu-calculator #consolidation .repeat-row .controls .btn-add:not(:disabled):not(.disabled).active:focus,
+    #lmcu-calculator #consolidation .header-row .controls .btn-add:not(:disabled):not(.disabled).active:focus, #lmcu-calculator #consolidation .repeat-row .controls .btn-remove:not(:disabled):not(.disabled).active:focus,
+    #lmcu-calculator #consolidation .header-row .controls .btn-remove:not(:disabled):not(.disabled).active:focus,
     .show > .btn-outline-secondary.dropdown-toggle:focus,
-    #consolidation .show > .dropdown-toggle.btn-add:focus,
-    #consolidation .show > .dropdown-toggle.btn-remove:focus {
+    #lmcu-calculator #consolidation .repeat-row .controls .show > .dropdown-toggle.btn-add:focus,
+    #lmcu-calculator #consolidation .header-row .controls .show > .dropdown-toggle.btn-add:focus,
+    #lmcu-calculator #consolidation .repeat-row .controls .show > .dropdown-toggle.btn-remove:focus,
+    #lmcu-calculator #consolidation .header-row .controls .show > .dropdown-toggle.btn-remove:focus {
       box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125), 0 0 0 0.2rem rgba(108, 117, 125, 0.5); }
 
 .btn-outline-success {
@@ -9392,7 +9509,10 @@ input[type="button"].btn-block,
   flex-wrap: wrap;
   align-items: stretch;
   width: 100%; }
-  .input-group > .form-control,
+  .input-group > .form-control, #lmcu-calculator #consolidation .repeat-row .input-group > input,
+  #lmcu-calculator #consolidation .repeat-row .input-group > select,
+  #lmcu-calculator #consolidation .header-row .input-group > input,
+  #lmcu-calculator #consolidation .header-row .input-group > select,
   .input-group > .form-control-plaintext,
   .input-group > .custom-select,
   .input-group > .custom-file {
@@ -9400,20 +9520,52 @@ input[type="button"].btn-block,
     flex: 1 1 auto;
     width: 1%;
     margin-bottom: 0; }
-    .input-group > .form-control + .form-control,
+    .input-group > .form-control + .form-control, #lmcu-calculator #consolidation .repeat-row .input-group > input + .form-control, #lmcu-calculator #consolidation .repeat-row .input-group > select + .form-control, #lmcu-calculator #consolidation .header-row .input-group > input + .form-control, #lmcu-calculator #consolidation .header-row .input-group > select + .form-control, #lmcu-calculator #consolidation .repeat-row .input-group > .form-control + input, #lmcu-calculator #consolidation .repeat-row .input-group > input + input, #lmcu-calculator #consolidation .repeat-row .input-group > select + input,
+    #lmcu-calculator #consolidation .repeat-row .input-group > .form-control + select,
+    #lmcu-calculator #consolidation .repeat-row .input-group > input + select,
+    #lmcu-calculator #consolidation .repeat-row .input-group > select + select,
+    #lmcu-calculator #consolidation .header-row .input-group > .form-control + input,
+    #lmcu-calculator #consolidation .header-row .input-group > input + input,
+    #lmcu-calculator #consolidation .header-row .input-group > select + input,
+    #lmcu-calculator #consolidation .header-row .input-group > .form-control + select,
+    #lmcu-calculator #consolidation .header-row .input-group > input + select,
+    #lmcu-calculator #consolidation .header-row .input-group > select + select,
     .input-group > .form-control + .custom-select,
+    #lmcu-calculator #consolidation .repeat-row .input-group > input + .custom-select,
+    #lmcu-calculator #consolidation .repeat-row .input-group > select + .custom-select,
+    #lmcu-calculator #consolidation .header-row .input-group > input + .custom-select,
+    #lmcu-calculator #consolidation .header-row .input-group > select + .custom-select,
     .input-group > .form-control + .custom-file,
+    #lmcu-calculator #consolidation .repeat-row .input-group > input + .custom-file,
+    #lmcu-calculator #consolidation .repeat-row .input-group > select + .custom-file,
+    #lmcu-calculator #consolidation .header-row .input-group > input + .custom-file,
+    #lmcu-calculator #consolidation .header-row .input-group > select + .custom-file,
     .input-group > .form-control-plaintext + .form-control,
+    #lmcu-calculator #consolidation .repeat-row .input-group > .form-control-plaintext + input,
+    #lmcu-calculator #consolidation .repeat-row .input-group > .form-control-plaintext + select,
+    #lmcu-calculator #consolidation .header-row .input-group > .form-control-plaintext + input,
+    #lmcu-calculator #consolidation .header-row .input-group > .form-control-plaintext + select,
     .input-group > .form-control-plaintext + .custom-select,
     .input-group > .form-control-plaintext + .custom-file,
     .input-group > .custom-select + .form-control,
+    #lmcu-calculator #consolidation .repeat-row .input-group > .custom-select + input,
+    #lmcu-calculator #consolidation .repeat-row .input-group > .custom-select + select,
+    #lmcu-calculator #consolidation .header-row .input-group > .custom-select + input,
+    #lmcu-calculator #consolidation .header-row .input-group > .custom-select + select,
     .input-group > .custom-select + .custom-select,
     .input-group > .custom-select + .custom-file,
     .input-group > .custom-file + .form-control,
+    #lmcu-calculator #consolidation .repeat-row .input-group > .custom-file + input,
+    #lmcu-calculator #consolidation .repeat-row .input-group > .custom-file + select,
+    #lmcu-calculator #consolidation .header-row .input-group > .custom-file + input,
+    #lmcu-calculator #consolidation .header-row .input-group > .custom-file + select,
     .input-group > .custom-file + .custom-select,
     .input-group > .custom-file + .custom-file {
       margin-left: -1px; }
-  .input-group > .form-control:focus,
+  .input-group > .form-control:focus, #lmcu-calculator #consolidation .repeat-row .input-group > input:focus,
+  #lmcu-calculator #consolidation .repeat-row .input-group > select:focus,
+  #lmcu-calculator #consolidation .header-row .input-group > input:focus,
+  #lmcu-calculator #consolidation .header-row .input-group > select:focus,
   .input-group > .custom-select:focus,
   .input-group > .custom-file .custom-file-input:focus ~ .custom-file-label {
     z-index: 3; }
@@ -9484,11 +9636,17 @@ input[type="button"].btn-block,
   .input-group-text input[type="checkbox"] {
     margin-top: 0; }
 
-.input-group-lg > .form-control:not(textarea),
+.input-group-lg > .form-control:not(textarea), #lmcu-calculator #consolidation .repeat-row .input-group-lg > input:not(textarea),
+#lmcu-calculator #consolidation .repeat-row .input-group-lg > select:not(textarea),
+#lmcu-calculator #consolidation .header-row .input-group-lg > input:not(textarea),
+#lmcu-calculator #consolidation .header-row .input-group-lg > select:not(textarea),
 .input-group-lg > .custom-select {
   height: calc(1.5em + 1rem + 2px); }
 
-.input-group-lg > .form-control,
+.input-group-lg > .form-control, #lmcu-calculator #consolidation .repeat-row .input-group-lg > input,
+#lmcu-calculator #consolidation .repeat-row .input-group-lg > select,
+#lmcu-calculator #consolidation .header-row .input-group-lg > input,
+#lmcu-calculator #consolidation .header-row .input-group-lg > select,
 .input-group-lg > .custom-select,
 .input-group-lg > .input-group-prepend > .input-group-text,
 .input-group-lg > .input-group-append > .input-group-text,
@@ -9500,11 +9658,17 @@ input[type="button"].btn-block,
   font-size: 1.25rem;
   line-height: 1.5; }
 
-.input-group-sm > .form-control:not(textarea),
+.input-group-sm > .form-control:not(textarea), #lmcu-calculator #consolidation .repeat-row .input-group-sm > input:not(textarea),
+#lmcu-calculator #consolidation .repeat-row .input-group-sm > select:not(textarea),
+#lmcu-calculator #consolidation .header-row .input-group-sm > input:not(textarea),
+#lmcu-calculator #consolidation .header-row .input-group-sm > select:not(textarea),
 .input-group-sm > .custom-select {
   height: calc(1.5em + 0.5rem + 2px); }
 
-.input-group-sm > .form-control,
+.input-group-sm > .form-control, #lmcu-calculator #consolidation .repeat-row .input-group-sm > input,
+#lmcu-calculator #consolidation .repeat-row .input-group-sm > select,
+#lmcu-calculator #consolidation .header-row .input-group-sm > input,
+#lmcu-calculator #consolidation .header-row .input-group-sm > select,
 .input-group-sm > .custom-select,
 .input-group-sm > .input-group-prepend > .input-group-text,
 .input-group-sm > .input-group-append > .input-group-text,
@@ -11862,7 +12026,7 @@ button.bg-dark:focus {
 .border {
   border: 1px solid #dee2e6 !important; }
 
-.border-top {
+.border-top, #lmcu-calculator #consolidation .repayment-calc {
   border-top: 1px solid #dee2e6 !important; }
 
 .border-right {
@@ -14526,7 +14690,7 @@ a.text-dark:hover, a.text-dark:focus {
 .text-body {
   color: #212529 !important; }
 
-.text-muted, #lmcu-calculator .calculator .column-right .representative-example .example-body .interest-detail {
+.text-muted, #lmcu-calculator .calculator .column-right .representative-example .example-body .interest-detail, #lmcu-calculator #consolidation .repayment-calc .repayment-calc-label p {
   color: #6c757d !important; }
 
 .text-black-50 {
@@ -15041,34 +15205,122 @@ a.text-dark:hover, a.text-dark:focus {
       #lmcu-calculator .calculator .column-right .representative-example .example-body .interest-detail {
         margin-bottom: 0; }
 
-#consolidation .header-row {
+#lmcu-calculator .consolidation .column-left {
+  position: relative;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  flex: 0 0 58.33333%;
+  max-width: 58.33333%; }
+
+#lmcu-calculator .consolidation .column-right {
+  position: relative;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  flex: 0 0 41.66667%;
+  max-width: 41.66667%; }
+
+#lmcu-calculator #consolidation .header-row {
   font-weight: 700;
   margin-bottom: 1rem; }
 
-#consolidation .repeat-row:not(:first-child) {
-  display: none; }
-
-#consolidation .repeat-row {
+#lmcu-calculator #consolidation .repeat-row,
+#lmcu-calculator #consolidation .header-row {
   margin-bottom: 1rem; }
+  #lmcu-calculator #consolidation .repeat-row:not(:first-child),
+  #lmcu-calculator #consolidation .header-row:not(:first-child) {
+    display: none; }
+  #lmcu-calculator #consolidation .repeat-row .type,
+  #lmcu-calculator #consolidation .header-row .type {
+    position: relative;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    flex: 0 0 33.33333%;
+    max-width: 33.33333%;
+    padding-right: 5px;
+    padding-left: 5px; }
+  #lmcu-calculator #consolidation .repeat-row .balance,
+  #lmcu-calculator #consolidation .header-row .balance {
+    position: relative;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    flex: 0 0 25%;
+    max-width: 25%;
+    padding-right: 5px;
+    padding-left: 5px; }
+  #lmcu-calculator #consolidation .repeat-row .repayment,
+  #lmcu-calculator #consolidation .header-row .repayment {
+    position: relative;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    flex: 0 0 25%;
+    max-width: 25%;
+    padding-right: 5px;
+    padding-left: 5px; }
+  #lmcu-calculator #consolidation .repeat-row .controls,
+  #lmcu-calculator #consolidation .header-row .controls {
+    position: relative;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    display: flex;
+    width: auto; }
+    #lmcu-calculator #consolidation .repeat-row .controls .btn, #lmcu-calculator #consolidation .repeat-row .controls .calculator .column-right .btn-apply, #lmcu-calculator .calculator .column-right #consolidation .repeat-row .controls .btn-apply,
+    #lmcu-calculator #consolidation .header-row .controls .btn,
+    #lmcu-calculator #consolidation .header-row .controls .calculator .column-right .btn-apply,
+    #lmcu-calculator .calculator .column-right #consolidation .header-row .controls .btn-apply {
+      width: 1.5rem;
+      height: 1.5rem;
+      padding: 0;
+      line-height: 1.5rem;
+      font-size: 0.75rem;
+      margin: auto 0;
+      cursor: pointer; }
+    #lmcu-calculator #consolidation .repeat-row .controls .btn-add,
+    #lmcu-calculator #consolidation .header-row .controls .btn-add {
+      border-radius: 50%; }
+      #lmcu-calculator #consolidation .repeat-row .controls .btn-add:before,
+      #lmcu-calculator #consolidation .header-row .controls .btn-add:before {
+        content: "\f067"; }
+    #lmcu-calculator #consolidation .repeat-row .controls .btn-remove,
+    #lmcu-calculator #consolidation .header-row .controls .btn-remove {
+      border-radius: 50%; }
+      #lmcu-calculator #consolidation .repeat-row .controls .btn-remove:before,
+      #lmcu-calculator #consolidation .header-row .controls .btn-remove:before {
+        content: "\f068"; }
 
-#consolidation .btn, #consolidation #lmcu-calculator .calculator .column-right .btn-apply, #lmcu-calculator .calculator .column-right #consolidation .btn-apply {
-  width: 1.5rem;
-  height: 1.5rem;
-  padding: 0;
-  line-height: 1.5rem;
-  font-size: 0.75rem;
-  margin: auto 0;
-  cursor: pointer; }
-
-#consolidation .btn-add {
-  border-radius: 50%; }
-  #consolidation .btn-add:before {
-    content: "\f067"; }
-
-#consolidation .btn-remove {
-  border-radius: 50%; }
-  #consolidation .btn-remove:before {
-    content: "\f068"; }
+#lmcu-calculator #consolidation .repayment-calc {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  padding-top: 1.5rem; }
+  #lmcu-calculator #consolidation .repayment-calc .repayment-calc-label {
+    position: relative;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    flex: 0 0 58.33333%;
+    max-width: 58.33333%;
+    padding-right: 5px;
+    padding-left: 5px;
+    display: flex;
+    flex-direction: column; }
+    #lmcu-calculator #consolidation .repayment-calc .repayment-calc-label label {
+      margin-top: auto;
+      margin-bottom: auto;
+      font-weight: 700; }
+  #lmcu-calculator #consolidation .repayment-calc .repayment-calc-total {
+    position: relative;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    flex: 0 0 25%;
+    max-width: 25%;
+    padding-right: 5px;
+    padding-left: 5px; }
 
 /*! purgecss start ignore */
 .modal .modal-content {
