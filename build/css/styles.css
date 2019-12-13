@@ -10728,7 +10728,9 @@ input[type="button"].btn-block,
   margin-bottom: 0;
   background-color: rgba(0, 0, 0, 0.03);
   border-bottom: 1px solid rgba(0, 0, 0, 0.125); }
-  .card-header + .list-group .list-group-item:first-child, #lmcu-calculator .calculator .column-right .representative-example .example-body .card-header + .summary .list-group-item:first-child, .card-header + .list-group #lmcu-calculator .calculator .column-right .representative-example .example-body .summary li:first-child, #lmcu-calculator .calculator .column-right .representative-example .example-body .summary .card-header + .list-group li:first-child, #lmcu-calculator .calculator .column-right .representative-example .example-body .card-header + .summary li:first-child {
+  .card-header + .list-group .list-group-item:first-child, #lmcu-calculator .calculator .column-right .representative-example .example-body .card-header + .summary .list-group-item:first-child, #lmcu-calculator .calculator .column-right .representative-example .example-body .card-header + .comparison .list-group-item:first-child, .card-header + .list-group #lmcu-calculator .calculator .column-right .representative-example .example-body .summary li:first-child, #lmcu-calculator .calculator .column-right .representative-example .example-body .summary .card-header + .list-group li:first-child, #lmcu-calculator .calculator .column-right .representative-example .example-body .card-header + .summary li:first-child, #lmcu-calculator .calculator .column-right .representative-example .example-body .summary .card-header + .comparison li:first-child,
+  .card-header + .list-group #lmcu-calculator .calculator .column-right .representative-example .example-body .comparison li:first-child, #lmcu-calculator .calculator .column-right .representative-example .example-body .comparison .card-header + .list-group li:first-child, #lmcu-calculator .calculator .column-right .representative-example .example-body .comparison .card-header + .summary li:first-child,
+  #lmcu-calculator .calculator .column-right .representative-example .example-body .card-header + .comparison li:first-child {
     border-top: 0; }
 
 .card-footer {
@@ -11149,7 +11151,8 @@ input[type="button"].btn-block,
 .media-body {
   flex: 1; }
 
-.list-group, #lmcu-calculator .calculator .column-right .representative-example .example-body .summary {
+.list-group, #lmcu-calculator .calculator .column-right .representative-example .example-body .summary,
+#lmcu-calculator .calculator .column-right .representative-example .example-body .comparison {
   display: flex;
   flex-direction: column;
   padding-left: 0;
@@ -11168,20 +11171,25 @@ input[type="button"].btn-block,
     color: #212529;
     background-color: #e9ecef; }
 
-.list-group-item, #lmcu-calculator .calculator .column-right .representative-example .example-body .summary li {
+.list-group-item, #lmcu-calculator .calculator .column-right .representative-example .example-body .summary li,
+#lmcu-calculator .calculator .column-right .representative-example .example-body .comparison li {
   position: relative;
   display: block;
   padding: 0.75rem 1.25rem;
   margin-bottom: -1px;
   background-color: #ffffff;
   border: 1px solid rgba(0, 0, 0, 0.125); }
-  .list-group-item:last-child, #lmcu-calculator .calculator .column-right .representative-example .example-body .summary li:last-child {
+  .list-group-item:last-child, #lmcu-calculator .calculator .column-right .representative-example .example-body .summary li:last-child,
+  #lmcu-calculator .calculator .column-right .representative-example .example-body .comparison li:last-child {
     margin-bottom: 0; }
-  .list-group-item.disabled, #lmcu-calculator .calculator .column-right .representative-example .example-body .summary li.disabled, .list-group-item:disabled, #lmcu-calculator .calculator .column-right .representative-example .example-body .summary li:disabled {
+  .list-group-item.disabled, #lmcu-calculator .calculator .column-right .representative-example .example-body .summary li.disabled,
+  #lmcu-calculator .calculator .column-right .representative-example .example-body .comparison li.disabled, .list-group-item:disabled, #lmcu-calculator .calculator .column-right .representative-example .example-body .summary li:disabled,
+  #lmcu-calculator .calculator .column-right .representative-example .example-body .comparison li:disabled {
     color: #6c757d;
     pointer-events: none;
     background-color: #ffffff; }
-  .list-group-item.active, #lmcu-calculator .calculator .column-right .representative-example .example-body .summary li.active {
+  .list-group-item.active, #lmcu-calculator .calculator .column-right .representative-example .example-body .summary li.active,
+  #lmcu-calculator .calculator .column-right .representative-example .example-body .comparison li.active {
     z-index: 2;
     color: #ffffff;
     background-color: #e31837;
@@ -11189,67 +11197,85 @@ input[type="button"].btn-block,
 
 .list-group-horizontal {
   flex-direction: row; }
-  .list-group-horizontal .list-group-item, .list-group-horizontal #lmcu-calculator .calculator .column-right .representative-example .example-body .summary li, #lmcu-calculator .calculator .column-right .representative-example .example-body .summary .list-group-horizontal li {
+  .list-group-horizontal .list-group-item, .list-group-horizontal #lmcu-calculator .calculator .column-right .representative-example .example-body .summary li, #lmcu-calculator .calculator .column-right .representative-example .example-body .summary .list-group-horizontal li,
+  .list-group-horizontal #lmcu-calculator .calculator .column-right .representative-example .example-body .comparison li, #lmcu-calculator .calculator .column-right .representative-example .example-body .comparison .list-group-horizontal li {
     margin-right: -1px;
     margin-bottom: 0; }
-    .list-group-horizontal .list-group-item:last-child, .list-group-horizontal #lmcu-calculator .calculator .column-right .representative-example .example-body .summary li:last-child, #lmcu-calculator .calculator .column-right .representative-example .example-body .summary .list-group-horizontal li:last-child {
+    .list-group-horizontal .list-group-item:last-child, .list-group-horizontal #lmcu-calculator .calculator .column-right .representative-example .example-body .summary li:last-child, #lmcu-calculator .calculator .column-right .representative-example .example-body .summary .list-group-horizontal li:last-child,
+    .list-group-horizontal #lmcu-calculator .calculator .column-right .representative-example .example-body .comparison li:last-child, #lmcu-calculator .calculator .column-right .representative-example .example-body .comparison .list-group-horizontal li:last-child {
       margin-right: 0; }
 
 @media (min-width: 428px) {
   .list-group-horizontal-xs {
     flex-direction: row; }
-    .list-group-horizontal-xs .list-group-item, .list-group-horizontal-xs #lmcu-calculator .calculator .column-right .representative-example .example-body .summary li, #lmcu-calculator .calculator .column-right .representative-example .example-body .summary .list-group-horizontal-xs li {
+    .list-group-horizontal-xs .list-group-item, .list-group-horizontal-xs #lmcu-calculator .calculator .column-right .representative-example .example-body .summary li, #lmcu-calculator .calculator .column-right .representative-example .example-body .summary .list-group-horizontal-xs li,
+    .list-group-horizontal-xs #lmcu-calculator .calculator .column-right .representative-example .example-body .comparison li, #lmcu-calculator .calculator .column-right .representative-example .example-body .comparison .list-group-horizontal-xs li {
       margin-right: -1px;
       margin-bottom: 0; }
-      .list-group-horizontal-xs .list-group-item:last-child, .list-group-horizontal-xs #lmcu-calculator .calculator .column-right .representative-example .example-body .summary li:last-child, #lmcu-calculator .calculator .column-right .representative-example .example-body .summary .list-group-horizontal-xs li:last-child {
+      .list-group-horizontal-xs .list-group-item:last-child, .list-group-horizontal-xs #lmcu-calculator .calculator .column-right .representative-example .example-body .summary li:last-child, #lmcu-calculator .calculator .column-right .representative-example .example-body .summary .list-group-horizontal-xs li:last-child,
+      .list-group-horizontal-xs #lmcu-calculator .calculator .column-right .representative-example .example-body .comparison li:last-child, #lmcu-calculator .calculator .column-right .representative-example .example-body .comparison .list-group-horizontal-xs li:last-child {
         margin-right: 0; } }
 
 @media (min-width: 576px) {
   .list-group-horizontal-sm {
     flex-direction: row; }
-    .list-group-horizontal-sm .list-group-item, .list-group-horizontal-sm #lmcu-calculator .calculator .column-right .representative-example .example-body .summary li, #lmcu-calculator .calculator .column-right .representative-example .example-body .summary .list-group-horizontal-sm li {
+    .list-group-horizontal-sm .list-group-item, .list-group-horizontal-sm #lmcu-calculator .calculator .column-right .representative-example .example-body .summary li, #lmcu-calculator .calculator .column-right .representative-example .example-body .summary .list-group-horizontal-sm li,
+    .list-group-horizontal-sm #lmcu-calculator .calculator .column-right .representative-example .example-body .comparison li, #lmcu-calculator .calculator .column-right .representative-example .example-body .comparison .list-group-horizontal-sm li {
       margin-right: -1px;
       margin-bottom: 0; }
-      .list-group-horizontal-sm .list-group-item:last-child, .list-group-horizontal-sm #lmcu-calculator .calculator .column-right .representative-example .example-body .summary li:last-child, #lmcu-calculator .calculator .column-right .representative-example .example-body .summary .list-group-horizontal-sm li:last-child {
+      .list-group-horizontal-sm .list-group-item:last-child, .list-group-horizontal-sm #lmcu-calculator .calculator .column-right .representative-example .example-body .summary li:last-child, #lmcu-calculator .calculator .column-right .representative-example .example-body .summary .list-group-horizontal-sm li:last-child,
+      .list-group-horizontal-sm #lmcu-calculator .calculator .column-right .representative-example .example-body .comparison li:last-child, #lmcu-calculator .calculator .column-right .representative-example .example-body .comparison .list-group-horizontal-sm li:last-child {
         margin-right: 0; } }
 
 @media (min-width: 768px) {
   .list-group-horizontal-md {
     flex-direction: row; }
-    .list-group-horizontal-md .list-group-item, .list-group-horizontal-md #lmcu-calculator .calculator .column-right .representative-example .example-body .summary li, #lmcu-calculator .calculator .column-right .representative-example .example-body .summary .list-group-horizontal-md li {
+    .list-group-horizontal-md .list-group-item, .list-group-horizontal-md #lmcu-calculator .calculator .column-right .representative-example .example-body .summary li, #lmcu-calculator .calculator .column-right .representative-example .example-body .summary .list-group-horizontal-md li,
+    .list-group-horizontal-md #lmcu-calculator .calculator .column-right .representative-example .example-body .comparison li, #lmcu-calculator .calculator .column-right .representative-example .example-body .comparison .list-group-horizontal-md li {
       margin-right: -1px;
       margin-bottom: 0; }
-      .list-group-horizontal-md .list-group-item:last-child, .list-group-horizontal-md #lmcu-calculator .calculator .column-right .representative-example .example-body .summary li:last-child, #lmcu-calculator .calculator .column-right .representative-example .example-body .summary .list-group-horizontal-md li:last-child {
+      .list-group-horizontal-md .list-group-item:last-child, .list-group-horizontal-md #lmcu-calculator .calculator .column-right .representative-example .example-body .summary li:last-child, #lmcu-calculator .calculator .column-right .representative-example .example-body .summary .list-group-horizontal-md li:last-child,
+      .list-group-horizontal-md #lmcu-calculator .calculator .column-right .representative-example .example-body .comparison li:last-child, #lmcu-calculator .calculator .column-right .representative-example .example-body .comparison .list-group-horizontal-md li:last-child {
         margin-right: 0; } }
 
 @media (min-width: 992px) {
   .list-group-horizontal-lg {
     flex-direction: row; }
-    .list-group-horizontal-lg .list-group-item, .list-group-horizontal-lg #lmcu-calculator .calculator .column-right .representative-example .example-body .summary li, #lmcu-calculator .calculator .column-right .representative-example .example-body .summary .list-group-horizontal-lg li {
+    .list-group-horizontal-lg .list-group-item, .list-group-horizontal-lg #lmcu-calculator .calculator .column-right .representative-example .example-body .summary li, #lmcu-calculator .calculator .column-right .representative-example .example-body .summary .list-group-horizontal-lg li,
+    .list-group-horizontal-lg #lmcu-calculator .calculator .column-right .representative-example .example-body .comparison li, #lmcu-calculator .calculator .column-right .representative-example .example-body .comparison .list-group-horizontal-lg li {
       margin-right: -1px;
       margin-bottom: 0; }
-      .list-group-horizontal-lg .list-group-item:last-child, .list-group-horizontal-lg #lmcu-calculator .calculator .column-right .representative-example .example-body .summary li:last-child, #lmcu-calculator .calculator .column-right .representative-example .example-body .summary .list-group-horizontal-lg li:last-child {
+      .list-group-horizontal-lg .list-group-item:last-child, .list-group-horizontal-lg #lmcu-calculator .calculator .column-right .representative-example .example-body .summary li:last-child, #lmcu-calculator .calculator .column-right .representative-example .example-body .summary .list-group-horizontal-lg li:last-child,
+      .list-group-horizontal-lg #lmcu-calculator .calculator .column-right .representative-example .example-body .comparison li:last-child, #lmcu-calculator .calculator .column-right .representative-example .example-body .comparison .list-group-horizontal-lg li:last-child {
         margin-right: 0; } }
 
 @media (min-width: 1200px) {
   .list-group-horizontal-xl {
     flex-direction: row; }
-    .list-group-horizontal-xl .list-group-item, .list-group-horizontal-xl #lmcu-calculator .calculator .column-right .representative-example .example-body .summary li, #lmcu-calculator .calculator .column-right .representative-example .example-body .summary .list-group-horizontal-xl li {
+    .list-group-horizontal-xl .list-group-item, .list-group-horizontal-xl #lmcu-calculator .calculator .column-right .representative-example .example-body .summary li, #lmcu-calculator .calculator .column-right .representative-example .example-body .summary .list-group-horizontal-xl li,
+    .list-group-horizontal-xl #lmcu-calculator .calculator .column-right .representative-example .example-body .comparison li, #lmcu-calculator .calculator .column-right .representative-example .example-body .comparison .list-group-horizontal-xl li {
       margin-right: -1px;
       margin-bottom: 0; }
-      .list-group-horizontal-xl .list-group-item:last-child, .list-group-horizontal-xl #lmcu-calculator .calculator .column-right .representative-example .example-body .summary li:last-child, #lmcu-calculator .calculator .column-right .representative-example .example-body .summary .list-group-horizontal-xl li:last-child {
+      .list-group-horizontal-xl .list-group-item:last-child, .list-group-horizontal-xl #lmcu-calculator .calculator .column-right .representative-example .example-body .summary li:last-child, #lmcu-calculator .calculator .column-right .representative-example .example-body .summary .list-group-horizontal-xl li:last-child,
+      .list-group-horizontal-xl #lmcu-calculator .calculator .column-right .representative-example .example-body .comparison li:last-child, #lmcu-calculator .calculator .column-right .representative-example .example-body .comparison .list-group-horizontal-xl li:last-child {
         margin-right: 0; } }
 
-.list-group-flush .list-group-item, #lmcu-calculator .calculator .column-right .representative-example .example-body .summary .list-group-item, #lmcu-calculator .calculator .column-right .representative-example .example-body .summary li {
+.list-group-flush .list-group-item, #lmcu-calculator .calculator .column-right .representative-example .example-body .summary .list-group-item, #lmcu-calculator .calculator .column-right .representative-example .example-body .comparison .list-group-item, #lmcu-calculator .calculator .column-right .representative-example .example-body .summary li,
+#lmcu-calculator .calculator .column-right .representative-example .example-body .comparison li {
   border-right: 0;
   border-left: 0; }
-  .list-group-flush .list-group-item:last-child, #lmcu-calculator .calculator .column-right .representative-example .example-body .summary .list-group-item:last-child, #lmcu-calculator .calculator .column-right .representative-example .example-body .summary li:last-child {
+  .list-group-flush .list-group-item:last-child, #lmcu-calculator .calculator .column-right .representative-example .example-body .summary .list-group-item:last-child, #lmcu-calculator .calculator .column-right .representative-example .example-body .comparison .list-group-item:last-child, #lmcu-calculator .calculator .column-right .representative-example .example-body .summary li:last-child,
+  #lmcu-calculator .calculator .column-right .representative-example .example-body .comparison li:last-child {
     margin-bottom: -1px; }
 
-.list-group-flush:first-child .list-group-item:first-child, #lmcu-calculator .calculator .column-right .representative-example .example-body .summary:first-child .list-group-item:first-child, .list-group-flush:first-child #lmcu-calculator .calculator .column-right .representative-example .example-body .summary li:first-child, #lmcu-calculator .calculator .column-right .representative-example .example-body .summary .list-group-flush:first-child li:first-child, #lmcu-calculator .calculator .column-right .representative-example .example-body .summary:first-child li:first-child {
+.list-group-flush:first-child .list-group-item:first-child, #lmcu-calculator .calculator .column-right .representative-example .example-body .summary:first-child .list-group-item:first-child, #lmcu-calculator .calculator .column-right .representative-example .example-body .comparison:first-child .list-group-item:first-child, .list-group-flush:first-child #lmcu-calculator .calculator .column-right .representative-example .example-body .summary li:first-child, #lmcu-calculator .calculator .column-right .representative-example .example-body .summary .list-group-flush:first-child li:first-child, #lmcu-calculator .calculator .column-right .representative-example .example-body .summary:first-child li:first-child,
+.list-group-flush:first-child #lmcu-calculator .calculator .column-right .representative-example .example-body .comparison li:first-child, #lmcu-calculator .calculator .column-right .representative-example .example-body .comparison .list-group-flush:first-child li:first-child,
+#lmcu-calculator .calculator .column-right .representative-example .example-body .comparison:first-child li:first-child {
   border-top: 0; }
 
-.list-group-flush:last-child .list-group-item:last-child, #lmcu-calculator .calculator .column-right .representative-example .example-body .summary:last-child .list-group-item:last-child, .list-group-flush:last-child #lmcu-calculator .calculator .column-right .representative-example .example-body .summary li:last-child, #lmcu-calculator .calculator .column-right .representative-example .example-body .summary .list-group-flush:last-child li:last-child, #lmcu-calculator .calculator .column-right .representative-example .example-body .summary:last-child li:last-child {
+.list-group-flush:last-child .list-group-item:last-child, #lmcu-calculator .calculator .column-right .representative-example .example-body .summary:last-child .list-group-item:last-child, #lmcu-calculator .calculator .column-right .representative-example .example-body .comparison:last-child .list-group-item:last-child, .list-group-flush:last-child #lmcu-calculator .calculator .column-right .representative-example .example-body .summary li:last-child, #lmcu-calculator .calculator .column-right .representative-example .example-body .summary .list-group-flush:last-child li:last-child, #lmcu-calculator .calculator .column-right .representative-example .example-body .summary:last-child li:last-child,
+.list-group-flush:last-child #lmcu-calculator .calculator .column-right .representative-example .example-body .comparison li:last-child, #lmcu-calculator .calculator .column-right .representative-example .example-body .comparison .list-group-flush:last-child li:last-child,
+#lmcu-calculator .calculator .column-right .representative-example .example-body .comparison:last-child li:last-child {
   margin-bottom: 0;
   border-bottom: 0; }
 
@@ -15184,23 +15210,30 @@ a.text-dark:hover, a.text-dark:focus {
       @media (max-width: 991.98px) {
         #lmcu-calculator .calculator .column-right .representative-example {
           margin-bottom: 3rem; } }
-      #lmcu-calculator .calculator .column-right .representative-example .example-body .summary {
+      #lmcu-calculator .calculator .column-right .representative-example .example-body .message {
+        margin-bottom: 1.5rem; }
+      #lmcu-calculator .calculator .column-right .representative-example .example-body .summary,
+      #lmcu-calculator .calculator .column-right .representative-example .example-body .comparison {
         margin-bottom: 1rem; }
-        #lmcu-calculator .calculator .column-right .representative-example .example-body .summary li {
+        #lmcu-calculator .calculator .column-right .representative-example .example-body .summary li,
+        #lmcu-calculator .calculator .column-right .representative-example .example-body .comparison li {
           padding-top: 0.25rem;
           padding-bottom: 0.25rem;
           padding-left: 0;
           padding-right: 0;
           border-color: #ddd; }
-          #lmcu-calculator .calculator .column-right .representative-example .example-body .summary li span {
+          #lmcu-calculator .calculator .column-right .representative-example .example-body .summary li span,
+          #lmcu-calculator .calculator .column-right .representative-example .example-body .comparison li span {
             display: block;
             float: right;
             color: #272d37;
             font-weight: 400; }
-            #lmcu-calculator .calculator .column-right .representative-example .example-body .summary li span#payment {
+            #lmcu-calculator .calculator .column-right .representative-example .example-body .summary li span#payment,
+            #lmcu-calculator .calculator .column-right .representative-example .example-body .comparison li span#payment {
               font-size: 1.1rem;
               font-weight: 600; }
-          #lmcu-calculator .calculator .column-right .representative-example .example-body .summary li:last-child {
+          #lmcu-calculator .calculator .column-right .representative-example .example-body .summary li:last-child,
+          #lmcu-calculator .calculator .column-right .representative-example .example-body .comparison li:last-child {
             border-bottom: none; }
       #lmcu-calculator .calculator .column-right .representative-example .example-body .interest-detail {
         margin-bottom: 0; }

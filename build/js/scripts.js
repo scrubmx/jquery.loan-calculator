@@ -10583,7 +10583,7 @@ function NPERResult(payment, present) {
             else if (nper < 2) {
                 var result = {
                     validLoan: 0
-                    , message: '<div class="alert alert-warning my-3 p-2"><p>It looks like your repayments are greater than the amount you owe.</p><p>Go ahead and get it paid off, and start building your savings!</p></div>'
+                    , message: '<div class="alert alert-warning my-3 p-2"><p>It looks like you are well on your way to paying everything off already. Good job. Have you thought about opening a <a href="https://creditunion.co.uk/savings">savings account</a> with us?</p></div>'
                     , months: nper
                     , months_readable: npertext
                 }
@@ -10964,11 +10964,12 @@ jQuery(document).ready(function ($) {
     }
 });
 jQuery(document).ready(function ($) {
-    // Initialize
-    $('.btn-apply, .summary').hide();
-    $calculator = jQuery('.summary').loanCalculator();
     //Only fire this up if it's a consolidation calculator
     if (ProductDefaults.consolidation == 1) {
+        // Initialize
+        $('.btn-apply, #example, #comparison').hide();
+        $example = jQuery('#example').loanCalculator();
+        $comparison = jQuery('#comparison').loanCalculator();
         // Repeater fields
         $(document).on('click', '.btn-add', function (e) {
             e.preventDefault();
@@ -11011,9 +11012,25 @@ function CalculateLoan(term, amount, rate, selector) {
         loanAmount: amount
         , interestRate: rate
         , loanDuration: term
-        , loanTotalSelector: '#result_cost .result'
+        , interestTotalSelector: '#result_cost .result'
         , totalAnnualCostSelector: '#result_apr .result'
+        , paymentSelector: '#result_repayment .result'
     });
+}
+// Calculate total savings 
+function CalculateInterestSaved() {
+    var getExampleCost = ConvertToNumber(jQuery('#example #result_cost .result').text());
+    var getComparisonCost = ConvertToNumber(jQuery('#comparison #result_cost .result').text());
+    if (getExampleCost < getComparisonCost) {
+        var TotalSavings = getComparisonCost - getExampleCost;
+        var TotalSavings = TotalSavings.toFixed(2);
+        var SavingsOutput = '<div class="alert alert-success"><p>Depending on the interest you\'re currently paying, you could save around <strong>' + ConvertToMoney(TotalSavings) + '</strong> and pay it all off in around <strong>' + monthstoYears(parseInt(nperMonths)) + '</strong> with us.</p></div>';
+    }
+    else {
+        var SavingsOutput = 'We can\'t save you money';
+    }
+    console.log(SavingsOutput);
+    return SavingsOutput;
 }
 // Display various result messages
 function ConsolidateResult(repayment, balance) {
@@ -11021,11 +11038,13 @@ function ConsolidateResult(repayment, balance) {
     NperResult = NPERResult(repayment, balance);
     jQuery('#result_message').html(NperResult.message);
     if (NperResult.validLoan == 1) {
-        jQuery('.btn-apply, .summary').show();
+        jQuery('.btn-apply, #example, #comparison').show();
         jQuery('#result_months .result').html(NperResult.months_readable);
-        CalculateLoan(NperResult.months, balance, variableInterest(balance), $calculator);
+        CalculateLoan(NperResult.months, balance, variableInterest(balance), $example);
+        CalculateLoan(NperResult.months, balance, convertAPR(24.7), $comparison);
+        jQuery('#result_message').html(CalculateInterestSaved());
     }
     else {
-        jQuery('.btn-apply, .summary').hide();
+        jQuery('.btn-apply, #example, #comparison').hide();
     }
 }

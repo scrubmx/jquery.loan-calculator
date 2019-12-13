@@ -31,16 +31,27 @@
                 <!-- Card -->
                 <div class="representative-example">
                     <div class="example-body">
-                        <h5>Result</h5>
-                        <div id="result_message">Enter details of what you owe, and we'll try to estimate how much you could save by moving your borrowing to us.</div>
-                        <ul class="summary">
-                            <li id="result_amount">Amount to consolidate: <span class="result">£0.00</span></li>
-                            <li id="result_apr">Representative APR: <span class="result"></span></li>
-                            <li id="result_months">You will have paid everything off in: <span class="result">0 months</span></li>
-                            <li id="result_cost">Total cost: <span class="result"></span> </li>
-                        </ul>
+                        <h4>Result</h4>
+                        <div class="message" id="result_message">Enter details of what you owe, and we'll try to estimate how much you could save by moving your borrowing to us.</div>
+                        <div id="example">
+                            <h5>Consolidation loan</h5>
+                            <ul class="summary">
+                                <li id="result_amount">Amount to consolidate: <span class="result">£0.00</span></li>
+                                <li id="result_apr">Representative APR: <span class="result"></span></li>
+                                <li id="result_months">You will have paid everything off in: <span class="result">0 months</span></li>
+                                <li id="result_repayment">Monthly repayment: <span class="result"></span></li>
+                                <li id="result_cost">Total cost: <span class="result"></span> </li>
+                            </ul>
+                        </div>
+                        <div id="comparison">
+                            <h5>Comparison</h5>
+                            <ul class="summary">
+                                <li id="result_apr">Average credit card APR: <span class="result"></span></li>
+                                <li id="result_cost">Total cost: <span class="result"></span> </li>
+                            </ul>
+                        </div>
                         <!-- Button -->
-                        <button type="button" class="btn-apply" data-toggle="modal" data-target="#currentMember"> Apply for consolidation loan </button>
+                        <button type="button" class="btn-apply" data-toggle="modal" data-target="#currentMember"> Apply for this loan </button>
                     </div>
                 </div>
                 <!-- Card -->

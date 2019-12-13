@@ -412,7 +412,12 @@
                         h5 {
                             @extend .card-title;
                         }
-                        .summary {
+                        .message {
+                            @include mb(4);
+                
+                        }
+                        .summary,
+                        .comparison {
                             @extend .list-group;
                             @extend .list-group-flush;
                             @include mb(3);
@@ -463,7 +468,7 @@
             .header-row {
                 @include mb(3);
                 @extend .form-row;
-                &:not(:first-child) {
+                &:not(: first-child) {
                     display: none
                 }
                 input,

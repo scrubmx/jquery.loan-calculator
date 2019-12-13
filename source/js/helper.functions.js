@@ -48,7 +48,7 @@ function NPERResult(payment, present) {
             else if (nper < 2) {
                 var result = {
                     validLoan: 0
-                    , message: '<div class="alert alert-warning my-3 p-2"><p>It looks like your repayments are greater than the amount you owe.</p><p>Go ahead and get it paid off, and start building your savings!</p></div>'
+                    , message: '<div class="alert alert-warning my-3 p-2"><p>It looks like you are well on your way to paying everything off already. Good job. Have you thought about opening a <a href="https://creditunion.co.uk/savings">savings account</a> with us?</p></div>'
                     , months: nper
                     , months_readable: npertext
                 }
