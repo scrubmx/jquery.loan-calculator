@@ -15238,21 +15238,33 @@ a.text-dark:hover, a.text-dark:focus {
       #lmcu-calculator .calculator .column-right .representative-example .example-body .interest-detail {
         margin-bottom: 0; }
 
-#lmcu-calculator .consolidation .column-left {
+#lmcu-calculator .consolidation.calculator .column-left {
   position: relative;
   width: 100%;
-  padding-right: 15px;
-  padding-left: 15px;
-  flex: 0 0 58.33333%;
-  max-width: 58.33333%; }
+  padding-right: 0;
+  padding-left: 0;
+  flex: 0 0 100%;
+  max-width: 100%; }
+  @media (min-width: 768px) {
+    #lmcu-calculator .consolidation.calculator .column-left {
+      flex: 0 0 58.33333%;
+      max-width: 58.33333%; } }
+  @media (max-width: 991.98px) {
+    #lmcu-calculator .consolidation.calculator .column-left {
+      padding-top: 0;
+      padding-bottom: 0; } }
 
-#lmcu-calculator .consolidation .column-right {
+#lmcu-calculator .consolidation.calculator .column-right {
   position: relative;
   width: 100%;
   padding-right: 15px;
   padding-left: 15px;
-  flex: 0 0 41.66667%;
-  max-width: 41.66667%; }
+  flex: 0 0 100%;
+  max-width: 100%; }
+  @media (min-width: 768px) {
+    #lmcu-calculator .consolidation.calculator .column-right {
+      flex: 0 0 41.66667%;
+      max-width: 41.66667%; } }
 
 #lmcu-calculator #consolidation .header-row {
   font-weight: 700;
@@ -15280,20 +15292,30 @@ a.text-dark:hover, a.text-dark:focus {
     width: 100%;
     padding-right: 15px;
     padding-left: 15px;
-    flex: 0 0 25%;
-    max-width: 25%;
+    flex: 0 0 33.33333%;
+    max-width: 33.33333%;
     padding-right: 5px;
     padding-left: 5px; }
+    @media (min-width: 768px) {
+      #lmcu-calculator #consolidation .repeat-row .balance,
+      #lmcu-calculator #consolidation .header-row .balance {
+        flex: 0 0 25%;
+        max-width: 25%; } }
   #lmcu-calculator #consolidation .repeat-row .repayment,
   #lmcu-calculator #consolidation .header-row .repayment {
     position: relative;
     width: 100%;
     padding-right: 15px;
     padding-left: 15px;
-    flex: 0 0 25%;
-    max-width: 25%;
+    flex: 0 0 33.33333%;
+    max-width: 33.33333%;
     padding-right: 5px;
     padding-left: 5px; }
+    @media (min-width: 768px) {
+      #lmcu-calculator #consolidation .repeat-row .repayment,
+      #lmcu-calculator #consolidation .header-row .repayment {
+        flex: 0 0 25%;
+        max-width: 25%; } }
   #lmcu-calculator #consolidation .repeat-row .controls,
   #lmcu-calculator #consolidation .header-row .controls {
     position: relative;

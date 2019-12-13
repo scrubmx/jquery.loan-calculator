@@ -31,7 +31,7 @@
                 <!-- Card -->
                 <div class="representative-example">
                     <div class="example-body">
-                        <h4>Result</h4>
+                        <h4>How it works</h4>
                         <div class="message" id="result_message">Enter details of what you owe, and we'll try to estimate how much you could save by moving your borrowing to us.</div>
                         <div id="example">
                             <h5>Consolidation loan</h5>

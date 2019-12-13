@@ -35,6 +35,7 @@ jQuery(document).ready(function ($) {
         }, '.repeat-row input');
         // Do our calculations once the monthly repayment amount is selected
         $('#TotalRepayment').on('change paste keyup', function () {
+            $('.example-body h4').text('Result');
             var OptionalRepayment = ConvertToNumber($(this).val());
             ConsolidateResult(OptionalRepayment, BalanceTotal);
             setURLS(BalanceTotal, Math.round(NPER(OptionalRepayment, BalanceTotal)));
@@ -59,7 +60,7 @@ function CalculateInterestSaved() {
     if (getExampleCost < getComparisonCost) {
         var TotalSavings = getComparisonCost - getExampleCost;
         var TotalSavings = TotalSavings.toFixed(2);
-        var SavingsOutput = '<div class="alert alert-success"><p>Depending on the interest you\'re currently paying, you could save around <strong>' + ConvertToMoney(TotalSavings) + '</strong> and pay it all off in around <strong>' + monthstoYears(parseInt(nperMonths)) + '</strong> with us.</p></div>';
+        var SavingsOutput = '<div class="alert alert-success"><p>Depending on the interest you\'re currently paying, you could pay off everything you owe in around <strong>' + monthstoYears(parseInt(nperMonths)) + '</strong>, saving you <strong>' + ConvertToMoney(TotalSavings) + '</strong> in interest.</p></div>';
     }
     else {
         var SavingsOutput = 'We can\'t save you money';
@@ -73,13 +74,13 @@ function ConsolidateResult(repayment, balance) {
     NperResult = NPERResult(repayment, balance);
     jQuery('#result_message').html(NperResult.message);
     if (NperResult.validLoan == 1) {
-        jQuery('.btn-apply, #example, #comparison').show();
-        jQuery('#result_months .result').html(NperResult.months_readable);
+        jQuery('.btn-apply, #example, #comparison').fadeIn(600);
+        jQuery('#result_months .result').hide().html(NperResult.months_readable).fadeIn(600);
         CalculateLoan(NperResult.months, balance, variableInterest(balance), $example);
         CalculateLoan(NperResult.months, balance, convertAPR(24.7), $comparison);
         jQuery('#result_message').html(CalculateInterestSaved());
     }
     else {
-        jQuery('.btn-apply, #example, #comparison').hide();
+        jQuery('.btn-apply, #example, #comparison').fadeOut();
     }
 }

@@ -448,14 +448,25 @@
                 }
             }
         }
-        .consolidation {
+        .consolidation.calculator {
             .column-left {
-                @include make-col-ready();
-                @include make-col(7);
+                @include make-col-ready(0);
+                @include make-col(12);
+
+                @include media-breakpoint-up(md) {
+                    @include make-col(7);
+                    
+                }
+                                @include media-breakpoint-down(md){
+                    @include py(0);
+                }
             }
             .column-right {
                 @include make-col-ready();
-                @include make-col(5);
+                @include make-col(12);
+                @include media-breakpoint-up(md) {
+                    @include make-col(5);
+                }
             }
         }
         #consolidation {
@@ -482,13 +493,19 @@
                 }
                 .balance {
                     @include make-col-ready();
-                    @include make-col(3);
+                    @include make-col(4);
+                    @include media-breakpoint-up(md) {
+                        @include make-col(3);
+                    }
                     padding-right: 5px;
                     padding-left: 5px;
                 }
                 .repayment {
                     @include make-col-ready();
-                    @include make-col(3);
+                    @include make-col(4);
+                    @include media-breakpoint-up(md) {
+                        @include make-col(3);
+                    }
                     padding-right: 5px;
                     padding-left: 5px;
                 }
