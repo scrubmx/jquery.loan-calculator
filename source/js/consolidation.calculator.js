@@ -1,4 +1,7 @@
 jQuery(document).ready(function ($) {
+    // Initialize
+    $('.btn-apply, .summary').hide();
+    $calculator = jQuery('.summary').loanCalculator();
     //Only fire this up if it's a consolidation calculator
     if (ProductDefaults.consolidation == 1) {
         // Repeater fields
@@ -32,24 +35,32 @@ jQuery(document).ready(function ($) {
         // Do our calculations once the monthly repayment amount is selected
         $('#TotalRepayment').on('change paste keyup', function () {
             var OptionalRepayment = ConvertToNumber($(this).val());
-            ConsolidateCalculator(OptionalRepayment, BalanceTotal);
+            ConsolidateResult(OptionalRepayment, BalanceTotal);
+            setURLS(BalanceTotal, Math.round(NPER(OptionalRepayment, BalanceTotal)));
         });
-        // Hide apply button until everything is good
-        $('.btn-apply, .summary').hide();
     }
 });
-// 
-function ConsolidateCalculator(repayment, balance) {
+
+function CalculateLoan(term, amount, rate, selector) {
+    selector.loanCalculator('update', {
+        loanAmount: amount
+        , interestRate: rate
+        , loanDuration: term
+        , loanTotalSelector: '#result_cost .result'
+        , totalAnnualCostSelector: '#result_apr .result'
+    });
+}
+// Display various result messages
+function ConsolidateResult(repayment, balance) {
     nperMonths = NPER(repayment, balance);
     NperResult = NPERResult(repayment, balance);
     jQuery('#result_message').html(NperResult.message);
     if (NperResult.validLoan == 1) {
         jQuery('.btn-apply, .summary').show();
         jQuery('#result_months .result').html(NperResult.months_readable);
+        CalculateLoan(NperResult.months, balance, variableInterest(balance), $calculator);
     }
     else {
         jQuery('.btn-apply, .summary').hide();
     }
 }
-
-function CreditCardCalculator(repayment, balance) {}

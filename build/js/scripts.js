@@ -10548,46 +10548,66 @@ function NPER(payment, present, future, type) {
 }
 // Return readable messages based on the NPER result
 function NPERResult(payment, present) {
-    var nper = NPER(payment, present);
-    var npertext = Math.round(nper);
-    var npertext = monthstoYears(npertext);
-    if (isFinite(nper)) {
-        if (nper > 60) {
-            var result = {
-                validLoan: 0
-                , message: '<div class="alert alert-warning my-3 p-2"><p>Even with our low rates, it would take you <strong>' + npertext + '</strong> to pay everything off. The maximum loan term we offer is 5 years.</p><p>Can you afford to pay more each month to get it paid off sooner?</div>'
-                , months: nper
-                , months_readable: npertext
-            }
-            return result;
-        }
-        else if (nper < 2) {
-            var result = {
-                validLoan: 0
-                , message: '<div class="alert alert-warning my-3 p-2"><p>It looks like your repayments are greater than the amount you owe.</p><p>Go ahead and get it paid off, and start building your savings!</p></div>'
-                , months: nper
-                , months_readable: npertext
-            }
-            return result;
-        }
-        else {
-            var result = {
-                validLoan: 1
-                , message: 'Good news. we may be able to save you money.'
-                , months: nper
-                , months_readable: npertext
-            }
-            return result;
-        }
-    }
-    else {
+    if (present > 25000) {
         var result = {
             validLoan: 0
-            , message: '<div class="alert alert-danger my-3 p-2"><p>Your current repayment amount is too low to ever pay it all off.</p><p>Consider increasing your monthly repayment amount.</div>'
+            , message: '<div class="alert alert-warning my-3 p-2">The maximum amount available is £25,000</div>'
             , months: nper
             , months_readable: npertext
         }
         return result;
+    }
+    else if (present > 15000) {
+        var result = {
+            validLoan: 1
+            , message: '<div class="alert alert-warning my-3 p-2">To be eligible to borrow over £15,000, you will need to be a homeowner</div>'
+            , months: nper
+            , months_readable: npertext
+        }
+        return result;
+    }
+    else {
+        var nper = NPER(payment, present);
+        var nper = Math.round(nper);
+        var npertext = monthstoYears(nper);
+        if (isFinite(nper)) {
+            if (nper > 60) {
+                var result = {
+                    validLoan: 0
+                    , message: '<div class="alert alert-warning my-3 p-2"><p>Even with our low rates, it would take you <strong>' + npertext + '</strong> to pay everything off. The maximum loan term we offer is 5 years.</p><p>Can you afford to pay more each month to get it paid off sooner?</div>'
+                    , months: nper
+                    , months_readable: npertext
+                }
+                return result;
+            }
+            else if (nper < 2) {
+                var result = {
+                    validLoan: 0
+                    , message: '<div class="alert alert-warning my-3 p-2"><p>It looks like your repayments are greater than the amount you owe.</p><p>Go ahead and get it paid off, and start building your savings!</p></div>'
+                    , months: nper
+                    , months_readable: npertext
+                }
+                return result;
+            }
+            else {
+                var result = {
+                    validLoan: 1
+                    , message: '<p>Good news. we may be able to save you money.</p>'
+                    , months: nper
+                    , months_readable: npertext
+                }
+                return result;
+            }
+        }
+        else {
+            var result = {
+                validLoan: 0
+                , message: '<div class="alert alert-danger my-3 p-2"><p>Your current repayment amount is too low to ever pay it all off.</p><p>Consider increasing your monthly repayment amount.</div>'
+                , months: nper
+                , months_readable: npertext
+            }
+            return result;
+        }
     }
 }
 /*
@@ -10700,6 +10720,8 @@ jQuery(document).ready(function ($) {
         $('#info-tabs a').not(this).removeClass('active');
     });
 });
+/* PMT
+ */
 jQuery(function ($) {
     // Change interest rates based on amount
     SaverLoan = $('#saver-loan');
@@ -10942,6 +10964,9 @@ jQuery(document).ready(function ($) {
     }
 });
 jQuery(document).ready(function ($) {
+    // Initialize
+    $('.btn-apply, .summary').hide();
+    $calculator = jQuery('.summary').loanCalculator();
     //Only fire this up if it's a consolidation calculator
     if (ProductDefaults.consolidation == 1) {
         // Repeater fields
@@ -10975,24 +11000,32 @@ jQuery(document).ready(function ($) {
         // Do our calculations once the monthly repayment amount is selected
         $('#TotalRepayment').on('change paste keyup', function () {
             var OptionalRepayment = ConvertToNumber($(this).val());
-            ConsolidateCalculator(OptionalRepayment, BalanceTotal);
+            ConsolidateResult(OptionalRepayment, BalanceTotal);
+            setURLS(BalanceTotal, Math.round(NPER(OptionalRepayment, BalanceTotal)));
         });
-        // Hide apply button until everything is good
-        $('.btn-apply, .summary').hide();
     }
 });
-// 
-function ConsolidateCalculator(repayment, balance) {
+
+function CalculateLoan(term, amount, rate, selector) {
+    selector.loanCalculator('update', {
+        loanAmount: amount
+        , interestRate: rate
+        , loanDuration: term
+        , loanTotalSelector: '#result_cost .result'
+        , totalAnnualCostSelector: '#result_apr .result'
+    });
+}
+// Display various result messages
+function ConsolidateResult(repayment, balance) {
     nperMonths = NPER(repayment, balance);
     NperResult = NPERResult(repayment, balance);
     jQuery('#result_message').html(NperResult.message);
     if (NperResult.validLoan == 1) {
         jQuery('.btn-apply, .summary').show();
         jQuery('#result_months .result').html(NperResult.months_readable);
+        CalculateLoan(NperResult.months, balance, variableInterest(balance), $calculator);
     }
     else {
         jQuery('.btn-apply, .summary').hide();
     }
 }
-
-function CreditCardCalculator(repayment, balance) {}
