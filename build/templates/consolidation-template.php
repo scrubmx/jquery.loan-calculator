@@ -31,16 +31,14 @@
                 <!-- Card -->
                 <div class="representative-example">
                     <div class="example-body">
-                        <h5>Summary</h5>
-                        <p class="pb-4">Based on what you've told us, a consolidation loan could save you <strong>£XXX</strong> in interest and allow to clear your debts <strong>XX</strong> months early.</p>
+                        <h5>Result</h5>
+                        <div id="result_message">Enter details of what you owe, and we'll try to estimate how much you could save by moving your borrowing to us.</div>
                         <ul class="summary">
-                            <li>Amount to consolidate: <span class="strong" id="total-loan">£0.00</span></li>
-                            <li>Representative APR: <span class="strong" id="total-annual-cost"></span></li>
-                            <li>You will have paid everything off in: <span class="strong" id="total-term">0 months</span></li>
-                            <li>Total repayable: <span class="strong " id="loan-total"></span> </li>
-                            
+                            <li id="result_amount">Amount to consolidate: <span class="result">£0.00</span></li>
+                            <li id="result_apr">Representative APR: <span class="result"></span></li>
+                            <li id="result_months">You will have paid everything off in: <span class="result">0 months</span></li>
+                            <li id="result_cost">Total cost: <span class="result"></span> </li>
                         </ul>
-                        
                         <!-- Button -->
                         <button type="button" class="btn-apply" data-toggle="modal" data-target="#currentMember"> Apply for consolidation loan </button>
                     </div>

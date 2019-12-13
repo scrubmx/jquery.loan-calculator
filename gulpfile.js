@@ -26,9 +26,11 @@ const package = {
     , loancalculator: 'jquery.loan-calculator/js/*.js'
     , nouislider: 'nouislider/distribute/*.js'
     , currency: 'format.currency.js'
-    , init: 'the.calculator.js'
+    , init: 'loan.calculator.js'
     , reminder: 'reminder.form.js'
     , consolidation: 'consolidation.calculator.js'
+    , helpers: 'helper.functions.js'
+    , loansettings: 'loans.settings.js'
 }
 gulp.task('images', () => {
     return gulp.src(dir.source + 'images/*').pipe(svgo()).pipe(gulp.dest(dir.build + 'images/'));
@@ -40,7 +42,7 @@ gulp.task('icons', function () {
     return gulp.src(dir.node + '@fortawesome/fontawesome-free/webfonts/*').pipe(gulp.dest(dir.build + 'css/webfonts/'));
 });
 gulp.task('pack-js', function () {
-    return gulp.src([dir.source + paths.js + package.currency, dir.node + package.popper, dir.node + package.bootstrap, dir.node + package.wnumb, dir.node + package.loancalculator, dir.node + package.nouislider, dir.source + paths.js + package.reminder, dir.source + paths.js + package.init, dir.source + paths.js + package.consolidation]).pipe(concat('scripts.js')).pipe(gulp.dest(dir.build + paths.js));
+    return gulp.src([dir.source + paths.js + package.currency, dir.node + package.popper, dir.node + package.bootstrap, dir.node + package.wnumb, dir.node + package.loancalculator, dir.node + package.nouislider, dir.source + paths.js + package.reminder, dir.source + paths.js + package.helpers, dir.source + paths.js + package.loansettings, dir.source + paths.js + package.init, dir.source + paths.js + package.consolidation]).pipe(concat('scripts.js')).pipe(gulp.dest(dir.build + paths.js));
 });
 gulp.task('pack-css', function () {
     return gulp.src([dir.node + 'nouislider/distribute/*.min.css', dir.source + 'scss/*.scss']).pipe(sass()).pipe(concat('styles.css')).pipe(gulp.dest(dir.build + paths.css));

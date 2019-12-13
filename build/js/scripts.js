@@ -10533,26 +10533,158 @@ jQuery(document).ready(function ($) {
         });
     });
 });
-    //Convert months into year
-    function monthstoYears(value) {
-        function getPlural(number, word) {
-            return number === 1 && word.one || word.other;
+/* 
+Our nifty NPER functions
+*/
+function NPER(payment, present, future, type) {
+    var type = (typeof type === 'undefined') ? 0 : type;
+    var future = (typeof future === 'undefined') ? 0 : future;
+    GetRate = variableInterest(present);
+    rate = GetRate / 12 / 100;
+    rate = eval(rate);
+    var num = -payment * (1 + rate * type) - future * rate;
+    var den = (present * rate + -payment * (1 + rate * type));
+    return Math.log(num / den) / Math.log(1 + rate);
+}
+// Return readable messages based on the NPER result
+function NPERResult(payment, present) {
+    var nper = NPER(payment, present);
+    var npertext = Math.round(nper);
+    var npertext = monthstoYears(npertext);
+    if (isFinite(nper)) {
+        if (nper > 60) {
+            var result = {
+                validLoan: 0
+                , message: '<div class="alert alert-warning my-3 p-2"><p>Even with our low rates, it would take you <strong>' + npertext + '</strong> to pay everything off. The maximum loan term we offer is 5 years.</p><p>Can you afford to pay more each month to get it paid off sooner?</div>'
+                , months: nper
+                , months_readable: npertext
+            }
+            return result;
         }
-        var months = {
-                one: 'month'
-                , other: 'months'
+        else if (nper < 2) {
+            var result = {
+                validLoan: 0
+                , message: '<div class="alert alert-warning my-3 p-2"><p>It looks like your repayments are greater than the amount you owe.</p><p>Go ahead and get it paid off, and start building your savings!</p></div>'
+                , months: nper
+                , months_readable: npertext
             }
-            , years = {
-                one: 'year'
-                , other: 'years'
+            return result;
+        }
+        else {
+            var result = {
+                validLoan: 1
+                , message: 'Good news. we may be able to save you money.'
+                , months: nper
+                , months_readable: npertext
             }
-            , m = value % 12
-            , y = Math.floor(value / 12)
-            , result = [];
-        y && result.push(y + ' ' + getPlural(y, years));
-        m && result.push(m + ' ' + getPlural(m, months));
-        return result.join(' and ');
+            return result;
+        }
     }
+    else {
+        var result = {
+            validLoan: 0
+            , message: '<div class="alert alert-danger my-3 p-2"><p>Your current repayment amount is too low to ever pay it all off.</p><p>Consider increasing your monthly repayment amount.</div>'
+            , months: nper
+            , months_readable: npertext
+        }
+        return result;
+    }
+}
+/*
+Convert APR to Monthly
+*/
+function convertAPR(value) {
+    return (Math.pow((1 + (Math.pow(((value * 1 / 100) + 1), (1 / 12)) - 1) / 100), 12) - 1) * 100 * 100
+}
+/* 
+Months to years calculations 
+*/
+function monthstoYears(value) {
+    function getPlural(number, word) {
+        return number === 1 && word.one || word.other;
+    }
+    var months = {
+            one: 'month'
+            , other: 'months'
+        }
+        , years = {
+            one: 'year'
+            , other: 'years'
+        }
+        , m = value % 12
+        , y = Math.floor(value / 12)
+        , result = [];
+    y && result.push(y + ' ' + getPlural(y, years));
+    m && result.push(m + ' ' + getPlural(m, months));
+    return result.join(' and ');
+}
+/* 
+Convert money into useful formats 
+*/
+// Format strings into money
+var moneyFormat = wNumb({
+    mark: '.'
+    , thousand: ','
+    , prefix: '£'
+});
+
+function ConvertToMoney(value) {
+    var moneyValue = parseFloat(value);
+    return moneyFormat.to(moneyValue);
+}
+
+function ConvertToNumber(value) {
+    numberValue = moneyFormat.from(value);
+    return parseFloat(numberValue);
+}
+// Change inputs into money
+(function ($) {
+    $("input[data-type='currency']").on({
+        keyup: function () {
+            formatCurrency($(this));
+        }
+        , blur: function () {
+            formatCurrency($(this), "blur");
+        }
+        , change: function () {
+            formatCurrency($(this));
+        }
+        , paste: function () {
+            formatCurrency($(this));
+        }
+    });
+})(jQuery);
+/*
+Sum all fields matching selector and return total
+*/
+function calculateSum(selector) {
+    var sum = 0;
+    jQuery(selector).each(function () {
+        if (this.value.length != 0) {
+            var total = this.value
+            sum += ConvertToNumber(total);
+        }
+    });
+    return sum;
+}
+/* 
+Set URLs based on Calculator content 
+*/
+function setURLS(loanAmount, loanTerm) {
+    if (CUOKLoan.hasClass('active')) {
+        applyurlMember = "https://www.cuonline.org.uk/PDL2/Default.aspx?CU=LMCU&amount=" + loanAmount + "&months=" + loanTerm + "&FP=1";
+        applyurlGuest = "https://www.cuonline.org.uk/PDL2/Default.aspx?CU=LMCU&amount=" + loanAmount + "&months=" + loanTerm + "&FP=1";
+    }
+    else {
+        applyurlMember = "https://www.cuonline.org.uk/v3/ApplyLoanV3-3.aspx?newmember=no&amount=" + loanAmount + "&months=" + loanTerm + "&skipcalc=true";
+        applyurlGuest = "https://www.cuonline.org.uk/v3/ApplyLoanV3-2.aspx?newmember=yes&amount=" + loanAmount + "&months=" + loanTerm + "&skipcalc=true";
+    };
+    jQuery('#GuestApplyLink').attr("href", applyurlGuest);
+    jQuery('#MemberApplyLink').attr("href", applyurlMember);
+};
+/* 
+Set up tabs etc
+*/
 jQuery(document).ready(function ($) {
     //Move modal in DOM and set up tabs and popovers
     $('#currentMember').appendTo("body")
@@ -10567,55 +10699,15 @@ jQuery(document).ready(function ($) {
         $(this).tab('show');
         $('#info-tabs a').not(this).removeClass('active');
     });
-    $('[data-toggle="product"]').on('click', function (e) {
-        $('[data-toggle="product"]').not(this).removeClass('active');
-        $(this).addClass('active');
-        $('#saver').hide();
-        if ($(window).width() < 576) {
-            $('html, body').animate({
-                scrollTop: $('#widget').offset().top - 25
-            }, 500);
-        };
-    });
-    $("input[data-type='currency']").on({
-        keyup: function () {
-            formatCurrency($(this));
-        }
-        , blur: function () {
-            formatCurrency($(this), "blur");
-        }
-        , change: function() {
-            formatCurrency($(this));
-        }
-        , paste: function() {
-            formatCurrency($(this));
-        }
-    });
-    /* 
-    HELPER FUNCTIONS.
-    */
-    // Format money correctly
-    function formatMoney(value) {
-        var moneyFormat = wNumb({
-            mark: '.'
-            , thousand: ','
-            , prefix: '£'
-        });
-        var moneyValue = parseInt(value);
-        return moneyFormat.to(moneyValue);
-    }
-    // Convert APR to monthly interest
-    function convertAPR(value) {
-        return (Math.pow((1 + (Math.pow(((value * 1 / 100) + 1), (1 / 12)) - 1) / 100), 12) - 1) * 100 * 100
-    }
+});
+jQuery(function ($) {
     // Change interest rates based on amount
-    var SaverLoan = $('#saver-loan');
-    var BoosterLoan = $('#booster-loan');
-    var CUOKLoan = $('#cuok');
-    var Salary = $('#salary');
-    var Personal = $('#personal-loan');
-
-    window.variableInterest = function(value) {
+    SaverLoan = $('#saver-loan');
+    BoosterLoan = $('#booster-loan');
+    CUOKLoan = $('#cuok');
+    SalaryLoan = $('#salary');
+    PersonalLoan = $('#personal-loan');
+    window.variableInterest = function (value) {
         var InterestRate = ProductDefaults.rate;
         switch (true) {
         case (SaverLoan.hasClass('active')):
@@ -10627,7 +10719,7 @@ jQuery(document).ready(function ($) {
         case (CUOKLoan.hasClass('active')):
             InterestRate = 36;
             break;
-        case (value < 500 && !Personal.hasClass('active') && !SaverLoan.hasClass('active') && !Salary.hasClass('active')):
+        case (value < 500 && !PersonalLoan.hasClass('active') && !SaverLoan.hasClass('active') && !SalaryLoan.hasClass('active')):
             InterestRate = 36;
             break;
         case (value < 5000):
@@ -10646,7 +10738,7 @@ jQuery(document).ready(function ($) {
         return InterestRate;
     };
     // Change time period based on amount
-    function variableTerm(value) {
+    window.variableTerm = function (value) {
         switch (true) {
         case (SaverLoan.hasClass('active')):
             MaxTerm = 120;
@@ -10660,7 +10752,8 @@ jQuery(document).ready(function ($) {
             MaxTerm = 24;
             MinTerm = 1;
             break;
-        case (value < 500 && !Personal.hasClass('active') && !SaverLoan.hasClass('active') && !Salary.hasClass('active')):
+        case (value < 500 && !PersonalLoan.hasClass('active') && !SaverLoan.hasClass('active') && !SalaryLoan.hasClass('active')):
+        case (value < 500 && !PersonalLoan.hasClass('active') && !SaverLoan.hasClass('active') && !SalaryLoan.hasClass('active')):
             MaxTerm = 3;
             MinTerm = 1;
             break;
@@ -10683,12 +10776,25 @@ jQuery(document).ready(function ($) {
         }
         return Term;
     }
-    /* 
-    UNLEASH THE SLIDERS
-    */
-    // Loan value slider
-    loanamountslider = document.getElementById('loanamount');
-    if (loanamountslider) {
+});
+jQuery(document).ready(function ($) {
+    // Only fire this up if it isn't a consolidation calculator
+    if (ProductDefaults.consolidation == 0) {
+        $('[data-toggle="product"]').on('click', function (e) {
+            $('[data-toggle="product"]').not(this).removeClass('active');
+            $(this).addClass('active');
+            $('#saver').hide();
+            if ($(window).width() < 576) {
+                $('html, body').animate({
+                    scrollTop: $('#widget').offset().top - 25
+                }, 500);
+            };
+        });
+        /* 
+        UNLEASH THE SLIDERS
+        */
+        // Loan value slider
+        loanamountslider = document.getElementById('loanamount');
         noUiSlider.create(loanamountslider, {
             start: ProductDefaults.amount
             , animate: true
@@ -10710,12 +10816,10 @@ jQuery(document).ready(function ($) {
                 , 'max': ProductDefaults.maxamount
             }
         });
-    };
-    //Set default values for loan term
-    loantermslider = document.getElementById('loanterm');
-    variableMinTerm = variableTerm(ProductDefaults.minamount).min;
-    variableMaxTerm = variableTerm(ProductDefaults.maxamount).max;
-    if (loantermslider) {
+        //Set default values for loan term
+        loantermslider = document.getElementById('loanterm');
+        variableMinTerm = variableTerm(ProductDefaults.minamount).min;
+        variableMaxTerm = variableTerm(ProductDefaults.maxamount).max;
         noUiSlider.create(loantermslider, {
             start: ProductDefaults.term
             , animate: true
@@ -10736,24 +10840,22 @@ jQuery(document).ready(function ($) {
                 , 'max': variableMaxTerm
             }
         });
-    };
-    // Set default title description
-    $('#product-name').text(ProductDefaults.product);
-    $('#product-description').text(ProductDefaults.desc);
-    /* 
-    FIRE UP THE CALCULATOR
-    */
-    $calculator = $('#widget').loanCalculator({
-        loanAmount: ProductDefaults.amount
-        , loanDuration: ProductDefaults.term
-        , interestRate: ProductDefaults.rate
-        , paymentFrequency: 'monthly'
-    });
-    /*
-    UPDATE THE CALCULATOR
-    */
-    // When amount slider is updated
-    if (loanamountslider) {
+        // Set default title description
+        $('#product-name').text(ProductDefaults.product);
+        $('#product-description').text(ProductDefaults.desc);
+        /* 
+        FIRE UP THE CALCULATOR
+        */
+        $calculator = $('#widget').loanCalculator({
+            loanAmount: ProductDefaults.amount
+            , loanDuration: ProductDefaults.term
+            , interestRate: ProductDefaults.rate
+            , paymentFrequency: 'monthly'
+        });
+        /*
+        UPDATE THE CALCULATOR
+        */
+        // When amount slider is updated
         loanamountslider.noUiSlider.on('update', function () {
             CurrentAmount = loanamountslider.noUiSlider.get();
             CurrentRate = variableInterest(CurrentAmount);
@@ -10761,7 +10863,7 @@ jQuery(document).ready(function ($) {
                 loanAmount: CurrentAmount
                 , interestRate: CurrentRate
             });
-            $('.selected-amount').text(formatMoney(CurrentAmount));
+            $('.selected-amount').text(ConvertToMoney(CurrentAmount));
             loantermslider.noUiSlider.updateOptions({
                 range: {
                     'min': variableTerm(CurrentAmount).min
@@ -10769,9 +10871,7 @@ jQuery(document).ready(function ($) {
                 }
             });
         });
-    };
-    // When term slider is updated
-    if (loanamountslider) {
+        // When term slider is updated
         loantermslider.noUiSlider.on('update', function () {
             var CurrentTerm = loantermslider.noUiSlider.get();
             $calculator.loanCalculator('update', {
@@ -10779,165 +10879,120 @@ jQuery(document).ready(function ($) {
             });
             $('.selected-term').text(monthstoYears(parseInt(CurrentTerm)));
         });
-    };
-    // When the calculator changes, update the application URL
-    $calculator.on('loan:update', function (e) {
-        var loanAmount = parseInt(loanamountslider.noUiSlider.get());
-        var loanTerm = parseInt(loantermslider.noUiSlider.get());
-        if (CUOKLoan.hasClass('active')) {
-            applyurlMember = "https://www.cuonline.org.uk/PDL2/Default.aspx?CU=LMCU&amount=" + loanAmount + "&months=" + loanTerm + "&FP=1";
-            applyurlGuest = "https://www.cuonline.org.uk/PDL2/Default.aspx?CU=LMCU&amount=" + loanAmount + "&months=" + loanTerm + "&FP=1";
-        }
-        else {
-            applyurlMember = "https://www.cuonline.org.uk/v3/ApplyLoanV3-3.aspx?newmember=no&amount=" + loanAmount + "&months=" + loanTerm + "&skipcalc=true";
-            applyurlGuest = "https://www.cuonline.org.uk/v3/ApplyLoanV3-2.aspx?newmember=yes&amount=" + loanAmount + "&months=" + loanTerm + "&skipcalc=true";
-        };
-        $('#GuestApplyLink').attr("href", applyurlGuest);
-        $('#MemberApplyLink').attr("href", applyurlMember);
-    });
-    /*
-    When a new product is selected, change values
-    */
-    $('[data-toggle="product"]').on('click', function (e) {
-        var SelectedProduct = {
-                minValue: $(this).data('min-value')
-                , maxValue: $(this).data('max-value')
-                , step: $(this).data('step')
-                , rate: $(this).data('interest')
-                , name: $(this).data('product')
-                , desc: $(this).data('description')
-                , term: $(this).data('default-term')
-                , amount: $(this).data('default-value')
-            }
-            //Change Range attribs
-        $('#product-name').text(SelectedProduct.name);
-        $('#product-description').text(SelectedProduct.desc);
-        // Update the rest of the options
-        loanamountslider.noUiSlider.updateOptions({
-            range: {
-                'min': SelectedProduct.minValue
-                , 'max': SelectedProduct.maxValue
-            }
-            , step: SelectedProduct.step
+        // When the calculator changes, update the application URL
+        $calculator.on('loan:update', function (e) {
+            var loanAmount = parseInt(loanamountslider.noUiSlider.get());
+            var loanTerm = parseInt(loantermslider.noUiSlider.get());
+            setURLS(loanAmount, loanTerm);
         });
-        loantermslider.noUiSlider.updateOptions({
-            range: {
-                'min': variableTerm(SelectedProduct.minValue).min
-                , 'max': variableTerm(SelectedProduct.maxValue).max
-            }
-        });
-        loanamountslider.noUiSlider.set(SelectedProduct.amount);
-        loantermslider.noUiSlider.set(SelectedProduct.term);
-        // Recalculate
-        $calculator.loanCalculator('update', {
-            interestRate: SelectedProduct.rate
-        });
-    });
-    /* 
-    SPECIAL FOR THE SAVER LOAN
-    */
-    $('#saver-loan').on('click', function (e) {
-        $('#saver').show();
-        $('#saver').change(function () {
-            var savedAmount = $('#saved-amount').val();
-            var convertedAmount = parseFloat(Number(savedAmount.replace(/[^0-9\.]+/g, "")));
+        /*
+        When a new product is selected, change values
+        */
+        $('[data-toggle="product"]').on('click', function (e) {
+            var SelectedProduct = {
+                    minValue: $(this).data('min-value')
+                    , maxValue: $(this).data('max-value')
+                    , step: $(this).data('step')
+                    , rate: $(this).data('interest')
+                    , name: $(this).data('product')
+                    , desc: $(this).data('description')
+                    , term: $(this).data('default-term')
+                    , amount: $(this).data('default-value')
+                }
+                //Change Range attribs
+            $('#product-name').text(SelectedProduct.name);
+            $('#product-description').text(SelectedProduct.desc);
+            // Update the rest of the options
             loanamountslider.noUiSlider.updateOptions({
                 range: {
-                    'min': 0
-                    , 'max': convertedAmount
+                    'min': SelectedProduct.minValue
+                    , 'max': SelectedProduct.maxValue
+                }
+                , step: SelectedProduct.step
+            });
+            loantermslider.noUiSlider.updateOptions({
+                range: {
+                    'min': variableTerm(SelectedProduct.minValue).min
+                    , 'max': variableTerm(SelectedProduct.maxValue).max
                 }
             });
+            loanamountslider.noUiSlider.set(SelectedProduct.amount);
+            loantermslider.noUiSlider.set(SelectedProduct.term);
+            // Recalculate
+            $calculator.loanCalculator('update', {
+                interestRate: SelectedProduct.rate
+            });
         });
-    });
+        /* 
+        SPECIAL FOR THE SAVER LOAN
+        */
+        $('#saver-loan').on('click', function (e) {
+            $('#saver').show();
+            $('#saver').change(function () {
+                var savedAmount = $('#saved-amount').val();
+                var convertedAmount = ConvertToNumber(savedAmount);
+                loanamountslider.noUiSlider.updateOptions({
+                    range: {
+                        'min': 0
+                        , 'max': convertedAmount
+                    }
+                });
+            });
+        });
+    }
 });
-/* Our nifty NPER function */
-//the price calculation formula
-//@return the price and length of time
-function NPER(payment, present, future, type) {
-    // Initialize type
-    var type = (typeof type === 'undefined') ? 0 : type;
-    // Initialize future value
-    var future = (typeof future === 'undefined') ? 0 : future;
-    GetRate = variableInterest(present);
-    rate = GetRate / 12 / 100;
-    // Evaluate rate and periods (TODO: replace with secure expression evaluator)
-    rate = eval(rate);
-    // Return number of periods
-    var num = -payment * (1 + rate * type) - future * rate;
-    var den = (present * rate + -payment * (1 + rate * type));
-    return Math.log(num / den) / Math.log(1 + rate);
-}
-
-function NPERReadable(nper) {
-    console.log(nper);
-    if (isFinite(nper)) {
-        if (nper > 60) {
-            nper = Math.round(nper);
-            nper = monthstoYears(nper);
-            return '<div class="alert alert-danger small my-3 p-2">It would take you <strong>' + nper + '</strong> to pay everything off at this repayment rate. The maximum loan term we offer is 5 years. Try increasing your monthly repayment amount.</div>';
-        }
-        else {
-            nper = Math.round(nper);
-            nper = monthstoYears(nper);
-            return nper;
-        }
+jQuery(document).ready(function ($) {
+    //Only fire this up if it's a consolidation calculator
+    if (ProductDefaults.consolidation == 1) {
+        // Repeater fields
+        $(document).on('click', '.btn-add', function (e) {
+            e.preventDefault();
+            var controlForm = $('#repeater-rows')
+                , currentEntry = $(this).parents('.repeat-row:first')
+                , newEntry = $(currentEntry.clone()).appendTo(controlForm).fadeIn('slow').css("display", "flex");
+            newEntry.find('input').val('');
+            controlForm.find('.repeat-row:not(:last) .btn-add').removeClass('btn-add').addClass('btn-remove').removeClass('btn-success').html('');
+        }).on('click', '.btn-remove', function (e) {
+            e.preventDefault();
+            $(this).parents('.repeat-row:first').remove();
+            return false;
+        });
+        //When a value in the row is changed, add it up
+        $('#repeater-rows').on({
+            keyup: function () {
+                formatCurrency($(this));
+            }
+            , blur: function () {
+                formatCurrency($(this), "blur");
+            }
+            , change: function () {
+                BalanceTotal = calculateSum('.balance input');
+                MonthlyRepaymentTotal = calculateSum('.repayment input');
+                $('#result_amount .result').text(ConvertToMoney(BalanceTotal));
+                $('#TotalRepayment').val(MonthlyRepaymentTotal).trigger('change');
+            }
+        }, '.repeat-row input');
+        // Do our calculations once the monthly repayment amount is selected
+        $('#TotalRepayment').on('change paste keyup', function () {
+            var OptionalRepayment = ConvertToNumber($(this).val());
+            ConsolidateCalculator(OptionalRepayment, BalanceTotal);
+        });
+        // Hide apply button until everything is good
+        $('.btn-apply, .summary').hide();
+    }
+});
+// 
+function ConsolidateCalculator(repayment, balance) {
+    nperMonths = NPER(repayment, balance);
+    NperResult = NPERResult(repayment, balance);
+    jQuery('#result_message').html(NperResult.message);
+    if (NperResult.validLoan == 1) {
+        jQuery('.btn-apply, .summary').show();
+        jQuery('#result_months .result').html(NperResult.months_readable);
     }
     else {
-        return '<div class="alert alert-danger small my-3 p-2">Your current repayment amount is too low to ever repay the debt. Try to increase your monthly payment amount.</div>';
+        jQuery('.btn-apply, .summary').hide();
     }
 }
-/* Main jobbie */
-jQuery(document).ready(function ($) {
-    //Sum up all inputs with same class
-    function calculateSum(selector) {
-        var sum = 0;
-        $(selector).each(function () {
-            if (this.value.length != 0) {
-                var currency = this.value
-                var rawNumber = Number(currency.replace(/[^0-9.-]+/g, ""));
-                sum += rawNumber;
-            }
-        });
-        return sum;
-    }
-    // Repeater fields
-    $(document).on('click', '.btn-add', function (e) {
-        e.preventDefault();
-        var controlForm = $('#repeater-rows')
-            , currentEntry = $(this).parents('.repeat-row:first')
-            , newEntry = $(currentEntry.clone()).appendTo(controlForm).fadeIn('slow').css("display", "flex");
-        newEntry.find('input').val('');
-        controlForm.find('.repeat-row:not(:last) .btn-add').removeClass('btn-add').addClass('btn-remove').removeClass('btn-success').html('');
-    }).on('click', '.btn-remove', function (e) {
-        e.preventDefault();
-        $(this).parents('.repeat-row:first').remove();
-        return false;
-    });
-    //When a value in the row is changed, add it up
-    $('#repeater-rows').on({
-        keyup: function () {
-            formatCurrency($(this));
-        }
-        , blur: function () {
-            formatCurrency($(this), "blur");
-        }
-        , change: function () {
-            BalanceTotal = calculateSum('.balance input');
-            MonthlyRepaymentTotal = calculateSum('.repayment input');
-            $('#total-loan').text('£' + BalanceTotal);
-            $('#TotalRepayment').val(MonthlyRepaymentTotal).trigger('change');
-        }
-    }, '.repeat-row input');
-    $('#TotalRepayment').on('change paste keyup', function () {
-        var OptionalRepayment = Number($(this).val().replace(/[^0-9.-]+/g, ""));
-        MonthsTotalRaw = NPER(OptionalRepayment, BalanceTotal);
-        MonthsTotalReadable = NPERReadable(MonthsTotalRaw);
-        $('#total-term').html(MonthsTotalReadable);
-        $calculator.loanCalculator('update', {
-            loanAmount: BalanceTotal,
-            loanDuration: MonthsTotalRaw
-            , interestRate: variableInterest(BalanceTotal)
-        });
-        //console.log('Total repayable ' + BalanceTotal + ', Monthly payment ' + OptionalRepayment);
-    });
-});
+
+function CreditCardCalculator(repayment, balance) {}
