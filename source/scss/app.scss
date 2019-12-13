@@ -414,7 +414,6 @@
                         }
                         .message {
                             @include mb(4);
-                
                         }
                         .summary,
                         .comparison {
@@ -468,7 +467,7 @@
             .header-row {
                 @include mb(3);
                 @extend .form-row;
-                &:not(: first-child) {
+                &:not(:first-child) {
                     display: none
                 }
                 input,
