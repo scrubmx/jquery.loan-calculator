@@ -410,16 +410,17 @@
                     .example-body {
                         @extend .card-body;
                         h5 {
+                            @include mt(4);
+                            @include mb(1);
+                            @include py(0);
                             @extend .card-title;
                         }
-                        .message {
-                            @include mb(4);
-                        }
+         
                         .summary,
                         .comparison {
                             @extend .list-group;
                             @extend .list-group-flush;
-                            @include mb(3);
+                            @include mt(3);
                             li {
                                 @extend .list-group-item;
                                 @include py(1);
@@ -452,48 +453,61 @@
             .column-left {
                 @include make-col-ready(0);
                 @include make-col(12);
-
+                order:2;
                 @include media-breakpoint-up(md) {
                     @include make-col(7);
-                    
-                }
-                                @include media-breakpoint-down(md){
-                    @include py(0);
+                    order:1;
+                    padding: 0 15px;
                 }
             }
             .column-right {
-                @include make-col-ready();
+                @include make-col-ready(0);
                 @include make-col(12);
+                order: 1;
                 @include media-breakpoint-up(md) {
                     @include make-col(5);
+                    order:2;
+                                        padding: 0 15px;
                 }
+            }
+            .btn-apply {
+                width: auto;
+                @include mt(4);
+                @include ml(auto);
             }
         }
         #consolidation {
+            h6 {
+                font-weight: 800;
+                @include mb(1);
+            }
             .header-row {
-                font-weight: 700;
+                font-weight: 600;
                 @include mb(3);
+                white-space: nowrap;
+            }
+            .repeat-row {
+                                &:not(:first-child) {
+                    display: none
+                }
             }
             .repeat-row,
             .header-row {
                 @include mb(3);
                 @extend .form-row;
-                &:not(:first-child) {
-                    display: none
-                }
                 input,
                 select {
                     @extend .form-control;
                 }
                 .type {
                     @include make-col-ready();
-                    @include make-col(4);
+                    @include make-col(5);
                     padding-right: 5px;
                     padding-left: 5px;
                 }
                 .balance {
                     @include make-col-ready();
-                    @include make-col(4);
+                    @include make-col(3);
                     @include media-breakpoint-up(md) {
                         @include make-col(3);
                     }
@@ -502,7 +516,7 @@
                 }
                 .repayment {
                     @include make-col-ready();
-                    @include make-col(4);
+                    @include make-col(3);
                     @include media-breakpoint-up(md) {
                         @include make-col(3);
                     }
@@ -510,7 +524,8 @@
                     padding-left: 5px;
                 }
                 .controls {
-                    @include make-col-ready();
+                    @include make-col-ready(0);
+                    @include make-col(1);
                     display: flex;
                     width: auto;
                     .btn {
@@ -519,7 +534,10 @@
                         padding: 0;
                         line-height: 1.5rem;
                         font-size: 0.75rem;
-                        margin: auto 0;
+                        margin: auto 0 auto auto;
+                        @include media-breakpoint-up(md) {
+                            margin: auto;
+                        }
                         cursor: pointer;
                     }
                     .btn-add {
@@ -541,14 +559,16 @@
                 @extend .border-top;
                 .repayment-calc-label {
                     @include make-col-ready();
-                    @include make-col(7);
+                    @include make-col(8);
+   
                     padding-right: 5px;
                     padding-left: 5px;
                     display: flex;
                     flex-direction: column;
                     label {
                         @include my(auto);
-                        font-weight: 700;
+                        font-weight: 800;
+                        color: #333;
                     }
                     p {
                         @extend .small;
@@ -564,6 +584,17 @@
             }
         }
     }
+#infoLegal {
+    ul {
+    list-style-type: inherit;
+        margin-left: 1.5rem;
+    li {
+        margin-bottom: 0.75rem;
+    }
+    
+    }p {
+        padding-bottom: 1rem;
+    }}
     /*! purgecss start ignore */
     
     .modal .modal-content {

@@ -15210,11 +15210,14 @@ a.text-dark:hover, a.text-dark:focus {
       @media (max-width: 991.98px) {
         #lmcu-calculator .calculator .column-right .representative-example {
           margin-bottom: 3rem; } }
-      #lmcu-calculator .calculator .column-right .representative-example .example-body .message {
-        margin-bottom: 1.5rem; }
+      #lmcu-calculator .calculator .column-right .representative-example .example-body h5 {
+        margin-top: 1.5rem;
+        margin-bottom: 0.25rem;
+        padding-top: 0;
+        padding-bottom: 0; }
       #lmcu-calculator .calculator .column-right .representative-example .example-body .summary,
       #lmcu-calculator .calculator .column-right .representative-example .example-body .comparison {
-        margin-bottom: 1rem; }
+        margin-top: 1rem; }
         #lmcu-calculator .calculator .column-right .representative-example .example-body .summary li,
         #lmcu-calculator .calculator .column-right .representative-example .example-body .comparison li {
           padding-top: 0.25rem;
@@ -15244,46 +15247,58 @@ a.text-dark:hover, a.text-dark:focus {
   padding-right: 0;
   padding-left: 0;
   flex: 0 0 100%;
-  max-width: 100%; }
+  max-width: 100%;
+  order: 2; }
   @media (min-width: 768px) {
     #lmcu-calculator .consolidation.calculator .column-left {
       flex: 0 0 58.33333%;
-      max-width: 58.33333%; } }
-  @media (max-width: 991.98px) {
-    #lmcu-calculator .consolidation.calculator .column-left {
-      padding-top: 0;
-      padding-bottom: 0; } }
+      max-width: 58.33333%;
+      order: 1;
+      padding: 0 15px; } }
 
 #lmcu-calculator .consolidation.calculator .column-right {
   position: relative;
   width: 100%;
-  padding-right: 15px;
-  padding-left: 15px;
+  padding-right: 0;
+  padding-left: 0;
   flex: 0 0 100%;
-  max-width: 100%; }
+  max-width: 100%;
+  order: 1; }
   @media (min-width: 768px) {
     #lmcu-calculator .consolidation.calculator .column-right {
       flex: 0 0 41.66667%;
-      max-width: 41.66667%; } }
+      max-width: 41.66667%;
+      order: 2;
+      padding: 0 15px; } }
+
+#lmcu-calculator .consolidation.calculator .btn-apply {
+  width: auto;
+  margin-top: 1.5rem;
+  margin-left: auto; }
+
+#lmcu-calculator #consolidation h6 {
+  font-weight: 800;
+  margin-bottom: 0.25rem; }
 
 #lmcu-calculator #consolidation .header-row {
-  font-weight: 700;
-  margin-bottom: 1rem; }
+  font-weight: 600;
+  margin-bottom: 1rem;
+  white-space: nowrap; }
+
+#lmcu-calculator #consolidation .repeat-row:not(:first-child) {
+  display: none; }
 
 #lmcu-calculator #consolidation .repeat-row,
 #lmcu-calculator #consolidation .header-row {
   margin-bottom: 1rem; }
-  #lmcu-calculator #consolidation .repeat-row:not(:first-child),
-  #lmcu-calculator #consolidation .header-row:not(:first-child) {
-    display: none; }
   #lmcu-calculator #consolidation .repeat-row .type,
   #lmcu-calculator #consolidation .header-row .type {
     position: relative;
     width: 100%;
     padding-right: 15px;
     padding-left: 15px;
-    flex: 0 0 33.33333%;
-    max-width: 33.33333%;
+    flex: 0 0 41.66667%;
+    max-width: 41.66667%;
     padding-right: 5px;
     padding-left: 5px; }
   #lmcu-calculator #consolidation .repeat-row .balance,
@@ -15292,8 +15307,8 @@ a.text-dark:hover, a.text-dark:focus {
     width: 100%;
     padding-right: 15px;
     padding-left: 15px;
-    flex: 0 0 33.33333%;
-    max-width: 33.33333%;
+    flex: 0 0 25%;
+    max-width: 25%;
     padding-right: 5px;
     padding-left: 5px; }
     @media (min-width: 768px) {
@@ -15307,8 +15322,8 @@ a.text-dark:hover, a.text-dark:focus {
     width: 100%;
     padding-right: 15px;
     padding-left: 15px;
-    flex: 0 0 33.33333%;
-    max-width: 33.33333%;
+    flex: 0 0 25%;
+    max-width: 25%;
     padding-right: 5px;
     padding-left: 5px; }
     @media (min-width: 768px) {
@@ -15320,8 +15335,10 @@ a.text-dark:hover, a.text-dark:focus {
   #lmcu-calculator #consolidation .header-row .controls {
     position: relative;
     width: 100%;
-    padding-right: 15px;
-    padding-left: 15px;
+    padding-right: 0;
+    padding-left: 0;
+    flex: 0 0 8.33333%;
+    max-width: 8.33333%;
     display: flex;
     width: auto; }
     #lmcu-calculator #consolidation .repeat-row .controls .btn, #lmcu-calculator #consolidation .repeat-row .controls .calculator .column-right .btn-apply, #lmcu-calculator .calculator .column-right #consolidation .repeat-row .controls .btn-apply,
@@ -15333,8 +15350,14 @@ a.text-dark:hover, a.text-dark:focus {
       padding: 0;
       line-height: 1.5rem;
       font-size: 0.75rem;
-      margin: auto 0;
+      margin: auto 0 auto auto;
       cursor: pointer; }
+      @media (min-width: 768px) {
+        #lmcu-calculator #consolidation .repeat-row .controls .btn, #lmcu-calculator #consolidation .repeat-row .controls .calculator .column-right .btn-apply, #lmcu-calculator .calculator .column-right #consolidation .repeat-row .controls .btn-apply,
+        #lmcu-calculator #consolidation .header-row .controls .btn,
+        #lmcu-calculator #consolidation .header-row .controls .calculator .column-right .btn-apply,
+        #lmcu-calculator .calculator .column-right #consolidation .header-row .controls .btn-apply {
+          margin: auto; } }
     #lmcu-calculator #consolidation .repeat-row .controls .btn-add,
     #lmcu-calculator #consolidation .header-row .controls .btn-add {
       border-radius: 50%; }
@@ -15357,8 +15380,8 @@ a.text-dark:hover, a.text-dark:focus {
     width: 100%;
     padding-right: 15px;
     padding-left: 15px;
-    flex: 0 0 58.33333%;
-    max-width: 58.33333%;
+    flex: 0 0 66.66667%;
+    max-width: 66.66667%;
     padding-right: 5px;
     padding-left: 5px;
     display: flex;
@@ -15366,7 +15389,8 @@ a.text-dark:hover, a.text-dark:focus {
     #lmcu-calculator #consolidation .repayment-calc .repayment-calc-label label {
       margin-top: auto;
       margin-bottom: auto;
-      font-weight: 700; }
+      font-weight: 800;
+      color: #333; }
   #lmcu-calculator #consolidation .repayment-calc .repayment-calc-total {
     position: relative;
     width: 100%;
@@ -15376,6 +15400,15 @@ a.text-dark:hover, a.text-dark:focus {
     max-width: 25%;
     padding-right: 5px;
     padding-left: 5px; }
+
+#infoLegal ul {
+  list-style-type: inherit;
+  margin-left: 1.5rem; }
+  #infoLegal ul li {
+    margin-bottom: 0.75rem; }
+
+#infoLegal p {
+  padding-bottom: 1rem; }
 
 /*! purgecss start ignore */
 .modal .modal-content {

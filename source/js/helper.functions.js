@@ -16,16 +16,16 @@ function NPERResult(payment, present) {
     if (present > 25000) {
         var result = {
             validLoan: 0
-            , message: '<div class="alert alert-warning my-3 p-2">The maximum amount available is £25,000</div>'
+            , message: '<div class="alert alert-warning my-3 p-2">The maximum amount we can lend is £25,000</div>'
             , months: nper
             , months_readable: npertext
         }
         return result;
     }
-    else if (present > 15000) {
+    if (present > 15000) {
         var result = {
             validLoan: 1
-            , message: '<div class="alert alert-warning my-3 p-2">To be eligible to borrow over £15,000, you will need to be a homeowner</div>'
+            , message: '<div class="alert alert-info my-3 p-2">To be eligible to borrow over £15,000, you will need to be a homeowner</div>'
             , months: nper
             , months_readable: npertext
         }
@@ -39,7 +39,7 @@ function NPERResult(payment, present) {
             if (nper > 60) {
                 var result = {
                     validLoan: 0
-                    , message: '<div class="alert alert-warning my-3 p-2"><p>Even with our low rates, it would take you <strong>' + npertext + '</strong> to pay everything off. The maximum loan term we offer is 5 years.</p><p>Can you afford to pay more each month to get it paid off sooner?</div>'
+                    , message: '<div class="alert alert-warning my-3 p-2"><p>Even with our low rates, it would take you <strong>' + npertext + '</strong> to pay everything off.</p><p>The maximum loan term we offer is 5 years.</p><p>Can you afford to pay more each month to get it paid off sooner?</div>'
                     , months: nper
                     , months_readable: npertext
                 }
@@ -67,7 +67,7 @@ function NPERResult(payment, present) {
         else {
             var result = {
                 validLoan: 0
-                , message: '<div class="alert alert-danger my-3 p-2"><p>Your current repayment amount is too low to ever pay it all off.</p><p>Consider increasing your monthly repayment amount.</div>'
+                , message: '<div class="alert alert-danger my-3 p-2"><p>At this repayment amount, you are likely to ever be able to pay everything off.</p><p>Consider increasing the amount you repay each month if possible.</div>'
                 , months: nper
                 , months_readable: npertext
             }
@@ -171,6 +171,7 @@ function setURLS(loanAmount, loanTerm) {
 Set up tabs etc
 */
 jQuery(document).ready(function ($) {
+    $('[data-toggle="tooltip"]').tooltip();
     //Move modal in DOM and set up tabs and popovers
     $('#currentMember').appendTo("body")
     $('[data-toggle="popover"]').popover();

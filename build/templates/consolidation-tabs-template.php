@@ -1,13 +1,14 @@
 <div id="consolidation">
+    <h6>What you currently owe</h6>
     <div class="header-row">
         <div class="type">
-            <label>Type of debt</label>
+            <label>Type</label>
         </div>
         <div class="balance">
-            <label>Current balance</label>
+            <label>Balance <a href="#" data-toggle="tooltip" data-placement="top" title="The total amount you currently owe"><i class="fa fa-question-circle" aria-hidden="true"></i></a></label>
         </div>
         <div class="repayment">
-            <label>Monthly repayment</label>
+            <label>Repayment <a href="#" data-toggle="tooltip" data-placement="top" title="The amount you currently repay each month"><i class="fa fa-question-circle" aria-hidden="true"></i></a></label>
         </div>
     </div>
     <div id="repeater-rows">
@@ -31,8 +32,8 @@
     </div>
     <div id="RepaymentSize" class="repayment-calc">
         <div class="repayment-calc-label">
-            <label for="TotalRepayment">How much can you afford to repay each month?</label>
-            <p>Increasing this amount will enable you to pay it off sooner.</p>
+            <label for="TotalRepayment">Total monthly repayment <a href="#" data-toggle="tooltip" data-placement="top" title="We've added this up for you. You should increase it if you can afford to, though."><i class="fa fa-question-circle" aria-hidden="true"></i></a></label>
+            <p>Increasing this will mean you can pay things off sooner.</p>
         </div>
         <div class="repayment-calc-total">
             <input id="TotalRepayment" data-type="currency" type="text" class="form-control" placeholder="£0.00"> </div>

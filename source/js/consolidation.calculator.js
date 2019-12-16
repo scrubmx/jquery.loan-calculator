@@ -60,10 +60,10 @@ function CalculateInterestSaved() {
     if (getExampleCost < getComparisonCost) {
         var TotalSavings = getComparisonCost - getExampleCost;
         var TotalSavings = TotalSavings.toFixed(2);
-        var SavingsOutput = '<div class="alert alert-success"><p>Depending on the interest you\'re currently paying, you could pay off everything you owe in around <strong>' + monthstoYears(parseInt(nperMonths)) + '</strong>, saving you <strong>' + ConvertToMoney(TotalSavings) + '</strong> in interest.</p></div>';
+        var SavingsOutput = '<div class="alert alert-success"><p>Depending on how interest you\'re currently paying, we could help you pay off everything you\'ve told us you owe in around <strong>' + monthstoYears(parseInt(nperMonths)) + '</strong>. This would save you approximately <strong>' + ConvertToMoney(TotalSavings) + '</strong> in interest.</p></div>';
     }
     else {
-        var SavingsOutput = 'We can\'t save you money';
+        var SavingsOutput = '<div class="alert alert-danger">For amounts under £400, we are unlikely to be able to save you money compared to your current borrowing.</div>';
     }
     console.log(SavingsOutput);
     return SavingsOutput;
