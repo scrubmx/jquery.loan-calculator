@@ -171,7 +171,7 @@ function setURLS(loanAmount, loanTerm) {
 Set up tabs etc
 */
 jQuery(document).ready(function ($) {
-    $('[data-toggle="tooltip"]').tooltip();
+    $('[data-toggle="tooltip"]').tooltip().on('click', preventDefault());
     //Move modal in DOM and set up tabs and popovers
     $('#currentMember').appendTo("body")
     $('[data-toggle="popover"]').popover();
