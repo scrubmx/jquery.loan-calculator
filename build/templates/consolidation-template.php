@@ -39,7 +39,7 @@
                             <ul class="summary">
                                 <li id="result_amount">Loan amount: <span class="result">£0.00</span></li>
                                 <li id="result_apr">Representative APR: <span class="result"></span></li>
-                                <li id="result_months">You will have paid everything off in: <span class="result">0 months</span></li>
+                                <li id="result_months">Length: <span class="result">0 months</span></li>
                                 <li id="result_repayment">Monthly repayment: <span class="result"></span></li>
                                 <li id="result_cost" class="invalid">Total interest paid: <span class="result"></span> </li>
                             </ul>

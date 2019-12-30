@@ -1,14 +1,14 @@
 <div id="consolidation">
-    <h6>What you currently owe</h6>
+    <h6>Your current borrowing</h6>
     <div class="header-row">
         <div class="type">
             <label>Type</label>
         </div>
         <div class="balance">
-            <label>Balance <a href="#" data-toggle="tooltip" data-placement="top" title="The total amount you currently owe"><i class="fa fa-question-circle" aria-hidden="true"></i></a></label>
+            <label>Balance <a href="#" inputmode="numeric" data-toggle="tooltip" data-placement="top" title="The total amount you currently owe"><i class="fa fa-question-circle" aria-hidden="true"></i></a></label>
         </div>
         <div class="repayment">
-            <label>Repayment <a href="#" data-toggle="tooltip" data-placement="top" title="The amount you currently repay each month"><i class="fa fa-question-circle" aria-hidden="true"></i></a></label>
+            <label>Repayment <a href="#" inputmode="numeric" data-toggle="tooltip" data-placement="top" title="The amount you currently repay each month"><i class="fa fa-question-circle" aria-hidden="true"></i></a></label>
         </div>
     </div>
     <div id="repeater-rows">
@@ -22,9 +22,9 @@
                 </select>
             </div>
             <div class="balance">
-                <input data-type="currency" type="text" placeholder="£0.00"> </div>
+                <input data-type="currency" inputmode="numeric" type="text" placeholder="£0.00"> </div>
             <div class="repayment">
-                <input data-type="currency" type="text" placeholder="£0.00"> </div>
+                <input data-type="currency" inputmode="numeric" type="text" placeholder="£0.00"> </div>
             <div class="controls">
                 <a class="btn btn-add"></a>
             </div>
@@ -36,7 +36,7 @@
             <p>Increasing this will enable you to pay everything off sooner, and is likely to reduce the amount of interest you end up paying.</p>
         </div>
         <div class="repayment-calc-total">
-            <input id="TotalRepayment" data-type="currency" type="text" class="form-control" placeholder="£0.00"> </div>
+            <input id="TotalRepayment" inputmode="numeric" data-type="currency" type="text" class="form-control" placeholder="£0.00"> </div>
         <div class="mobile-btn-row"><a href="#results">Calculate</a></div>
         
     </div>

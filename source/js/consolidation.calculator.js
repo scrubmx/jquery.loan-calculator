@@ -2,7 +2,7 @@ jQuery(document).ready(function ($) {
     //Only fire this up if it's a consolidation calculator
     if (ProductDefaults.consolidation == 1) {
         // Initialize
-        $('.btn-apply, #example, #comparison').hide();
+        $('.btn-apply, #example, #comparison,.mobile-btn-row,.repayment-calc').hide();
         $example = jQuery('#example').loanCalculator();
         $comparison = jQuery('#comparison').loanCalculator();
         // Repeater fields
@@ -29,13 +29,21 @@ jQuery(document).ready(function ($) {
             , change: function () {
                 BalanceTotal = calculateSum('.balance input');
                 MonthlyRepaymentTotal = calculateSum('.repayment input');
-                $('#result_amount .result').text(ConvertToMoney(BalanceTotal));
-                $('#TotalRepayment').val(MonthlyRepaymentTotal).trigger('change');
             }
         }, '.repeat-row input');
+                    $('#repeater-rows').on({
+         change: function(){
+                            $('.repayment-calc').show();
+                $('#result_amount .result').text(ConvertToMoney(BalanceTotal));
+                $('#TotalRepayment').val(MonthlyRepaymentTotal).trigger('change');
+        }   
+        },'.repayment input');
         // Do our calculations once the monthly repayment amount is selected
         $('#TotalRepayment').on('change paste keyup', function () {
             $('.example-body h4').text('Result');
+            if ($(window).width() < 568) {
+   $('.mobile-btn-row').show();
+}
             var OptionalRepayment = ConvertToNumber($(this).val());
             ConsolidateResult(OptionalRepayment, BalanceTotal);
             setURLS(BalanceTotal, Math.round(NPER(OptionalRepayment, BalanceTotal)));

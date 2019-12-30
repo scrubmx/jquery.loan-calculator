@@ -366,7 +366,7 @@
                                         @include make-col-ready(0);
                                         @include make-col(12);
                                         #message {
-                                            font-size: 14px;
+                                            
                                         
                                             @include media-breakpoint-up(md) {
                                                 @include make-col-ready(0);

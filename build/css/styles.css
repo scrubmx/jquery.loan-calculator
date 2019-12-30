@@ -15210,17 +15210,15 @@ a.text-dark:hover, a.text-dark:focus {
             padding-left: 0;
             flex: 0 0 100%;
             max-width: 100%; }
-            #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-secondary .fields #message {
-              font-size: 14px; }
-              @media (min-width: 768px) {
-                #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-secondary .fields #message {
-                  position: relative;
-                  width: 100%;
-                  padding-right: 0;
-                  padding-left: 0;
-                  flex: 0 0 66.66667%;
-                  max-width: 66.66667%;
-                  margin-top: 1.5rem; } }
+            @media (min-width: 768px) {
+              #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-secondary .fields #message {
+                position: relative;
+                width: 100%;
+                padding-right: 0;
+                padding-left: 0;
+                flex: 0 0 66.66667%;
+                max-width: 66.66667%;
+                margin-top: 1.5rem; } }
   #lmcu-calculator .calculator .column-right {
     position: relative;
     width: 100%;
