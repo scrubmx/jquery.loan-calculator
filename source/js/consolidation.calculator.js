@@ -60,10 +60,10 @@ function CalculateInterestSaved() {
     if (getExampleCost < getComparisonCost) {
         var TotalSavings = getComparisonCost - getExampleCost;
         var TotalSavings = TotalSavings.toFixed(2);
-        var SavingsOutput = '<div class="alert alert-success"><p>Depending on how interest you\'re currently paying, we could help you pay off everything you\'ve told us you owe in around <strong>' + monthstoYears(parseInt(nperMonths)) + '</strong>. This would save you approximately <strong>' + ConvertToMoney(TotalSavings) + '</strong> in interest.</p></div>';
+        var SavingsOutput = '<div class="alert alert-success"><p>Depending on how much interest you\'re currently paying, we could help you pay off everything you\'ve told us you owe in around <strong>' + monthstoYears(NperResult.months) + '</strong>.</p><p>Compared to a typical credit card rate of 24.7% APR, this would save you an estimated <strong>' + ConvertToMoney(TotalSavings) + '</strong> in interest.</p></div>';
     }
     else {
-        var SavingsOutput = '<div class="alert alert-danger">For amounts under £400, we are unlikely to be able to save you money compared to your current borrowing.</div>';
+        var SavingsOutput = '<div class="alert alert-danger">For amounts under £400, we are unlikely to be able to save you money with a consolidation loan.</div>';
     }
     console.log(SavingsOutput);
     return SavingsOutput;

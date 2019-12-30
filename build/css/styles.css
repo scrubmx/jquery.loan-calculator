@@ -264,6 +264,8 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle {
 #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .btn:hover:before,
 #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .column-right .btn-apply:hover:before,
 #lmcu-calculator .calculator .column-right .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .btn-apply:hover:before,
+#lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right #consolidation .mobile-btn-row a:hover:before,
+#lmcu-calculator #consolidation .mobile-btn-row .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right a:hover:before,
 #lmcu-calculator .calculator .column-right .btn-apply:hover:before,
 #lmcu-calculator #consolidation .repeat-row .controls .btn-add:before,
 #lmcu-calculator #consolidation .header-row .controls .btn-add:before,
@@ -281,7 +283,7 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle {
   text-rendering: auto;
   line-height: 1; }
 
-#lmcu-calculator .calculator .column-left nav .calculator-tabs li a.tab-calculator:before, #lmcu-calculator .calculator .column-left nav .calculator-tabs li a.tab-info:before, #lmcu-calculator .calculator .column-left nav .calculator-tabs li a.tab-legal:before, #lmcu-calculator .calculator .column-left nav .calculator-tabs li a.tab-remind:before, #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .btn:hover:before, #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .column-right .btn-apply:hover:before, #lmcu-calculator .calculator .column-right .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .btn-apply:hover:before, #lmcu-calculator .calculator .column-right .btn-apply:hover:before, #lmcu-calculator #consolidation .repeat-row .controls .btn-add:before,
+#lmcu-calculator .calculator .column-left nav .calculator-tabs li a.tab-calculator:before, #lmcu-calculator .calculator .column-left nav .calculator-tabs li a.tab-info:before, #lmcu-calculator .calculator .column-left nav .calculator-tabs li a.tab-legal:before, #lmcu-calculator .calculator .column-left nav .calculator-tabs li a.tab-remind:before, #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .btn:hover:before, #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .column-right .btn-apply:hover:before, #lmcu-calculator .calculator .column-right .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .btn-apply:hover:before, #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right #consolidation .mobile-btn-row a:hover:before, #lmcu-calculator #consolidation .mobile-btn-row .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right a:hover:before, #lmcu-calculator .calculator .column-right .btn-apply:hover:before, #lmcu-calculator #consolidation .repeat-row .controls .btn-add:before,
 #lmcu-calculator #consolidation .header-row .controls .btn-add:before, #lmcu-calculator #consolidation .repeat-row .controls .btn-remove:before,
 #lmcu-calculator #consolidation .header-row .controls .btn-remove:before {
   -webkit-font-smoothing: antialiased;
@@ -371,6 +373,8 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle {
 #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .fa-pull-left.btn:hover:before,
 #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .column-right .fa-pull-left.btn-apply:hover:before,
 #lmcu-calculator .calculator .column-right .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .fa-pull-left.btn-apply:hover:before,
+#lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right #consolidation .mobile-btn-row a.fa-pull-left:hover:before,
+#lmcu-calculator #consolidation .mobile-btn-row .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right a.fa-pull-left:hover:before,
 #lmcu-calculator .calculator .column-right .fa-pull-left.btn-apply:hover:before,
 #lmcu-calculator #consolidation .repeat-row .controls .fa-pull-left.btn-add:before,
 #lmcu-calculator #consolidation .header-row .controls .fa-pull-left.btn-add:before,
@@ -390,6 +394,8 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle {
 #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .fa-pull-right.btn:hover:before,
 #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .column-right .fa-pull-right.btn-apply:hover:before,
 #lmcu-calculator .calculator .column-right .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .fa-pull-right.btn-apply:hover:before,
+#lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right #consolidation .mobile-btn-row a.fa-pull-right:hover:before,
+#lmcu-calculator #consolidation .mobile-btn-row .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right a.fa-pull-right:hover:before,
 #lmcu-calculator .calculator .column-right .fa-pull-right.btn-apply:hover:before,
 #lmcu-calculator #consolidation .repeat-row .controls .fa-pull-right.btn-add:before,
 #lmcu-calculator #consolidation .header-row .controls .fa-pull-right.btn-add:before,
@@ -4691,6 +4697,8 @@ readers do not read off random characters that represent icons */
 #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .btn:hover:before,
 #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .column-right .btn-apply:hover:before,
 #lmcu-calculator .calculator .column-right .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .btn-apply:hover:before,
+#lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right #consolidation .mobile-btn-row a:hover:before,
+#lmcu-calculator #consolidation .mobile-btn-row .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right a:hover:before,
 #lmcu-calculator .calculator .column-right .btn-apply:hover:before,
 #lmcu-calculator #consolidation .repeat-row .controls .btn-add:before,
 #lmcu-calculator #consolidation .header-row .controls .btn-add:before,
@@ -8724,7 +8732,7 @@ textarea.form-control {
     .form-inline .custom-control-label {
       margin-bottom: 0; } }
 
-.btn, #lmcu-calculator .calculator .column-right .btn-apply {
+.btn, #lmcu-calculator .calculator .column-right .btn-apply, #lmcu-calculator #consolidation .mobile-btn-row a {
   display: inline-block;
   font-weight: 400;
   color: #212529;
@@ -8739,26 +8747,28 @@ textarea.form-control {
   border-radius: 0;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; }
   @media (prefers-reduced-motion: reduce) {
-    .btn, #lmcu-calculator .calculator .column-right .btn-apply {
+    .btn, #lmcu-calculator .calculator .column-right .btn-apply, #lmcu-calculator #consolidation .mobile-btn-row a {
       transition: none; } }
-  .btn:hover, #lmcu-calculator .calculator .column-right .btn-apply:hover {
+  .btn:hover, #lmcu-calculator .calculator .column-right .btn-apply:hover, #lmcu-calculator #consolidation .mobile-btn-row a:hover {
     color: #212529;
     text-decoration: none; }
-  .btn:focus, #lmcu-calculator .calculator .column-right .btn-apply:focus, .btn.focus, #lmcu-calculator .calculator .column-right .focus.btn-apply {
+  .btn:focus, #lmcu-calculator .calculator .column-right .btn-apply:focus, #lmcu-calculator #consolidation .mobile-btn-row a:focus, .btn.focus, #lmcu-calculator .calculator .column-right .focus.btn-apply, #lmcu-calculator #consolidation .mobile-btn-row a.focus {
     outline: 0;
     box-shadow: 0 0 0 0.2rem rgba(227, 24, 55, 0.25); }
-  .btn.disabled, #lmcu-calculator .calculator .column-right .disabled.btn-apply, .btn:disabled, #lmcu-calculator .calculator .column-right .btn-apply:disabled {
+  .btn.disabled, #lmcu-calculator .calculator .column-right .disabled.btn-apply, #lmcu-calculator #consolidation .mobile-btn-row a.disabled, .btn:disabled, #lmcu-calculator .calculator .column-right .btn-apply:disabled, #lmcu-calculator #consolidation .mobile-btn-row a:disabled {
     opacity: 0.65;
     box-shadow: none; }
-  .btn:not(:disabled):not(.disabled):active, #lmcu-calculator .calculator .column-right .btn-apply:not(:disabled):not(.disabled):active, .btn:not(:disabled):not(.disabled).active, #lmcu-calculator .calculator .column-right .btn-apply:not(:disabled):not(.disabled).active {
+  .btn:not(:disabled):not(.disabled):active, #lmcu-calculator .calculator .column-right .btn-apply:not(:disabled):not(.disabled):active, #lmcu-calculator #consolidation .mobile-btn-row a:not(:disabled):not(.disabled):active, .btn:not(:disabled):not(.disabled).active, #lmcu-calculator .calculator .column-right .btn-apply:not(:disabled):not(.disabled).active, #lmcu-calculator #consolidation .mobile-btn-row a:not(:disabled):not(.disabled).active {
     box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125); }
-    .btn:not(:disabled):not(.disabled):active:focus, #lmcu-calculator .calculator .column-right .btn-apply:not(:disabled):not(.disabled):active:focus, .btn:not(:disabled):not(.disabled).active:focus, #lmcu-calculator .calculator .column-right .btn-apply:not(:disabled):not(.disabled).active:focus {
+    .btn:not(:disabled):not(.disabled):active:focus, #lmcu-calculator .calculator .column-right .btn-apply:not(:disabled):not(.disabled):active:focus, #lmcu-calculator #consolidation .mobile-btn-row a:not(:disabled):not(.disabled):active:focus, .btn:not(:disabled):not(.disabled).active:focus, #lmcu-calculator .calculator .column-right .btn-apply:not(:disabled):not(.disabled).active:focus, #lmcu-calculator #consolidation .mobile-btn-row a:not(:disabled):not(.disabled).active:focus {
       box-shadow: 0 0 0 0.2rem rgba(227, 24, 55, 0.25), inset 0 3px 5px rgba(0, 0, 0, 0.125); }
 
-a.btn.disabled, #lmcu-calculator .calculator .column-right a.disabled.btn-apply,
+a.btn.disabled, #lmcu-calculator .calculator .column-right a.disabled.btn-apply, #lmcu-calculator #consolidation .mobile-btn-row a.disabled,
 fieldset:disabled a.btn,
 fieldset:disabled #lmcu-calculator .calculator .column-right a.btn-apply,
-#lmcu-calculator .calculator .column-right fieldset:disabled a.btn-apply {
+#lmcu-calculator .calculator .column-right fieldset:disabled a.btn-apply,
+fieldset:disabled #lmcu-calculator #consolidation .mobile-btn-row a,
+#lmcu-calculator #consolidation .mobile-btn-row fieldset:disabled a {
   pointer-events: none; }
 
 .btn-primary {
@@ -8785,28 +8795,30 @@ fieldset:disabled #lmcu-calculator .calculator .column-right a.btn-apply,
     .show > .btn-primary.dropdown-toggle:focus {
       box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125), 0 0 0 0.2rem rgba(231, 59, 85, 0.5); }
 
-.btn-secondary {
+.btn-secondary, #lmcu-calculator #consolidation .mobile-btn-row a {
   color: #ffffff;
   background-color: #6c757d;
   border-color: #6c757d;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075); }
-  .btn-secondary:hover {
+  .btn-secondary:hover, #lmcu-calculator #consolidation .mobile-btn-row a:hover {
     color: #ffffff;
     background-color: #5a6268;
     border-color: #545b62; }
-  .btn-secondary:focus, .btn-secondary.focus {
+  .btn-secondary:focus, #lmcu-calculator #consolidation .mobile-btn-row a:focus, .btn-secondary.focus, #lmcu-calculator #consolidation .mobile-btn-row a.focus {
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 0 0.2rem rgba(130, 138, 145, 0.5); }
-  .btn-secondary.disabled, .btn-secondary:disabled {
+  .btn-secondary.disabled, #lmcu-calculator #consolidation .mobile-btn-row a.disabled, .btn-secondary:disabled, #lmcu-calculator #consolidation .mobile-btn-row a:disabled {
     color: #ffffff;
     background-color: #6c757d;
     border-color: #6c757d; }
-  .btn-secondary:not(:disabled):not(.disabled):active, .btn-secondary:not(:disabled):not(.disabled).active,
-  .show > .btn-secondary.dropdown-toggle {
+  .btn-secondary:not(:disabled):not(.disabled):active, #lmcu-calculator #consolidation .mobile-btn-row a:not(:disabled):not(.disabled):active, .btn-secondary:not(:disabled):not(.disabled).active, #lmcu-calculator #consolidation .mobile-btn-row a:not(:disabled):not(.disabled).active,
+  .show > .btn-secondary.dropdown-toggle,
+  #lmcu-calculator #consolidation .mobile-btn-row .show > a.dropdown-toggle {
     color: #ffffff;
     background-color: #545b62;
     border-color: #4e555b; }
-    .btn-secondary:not(:disabled):not(.disabled):active:focus, .btn-secondary:not(:disabled):not(.disabled).active:focus,
-    .show > .btn-secondary.dropdown-toggle:focus {
+    .btn-secondary:not(:disabled):not(.disabled):active:focus, #lmcu-calculator #consolidation .mobile-btn-row a:not(:disabled):not(.disabled):active:focus, .btn-secondary:not(:disabled):not(.disabled).active:focus, #lmcu-calculator #consolidation .mobile-btn-row a:not(:disabled):not(.disabled).active:focus,
+    .show > .btn-secondary.dropdown-toggle:focus,
+    #lmcu-calculator #consolidation .mobile-btn-row .show > a.dropdown-toggle:focus {
       box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125), 0 0 0 0.2rem rgba(130, 138, 145, 0.5); }
 
 .btn-success {
@@ -9163,13 +9175,13 @@ fieldset:disabled #lmcu-calculator .calculator .column-right a.btn-apply,
     color: #6c757d;
     pointer-events: none; }
 
-.btn-lg, .btn-group-lg > .btn, #lmcu-calculator .calculator .column-right .btn-group-lg > .btn-apply {
+.btn-lg, .btn-group-lg > .btn, #lmcu-calculator .calculator .column-right .btn-group-lg > .btn-apply, #lmcu-calculator #consolidation .mobile-btn-row .btn-group-lg > a {
   padding: 0.5rem 1rem;
   font-size: 1.25rem;
   line-height: 1.5;
   border-radius: 0; }
 
-.btn-sm, .btn-group-sm > .btn, #lmcu-calculator .calculator .column-right .btn-group-sm > .btn-apply {
+.btn-sm, .btn-group-sm > .btn, #lmcu-calculator .calculator .column-right .btn-group-sm > .btn-apply, #lmcu-calculator #consolidation .mobile-btn-row .btn-group-sm > a {
   padding: 0.25rem 0.5rem;
   font-size: 0.875rem;
   line-height: 1.5;
@@ -9423,22 +9435,27 @@ input[type="button"].btn-block,
   position: relative;
   display: inline-flex;
   vertical-align: middle; }
-  .btn-group > .btn, #lmcu-calculator .calculator .column-right .btn-group > .btn-apply,
+  .btn-group > .btn, #lmcu-calculator .calculator .column-right .btn-group > .btn-apply, #lmcu-calculator #consolidation .mobile-btn-row .btn-group > a,
   .btn-group-vertical > .btn,
-  #lmcu-calculator .calculator .column-right .btn-group-vertical > .btn-apply {
+  #lmcu-calculator .calculator .column-right .btn-group-vertical > .btn-apply,
+  #lmcu-calculator #consolidation .mobile-btn-row .btn-group-vertical > a {
     position: relative;
     flex: 1 1 auto; }
-    .btn-group > .btn:hover, #lmcu-calculator .calculator .column-right .btn-group > .btn-apply:hover,
+    .btn-group > .btn:hover, #lmcu-calculator .calculator .column-right .btn-group > .btn-apply:hover, #lmcu-calculator #consolidation .mobile-btn-row .btn-group > a:hover,
     .btn-group-vertical > .btn:hover,
-    #lmcu-calculator .calculator .column-right .btn-group-vertical > .btn-apply:hover {
+    #lmcu-calculator .calculator .column-right .btn-group-vertical > .btn-apply:hover,
+    #lmcu-calculator #consolidation .mobile-btn-row .btn-group-vertical > a:hover {
       z-index: 1; }
-    .btn-group > .btn:focus, #lmcu-calculator .calculator .column-right .btn-group > .btn-apply:focus, .btn-group > .btn:active, #lmcu-calculator .calculator .column-right .btn-group > .btn-apply:active, .btn-group > .btn.active, #lmcu-calculator .calculator .column-right .btn-group > .active.btn-apply,
+    .btn-group > .btn:focus, #lmcu-calculator .calculator .column-right .btn-group > .btn-apply:focus, #lmcu-calculator #consolidation .mobile-btn-row .btn-group > a:focus, .btn-group > .btn:active, #lmcu-calculator .calculator .column-right .btn-group > .btn-apply:active, #lmcu-calculator #consolidation .mobile-btn-row .btn-group > a:active, .btn-group > .btn.active, #lmcu-calculator .calculator .column-right .btn-group > .active.btn-apply, #lmcu-calculator #consolidation .mobile-btn-row .btn-group > a.active,
     .btn-group-vertical > .btn:focus,
     #lmcu-calculator .calculator .column-right .btn-group-vertical > .btn-apply:focus,
+    #lmcu-calculator #consolidation .mobile-btn-row .btn-group-vertical > a:focus,
     .btn-group-vertical > .btn:active,
     #lmcu-calculator .calculator .column-right .btn-group-vertical > .btn-apply:active,
+    #lmcu-calculator #consolidation .mobile-btn-row .btn-group-vertical > a:active,
     .btn-group-vertical > .btn.active,
-    #lmcu-calculator .calculator .column-right .btn-group-vertical > .active.btn-apply {
+    #lmcu-calculator .calculator .column-right .btn-group-vertical > .active.btn-apply,
+    #lmcu-calculator #consolidation .mobile-btn-row .btn-group-vertical > a.active {
       z-index: 1; }
 
 .btn-toolbar {
@@ -9448,7 +9465,7 @@ input[type="button"].btn-block,
   .btn-toolbar .input-group {
     width: auto; }
 
-.btn-group > .btn:not(:first-child), #lmcu-calculator .calculator .column-right .btn-group > .btn-apply:not(:first-child),
+.btn-group > .btn:not(:first-child), #lmcu-calculator .calculator .column-right .btn-group > .btn-apply:not(:first-child), #lmcu-calculator #consolidation .mobile-btn-row .btn-group > a:not(:first-child),
 .btn-group > .btn-group:not(:first-child) {
   margin-left: -1px; }
 
@@ -9462,11 +9479,11 @@ input[type="button"].btn-block,
   .dropleft .dropdown-toggle-split::before {
     margin-right: 0; }
 
-.btn-sm + .dropdown-toggle-split, .btn-group-sm > .btn + .dropdown-toggle-split, #lmcu-calculator .calculator .column-right .btn-group-sm > .btn-apply + .dropdown-toggle-split {
+.btn-sm + .dropdown-toggle-split, .btn-group-sm > .btn + .dropdown-toggle-split, #lmcu-calculator .calculator .column-right .btn-group-sm > .btn-apply + .dropdown-toggle-split, #lmcu-calculator #consolidation .mobile-btn-row .btn-group-sm > a + .dropdown-toggle-split {
   padding-right: 0.375rem;
   padding-left: 0.375rem; }
 
-.btn-lg + .dropdown-toggle-split, .btn-group-lg > .btn + .dropdown-toggle-split, #lmcu-calculator .calculator .column-right .btn-group-lg > .btn-apply + .dropdown-toggle-split {
+.btn-lg + .dropdown-toggle-split, .btn-group-lg > .btn + .dropdown-toggle-split, #lmcu-calculator .calculator .column-right .btn-group-lg > .btn-apply + .dropdown-toggle-split, #lmcu-calculator #consolidation .mobile-btn-row .btn-group-lg > a + .dropdown-toggle-split {
   padding-right: 0.75rem;
   padding-left: 0.75rem; }
 
@@ -9482,23 +9499,28 @@ input[type="button"].btn-block,
   
   .btn-group-vertical > .btn,
   #lmcu-calculator .calculator .column-right .btn-group-vertical > .btn-apply,
+  #lmcu-calculator #consolidation .mobile-btn-row .btn-group-vertical > a,
   .btn-group-vertical > .btn-group {
     width: 100%; }
-  .btn-group-vertical > .btn:not(:first-child), #lmcu-calculator .calculator .column-right .btn-group-vertical > .btn-apply:not(:first-child),
+  .btn-group-vertical > .btn:not(:first-child), #lmcu-calculator .calculator .column-right .btn-group-vertical > .btn-apply:not(:first-child), #lmcu-calculator #consolidation .mobile-btn-row .btn-group-vertical > a:not(:first-child),
   .btn-group-vertical > .btn-group:not(:first-child) {
     margin-top: -1px; }
 
-.btn-group-toggle > .btn, #lmcu-calculator .calculator .column-right .btn-group-toggle > .btn-apply,
+.btn-group-toggle > .btn, #lmcu-calculator .calculator .column-right .btn-group-toggle > .btn-apply, #lmcu-calculator #consolidation .mobile-btn-row .btn-group-toggle > a,
 .btn-group-toggle > .btn-group > .btn,
-#lmcu-calculator .calculator .column-right .btn-group-toggle > .btn-group > .btn-apply {
+#lmcu-calculator .calculator .column-right .btn-group-toggle > .btn-group > .btn-apply,
+#lmcu-calculator #consolidation .mobile-btn-row .btn-group-toggle > .btn-group > a {
   margin-bottom: 0; }
-  .btn-group-toggle > .btn input[type="radio"], #lmcu-calculator .calculator .column-right .btn-group-toggle > .btn-apply input[type="radio"],
+  .btn-group-toggle > .btn input[type="radio"], #lmcu-calculator .calculator .column-right .btn-group-toggle > .btn-apply input[type="radio"], #lmcu-calculator #consolidation .mobile-btn-row .btn-group-toggle > a input[type="radio"],
   .btn-group-toggle > .btn input[type="checkbox"],
   #lmcu-calculator .calculator .column-right .btn-group-toggle > .btn-apply input[type="checkbox"],
+  #lmcu-calculator #consolidation .mobile-btn-row .btn-group-toggle > a input[type="checkbox"],
   .btn-group-toggle > .btn-group > .btn input[type="radio"],
   #lmcu-calculator .calculator .column-right .btn-group-toggle > .btn-group > .btn-apply input[type="radio"],
+  #lmcu-calculator #consolidation .mobile-btn-row .btn-group-toggle > .btn-group > a input[type="radio"],
   .btn-group-toggle > .btn-group > .btn input[type="checkbox"],
-  #lmcu-calculator .calculator .column-right .btn-group-toggle > .btn-group > .btn-apply input[type="checkbox"] {
+  #lmcu-calculator .calculator .column-right .btn-group-toggle > .btn-group > .btn-apply input[type="checkbox"],
+  #lmcu-calculator #consolidation .mobile-btn-row .btn-group-toggle > .btn-group > a input[type="checkbox"] {
     position: absolute;
     clip: rect(0, 0, 0, 0);
     pointer-events: none; }
@@ -9578,39 +9600,65 @@ input[type="button"].btn-block,
 .input-group-prepend,
 .input-group-append {
   display: flex; }
-  .input-group-prepend .btn, .input-group-prepend #lmcu-calculator .calculator .column-right .btn-apply, #lmcu-calculator .calculator .column-right .input-group-prepend .btn-apply,
+  .input-group-prepend .btn, .input-group-prepend #lmcu-calculator .calculator .column-right .btn-apply, #lmcu-calculator .calculator .column-right .input-group-prepend .btn-apply, .input-group-prepend #lmcu-calculator #consolidation .mobile-btn-row a, #lmcu-calculator #consolidation .mobile-btn-row .input-group-prepend a,
   .input-group-append .btn,
   .input-group-append #lmcu-calculator .calculator .column-right .btn-apply,
-  #lmcu-calculator .calculator .column-right .input-group-append .btn-apply {
+  #lmcu-calculator .calculator .column-right .input-group-append .btn-apply,
+  .input-group-append #lmcu-calculator #consolidation .mobile-btn-row a,
+  #lmcu-calculator #consolidation .mobile-btn-row .input-group-append a {
     position: relative;
     z-index: 2; }
-    .input-group-prepend .btn:focus, .input-group-prepend #lmcu-calculator .calculator .column-right .btn-apply:focus, #lmcu-calculator .calculator .column-right .input-group-prepend .btn-apply:focus,
+    .input-group-prepend .btn:focus, .input-group-prepend #lmcu-calculator .calculator .column-right .btn-apply:focus, #lmcu-calculator .calculator .column-right .input-group-prepend .btn-apply:focus, .input-group-prepend #lmcu-calculator #consolidation .mobile-btn-row a:focus, #lmcu-calculator #consolidation .mobile-btn-row .input-group-prepend a:focus,
     .input-group-append .btn:focus,
     .input-group-append #lmcu-calculator .calculator .column-right .btn-apply:focus,
-    #lmcu-calculator .calculator .column-right .input-group-append .btn-apply:focus {
+    #lmcu-calculator .calculator .column-right .input-group-append .btn-apply:focus,
+    .input-group-append #lmcu-calculator #consolidation .mobile-btn-row a:focus,
+    #lmcu-calculator #consolidation .mobile-btn-row .input-group-append a:focus {
       z-index: 3; }
-  .input-group-prepend .btn + .btn, .input-group-prepend #lmcu-calculator .calculator .column-right .btn-apply + .btn, #lmcu-calculator .calculator .column-right .input-group-prepend .btn-apply + .btn, .input-group-prepend #lmcu-calculator .calculator .column-right .btn + .btn-apply, #lmcu-calculator .calculator .column-right .input-group-prepend .btn + .btn-apply, .input-group-prepend #lmcu-calculator .calculator .column-right .btn-apply + .btn-apply, #lmcu-calculator .calculator .column-right .input-group-prepend .btn-apply + .btn-apply,
+  .input-group-prepend .btn + .btn, .input-group-prepend #lmcu-calculator .calculator .column-right .btn-apply + .btn, #lmcu-calculator .calculator .column-right .input-group-prepend .btn-apply + .btn, .input-group-prepend #lmcu-calculator #consolidation .mobile-btn-row a + .btn, #lmcu-calculator #consolidation .mobile-btn-row .input-group-prepend a + .btn, .input-group-prepend #lmcu-calculator .calculator .column-right .btn + .btn-apply, #lmcu-calculator .calculator .column-right .input-group-prepend .btn + .btn-apply, .input-group-prepend #lmcu-calculator .calculator .column-right .btn-apply + .btn-apply, #lmcu-calculator .calculator .column-right .input-group-prepend .btn-apply + .btn-apply, .input-group-prepend #lmcu-calculator #consolidation .mobile-btn-row .calculator .column-right a + .btn-apply, .input-group-prepend #lmcu-calculator .calculator .column-right #consolidation .mobile-btn-row a + .btn-apply, #lmcu-calculator #consolidation .mobile-btn-row .input-group-prepend .calculator .column-right a + .btn-apply, #lmcu-calculator .calculator .column-right #consolidation .mobile-btn-row .input-group-prepend a + .btn-apply, .input-group-prepend #lmcu-calculator #consolidation .mobile-btn-row .btn + a, #lmcu-calculator #consolidation .mobile-btn-row .input-group-prepend .btn + a, .input-group-prepend #lmcu-calculator .calculator .column-right #consolidation .mobile-btn-row .btn-apply + a, .input-group-prepend #lmcu-calculator #consolidation .mobile-btn-row .calculator .column-right .btn-apply + a, #lmcu-calculator .calculator .column-right .input-group-prepend #consolidation .mobile-btn-row .btn-apply + a, #lmcu-calculator #consolidation .mobile-btn-row .calculator .column-right .input-group-prepend .btn-apply + a, .input-group-prepend #lmcu-calculator #consolidation .mobile-btn-row a + a, #lmcu-calculator #consolidation .mobile-btn-row .input-group-prepend a + a,
   .input-group-prepend .btn + .input-group-text,
   .input-group-prepend #lmcu-calculator .calculator .column-right .btn-apply + .input-group-text,
   #lmcu-calculator .calculator .column-right .input-group-prepend .btn-apply + .input-group-text,
+  .input-group-prepend #lmcu-calculator #consolidation .mobile-btn-row a + .input-group-text,
+  #lmcu-calculator #consolidation .mobile-btn-row .input-group-prepend a + .input-group-text,
   .input-group-prepend .input-group-text + .input-group-text,
   .input-group-prepend .input-group-text + .btn,
   .input-group-prepend #lmcu-calculator .calculator .column-right .input-group-text + .btn-apply,
   #lmcu-calculator .calculator .column-right .input-group-prepend .input-group-text + .btn-apply,
+  .input-group-prepend #lmcu-calculator #consolidation .mobile-btn-row .input-group-text + a,
+  #lmcu-calculator #consolidation .mobile-btn-row .input-group-prepend .input-group-text + a,
   .input-group-append .btn + .btn,
   .input-group-append #lmcu-calculator .calculator .column-right .btn-apply + .btn,
   #lmcu-calculator .calculator .column-right .input-group-append .btn-apply + .btn,
+  .input-group-append #lmcu-calculator #consolidation .mobile-btn-row a + .btn,
+  #lmcu-calculator #consolidation .mobile-btn-row .input-group-append a + .btn,
   .input-group-append #lmcu-calculator .calculator .column-right .btn + .btn-apply,
   #lmcu-calculator .calculator .column-right .input-group-append .btn + .btn-apply,
   .input-group-append #lmcu-calculator .calculator .column-right .btn-apply + .btn-apply,
   #lmcu-calculator .calculator .column-right .input-group-append .btn-apply + .btn-apply,
+  .input-group-append #lmcu-calculator #consolidation .mobile-btn-row .calculator .column-right a + .btn-apply,
+  .input-group-append #lmcu-calculator .calculator .column-right #consolidation .mobile-btn-row a + .btn-apply,
+  #lmcu-calculator #consolidation .mobile-btn-row .input-group-append .calculator .column-right a + .btn-apply,
+  #lmcu-calculator .calculator .column-right #consolidation .mobile-btn-row .input-group-append a + .btn-apply,
+  .input-group-append #lmcu-calculator #consolidation .mobile-btn-row .btn + a,
+  #lmcu-calculator #consolidation .mobile-btn-row .input-group-append .btn + a,
+  .input-group-append #lmcu-calculator .calculator .column-right #consolidation .mobile-btn-row .btn-apply + a,
+  .input-group-append #lmcu-calculator #consolidation .mobile-btn-row .calculator .column-right .btn-apply + a,
+  #lmcu-calculator .calculator .column-right .input-group-append #consolidation .mobile-btn-row .btn-apply + a,
+  #lmcu-calculator #consolidation .mobile-btn-row .calculator .column-right .input-group-append .btn-apply + a,
+  .input-group-append #lmcu-calculator #consolidation .mobile-btn-row a + a,
+  #lmcu-calculator #consolidation .mobile-btn-row .input-group-append a + a,
   .input-group-append .btn + .input-group-text,
   .input-group-append #lmcu-calculator .calculator .column-right .btn-apply + .input-group-text,
   #lmcu-calculator .calculator .column-right .input-group-append .btn-apply + .input-group-text,
+  .input-group-append #lmcu-calculator #consolidation .mobile-btn-row a + .input-group-text,
+  #lmcu-calculator #consolidation .mobile-btn-row .input-group-append a + .input-group-text,
   .input-group-append .input-group-text + .input-group-text,
   .input-group-append .input-group-text + .btn,
   .input-group-append #lmcu-calculator .calculator .column-right .input-group-text + .btn-apply,
-  #lmcu-calculator .calculator .column-right .input-group-append .input-group-text + .btn-apply {
+  #lmcu-calculator .calculator .column-right .input-group-append .input-group-text + .btn-apply,
+  .input-group-append #lmcu-calculator #consolidation .mobile-btn-row .input-group-text + a,
+  #lmcu-calculator #consolidation .mobile-btn-row .input-group-append .input-group-text + a {
     margin-left: -1px; }
 
 .input-group-prepend {
@@ -9652,8 +9700,10 @@ input[type="button"].btn-block,
 .input-group-lg > .input-group-append > .input-group-text,
 .input-group-lg > .input-group-prepend > .btn,
 #lmcu-calculator .calculator .column-right .input-group-lg > .input-group-prepend > .btn-apply,
+#lmcu-calculator #consolidation .mobile-btn-row .input-group-lg > .input-group-prepend > a,
 .input-group-lg > .input-group-append > .btn,
-#lmcu-calculator .calculator .column-right .input-group-lg > .input-group-append > .btn-apply {
+#lmcu-calculator .calculator .column-right .input-group-lg > .input-group-append > .btn-apply,
+#lmcu-calculator #consolidation .mobile-btn-row .input-group-lg > .input-group-append > a {
   padding: 0.5rem 1rem;
   font-size: 1.25rem;
   line-height: 1.5; }
@@ -9674,8 +9724,10 @@ input[type="button"].btn-block,
 .input-group-sm > .input-group-append > .input-group-text,
 .input-group-sm > .input-group-prepend > .btn,
 #lmcu-calculator .calculator .column-right .input-group-sm > .input-group-prepend > .btn-apply,
+#lmcu-calculator #consolidation .mobile-btn-row .input-group-sm > .input-group-prepend > a,
 .input-group-sm > .input-group-append > .btn,
-#lmcu-calculator .calculator .column-right .input-group-sm > .input-group-append > .btn-apply {
+#lmcu-calculator .calculator .column-right .input-group-sm > .input-group-append > .btn-apply,
+#lmcu-calculator #consolidation .mobile-btn-row .input-group-sm > .input-group-append > a {
   padding: 0.25rem 0.5rem;
   font-size: 0.875rem;
   line-height: 1.5; }
@@ -10914,7 +10966,7 @@ input[type="button"].btn-block,
   .badge:empty {
     display: none; }
 
-.btn .badge, #lmcu-calculator .calculator .column-right .btn-apply .badge {
+.btn .badge, #lmcu-calculator .calculator .column-right .btn-apply .badge, #lmcu-calculator #consolidation .mobile-btn-row a .badge {
   position: relative;
   top: -1px; }
 
@@ -14806,6 +14858,10 @@ a.text-dark:hover, a.text-dark:focus {
     color: inherit;
     border-color: #dee2e6; } }
 
+.tooltip {
+  font-size: 80%;
+  line-height: normal; }
+
 #lmcu-calculator ul {
   list-style-type: none;
   margin: 0;
@@ -15095,7 +15151,7 @@ a.text-dark:hover, a.text-dark:focus {
             flex: 0 0 33.33333%;
             max-width: 33.33333%;
             display: flex; }
-            #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .btn, #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .column-right .btn-apply, #lmcu-calculator .calculator .column-right .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .btn-apply {
+            #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .btn, #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .column-right .btn-apply, #lmcu-calculator .calculator .column-right .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .btn-apply, #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right #consolidation .mobile-btn-row a, #lmcu-calculator #consolidation .mobile-btn-row .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right a {
               align-self: flex-end;
               margin-top: auto;
               margin-bottom: 1rem;
@@ -15105,37 +15161,41 @@ a.text-dark:hover, a.text-dark:focus {
               border-color: #272d37;
               box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075);
               transition: all 1s; }
-              #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .btn:hover, #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .column-right .btn-apply:hover, #lmcu-calculator .calculator .column-right .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .btn-apply:hover {
+              #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .btn:hover, #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .column-right .btn-apply:hover, #lmcu-calculator .calculator .column-right .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .btn-apply:hover, #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right #consolidation .mobile-btn-row a:hover, #lmcu-calculator #consolidation .mobile-btn-row .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right a:hover {
                 color: #212529;
                 background-color: #ffffff;
                 border-color: #121519; }
-              #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .btn:focus, #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .column-right .btn-apply:focus, #lmcu-calculator .calculator .column-right .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .btn-apply:focus, #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .btn.focus, #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .column-right .focus.btn-apply, #lmcu-calculator .calculator .column-right .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .focus.btn-apply {
+              #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .btn:focus, #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .column-right .btn-apply:focus, #lmcu-calculator .calculator .column-right .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .btn-apply:focus, #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right #consolidation .mobile-btn-row a:focus, #lmcu-calculator #consolidation .mobile-btn-row .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right a:focus, #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .btn.focus, #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .column-right .focus.btn-apply, #lmcu-calculator .calculator .column-right .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .focus.btn-apply, #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right #consolidation .mobile-btn-row a.focus, #lmcu-calculator #consolidation .mobile-btn-row .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right a.focus {
                 box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 0 0.2rem rgba(71, 77, 85, 0.5); }
-              #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .btn.disabled, #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .column-right .disabled.btn-apply, #lmcu-calculator .calculator .column-right .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .disabled.btn-apply, #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .btn:disabled, #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .column-right .btn-apply:disabled, #lmcu-calculator .calculator .column-right .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .btn-apply:disabled {
+              #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .btn.disabled, #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .column-right .disabled.btn-apply, #lmcu-calculator .calculator .column-right .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .disabled.btn-apply, #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right #consolidation .mobile-btn-row a.disabled, #lmcu-calculator #consolidation .mobile-btn-row .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right a.disabled, #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .btn:disabled, #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .column-right .btn-apply:disabled, #lmcu-calculator .calculator .column-right .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .btn-apply:disabled, #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right #consolidation .mobile-btn-row a:disabled, #lmcu-calculator #consolidation .mobile-btn-row .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right a:disabled {
                 color: #ffffff;
                 background-color: #272d37;
                 border-color: #272d37; }
-              #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .btn:not(:disabled):not(.disabled):active, #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .column-right .btn-apply:not(:disabled):not(.disabled):active, #lmcu-calculator .calculator .column-right .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .btn-apply:not(:disabled):not(.disabled):active, #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .btn:not(:disabled):not(.disabled).active, #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .column-right .btn-apply:not(:disabled):not(.disabled).active, #lmcu-calculator .calculator .column-right .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .btn-apply:not(:disabled):not(.disabled).active,
+              #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .btn:not(:disabled):not(.disabled):active, #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .column-right .btn-apply:not(:disabled):not(.disabled):active, #lmcu-calculator .calculator .column-right .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .btn-apply:not(:disabled):not(.disabled):active, #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right #consolidation .mobile-btn-row a:not(:disabled):not(.disabled):active, #lmcu-calculator #consolidation .mobile-btn-row .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right a:not(:disabled):not(.disabled):active, #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .btn:not(:disabled):not(.disabled).active, #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .column-right .btn-apply:not(:disabled):not(.disabled).active, #lmcu-calculator .calculator .column-right .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .btn-apply:not(:disabled):not(.disabled).active, #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right #consolidation .mobile-btn-row a:not(:disabled):not(.disabled).active, #lmcu-calculator #consolidation .mobile-btn-row .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right a:not(:disabled):not(.disabled).active,
               .show > #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .btn.dropdown-toggle,
               .show > #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .column-right .dropdown-toggle.btn-apply,
-              .show > #lmcu-calculator .calculator .column-right .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .dropdown-toggle.btn-apply {
+              .show > #lmcu-calculator .calculator .column-right .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .dropdown-toggle.btn-apply,
+              .show > #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right #consolidation .mobile-btn-row a.dropdown-toggle,
+              .show > #lmcu-calculator #consolidation .mobile-btn-row .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right a.dropdown-toggle {
                 color: #ffffff;
                 background-color: #121519;
                 border-color: #0d0e12; }
-                #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .btn:not(:disabled):not(.disabled):active:focus, #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .column-right .btn-apply:not(:disabled):not(.disabled):active:focus, #lmcu-calculator .calculator .column-right .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .btn-apply:not(:disabled):not(.disabled):active:focus, #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .btn:not(:disabled):not(.disabled).active:focus, #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .column-right .btn-apply:not(:disabled):not(.disabled).active:focus, #lmcu-calculator .calculator .column-right .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .btn-apply:not(:disabled):not(.disabled).active:focus,
+                #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .btn:not(:disabled):not(.disabled):active:focus, #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .column-right .btn-apply:not(:disabled):not(.disabled):active:focus, #lmcu-calculator .calculator .column-right .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .btn-apply:not(:disabled):not(.disabled):active:focus, #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right #consolidation .mobile-btn-row a:not(:disabled):not(.disabled):active:focus, #lmcu-calculator #consolidation .mobile-btn-row .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right a:not(:disabled):not(.disabled):active:focus, #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .btn:not(:disabled):not(.disabled).active:focus, #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .column-right .btn-apply:not(:disabled):not(.disabled).active:focus, #lmcu-calculator .calculator .column-right .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .btn-apply:not(:disabled):not(.disabled).active:focus, #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right #consolidation .mobile-btn-row a:not(:disabled):not(.disabled).active:focus, #lmcu-calculator #consolidation .mobile-btn-row .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right a:not(:disabled):not(.disabled).active:focus,
                 .show > #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .btn.dropdown-toggle:focus,
                 .show > #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .column-right .dropdown-toggle.btn-apply:focus,
-                .show > #lmcu-calculator .calculator .column-right .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .dropdown-toggle.btn-apply:focus {
+                .show > #lmcu-calculator .calculator .column-right .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .dropdown-toggle.btn-apply:focus,
+                .show > #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right #consolidation .mobile-btn-row a.dropdown-toggle:focus,
+                .show > #lmcu-calculator #consolidation .mobile-btn-row .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right a.dropdown-toggle:focus {
                   box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125), 0 0 0 0.2rem rgba(71, 77, 85, 0.5); }
               @media (prefers-reduced-motion: reduce) {
-                #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .btn, #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .column-right .btn-apply, #lmcu-calculator .calculator .column-right .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .btn-apply {
+                #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .btn, #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .column-right .btn-apply, #lmcu-calculator .calculator .column-right .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .btn-apply, #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right #consolidation .mobile-btn-row a, #lmcu-calculator #consolidation .mobile-btn-row .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right a {
                   transition: none; } }
-              #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .btn:before, #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .column-right .btn-apply:before, #lmcu-calculator .calculator .column-right .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .btn-apply:before {
+              #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .btn:before, #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .column-right .btn-apply:before, #lmcu-calculator .calculator .column-right .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .btn-apply:before, #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right #consolidation .mobile-btn-row a:before, #lmcu-calculator #consolidation .mobile-btn-row .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right a:before {
                 content: ''; }
-              #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .btn:hover, #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .column-right .btn-apply:hover, #lmcu-calculator .calculator .column-right .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .btn-apply:hover {
+              #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .btn:hover, #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .column-right .btn-apply:hover, #lmcu-calculator .calculator .column-right .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .btn-apply:hover, #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right #consolidation .mobile-btn-row a:hover, #lmcu-calculator #consolidation .mobile-btn-row .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right a:hover {
                 background-color: #272d37;
                 color: #ffffff; }
-                #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .btn:hover:before, #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .column-right .btn-apply:hover:before, #lmcu-calculator .calculator .column-right .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .btn-apply:hover:before {
+                #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .btn:hover:before, #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .column-right .btn-apply:hover:before, #lmcu-calculator .calculator .column-right .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right .btn-apply:hover:before, #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right #consolidation .mobile-btn-row a:hover:before, #lmcu-calculator #consolidation .mobile-btn-row .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-primary .field-right a:hover:before {
                   padding-right: 1rem;
                   content: "\f0e0"; }
         #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-secondary {
@@ -15150,15 +15210,17 @@ a.text-dark:hover, a.text-dark:focus {
             padding-left: 0;
             flex: 0 0 100%;
             max-width: 100%; }
-            @media (min-width: 768px) {
-              #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-secondary .fields #message {
-                position: relative;
-                width: 100%;
-                padding-right: 0;
-                padding-left: 0;
-                flex: 0 0 66.66667%;
-                max-width: 66.66667%;
-                margin-top: 1.5rem; } }
+            #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-secondary .fields #message {
+              font-size: 14px; }
+              @media (min-width: 768px) {
+                #lmcu-calculator .calculator .column-left .calculator-body > .tab-pane#remind-tab .controls .fields-secondary .fields #message {
+                  position: relative;
+                  width: 100%;
+                  padding-right: 0;
+                  padding-left: 0;
+                  flex: 0 0 66.66667%;
+                  max-width: 66.66667%;
+                  margin-top: 1.5rem; } }
   #lmcu-calculator .calculator .column-right {
     position: relative;
     width: 100%;
@@ -15291,6 +15353,24 @@ a.text-dark:hover, a.text-dark:focus {
 #lmcu-calculator #consolidation .repeat-row,
 #lmcu-calculator #consolidation .header-row {
   margin-bottom: 1rem; }
+  #lmcu-calculator #consolidation .repeat-row input,
+  #lmcu-calculator #consolidation .repeat-row select,
+  #lmcu-calculator #consolidation .header-row input,
+  #lmcu-calculator #consolidation .header-row select {
+    padding: 0.375rem; }
+    @media (min-width: 768px) {
+      #lmcu-calculator #consolidation .repeat-row input,
+      #lmcu-calculator #consolidation .repeat-row select,
+      #lmcu-calculator #consolidation .header-row input,
+      #lmcu-calculator #consolidation .header-row select {
+        padding: 0.375rem 0.75rem; } }
+  #lmcu-calculator #consolidation .repeat-row label,
+  #lmcu-calculator #consolidation .header-row label {
+    font-size: 90%; }
+    @media (min-width: 768px) {
+      #lmcu-calculator #consolidation .repeat-row label,
+      #lmcu-calculator #consolidation .header-row label {
+        font-size: 100%; } }
   #lmcu-calculator #consolidation .repeat-row .type,
   #lmcu-calculator #consolidation .header-row .type {
     position: relative;
@@ -15341,10 +15421,12 @@ a.text-dark:hover, a.text-dark:focus {
     max-width: 8.33333%;
     display: flex;
     width: auto; }
-    #lmcu-calculator #consolidation .repeat-row .controls .btn, #lmcu-calculator #consolidation .repeat-row .controls .calculator .column-right .btn-apply, #lmcu-calculator .calculator .column-right #consolidation .repeat-row .controls .btn-apply,
+    #lmcu-calculator #consolidation .repeat-row .controls .btn, #lmcu-calculator #consolidation .repeat-row .controls .calculator .column-right .btn-apply, #lmcu-calculator .calculator .column-right #consolidation .repeat-row .controls .btn-apply, #lmcu-calculator #consolidation .repeat-row .controls .mobile-btn-row a, #lmcu-calculator #consolidation .mobile-btn-row .repeat-row .controls a,
     #lmcu-calculator #consolidation .header-row .controls .btn,
     #lmcu-calculator #consolidation .header-row .controls .calculator .column-right .btn-apply,
-    #lmcu-calculator .calculator .column-right #consolidation .header-row .controls .btn-apply {
+    #lmcu-calculator .calculator .column-right #consolidation .header-row .controls .btn-apply,
+    #lmcu-calculator #consolidation .header-row .controls .mobile-btn-row a,
+    #lmcu-calculator #consolidation .mobile-btn-row .header-row .controls a {
       width: 1.5rem;
       height: 1.5rem;
       padding: 0;
@@ -15353,10 +15435,12 @@ a.text-dark:hover, a.text-dark:focus {
       margin: auto 0 auto auto;
       cursor: pointer; }
       @media (min-width: 768px) {
-        #lmcu-calculator #consolidation .repeat-row .controls .btn, #lmcu-calculator #consolidation .repeat-row .controls .calculator .column-right .btn-apply, #lmcu-calculator .calculator .column-right #consolidation .repeat-row .controls .btn-apply,
+        #lmcu-calculator #consolidation .repeat-row .controls .btn, #lmcu-calculator #consolidation .repeat-row .controls .calculator .column-right .btn-apply, #lmcu-calculator .calculator .column-right #consolidation .repeat-row .controls .btn-apply, #lmcu-calculator #consolidation .repeat-row .controls .mobile-btn-row a, #lmcu-calculator #consolidation .mobile-btn-row .repeat-row .controls a,
         #lmcu-calculator #consolidation .header-row .controls .btn,
         #lmcu-calculator #consolidation .header-row .controls .calculator .column-right .btn-apply,
-        #lmcu-calculator .calculator .column-right #consolidation .header-row .controls .btn-apply {
+        #lmcu-calculator .calculator .column-right #consolidation .header-row .controls .btn-apply,
+        #lmcu-calculator #consolidation .header-row .controls .mobile-btn-row a,
+        #lmcu-calculator #consolidation .mobile-btn-row .header-row .controls a {
           margin: auto; } }
     #lmcu-calculator #consolidation .repeat-row .controls .btn-add,
     #lmcu-calculator #consolidation .header-row .controls .btn-add {
@@ -15380,35 +15464,59 @@ a.text-dark:hover, a.text-dark:focus {
     width: 100%;
     padding-right: 15px;
     padding-left: 15px;
-    flex: 0 0 66.66667%;
-    max-width: 66.66667%;
+    flex: 0 0 100%;
+    max-width: 100%;
     padding-right: 5px;
     padding-left: 5px;
     display: flex;
     flex-direction: column; }
-    #lmcu-calculator #consolidation .repayment-calc .repayment-calc-label label {
-      margin-top: auto;
-      margin-bottom: auto;
-      font-weight: 800;
-      color: #333; }
+    @media (min-width: 768px) {
+      #lmcu-calculator #consolidation .repayment-calc .repayment-calc-label {
+        flex: 0 0 66.66667%;
+        max-width: 66.66667%; } }
   #lmcu-calculator #consolidation .repayment-calc .repayment-calc-total {
     position: relative;
     width: 100%;
     padding-right: 15px;
     padding-left: 15px;
-    flex: 0 0 25%;
-    max-width: 25%;
+    flex: 0 0 41.66667%;
+    max-width: 41.66667%;
+    margin-top: 1rem;
     padding-right: 5px;
     padding-left: 5px; }
+    @media (min-width: 768px) {
+      #lmcu-calculator #consolidation .repayment-calc .repayment-calc-total {
+        flex: 0 0 25%;
+        max-width: 25%;
+        margin-top: 0; } }
 
-#infoLegal ul {
-  list-style-type: inherit;
-  margin-left: 1.5rem; }
-  #infoLegal ul li {
-    margin-bottom: 0.75rem; }
+#lmcu-calculator #consolidation .mobile-btn-row {
+  position: relative;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  flex: 0 0 100%;
+  max-width: 100%;
+  padding: 0 5px;
+  margin-top: 1.5rem; }
+  @media (min-width: 768px) {
+    #lmcu-calculator #consolidation .mobile-btn-row {
+      display: none; } }
 
-#infoLegal p {
-  padding-bottom: 1rem; }
+#infoLegal {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto; }
+  #infoLegal ul {
+    font-size: 14px;
+    list-style-type: inherit;
+    margin-left: 1.5rem; }
+    #infoLegal ul li {
+      margin-bottom: 0.75rem; }
+  #infoLegal p {
+    padding-bottom: 1rem; }
 
 /*! purgecss start ignore */
 .modal .modal-content {

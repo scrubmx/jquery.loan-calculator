@@ -32,11 +32,12 @@
     </div>
     <div id="RepaymentSize" class="repayment-calc">
         <div class="repayment-calc-label">
-            <label for="TotalRepayment">Total monthly repayment <a href="#" data-toggle="tooltip" data-placement="top" title="We've added this up for you. You should increase it if you can afford to, though."><i class="fa fa-question-circle" aria-hidden="true"></i></a></label>
-            <p>Increasing this will mean you can pay things off sooner.</p>
+            <h6>Total monthly repayment <a href="#" data-toggle="tooltip" data-placement="top" title="We've added this up for you. You should increase it if you can afford to, though."><i class="fa fa-question-circle" aria-hidden="true"></i></a></h6>
+            <p>Increasing this will enable you to pay everything off sooner, and is likely to reduce the amount of interest you end up paying.</p>
         </div>
         <div class="repayment-calc-total">
             <input id="TotalRepayment" data-type="currency" type="text" class="form-control" placeholder="£0.00"> </div>
+        <div class="mobile-btn-row"><a href="#results">Calculate</a></div>
         
     </div>
 </div>
