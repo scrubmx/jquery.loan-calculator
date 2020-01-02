@@ -29,22 +29,22 @@ jQuery(document).ready(function ($) {
             , change: function () {
                 BalanceTotal = calculateSum('.balance input');
                 MonthlyRepaymentTotal = calculateSum('.repayment input');
+                 $('#result_amount .result').text(ConvertToMoney(BalanceTotal));
+                                $('#TotalRepayment').val(MonthlyRepaymentTotal).trigger('change');
             }
         }, '.repeat-row input');
-                    $('#repeater-rows').on({
-         change: function(){
-                            $('.repayment-calc').show();
-                $('#result_amount .result').text(ConvertToMoney(BalanceTotal));
-                $('#TotalRepayment').val(MonthlyRepaymentTotal).trigger('change');
-        }   
-        },'.repayment input');
+        $('#repeater-rows').on({
+            change: function () {
+$('.representative-example').show();
+               $('.repayment-calc').show();
+            }
+        }, '.repayment input');
         // Do our calculations once the monthly repayment amount is selected
         $('#TotalRepayment').on('change paste keyup', function () {
-            $('.example-body h4').text('Result');
-               $('.representative-example').show();
+            
             if ($(window).width() < 568) {
-   $('.mobile-btn-row').show();
-}
+                $('.mobile-btn-row').show();
+            }
             var OptionalRepayment = ConvertToNumber($(this).val());
             ConsolidateResult(OptionalRepayment, BalanceTotal);
             setURLS(BalanceTotal, Math.round(NPER(OptionalRepayment, BalanceTotal)));

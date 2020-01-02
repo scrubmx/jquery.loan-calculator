@@ -67,7 +67,7 @@ function NPERResult(payment, present) {
         else {
             var result = {
                 validLoan: 0
-                , message: '<div class="alert alert-danger my-3 p-2"><p>At this repayment amount, you are likely to ever be able to pay everything off.</p><p>Consider increasing the amount you repay each month if possible.</div>'
+                , message: '<div class="alert alert-danger my-3 p-2"><p>At this repayment amount, you are unlikely to ever be able to pay everything off.</p><p>Consider increasing the amount you repay each month if possible.</div>'
                 , months: nper
                 , months_readable: npertext
             }
