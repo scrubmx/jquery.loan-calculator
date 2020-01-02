@@ -1,6 +1,10 @@
 <div id="lmcu-calculator">
     <div class="calculator consolidation">
         <div id="widget" class="inner">
+            <div class="intro">
+                <h4>Instructions</h4>
+                    <p>This calculator helps you to estimate your current borrowing, and the potential savings of paying it off using a London Mutual Credit Union consolidation loan.</p><p><a href="#" data-toggle="modal" data-target="#infoLegal"><i class="fa fa-exclamation-circle"></i> Important information</a></p>
+                </div>
             <div class="column-left">
                 <nav>
                     <ul class="calculator-tabs nav-tabs" id="option-tabs" role="tablist">
@@ -29,10 +33,11 @@
             </div>
             <div class="column-right">
                 <!-- Card -->
+                
                 <div id="results" class="representative-example">
                     <div class="example-body">
-                        <h4>Instructions</h4>
-                        <div class="message" id="result_message"><p>This calculator helps you to estimate your current borrowing, and the potential savings of paying it off using a London Mutual Credit Union consolidation loan.</p><p><a href="#" data-toggle="modal" data-target="#infoLegal"><i class="fa fa-exclamation-circle"></i> Important information</a></p></div>
+                        <h4>Results</h4>
+                        <div class="message" id="result_message"></div>
                         <hr/>
                         <div id="example">
                             <h5>Consolidation loan</h5>

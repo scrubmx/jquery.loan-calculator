@@ -2,7 +2,7 @@ jQuery(document).ready(function ($) {
     //Only fire this up if it's a consolidation calculator
     if (ProductDefaults.consolidation == 1) {
         // Initialize
-        $('.btn-apply, #example, #comparison,.mobile-btn-row,.repayment-calc').hide();
+        $('.btn-apply, #example, #comparison,.mobile-btn-row,.repayment-calc,.representative-example').hide();
         $example = jQuery('#example').loanCalculator();
         $comparison = jQuery('#comparison').loanCalculator();
         // Repeater fields
@@ -41,6 +41,7 @@ jQuery(document).ready(function ($) {
         // Do our calculations once the monthly repayment amount is selected
         $('#TotalRepayment').on('change paste keyup', function () {
             $('.example-body h4').text('Result');
+               $('.representative-example').show();
             if ($(window).width() < 568) {
    $('.mobile-btn-row').show();
 }
@@ -68,12 +69,11 @@ function CalculateInterestSaved() {
     if (getExampleCost < getComparisonCost) {
         var TotalSavings = getComparisonCost - getExampleCost;
         var TotalSavings = TotalSavings.toFixed(2);
-        var SavingsOutput = '<div class="alert alert-success"><p>Depending on how much interest you\'re currently paying, we could help you pay off everything you\'ve told us you owe in around <strong>' + monthstoYears(NperResult.months) + '</strong>.</p><p>Compared to a typical credit card rate of 24.7% APR, this would save you an estimated <strong>' + ConvertToMoney(TotalSavings) + '</strong> in interest.</p></div>';
+        var SavingsOutput = '<div class="alert alert-success"><p>Good news. We could help you pay off everything you\'ve told us you owe in around <strong>' + monthstoYears(NperResult.months) + '</strong>.</p><p>Compared to a typical credit card rate of 24.7% APR, this would save you an estimated <strong>' + ConvertToMoney(TotalSavings) + '</strong> in interest.</p></div>';
     }
     else {
         var SavingsOutput = '<div class="alert alert-danger">For amounts under £400, we are unlikely to be able to save you money with a consolidation loan.</div>';
     }
-    console.log(SavingsOutput);
     return SavingsOutput;
 }
 // Display various result messages
