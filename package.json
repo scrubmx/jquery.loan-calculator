@@ -4,8 +4,9 @@
     "description": "A Wordpress plugin to create a simple loan calculator from a shortcode configurable via shortcode attributes",
     "main": "gulpfile.js",
     "dependencies": {
-        "@fortawesome/fontawesome-free": "^5.11.2",
-        "bootstrap": "^4.3.1",
+        "@fortawesome/fontawesome-free": "^5.12.0",
+        "autonumeric": "^4.5.10",
+        "bootstrap": "^4.4.1",
         "gulp": "^4.0.2",
         "gulp-concat": "^2.6.1",
         "gulp-purgecss": "^1.2.0",
@@ -14,14 +15,14 @@
         "gulp-zip": "^5.0.1",
         "jquery": "^3.4.1",
         "jquery.loan-calculator": "^3.1.3",
-        "node-sass": "^4.12.0",
-        "nouislider": "^14.0.3",
+        "node-sass": "^4.13.0",
+        "nouislider": "^14.1.1",
         "popper.js": "^1.16.0",
-        "wnumb": "^1.1.0"
+        "wnumb": "^1.2.0"
     },
     "devDependencies": {
         "gulp-clean-css": "^4.2.0",
-        "gulp-embed-svg": "^1.1.6",
+        "gulp-embed-svg": "^1.2.0",
         "gulp-svgo": "^2.1.1"
     },
     "scripts": {
