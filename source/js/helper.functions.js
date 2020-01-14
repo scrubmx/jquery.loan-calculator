@@ -125,16 +125,7 @@ function ConvertToNumber(value) {
 // Change inputs into money
 (function ($) {
     $("input[data-type='currency']").on({
-        keyup: function () {
-            formatCurrency($(this));
-        }
-        , blur: function () {
-            formatCurrency($(this), "blur");
-        }
-        , change: function () {
-            formatCurrency($(this));
-        }
-        , paste: function () {
+        change: function () {
             formatCurrency($(this));
         }
     });
@@ -172,9 +163,9 @@ Set up tabs etc
 */
 jQuery(document).ready(function ($) {
     $('[data-toggle="tooltip"]').tooltip();
-    $('[data-toggle="tooltip"]').click(function(e) {
-  e.preventDefault();
-});
+    $('[data-toggle="tooltip"]').click(function (e) {
+        e.preventDefault();
+    });
     //Move modal in DOM and set up tabs and popovers
     $('.modal').appendTo("body");
     $('[data-toggle="popover"]').popover();

@@ -55,7 +55,6 @@ function lmcu_calculator( $atts ) {
     ob_start();?>
     <script type="text/javascript">
         var ProductDefaults = <?php echo json_encode($atts, JSON_PRETTY_PRINT+JSON_NUMERIC_CHECK) ?>;
-        dataLayer = [];
     </script>
     <?php if($consolidation == 1) {
         include( plugin_dir_path( __FILE__ ) . 'templates/consolidation-template.php');

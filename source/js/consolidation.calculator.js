@@ -20,28 +20,22 @@ jQuery(document).ready(function ($) {
         });
         //When a value in the row is changed, add it up
         $('#repeater-rows').on({
-            keyup: function () {
+            change: function () {
                 formatCurrency($(this));
-            }
-            , blur: function () {
-                formatCurrency($(this), "blur");
-            }
-            , change: function () {
                 BalanceTotal = calculateSum('.balance input');
                 MonthlyRepaymentTotal = calculateSum('.repayment input');
-                 $('#result_amount .result').text(ConvertToMoney(BalanceTotal));
-                                $('#TotalRepayment').val(MonthlyRepaymentTotal).trigger('change');
+                $('#result_amount .result').text(ConvertToMoney(BalanceTotal));
+                $('#TotalRepayment').val(MonthlyRepaymentTotal).trigger('change');
             }
         }, '.repeat-row input');
         $('#repeater-rows').on({
             change: function () {
-$('.representative-example').show();
-               $('.repayment-calc').show();
+                $('.representative-example').show();
+                $('.repayment-calc').show();
             }
         }, '.repayment input');
         // Do our calculations once the monthly repayment amount is selected
         $('#TotalRepayment').on('change paste keyup', function () {
-            
             if ($(window).width() < 568) {
                 $('.mobile-btn-row').show();
             }
