@@ -180,5 +180,3 @@ jQuery(document).ready(function ($) {
         $('#info-tabs a').not(this).removeClass('active');
     });
 });
-/* PMT
- */

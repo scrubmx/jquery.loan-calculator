@@ -81,6 +81,17 @@ function ConsolidateResult(repayment, balance) {
         CalculateLoan(NperResult.months, balance, variableInterest(balance), $example);
         CalculateLoan(NperResult.months, balance, convertAPR(24.7), $comparison);
         jQuery('#result_message').html(CalculateInterestSaved());
+        dataLayer.push({
+            'event': 'LoanCalculator'
+            , 'action': 'config'
+            , 'product': {
+                'loan': [{
+                    'amount': balance
+                    , 'rate': variableInterest(balance)
+                    , 'term': NperResult.months
+       }]
+            }
+        });
     }
     else {
         jQuery('.btn-apply, #example, #comparison').fadeOut();

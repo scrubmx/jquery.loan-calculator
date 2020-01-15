@@ -10860,8 +10860,6 @@ jQuery(document).ready(function ($) {
         $('#info-tabs a').not(this).removeClass('active');
     });
 });
-/* PMT
- */
 jQuery(function ($) {
     // Change interest rates based on amount
     SaverLoan = $('#saver-loan');
@@ -11032,6 +11030,16 @@ jQuery(document).ready(function ($) {
                     , 'max': variableTerm(CurrentAmount).max
                 }
             });
+            dataLayer.push({
+                'event': 'LoanCalculator'
+                , 'action': 'config'
+                , 'product': {
+                    'loan': [{
+                        'amount': CurrentAmount
+                        , 'rate': CurrentRate
+       }]
+                }
+            });
         });
         // When term slider is updated
         loantermslider.noUiSlider.on('update', function () {
@@ -11040,6 +11048,13 @@ jQuery(document).ready(function ($) {
                 loanDuration: CurrentTerm
             });
             $('.selected-term').text(monthstoYears(parseInt(CurrentTerm)));
+            dataLayer.push({
+                'product': {
+                    'loan': [{
+                        'term': CurrentTerm
+       }]
+                }
+            });
         });
         // When the calculator changes, update the application URL
         $calculator.on('loan:update', function (e) {
@@ -11186,6 +11201,17 @@ function ConsolidateResult(repayment, balance) {
         CalculateLoan(NperResult.months, balance, variableInterest(balance), $example);
         CalculateLoan(NperResult.months, balance, convertAPR(24.7), $comparison);
         jQuery('#result_message').html(CalculateInterestSaved());
+        dataLayer.push({
+            'event': 'LoanCalculator'
+            , 'action': 'config'
+            , 'product': {
+                'loan': [{
+                    'amount': balance
+                    , 'rate': variableInterest(balance)
+                    , 'term': NperResult.months
+       }]
+            }
+        });
     }
     else {
         jQuery('.btn-apply, #example, #comparison').fadeOut();
