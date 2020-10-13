@@ -3,7 +3,19 @@ $enable-rounded: false;
 $enable-shadows: true;
 $charcoal:#272d37;
 $white: #ffffff;
-$body: #495057;
+$body: #1c191a;
 $lmcu-red: #e31837;
+$lmcu-green:#038750;
+$headings-font-family:        'Montserrat';
 $fa-font-path: "webfonts";
 $grid-breakpoints: ( xxs:0, xs: 428px, sm: 576px, md: 768px, lg: 992px, xl: 1200px);
+
+$input-btn-padding-y:         0.6rem;
+$input-btn-padding-x:         1.4rem;
+$input-btn-font-size:         1rem;
+
+$input-btn-focus-width:       3px;
+$input-btn-focus-color:       #f5d505;
+$input-btn-focus-box-shadow:  0 0 0 $input-btn-focus-width $input-btn-focus-color !default;
+
+$input-btn-border-width:      0;

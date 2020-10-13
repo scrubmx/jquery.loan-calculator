@@ -36,8 +36,9 @@
                             <div class="representative-example">
                                 <div class="example-body">
                                     <h5>Representative example</h5>
+                                     <div class="repayment-total">Monthly repayment: <span class="strong" id="payment"></span></div>
                                     <ul class="summary">
-                                        <li>Monthly repayment: <span class="strong" id="payment"></span></li>
+                                       
                                         <li>Representative APR: <span class="strong" id="total-annual-cost"></span></li>
                                         <li>Total repayable: <span class="strong " id="loan-total"></span> </li>
                                     </ul>

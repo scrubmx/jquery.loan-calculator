@@ -47,6 +47,7 @@
     }
     
     #lmcu-calculator {
+        color: #1c191a;
         ul {
             list-style-type: none;
             @include m(0);
@@ -177,7 +178,7 @@
                     @include make-col(8);
                 }
                 @include media-breakpoint-up(xl) {
-                    @include make-col(9);
+                    @include make-col(8);
                 }
                 nav {
                     @extend .d-flex;
@@ -189,6 +190,7 @@
                         @extend .nav-tabs;
                         li {
                             border-bottom: 1px solid gray("200");
+                            padding-bottom: 0;
                             &.tab-title {
                                 @include ml(0);
                                 @include pl(0);
@@ -299,6 +301,7 @@
                                         color: $charcoal;
                                     }
                                     font-size: 1.1rem;
+                                    @include pb(2);
                                 }
                             }
                         }
@@ -387,22 +390,16 @@
                     @include make-col(4);
                 }
                 @include media-breakpoint-up(xl) {
-                    @include make-col(3);
+                    @include make-col(4);
                 }
                 .btn-apply {
                     @extend .btn;
-                    @extend .btn-block;
-                    @include button-variant($lmcu-red, $lmcu-red, $white);
+                    @include button-variant($lmcu-green, $lmcu-green);
                     @include transition(all 1s);
-                    &:hover {
-                        background-color: $charcoal;
-                        color: $white;
-                        &:before {
-                            @include pr(3);
-                            @extend %fa-icon;
-                            @extend .fas;
-                            content: fa-content($fa-var-angle-right);
-                        }
+                    box-shadow: none;
+                    &:focus {
+                        outline: 3px solid #f5d505;
+    outline-offset: 0;
                     }
                 }
                 .representative-example {
@@ -410,30 +407,39 @@
                         @include mb(5);
                     }
                     @extend .card;
+                    padding:1.8rem;
                     border: none;
-                    @extend .shadow;
+                    background-color: #f1f8ff;
                     .example-body {
-                        @extend .card-body;
                         h5 {
-                            @include mt(4);
                             @include mb(1);
-                            @include py(0);
                             @extend .card-title;
+                            font-weight: 700;
                         }
+                                                    .repayment-total {
+                                background-color: #d4eaff;
+                                                        font-size: 1rem;
+                                                        padding: 1rem;
+                                                        color: #0c5460;
+                                                        span {
+                                                            font-weight: 700;
+                                                            display: block;
+                                                            float: right;
+                                                        }
+                                                        @include mb(2);
+                            }
                         .summary,
                         .comparison {
-                            @extend .list-group;
-                            @extend .list-group-flush;
-                            @include mt(3);
+                            @include mb(3);
+                            list-style-type: disc;
+                            @include ml(4);
                             li {
-                                @extend .list-group-item;
                                 @include py(1);
                                 @include px(0);
                                 border-color: #ddd;
+                                background-color: transparent;
                                 span {
                                     display: block;
-                                    float: right;
-                                    color: $charcoal;
                                     font-weight: 400;
                                     &#payment {
                                         font-size: 1.1rem;
