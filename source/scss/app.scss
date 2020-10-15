@@ -12,29 +12,26 @@
         }
 
         [data-toggle="tooltip"] {
-            color: red;
-
             .icon {
                 max-width: 18px;
                 max-height: 18px;
-                margin-top: 1px;
-                margin-bottom: 4px;
+                @include my(auto);
                 fill: #1565ab;
             }
         }
 
         font-size: 18px;
-        line-height: 1.3;
+        line-height: 1.5;
 
         .form-group label {
+            display: block;
             @include mb(1);
         }
 
         .form-control {
             border-radius: 0;
             border: 2px solid #1c191a;
-            height: calc(1rem + 1.4rem + 2px);
-            padding: .375rem .75rem;
+            padding: .375rem .375rem;
             font-size: 1.2rem;
 
             &:focus {
@@ -169,7 +166,8 @@
                         list-style-type: none;
 
                         a {
-                            @extend .nav-link;
+                            display: block;
+                            padding: 0.5rem 1rem;
                             @include mr(1);
                             color: gray("500");
                             background-color: gray("100");
@@ -267,7 +265,11 @@
                                 @include makenav;
                                 display: none;
                                 flex-direction: column;
-                                @extend .nav-pills;
+                                display: flex;
+                                flex-wrap: wrap;
+                                padding-left: 0;
+                                margin-bottom: 0;
+
 
                                 &-link {
                                     display: block;
@@ -459,46 +461,57 @@
                 }
 
                 .results {
-                    @include media-breakpoint-down(md) {
-                        @include mb(5);
+                    @include media-breakpoint-up(md) {
+                        @include mb(0);
+                        @include p(3);
                     }
 
-                    @include p(3);
+                    @include mb(5);
                     border: none;
                     background-color: #f1f8ff;
                     color:#0c5460;
 
-                    &-title {
-                        @include mb(1);
+                    &-heading {
+                        @include mb(2);
                         @include mt(3);
-                        font-weight: 500;
+                        font-weight: 700;
+                        color: #0c5460;
                     }
 
-                    &-repayments {
-                        display: flex;
+                    &-message {
+
                         background-color: #d4eaff;
                         font-size: 1rem;
                         padding: 1rem;
                         color: #0c5460;
-                        align-items: center;
-                        justify-content: center;
 
-                        span {
+                        &.horiz {
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                        }
+
+                        &.message {
+                            &-success {}
+
+                            &-warning {}
+
+                            &-error {}
+                        }
+
+                        span.lg {
                             white-space: nowrap;
                             display: inline-block;
-                            font-size: 1.5rem;
-                            font-weight: bold;
+                            font-size: 1.333rem;
+                            font-weight: 700;
                             @include ml(auto);
                         }
 
-                        @include mb(2);
+                        @include mb(3);
                     }
 
-                    &-summary,
-                    &-comparison {
-                        @include mb(3);
-                        list-style-type: disc;
-                        @include px(3);
+                    &-list {
+                        @include p(0);
 
                         li {
                             @include py(1);
@@ -523,7 +536,43 @@
                                 border-bottom: none;
                             }
                         }
+
+                        &--detailed {
+                            font-size: 14px;
+
+                            li {
+                                @include py(0);
+                                border-bottom: 1px solid rgba(#0c5460, 0.25);
+
+                                span {
+                                    font-weight: 400;
+                                }
+
+                                &.total {
+                                    font-weight: 700;
+
+                                    span {
+                                        font-weight: 700;
+                                    }
+                                }
+                            }
+                        }
                     }
+
+                    &-summary,
+                    &-comparison {
+                        @include my(4);
+                        list-style-type: disc;
+                        @include px(3);
+
+                        &-heading {
+                            color: #0c5460;
+                            @include mt(0);
+                            @include pb(1);
+                        }
+
+                    }
+
 
                     .interest-detail {
                         color: rgba($charcoal, 0.9);

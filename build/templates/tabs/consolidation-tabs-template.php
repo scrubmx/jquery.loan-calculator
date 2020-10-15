@@ -3,7 +3,7 @@
          <p>This calculator helps you to estimate your current borrowing, and the potential savings of paying it off using a London Mutual Credit Union consolidation loan.</p>
          <p><a href="#" data-toggle="modal" data-target="#infoLegal"><i class="fa fa-exclamation-circle"></i> Important information</a></p>
      </div>
-     <h4>Provide details of your current borrowing below</h4>
+     <h4>Details of your current borrowing</h4>
      <div class="header-row">
          <div class="type">
              <label>Type</label>

@@ -16,7 +16,7 @@ function NPERResult(payment, present) {
     if (present > 25000) {
         var result = {
             validLoan: 0,
-            message: '<div class="alert alert-warning my-3 p-2">The maximum amount we can lend is £25,000</div>',
+            message: '<div class="results-message message-warning">The maximum amount we can lend is £25,000</div>',
             months: nper,
             months_readable: npertext
         }
@@ -25,7 +25,7 @@ function NPERResult(payment, present) {
     if (present > 15000) {
         var result = {
             validLoan: 1,
-            message: '<div class="alert alert-info my-3 p-2">To be eligible to borrow over £15,000, you will need to be a homeowner</div>',
+            message: '<div class="results-message message-info">To be eligible to borrow over £15,000, you will need to be a homeowner</div>',
             months: nper,
             months_readable: npertext
         }
@@ -38,7 +38,7 @@ function NPERResult(payment, present) {
             if (nper > 60) {
                 var result = {
                     validLoan: 0,
-                    message: '<div class="alert alert-warning my-3 p-2"><p>Even with our low rates, it would take you <strong>' + npertext + '</strong> to pay everything off.</p><p>The maximum loan term we offer is 5 years.</p><p>Can you afford to pay more each month to get it paid off sooner?</div>',
+                    message: '<div class="results-message message-warning"><p>Even with our low rates, it would take you <strong>' + npertext + '</strong> to pay everything off.</p><p>The maximum loan term we offer is 5 years.</p><p>Can you afford to pay more each month to get it paid off sooner?</div>',
                     months: nper,
                     months_readable: npertext
                 }
@@ -46,7 +46,7 @@ function NPERResult(payment, present) {
             } else if (nper < 2) {
                 var result = {
                     validLoan: 0,
-                    message: '<div class="alert alert-warning my-3 p-2"><p>It looks like you are well on your way to paying everything off already. Good job. Have you thought about opening a <a href="https://creditunion.co.uk/savings">savings account</a> with us?</p></div>',
+                    message: '<div class="results-message message-warning"><p>It looks like you are well on your way to paying everything off already. Good job. Have you thought about opening a <a href="https://creditunion.co.uk/savings">savings account</a> with us?</p></div>',
                     months: nper,
                     months_readable: npertext
                 }
@@ -63,7 +63,7 @@ function NPERResult(payment, present) {
         } else {
             var result = {
                 validLoan: 0,
-                message: '<div class="alert alert-danger my-3 p-2"><p>At this repayment amount, you are unlikely to ever be able to pay everything off.</p><p>Consider increasing the amount you repay each month if possible.</div>',
+                message: '<div class="results-message message-danger"><p>At this repayment amount, you are unlikely to ever be able to pay everything off.</p><p>Consider increasing the amount you repay each month if possible.</div>',
                 months: nper,
                 months_readable: npertext
             }
