@@ -1,0 +1,42 @@
+    @mixin btnicon($icon) {
+        &:before {
+            @extend %fa-icon;
+            @extend .fas;
+            content: fa-content($icon);
+        }
+    }
+    
+    @mixin tabicon($icon) {
+        &:before {
+            @extend %fa-icon;
+            @extend .fas;
+            content: fa-content($icon);
+            @include media-breakpoint-up(xl) {
+                @include mr(2);
+            }
+        }
+    }
+    
+    @mixin makesquare {
+        position: relative;
+        &:before {
+            content: '';
+            display: block;
+            padding-top: 100%;
+        }
+        .inner {
+            position: absolute;
+            left: 0;
+            top: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%
+        }
+    }
+@mixin makenav {
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 0;
+    margin-bottom: 0;
+}

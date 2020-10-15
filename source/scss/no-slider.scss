@@ -3,13 +3,13 @@
 $charcoal: #272d37;
 /// Height of the slider's handle
 /// @type String
-$control-height: 16px;
+$control-height: 28px;
 /// Width of the slider's handle
 /// @type String
-$control-width: 16px;
+$control-width: 28px;
 /// Color of the slider's handle
 /// @type Color
-$control-color: #e31837;
+$control-color: $charcoal;
 /// Size of the slider handle's tex
 /// @type String
 $control-font-size: 18px;
@@ -35,12 +35,12 @@ $gutter-height: 16px;
 }
 
 .noUi-horizontal {
-    height: 8px
+    height: 12px
 }
 
 .noUi-pips-horizontal {
     padding: 4px 0;
-    height: 24px;
+    height: 12px;
     top: 100%;
     left: 0;
     width: 100%;
@@ -50,13 +50,15 @@ $gutter-height: 16px;
         }
         &.noUi-marker-large {
             height: 12px;
+            background-color: rgba(0,0,0,0.125);
         }
     }
     .noUi-value-large {
         color: $charcoal;
         webkit-transform: translate(0, 50%);
         transform: translate(0, 50%);
-        font-weight: 600;
+        font-weight: 400;
+        font-size: 14px;
         & ~ .noUi-value-large {
             webkit-transform: translate(-50%, 50%);
             transform: translate(-50%, 50%);
@@ -65,7 +67,6 @@ $gutter-height: 16px;
         &:last-of-type {
             webkit-transform: translate(-100%, 50%);
             transform: translate(-100%, 50%);
-            font-weight: 600;
         }
     }
 }
@@ -80,42 +81,53 @@ $gutter-height: 16px;
     }
     /// noUiSlider Handle
     .noUi-handle {
-        background-color: $control-color;
-        border: none;
+        background-color: #ffffff;
+        border: 2px solid $control-color;
         border-radius: 50%;
         box-shadow: -0.06125rem 0.06125rem 0.125rem rgba(0, 0, 0, 0.5);
         height: $control-height;
         width: $control-width;
         z-index: 2;
-        top: -4px;
+        top: -8px;
         right: unset;
-        left: calc(100% - 8px)!important;
+        left: calc(100% - 16px)!important;
         cursor: pointer;
         position: relative;
         cursor: grab;
         &:focus {
-            box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075)!important;
+              background-color: #fff;
+
             outline-width: 0;
-        }
-        &.noUi-active {
-            cursor: grabbing;
         }
         .noUi-touch-area {
             position: absolute;
-            top: -8px;
+            top: -12px;
             width: 36px;
             height: 36px;
-            left: -8px;
+            left: -12px;
             &:focus {
                 outline-width: 0;
             }
         }
         &:hover {
-            background-color: lighten($control-color, 10%);
+           
         }
         &.noUi-active {
-            background-color: darken($control-color, 10%);
+            cursor: grabbing;
+            background-color: #fff;
+            box-shadow: 0 0 0 3px #f5d505;
             z-index: 3;
+            &:before {
+                content:"";
+                width: 14px;
+                height: 14px;
+                left: 5px;
+                top: 5px;
+                position: absolute;
+                display: block;
+                background-color: $control-color;
+                border-radius: 50%;
+            }
         }
         &::before {
             background: transparent;

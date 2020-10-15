@@ -1,6 +1,23 @@
-$theme-colors: ( "primary": #e31837);
+$enable-grid-classes:                         false;
+$enable-validation-icons:                    false;
+$enable-deprecation-messages:                 false;
 $enable-rounded: false;
-$enable-shadows: true;
+$enable-shadows: false;
+
+$theme-colors: ( "primary": #e31837);
+
+$spacer: 1rem;
+
+$spacers: (
+  0: 0,
+  1: ($spacer * .25),
+  2: ($spacer * .5),
+  3: $spacer,
+  4: ($spacer * 1.5),
+  5: ($spacer * 3),
+  6: ($spacer * 4)
+);
+
 $charcoal:#272d37;
 $white: #ffffff;
 $body: #1c191a;
@@ -8,6 +25,7 @@ $lmcu-red: #e31837;
 $lmcu-green:#038750;
 $headings-font-family:        'Montserrat';
 $fa-font-path: "webfonts";
+
 $grid-breakpoints: ( xxs:0, xs: 428px, sm: 576px, md: 768px, lg: 992px, xl: 1200px);
 
 $input-btn-padding-y:         0.6rem;
@@ -19,3 +37,6 @@ $input-btn-focus-color:       #f5d505;
 $input-btn-focus-box-shadow:  0 0 0 $input-btn-focus-width $input-btn-focus-color !default;
 
 $input-btn-border-width:      0;
+
+$h3-font-size: 0.75rem;
+$headings-margin-bottom:      0;

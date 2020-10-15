@@ -1,571 +1,659 @@
     @import "bootstrap-variables";
     @import "spacing";
-    @import "node_modules/@fortawesome/fontawesome-free/scss/fontawesome";
-    @import "node_modules/@fortawesome/fontawesome-free/scss/solid";
-    @import "node_modules/@fortawesome/fontawesome-free/scss/v4-shims";
-    @import "node_modules/bootstrap/scss/bootstrap";
-    @mixin btnicon($icon) {
-        &:before {
-            @extend %fa-icon;
-            @extend .fas;
-            content: fa-content($icon);
+    @import "mixins";
+    @import "bootstrap-config";
+
+
+
+    #lmcu-calculator {
+        .tooltip {
+            font-size: 90%;
+            line-height: normal;
         }
-    }
-    
-    @mixin tabicon($icon) {
-        &:before {
-            @extend %fa-icon;
-            @extend .fas;
-            content: fa-content($icon);
-            @include media-breakpoint-up(xl) {
-                @include mr(2);
+
+        [data-toggle="tooltip"] {
+            color: red;
+
+            .icon {
+                max-width: 18px;
+                max-height: 18px;
+                margin-top: 1px;
+                margin-bottom: 4px;
+                fill: #1565ab;
             }
         }
-    }
-    
-    @mixin makesquare {
-        position: relative;
-        &:before {
-            content: '';
-            display: block;
-            padding-top: 100%;
+
+        font-size: 18px;
+        line-height: 1.3;
+
+        .form-group label {
+            @include mb(1);
         }
-        .inner {
-            position: absolute;
-            left: 0;
-            top: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100%
+
+        .form-control {
+            border-radius: 0;
+            border: 2px solid #1c191a;
+            height: calc(1rem + 1.4rem + 2px);
+            padding: .375rem .75rem;
+            font-size: 1.2rem;
+
+            &:focus {
+                outline: 3px solid #f5d505;
+                outline-offset: 0;
+                box-shadow: inset 0 0 0 2px;
+                border-color: currentColor;
+            }
         }
-    }
-    
-    .tooltip {
-        font-size: 80%;
-        line-height: normal;
-    }
-    
-    #lmcu-calculator {
-        color: #1c191a;
-        ul {
-            list-style-type: none;
-            @include m(0);
-            @include p(0);
-        }
-        .product-showcase {
+
+        .showcase {
             @include make-container(0);
             @include my(5);
-            @include py(3);
-            .nav {
-                @include make-col-ready(0);
-                @include media-breakpoint-up(xl) {
-                    @include make-col(9);
-                }
-                @extend .nav-pills;
-                @extend .nav-justified;
-                @include mx(-2);
+
+            &-nav {
+                @include p(0);
+                display: flex;
+                list-style-type: none;
                 flex-direction: column;
-                li {
-                    @extend .nav-item;
-                    @include mb(2);
-                    >div {
-                        @extend .nav-link;
-                        @include p(0);
-                        cursor: pointer;
-                        box-shadow: 0 .35rem 1rem rgba(0, 0, 0, .15);
-                        @include transition(all 0.6s);
-                        &:hover {
-                            box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .25)
-                        }
-                        &.active {
-                            box-shadow: 0 .5rem 0.75rem rgba(0, 0, 0, .35);
-                            background-color: $charcoal;
-                            .inner {
-                                color: $white;
-                                h3 {
-                                    color: $white;
-                                }
-                                svg {
-                                    path {
-                                        fill: $white;
-                                    }
-                                }
-                            }
-                        }
-                        .inner {
-                            display: flex;
-                            flex-direction: row;
-                            color: $charcoal;
-                            @include p(3);
-                            h3 {
-                                align-self: center;
-                                font-size: 1rem;
-                                font-weight: 600;
-                                @include p(0);
-                                @include my(auto);
-                                text-align: left;
-                            }
-                            svg {
-                                @include ml(0);
-                                @include mr(3);
-                                max-width: 30px;
-                                path {
-                                    fill: $charcoal
-                                }
-                            }
-                        }
-                    }
-                }
-                @include media-breakpoint-up(sm) {
-                    flex-direction: row;
-                    flex-wrap: wrap;
-                    li {
-                        max-width: 50%!important;
-                        flex: 1 1 50%!important;
-                        >div {
-                            @include mx(2);
-                        }
-                    }
-                }
+
                 @include media-breakpoint-up(lg) {
-                    flex-wrap: nowrap;
-                    li {
-                        @include mb(0);
-                        @include mx(2);
-                        >div {
-                            @include mx(0);
-                            @include makesquare();
-                            .inner {
-                                svg {
-                                    width: 33.33%;
-                                    max-width: none;
-                                    margin-right: auto;
-                                    align-self: flex-end;
-                                }
-                                h3 {
-                                    width: 100%;
-                                    @include mt(auto);
-                                    @include mb(0);
-                                    align-self: flex-end;
-                                }
-                            }
-                        }
+                    flex-direction: row;
+                    justify-content: space-between;
+                }
+            }
+
+            &-item {}
+
+            &-link {
+                display: flex;
+                @include p(3);
+                cursor: pointer;
+                @include transition(all 0.6s);
+                align-items: flex-start;
+
+                &.active {
+                    .icon {
+                        fill: $white;
                     }
+
+                    .showcase-link-title {
+                        color: $white;
+                    }
+
+                    background-color: #1565ab;
+                }
+
+                &-title {
+                    align-self: center;
+                    font-size: 1.2rem;
+                    font-weight: 400;
+                    @include p(0);
+                    @include my(auto);
+                }
+
+                .icon {
+                    fill: #336699;
+                    @include mr(2);
+                    max-width: 30px;
+                    max-height: 30px;
                 }
             }
         }
+
         .calculator {
             @include make-container(0);
             display: flex;
             flex-direction: column;
-            .inner {
-                @include make-row(0);
-                width: 100%;
-                @include my(auto);
-            }
+
             a[data-target] {
                 cursor: pointer;
             }
-            .column-left {
+
+            &-inner {
+                @include make-row(0);
+            }
+
+            &-left {
                 display: flex;
                 flex-direction: column;
                 @include make-col-ready(0);
+                @include mb(5);
+
                 @include media-breakpoint-up(md) {
                     @include pr(5);
+                    @include mb(0);
                 }
+
                 @include media-breakpoint-up(md) {
                     @include make-col(8);
                 }
+
                 @include media-breakpoint-up(xl) {
                     @include make-col(8);
                 }
-                nav {
-                    @extend .d-flex;
-                    .calculator-tabs {
-                        @extend .nav;
-                        @include px(0);
-                        width: 100%;
+            }
+
+            .product {
+                display: flex;
+                flex-wrap: wrap;
+                @include mb(3);
+
+                &-title {
+                    font-size: 18px;
+
+                    @include media-breakpoint-up(lg) {
                         @include pb(0);
-                        @extend .nav-tabs;
-                        li {
-                            border-bottom: 1px solid gray("200");
-                            padding-bottom: 0;
-                            &.tab-title {
-                                @include ml(0);
-                                @include pl(0);
-                                @include mr(auto);
-                                @extend .nav-link;
-                                font-size: 1.2rem;
-                                font-weight: 600;
-                                color: $charcoal;
-                                width: 100%;
-                                &:hover {
-                                    border: none;
-                                    background: transparent;
-                                }
-                                @include media-breakpoint-up(xs) {
-                                    width: auto;
-                                }
-                            }
-                            @include mt(auto);
-                            @extend .nav-item;
-                            a {
-                                @extend .nav-link;
-                                @include ml(1);
-                                color: gray("600");
-                                background-color: gray("100");
-                                span {
-                                    display: none;
-                                }
-                                @include media-breakpoint-up(xl) {
-                                    span {
-                                        display: inline-block;
-                                    }
-                                }
-                                &:hover {
-                                    background-color: gray("200");
-                                }
-                                &.active {
-                                    color: $charcoal;
-                                    border-bottom: $white solid 1px;
-                                    margin-bottom: -1px;
-                                    &:hover {
-                                        background-color: $white;
-                                    }
-                                }
-                                &.tab-calculator {
-                                    @include tabicon($fa-var-calculator);
-                                }
-                                &.tab-info {
-                                    @include tabicon($fa-var-info-circle);
-                                }
-                                &.tab-legal {
-                                    @include tabicon($fa-var-file-contract);
-                                }
-                                &.tab-remind {
-                                    @include tabicon($fa-var-bell);
-                                }
-                            }
-                        }
+                        font-size: 24px;
                     }
-                    h3 {
-                        @include media-breakpoint-up(sm) {
-                            font-size: 1.3rem;
-                        }
-                        @include media-breakpoint-up(lg) {
-                            font-size: 1.75rem;
-                        }
-                    }
+
+                    @include my(auto);
+                    font-weight: bold;
                 }
-                .calculator-body {
-                    >.tab-pane {
-                        @include my(5);
-                        &.sliders {
-                            p#product-description {
-                                @extend .lead;
-                                @include mb(5);
-                            }
-                            #saver {
+
+                &-options {
+                    @include makenav;
+                    @include mr(auto);
+                    @include px(0);
+                    @include pb(0);
+
+                    @include media-breakpoint-up(xs) {
+                        @include mr(0);
+                        @include ml(auto);
+                    }
+
+                    flex-wrap: nowrap;
+
+                    li {
+                        font-size: 14px;
+                        padding-bottom: 0;
+                        @include mt(auto);
+                        list-style-type: none;
+
+                        a {
+                            @extend .nav-link;
+                            @include mr(1);
+                            color: gray("500");
+                            background-color: gray("100");
+
+                            span {
                                 display: none;
-                                .form-group {
-                                    display: flex;
-                                    flex-direction: row;
-                                    @include pb(3);
-                                    @include mb(3);
-                                    input {
-                                        font-size: 1.1rem;
-                                        @include mx(3);
-                                        border: none;
-                                        border-bottom: 4px #dee2e6 solid;
-                                        box-shadow: none;
-                                        font-weight: 600;
-                                        color: $charcoal;
-                                    }
-                                    label {
-                                        font-size: 1.1rem;
-                                        display: flex
-                                    }
+                            }
+
+                            @include media-breakpoint-up(xl) {
+                                span {
+                                    display: inline-block;
                                 }
                             }
-                            width: 100%;
-                            align-self: center;
-                            .slider {
-                                @include pb(5);
-                                @include media-breakpoint-up(sm) {
-                                    @include mb(3);
-                                }
-                                label {
-                                    span {
-                                        font-weight: 600;
-                                        color: $charcoal;
-                                    }
-                                    font-size: 1.1rem;
-                                    @include pb(2);
+
+                            &:hover {
+                                background-color: gray("200");
+                                color: gray("600");
+                            }
+
+                            &.active {
+                                background-color: $white;
+                                color: $charcoal;
+
+                                .icon {
+                                    fill: $charcoal;
                                 }
                             }
-                        }
-                        #info-tabs {
-                            nav {
-                                @extend .nav;
-                                @extend .flex-column;
-                                @extend .nav-pills;
-                                @include make-col(4);
-                                .nav-link.active {
-                                    background-color: $charcoal;
-                                }
+
+                            .icon {
+                                max-width: 16px;
+                                max-height: 16px;
+                                fill: gray("400");
                             }
-                            .tab-content {
-                                @include pl(4);
-                                @include make-col(8);
-                            }
-                        }
-                        &#remind-tab {
-                            .controls {
-                                @include my(5);
-                                .fields-primary {
-                                    @include make-row(0);
-                                    .field-left {
-                                        @include make-col-ready(0);
-                                        @include make-col(8);
-                                        input {
-                                            font-size: 1.1rem;
-                                            @include mr(3);
-                                            border: none;
-                                            border-bottom: 4px #dee2e6 solid;
-                                            box-shadow: none;
-                                            font-weight: 600;
-                                            color: $charcoal;
-                                        }
-                                    }
-                                    .field-right {
-                                        @include make-col-ready(0);
-                                        @include make-col(4);
-                                        display: flex;
-                                        .btn {
-                                            align-self: flex-end;
-                                            @include mt(auto);
-                                            @include mb(3);
-                                            @include ml(3);
-                                            @include button-variant($charcoal, $charcoal, $white);
-                                            @include transition(all 1s);
-                                            &:before {
-                                                content: '';
-                                            }
-                                            &:hover {
-                                                background-color: $charcoal;
-                                                color: $white;
-                                                &:before {
-                                                    @include pr(3);
-                                                    @extend %fa-icon;
-                                                    @extend .fas;
-                                                    content: fa-content($fa-var-envelope);
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                                .fields-secondary {
-                                    @include make-row(0);
-                                    .fields {
-                                        @include make-col-ready(0);
-                                        @include make-col(12);
-                                        #message {
-                                            @include media-breakpoint-up(md) {
-                                                @include make-col-ready(0);
-                                                @include make-col(8);
-                                                @include mt(4);
-                                            }
-                                        }
-                                    }
-                                }
-                            }
+
                         }
                     }
                 }
             }
-            .column-right {
+
+            &-body {
+                &-item {
+                    display: none;
+                    transition: opacity 0.15s linear;
+                    opacity: 0;
+
+                    &.active {
+                        display: block;
+                        opacity: 1;
+                    }
+
+                    &.sliders {
+                        .saver {
+                            display: none;
+
+                            .form-group {
+                                @include mb(4);
+
+                            }
+
+                            .form-control {
+                                width: auto;
+                            }
+                        }
+
+                        width: 100%;
+                        align-self: center;
+
+                        .slider {
+                            @include mb(5);
+
+                            @include media-breakpoint-up(sm) {
+                                @include mb(6);
+                            }
+
+                            label {
+                                display: block;
+
+                                span {
+                                    font-weight: 600;
+                                    color: $charcoal;
+                                }
+
+                                @include pb(3);
+                            }
+                        }
+                    }
+
+                    &#info-tab {
+                        &.active {
+                            display: flex;
+                        }
+
+                        .info-tabs {
+                            &-nav {
+                                @include makenav;
+                                display: none;
+                                flex-direction: column;
+                                @extend .nav-pills;
+
+                                &-link {
+                                    display: block;
+                                    padding: 0.5rem 1rem;
+
+                                    &.active {
+                                        color: $white;
+                                        background-color: $charcoal;
+                                    }
+                                }
+
+                                @include media-breakpoint-up(sm) {
+                                    display: flex;
+                                    @include make-col(4);
+                                }
+                            }
+
+                            &-content {
+                                width: 100%;
+
+                                @include media-breakpoint-up(sm) {
+                                    @include pl(4);
+                                    @include make-col(8);
+                                }
+                            }
+
+                            &-tab {
+                                font-size: 16px;
+
+                                &-header {
+                                    display: block;
+                                    @include p(3);
+                                    @include mb(2);
+                                    background-color: gray("100");
+                                    font-family: $font-family-base;
+                                }
+
+                                &-content {
+                                    display: none;
+                                    @include p(3);
+
+                                    &.show {
+                                        display: block;
+                                        @include mb(2);
+                                    }
+                                }
+
+                                @include media-breakpoint-up(sm) {
+                                    display: none;
+                                    opacity: 0;
+                                    @include transition(opacity .15s linear);
+
+                                    &-header {
+                                        background-color: transparent;
+                                        @include p(0);
+                                        font-family: $headings-font-family;
+                                    }
+
+                                    &-content {
+                                        @include p(0);
+                                        display: block;
+                                    }
+
+                                    &.active {
+                                        display: block;
+                                        opacity: 1;
+                                    }
+                                }
+
+                            }
+                        }
+                    }
+
+                    &#remind-tab {
+                        .controls {
+                            .fields-primary {
+                                @include make-row(0);
+
+                                .field-left {
+                                    @include make-col-ready(0);
+                                    @include make-col(8);
+                                }
+
+                                .field-right {
+                                    @include make-col-ready(0);
+                                    @include make-col(4);
+                                    display: flex;
+
+                                    .btn {
+                                        align-self: flex-end;
+                                        @include mt(auto);
+                                        @include mb(3);
+                                        @include ml(3);
+                                        @include button-variant($charcoal, $charcoal, $white);
+                                        @include transition(all 1s);
+
+                                        &:before {
+                                            content: '';
+                                        }
+
+                                        &:hover {
+                                            background-color: $charcoal;
+                                            color: $white;
+
+                                            &:before {
+                                                @include pr(3);
+
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                            .fields-secondary {
+                                @include make-row(0);
+
+                                .fields {
+                                    @include make-col-ready(0);
+                                    @include make-col(12);
+
+                                    #message {
+                                        @include media-breakpoint-up(md) {
+                                            @include make-col-ready(0);
+                                            @include make-col(8);
+                                            @include mt(4);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                &-description {
+                    @include pl(3);
+                    @include py(1);
+                    border-left: 4px solid rgba(28, 25, 26, 0.4);
+                    @include mb(5);
+                }
+            }
+
+            &-right {
                 @include make-col-ready(0);
+
                 @include media-breakpoint-up(md) {
                     @include make-col(4);
                 }
+
                 @include media-breakpoint-up(xl) {
                     @include make-col(4);
                 }
+
                 .btn-apply {
-                    @extend .btn;
+                    display: block;
+                    width: 100%;
+                    font-weight: 400;
+                    text-align: center;
+                    vertical-align: middle;
+                    cursor: pointer;
+                    user-select: none;
+                    border: 0 solid transparent;
+                    padding: 1rem 1.4rem;
+                    font-size: 1.25rem;
+                    line-height: 1.5rem;
+                    border-radius: 0;
                     @include button-variant($lmcu-green, $lmcu-green);
                     @include transition(all 1s);
                     box-shadow: none;
+                    position: relative;
+
+                    &:after {
+                        display: block;
+                        position: absolute;
+                        right: 1.4rem;
+                        top: 0.75rem;
+                        margin-bottom: 4px;
+                        content: '';
+                        background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='256.645' height='512.687' viewBox='0 0 256.645 512.687'><g transform='translate(-128.021 0)'><path d='M380.944,246.964h.128l-230.4-243.2A12.852,12.852,0,0,0,132.5,21.94L354.32,256.052,132.495,490.164a12.8,12.8,0,1,0,18.048,18.048l230.4-243.2A12.8,12.8,0,0,0,380.944,246.964Z' fill='%23fff'/></g></svg>");
+                        background-size: 1.5rem 1.5rem;
+                        height: 1.5rem;
+                        margin-top: 4px;
+                        width: 1.5rem;
+                    }
+
                     &:focus {
                         outline: 3px solid #f5d505;
-    outline-offset: 0;
+                        outline-offset: 0;
                     }
                 }
-                .representative-example {
+
+                .results {
                     @include media-breakpoint-down(md) {
                         @include mb(5);
                     }
-                    @extend .card;
-                    padding:1.8rem;
+
+                    @include p(3);
                     border: none;
                     background-color: #f1f8ff;
-                    .example-body {
-                        h5 {
-                            @include mb(1);
-                            @extend .card-title;
-                            font-weight: 700;
+                    color:#0c5460;
+
+                    &-title {
+                        @include mb(1);
+                        @include mt(3);
+                        font-weight: 500;
+                    }
+
+                    &-repayments {
+                        display: flex;
+                        background-color: #d4eaff;
+                        font-size: 1rem;
+                        padding: 1rem;
+                        color: #0c5460;
+                        align-items: center;
+                        justify-content: center;
+
+                        span {
+                            white-space: nowrap;
+                            display: inline-block;
+                            font-size: 1.5rem;
+                            font-weight: bold;
+                            @include ml(auto);
                         }
-                                                    .repayment-total {
-                                background-color: #d4eaff;
-                                                        font-size: 1rem;
-                                                        padding: 1rem;
-                                                        color: #0c5460;
-                                                        span {
-                                                            font-weight: 700;
-                                                            display: block;
-                                                            float: right;
-                                                        }
-                                                        @include mb(2);
-                            }
-                        .summary,
-                        .comparison {
-                            @include mb(3);
-                            list-style-type: disc;
-                            @include ml(4);
-                            li {
-                                @include py(1);
-                                @include px(0);
-                                border-color: #ddd;
-                                background-color: transparent;
-                                span {
-                                    display: block;
-                                    font-weight: 400;
-                                    &#payment {
-                                        font-size: 1.1rem;
-                                        font-weight: 600;
-                                    }
+
+                        @include mb(2);
+                    }
+
+                    &-summary,
+                    &-comparison {
+                        @include mb(3);
+                        list-style-type: disc;
+                        @include px(3);
+
+                        li {
+                            @include py(1);
+                            @include px(0);
+                            display: flex;
+                            border-color: #ddd;
+                            margin-left: 0;
+                            background-color: transparent;
+
+                            span {
+                                display: inline-block;
+                                font-weight: 600;
+                                margin-left: auto;
+
+                                &#payment {
+                                    font-size: 1.1rem;
+                                    font-weight: 600;
                                 }
-                                &:last-child {
-                                    border-bottom: none;
-                                }
+                            }
+
+                            &:last-child {
+                                border-bottom: none;
                             }
                         }
-                        .interest-detail {
-                            @extend .text-muted;
-                            @include mb(0);
-                        }
+                    }
+
+                    .interest-detail {
+                        color: rgba($charcoal, 0.9);
+                        @include mb(0);
                     }
                 }
             }
-        }
-        .consolidation.calculator {
-            .inner {
-                flex-direction: column;
-                @include media-breakpoint-up(md) {
-                    flex-direction: row;
+
+            .consolidation.calculator {
+                .inner {
+                    flex-direction: column;
+
+                    @include media-breakpoint-up(md) {
+                        flex-direction: row;
+                    }
                 }
+
                 .intro {
                     @include mb(4);
                 }
+
                 .intro,
                 .column-left {
                     @include make-col-ready(0);
                     @include make-col(12);
                     order: 1;
+
                     @include media-breakpoint-up(md) {
                         @include make-col(7);
                         order: 1;
                         padding: 0 15px;
                     }
                 }
+
                 .column-right {
                     @include make-col-ready(0);
                     @include make-col(12);
                     order: 2;
                     @include mb(4);
+
                     @include media-breakpoint-up(md) {
                         @include make-col(5);
                         order: 3;
                         padding: 0 15px;
                     }
+
                     .representative-example {
                         margin-left: -1.25rem;
                         margin-right: -1.25rem;
+
                         @include media-breakpoint-up(md) {
                             margin-left: inherit;
                             margin-right: inherit;
                         }
                     }
                 }
+
                 .btn-apply {
                     width: auto;
                     @include mt(4);
                     @include ml(auto);
                 }
             }
-            #consolidation {}
-            h6 {
-                font-weight: 800;
-                @include mb(1);
-            }
-            .header-row {
+        }
+
+        #consolidation-tab {
+            h4 {
                 font-weight: 600;
                 @include mb(3);
+            }
+
+            .header-row {
                 white-space: nowrap;
             }
+
             .repeat-row {
                 &:not(:first-child) {
                     display: none
                 }
             }
+
             .repeat-row,
             .header-row {
-                @include mb(3);
+                @include mb(2);
                 @extend .form-row;
-                input,
-                select {
-                    @extend .form-control;
-                    padding: 0.375rem;
-                    @include media-breakpoint-up(md) {
-                        padding: 0.375rem 0.75rem;
-                    }
-                }
+
                 label {
                     font-size: 90%;
+
                     @include media-breakpoint-up(md) {
                         font-size: 100%;
                     }
                 }
+
                 .type {
                     @include make-col-ready();
                     @include make-col(5);
                     padding-right: 5px;
                     padding-left: 5px;
                 }
+
                 .balance {
                     @include make-col-ready();
                     @include make-col(3);
+
                     @include media-breakpoint-up(md) {
                         @include make-col(3);
                     }
+
                     padding-right: 5px;
                     padding-left: 5px;
                 }
+
                 .repayment {
                     @include make-col-ready();
                     @include make-col(3);
+
                     @include media-breakpoint-up(md) {
                         @include make-col(3);
                     }
+
                     padding-right: 5px;
                     padding-left: 5px;
                 }
+
                 .controls {
-                    @include make-col-ready(0);
-                    @include make-col(1);
+
                     display: flex;
                     width: auto;
+
                     .btn {
                         width: 1.5rem;
                         height: 1.5rem;
@@ -573,63 +661,78 @@
                         line-height: 1.5rem;
                         font-size: 0.75rem;
                         margin: auto 0 auto auto;
+
                         @include media-breakpoint-up(md) {
                             margin: auto;
                         }
+
                         cursor: pointer;
                     }
+
                     .btn-add {
-                        @extend .btn-outline-secondary;
-                        @include btnicon($fa-var-plus);
-                        border-radius: 50%;
+                        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z" /></svg>');
+                        background-size: 20px 20px;
+                        background-repeat: no-repeat;
                     }
+
                     .btn-remove {
-                        @extend .btn-outline-secondary;
-                        @include btnicon($fa-var-minus);
-                        border-radius: 50%;
+                        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M416 208H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h384c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z" /></svg>');
+                        background-size: 20px 20px;
+                        background-repeat: no-repeat;
                     }
                 }
             }
+
             .repayment-calc {
                 @extend .form-row;
                 @include my(5);
                 @include pt(4);
                 @extend .border-top;
+
                 .repayment-calc-label {
                     @include make-col-ready();
                     @include make-col(12);
+
                     @include media-breakpoint-up(md) {
                         @include make-col(8);
                     }
+
                     padding-right: 5px;
                     padding-left: 5px;
                     display: flex;
                     flex-direction: column;
+
                     p {
-                        @extend .small;
+                        font-size: 80%;
                         @extend .text-muted;
                     }
                 }
+
                 .repayment-calc-total {
                     @include make-col-ready();
                     @include make-col(5);
                     @include mt(3);
+
                     @include media-breakpoint-up(md) {
                         @include make-col(3);
                         @include mt(0);
                     }
+
                     padding-right: 5px;
                     padding-left: 5px;
                 }
             }
+
             .mobile-btn-row {
                 @include make-col-ready();
                 @include make-col(12);
                 padding: 0 5px;
                 @include mt(4);
+
                 @include media-breakpoint-up(md) {
                     display: none;
                 }
+
                 a {
                     @extend .btn;
                     @extend .btn-secondary;
@@ -637,32 +740,35 @@
             }
         }
     }
-    
+
     #infoLegal {
         @include make-container();
         overflow: scroll;
         top: 80px;
         height: calc(100vh - 80px);
         overflow-y: auto;
+
         ul {
             font-size: 14px;
             list-style-type: inherit;
             margin-left: 1.5rem;
+
             li {
                 margin-bottom: 0.75rem;
             }
         }
+
         p {
             padding-bottom: 1rem;
         }
     }
+
     /*! purgecss start ignore */
-    
     .modal .modal-content {
         border: none;
         box-shadow: none;
     }
-    
+
     .modal-backdrop {
         position: fixed;
         pointer-events: none;
@@ -673,12 +779,13 @@
         height: 100vh;
         background-color: #fff
     }
-    
+
     .modal-backdrop.fade {
         opacity: 0
     }
-    
+
     .modal-backdrop.show {
         opacity: 1
     }
+
     /*! purgecss end ignore */

@@ -46,21 +46,20 @@ function lmcu_calculator( $atts ) {
             'term' => '36',
             'step' => '25',
             'desc' => 'Work for one of our salary deduction partners? Benefit from a special rate with repayments taken straight from your salary.',
-            'showcase' => 1,
-            'consolidation' => 0,
+            'showcase' => true,
+            'consolidation' => false,
 		),
 		$atts
 	);
     extract($atts);
     ob_start();?>
-    <script type="text/javascript">
-        var ProductDefaults = <?php echo json_encode($atts, JSON_PRETTY_PRINT+JSON_NUMERIC_CHECK) ?>;
-    </script>
-    <?php if($consolidation == 1) {
-        include( plugin_dir_path( __FILE__ ) . 'templates/consolidation-template.php');
-    } else {
+<script type="text/javascript">
+    var ProductDefaults = <?php echo json_encode($atts, JSON_PRETTY_PRINT+JSON_NUMERIC_CHECK) ?>;
+
+</script>
+<?php 
             include( plugin_dir_path( __FILE__ ) . 'templates/calculator-template.php');
-        }
+      
     return ob_get_clean();
 }
 

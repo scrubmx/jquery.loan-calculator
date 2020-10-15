@@ -22,7 +22,7 @@ jQuery(document).ready(function ($) {
             , pips: {
                 mode: 'positions'
                 , values: [0, 100]
-                , density: 10
+                , density: 100
                 , stepped: true
                 , format: wNumb({
                     decimals: 0
@@ -49,7 +49,7 @@ jQuery(document).ready(function ($) {
             , pips: {
                 mode: 'positions'
                 , values: [0, 100]
-                , density: 10
+                , density: 100
                 , format: wNumb({
                     decimals: 0
                     , thousand: ','
@@ -91,16 +91,6 @@ jQuery(document).ready(function ($) {
                     , 'max': variableTerm(CurrentAmount).max
                 }
             });
-            dataLayer.push({
-                'event': 'LoanCalculator'
-                , 'action': 'config'
-                , 'product': {
-                    'loan': [{
-                        'amount': CurrentAmount
-                        , 'rate': CurrentRate
-       }]
-                }
-            });
         });
         // When term slider is updated
         loantermslider.noUiSlider.on('update', function () {
@@ -109,13 +99,6 @@ jQuery(document).ready(function ($) {
                 loanDuration: CurrentTerm
             });
             $('.selected-term').text(monthstoYears(parseInt(CurrentTerm)));
-            dataLayer.push({
-                'product': {
-                    'loan': [{
-                        'term': CurrentTerm
-       }]
-                }
-            });
         });
         // When the calculator changes, update the application URL
         $calculator.on('loan:update', function (e) {

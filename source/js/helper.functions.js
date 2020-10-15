@@ -15,61 +15,57 @@ function NPER(payment, present, future, type) {
 function NPERResult(payment, present) {
     if (present > 25000) {
         var result = {
-            validLoan: 0
-            , message: '<div class="alert alert-warning my-3 p-2">The maximum amount we can lend is £25,000</div>'
-            , months: nper
-            , months_readable: npertext
+            validLoan: 0,
+            message: '<div class="alert alert-warning my-3 p-2">The maximum amount we can lend is £25,000</div>',
+            months: nper,
+            months_readable: npertext
         }
         return result;
     }
     if (present > 15000) {
         var result = {
-            validLoan: 1
-            , message: '<div class="alert alert-info my-3 p-2">To be eligible to borrow over £15,000, you will need to be a homeowner</div>'
-            , months: nper
-            , months_readable: npertext
+            validLoan: 1,
+            message: '<div class="alert alert-info my-3 p-2">To be eligible to borrow over £15,000, you will need to be a homeowner</div>',
+            months: nper,
+            months_readable: npertext
         }
         return result;
-    }
-    else {
+    } else {
         var nper = NPER(payment, present);
         var nper = Math.round(nper);
         var npertext = monthstoYears(nper);
         if (isFinite(nper)) {
             if (nper > 60) {
                 var result = {
-                    validLoan: 0
-                    , message: '<div class="alert alert-warning my-3 p-2"><p>Even with our low rates, it would take you <strong>' + npertext + '</strong> to pay everything off.</p><p>The maximum loan term we offer is 5 years.</p><p>Can you afford to pay more each month to get it paid off sooner?</div>'
-                    , months: nper
-                    , months_readable: npertext
+                    validLoan: 0,
+                    message: '<div class="alert alert-warning my-3 p-2"><p>Even with our low rates, it would take you <strong>' + npertext + '</strong> to pay everything off.</p><p>The maximum loan term we offer is 5 years.</p><p>Can you afford to pay more each month to get it paid off sooner?</div>',
+                    months: nper,
+                    months_readable: npertext
                 }
                 return result;
-            }
-            else if (nper < 2) {
+            } else if (nper < 2) {
                 var result = {
-                    validLoan: 0
-                    , message: '<div class="alert alert-warning my-3 p-2"><p>It looks like you are well on your way to paying everything off already. Good job. Have you thought about opening a <a href="https://creditunion.co.uk/savings">savings account</a> with us?</p></div>'
-                    , months: nper
-                    , months_readable: npertext
+                    validLoan: 0,
+                    message: '<div class="alert alert-warning my-3 p-2"><p>It looks like you are well on your way to paying everything off already. Good job. Have you thought about opening a <a href="https://creditunion.co.uk/savings">savings account</a> with us?</p></div>',
+                    months: nper,
+                    months_readable: npertext
                 }
                 return result;
-            }
-            else {
+            } else {
                 var result = {
-                    validLoan: 1
-                    , message: '<p>Good news. we may be able to save you money.</p>'
-                    , months: nper
-                    , months_readable: npertext
+                    validLoan: 1,
+                    message: '<p>Good news. we may be able to save you money.</p>',
+                    months: nper,
+                    months_readable: npertext
                 }
                 return result;
             }
-        }
-        else {
+        } else {
             var result = {
-                validLoan: 0
-                , message: '<div class="alert alert-danger my-3 p-2"><p>At this repayment amount, you are unlikely to ever be able to pay everything off.</p><p>Consider increasing the amount you repay each month if possible.</div>'
-                , months: nper
-                , months_readable: npertext
+                validLoan: 0,
+                message: '<div class="alert alert-danger my-3 p-2"><p>At this repayment amount, you are unlikely to ever be able to pay everything off.</p><p>Consider increasing the amount you repay each month if possible.</div>',
+                months: nper,
+                months_readable: npertext
             }
             return result;
         }
@@ -89,16 +85,16 @@ function monthstoYears(value) {
         return number === 1 && word.one || word.other;
     }
     var months = {
-            one: 'month'
-            , other: 'months'
-        }
-        , years = {
-            one: 'year'
-            , other: 'years'
-        }
-        , m = value % 12
-        , y = Math.floor(value / 12)
-        , result = [];
+            one: 'month',
+            other: 'months'
+        },
+        years = {
+            one: 'year',
+            other: 'years'
+        },
+        m = value % 12,
+        y = Math.floor(value / 12),
+        result = [];
     y && result.push(y + ' ' + getPlural(y, years));
     m && result.push(m + ' ' + getPlural(m, months));
     return result.join(' and ');
@@ -108,9 +104,9 @@ Convert money into useful formats
 */
 // Format strings into money
 var moneyFormat = wNumb({
-    mark: '.'
-    , thousand: ','
-    , prefix: '£'
+    mark: '.',
+    thousand: ',',
+    prefix: '£'
 });
 
 function ConvertToMoney(value) {
@@ -147,16 +143,8 @@ function calculateSum(selector) {
 Set URLs based on Calculator content 
 */
 function setURLS(loanAmount, loanTerm) {
-    if (CUOKLoan.hasClass('active')) {
-        applyurlMember = "https://www.cuonline.org.uk/PDL2/Default.aspx?CU=LMCU&amount=" + loanAmount + "&months=" + loanTerm + "&FP=1";
-        applyurlGuest = "https://www.cuonline.org.uk/PDL2/Default.aspx?CU=LMCU&amount=" + loanAmount + "&months=" + loanTerm + "&FP=1";
-    }
-    else {
-        applyurlMember = "https://www.cuonline.org.uk/v3/ApplyLoanV3-3.aspx?newmember=no&amount=" + loanAmount + "&months=" + loanTerm + "&skipcalc=true";
-        applyurlGuest = "https://www.cuonline.org.uk/v3/ApplyLoanV3-2.aspx?newmember=yes&amount=" + loanAmount + "&months=" + loanTerm + "&skipcalc=true";
-    };
-    jQuery('#GuestApplyLink').attr("href", applyurlGuest);
-    jQuery('#MemberApplyLink').attr("href", applyurlMember);
+    applyurl = "https://apps.creditunion.co.uk/Loan/Default.aspx?newmember=no&amount=" + loanAmount + "&months=" + loanTerm + "&skipcalc=true";
+    jQuery('#ApplyLink').attr("href", applyurl);
 };
 /* 
 Set up tabs etc
@@ -174,9 +162,34 @@ jQuery(document).ready(function ($) {
         $(this).tab('show');
         $('#option-tabs a').not(this).removeClass('active');
     });
-    $('#info-tabs a').click(function (e) {
+    $('.info-tabs-nav a').click(function (e) {
         e.preventDefault();
         $(this).tab('show');
-        $('#info-tabs a').not(this).removeClass('active');
+        $('.info-tabs-nav a').not(this).removeClass('active');
     });
+
+    if ($(window).width() < 360) {
+        $('.info-tabs-tab-content').collapse({
+            toggle: false,
+            parent: '#v-pills-tabContent'
+        });
+    };
+
+});
+
+// GA Push
+
+jQuery(function ($) {
+
+    // Set the buttons id in the jQuery function.
+    $("#ApplyLink").on("click", function () {
+        dataLayer.push({
+            "event": "eventGA",
+            "eventCategory": "data1",
+            "eventAction": "data-1-click",
+            "eventLabel": "yes"
+        });
+    });
+
+
 });
