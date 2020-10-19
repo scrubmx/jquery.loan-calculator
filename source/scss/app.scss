@@ -2,15 +2,11 @@
     @import "spacing";
     @import "mixins";
     @import "bootstrap-config";
-
-
-
     #lmcu-calculator {
         .tooltip {
             font-size: 90%;
             line-height: normal;
         }
-
         [data-toggle="tooltip"] {
             .icon {
                 max-width: 18px;
@@ -19,21 +15,17 @@
                 fill: #1565ab;
             }
         }
-
         font-size: 18px;
         line-height: 1.5;
-
         .form-group label {
             display: block;
             @include mb(1);
         }
-
         .form-control {
             border-radius: 0;
             border: 2px solid #1c191a;
             padding: .375rem .375rem;
             font-size: 1.2rem;
-
             &:focus {
                 outline: 3px solid #f5d505;
                 outline-offset: 0;
@@ -41,44 +33,35 @@
                 border-color: currentColor;
             }
         }
-
         .showcase {
             @include make-container(0);
             @include my(5);
-
             &-nav {
                 @include p(0);
                 display: flex;
                 list-style-type: none;
                 flex-direction: column;
-
                 @include media-breakpoint-up(lg) {
                     flex-direction: row;
                     justify-content: space-between;
                 }
             }
-
             &-item {}
-
             &-link {
                 display: flex;
                 @include p(3);
                 cursor: pointer;
                 @include transition(all 0.6s);
                 align-items: flex-start;
-
                 &.active {
                     .icon {
                         fill: $white;
                     }
-
                     .showcase-link-title {
                         color: $white;
                     }
-
                     background-color: #1565ab;
                 }
-
                 &-title {
                     align-self: center;
                     font-size: 1.2rem;
@@ -86,7 +69,6 @@
                     @include p(0);
                     @include my(auto);
                 }
-
                 .icon {
                     fill: #336699;
                     @include mr(2);
@@ -95,171 +77,134 @@
                 }
             }
         }
-
         .calculator {
             @include make-container(0);
             display: flex;
             flex-direction: column;
-
             a[data-target] {
                 cursor: pointer;
             }
-
             &-inner {
                 @include make-row(0);
             }
-
             &-left {
                 display: flex;
                 flex-direction: column;
                 @include make-col-ready(0);
                 @include mb(5);
-
                 @include media-breakpoint-up(md) {
                     @include pr(5);
                     @include mb(0);
                 }
-
                 @include media-breakpoint-up(md) {
                     @include make-col(8);
                 }
-
                 @include media-breakpoint-up(xl) {
                     @include make-col(8);
                 }
             }
-
             .product {
                 display: flex;
                 flex-wrap: wrap;
                 @include mb(3);
-
                 &-title {
                     font-size: 18px;
-
                     @include media-breakpoint-up(lg) {
                         @include pb(0);
                         font-size: 24px;
                     }
-
                     @include my(auto);
                     font-weight: bold;
                 }
-
                 &-options {
                     @include makenav;
                     @include mr(auto);
                     @include px(0);
                     @include pb(0);
-
                     @include media-breakpoint-up(xs) {
                         @include mr(0);
                         @include ml(auto);
                     }
-
                     flex-wrap: nowrap;
-
                     li {
                         font-size: 14px;
                         padding-bottom: 0;
                         @include mt(auto);
                         list-style-type: none;
-
                         a {
                             display: block;
                             padding: 0.5rem 1rem;
                             @include mr(1);
                             color: gray("500");
                             background-color: gray("100");
-
                             span {
                                 display: none;
                             }
-
                             @include media-breakpoint-up(xl) {
                                 span {
                                     display: inline-block;
                                 }
                             }
-
                             &:hover {
                                 background-color: gray("200");
                                 color: gray("600");
                             }
-
                             &.active {
                                 background-color: $white;
                                 color: $charcoal;
-
                                 .icon {
                                     fill: $charcoal;
                                 }
                             }
-
                             .icon {
                                 max-width: 16px;
                                 max-height: 16px;
                                 fill: gray("400");
                             }
-
                         }
                     }
                 }
             }
-
             &-body {
                 &-item {
                     display: none;
                     transition: opacity 0.15s linear;
                     opacity: 0;
-
                     &.active {
                         display: block;
                         opacity: 1;
                     }
-
                     &.sliders {
                         .saver {
                             display: none;
-
                             .form-group {
                                 @include mb(4);
-
                             }
-
                             .form-control {
                                 width: auto;
                             }
                         }
-
                         width: 100%;
                         align-self: center;
-
                         .slider {
                             @include mb(5);
-
                             @include media-breakpoint-up(sm) {
                                 @include mb(6);
                             }
-
                             label {
                                 display: block;
-
                                 span {
                                     font-weight: 600;
                                     color: $charcoal;
                                 }
-
                                 @include pb(3);
                             }
                         }
                     }
-
                     &#info-tab {
                         &.active {
                             display: flex;
                         }
-
                         .info-tabs {
                             &-nav {
                                 @include makenav;
@@ -269,36 +214,28 @@
                                 flex-wrap: wrap;
                                 padding-left: 0;
                                 margin-bottom: 0;
-
-
                                 &-link {
                                     display: block;
                                     padding: 0.5rem 1rem;
-
                                     &.active {
                                         color: $white;
                                         background-color: $charcoal;
                                     }
                                 }
-
                                 @include media-breakpoint-up(sm) {
                                     display: flex;
                                     @include make-col(4);
                                 }
                             }
-
                             &-content {
                                 width: 100%;
-
                                 @include media-breakpoint-up(sm) {
                                     @include pl(4);
                                     @include make-col(8);
                                 }
                             }
-
                             &-tab {
                                 font-size: 16px;
-
                                 &-header {
                                     display: block;
                                     @include p(3);
@@ -306,90 +243,73 @@
                                     background-color: gray("100");
                                     font-family: $font-family-base;
                                 }
-
                                 &-content {
                                     display: none;
                                     @include p(3);
-
                                     &.show {
                                         display: block;
                                         @include mb(2);
                                     }
                                 }
-
                                 @include media-breakpoint-up(sm) {
                                     display: none;
                                     opacity: 0;
                                     @include transition(opacity .15s linear);
-
                                     &-header {
                                         background-color: transparent;
                                         @include p(0);
                                         font-family: $headings-font-family;
                                     }
-
                                     &-content {
                                         @include p(0);
                                         display: block;
                                     }
-
                                     &.active {
                                         display: block;
                                         opacity: 1;
                                     }
                                 }
-
                             }
                         }
                     }
-
                     &#remind-tab {
                         .controls {
                             .fields-primary {
                                 @include make-row(0);
-
                                 .field-left {
                                     @include make-col-ready(0);
                                     @include make-col(8);
+                                    .form-group {
+                                        @include mb(0);
+                                    }
                                 }
-
                                 .field-right {
                                     @include make-col-ready(0);
                                     @include make-col(4);
                                     display: flex;
-
                                     .btn {
-                                        align-self: flex-end;
-                                        @include mt(auto);
-                                        @include mb(3);
-                                        @include ml(3);
-                                        @include button-variant($charcoal, $charcoal, $white);
+                                        border-radius: 0;
+                                          @include button-variant($charcoal, $charcoal, $white);
                                         @include transition(all 1s);
-
+                                        margin: auto auto 0 0;
+    height: 2.66666rem;
                                         &:before {
                                             content: '';
                                         }
-
                                         &:hover {
                                             background-color: $charcoal;
                                             color: $white;
-
                                             &:before {
-                                                @include pr(3);
-
                                             }
                                         }
                                     }
                                 }
                             }
-
                             .fields-secondary {
                                 @include make-row(0);
-
                                 .fields {
                                     @include make-col-ready(0);
                                     @include make-col(12);
-
                                     #message {
                                         @include media-breakpoint-up(md) {
                                             @include make-col-ready(0);
@@ -402,7 +322,6 @@
                         }
                     }
                 }
-
                 &-description {
                     @include pl(3);
                     @include py(1);
@@ -410,18 +329,14 @@
                     @include mb(5);
                 }
             }
-
             &-right {
                 @include make-col-ready(0);
-
                 @include media-breakpoint-up(md) {
                     @include make-col(4);
                 }
-
                 @include media-breakpoint-up(xl) {
                     @include make-col(4);
                 }
-
                 .btn-apply {
                     display: block;
                     width: 100%;
@@ -439,7 +354,6 @@
                     @include transition(all 1s);
                     box-shadow: none;
                     position: relative;
-
                     &:after {
                         display: block;
                         position: absolute;
@@ -453,52 +367,62 @@
                         margin-top: 4px;
                         width: 1.5rem;
                     }
-
                     &:focus {
                         outline: 3px solid #f5d505;
                         outline-offset: 0;
                     }
                 }
-
                 .results {
                     @include media-breakpoint-up(md) {
                         @include mb(0);
                         @include p(3);
                     }
-
                     @include mb(5);
                     border: none;
                     background-color: #f1f8ff;
                     color:#0c5460;
-
                     &-heading {
                         @include mb(2);
-                        @include mt(3);
+                        @include mt(1);
                         font-weight: 700;
                         color: #0c5460;
                     }
-
                     &-message {
-
                         background-color: #d4eaff;
                         font-size: 1rem;
                         padding: 1rem;
                         color: #0c5460;
-
+                        border: 4px solid #0c5460;
                         &.horiz {
                             display: flex;
                             align-items: center;
                             justify-content: center;
                         }
-
-                        &.message {
-                            &-success {}
-
-                            &-warning {}
-
-                            &-error {}
+                        h4 {
+                            color: inherit;
                         }
-
+                        a {
+                            color: inherit;
+                            text-decoration: underline;
+                        }
+                        &.message {
+                              
+                            &-green {
+                                border-color: #038750;
+                                font-weight: 600;
+                                color: #038750;
+                            }
+                            &-red {
+                                border-color: #e31836;
+                                font-weight: 600;
+                                color: #e31836;
+                            }
+                            &-black {
+                                border-color: #272d37;
+                                font-weight: 600;
+                                color: #272d37;
+                            }
+                        }
                         span.lg {
                             white-space: nowrap;
                             display: inline-block;
@@ -506,13 +430,10 @@
                             font-weight: 700;
                             @include ml(auto);
                         }
-
                         @include mb(3);
                     }
-
                     &-list {
                         @include p(0);
-
                         li {
                             @include py(1);
                             @include px(0);
@@ -520,37 +441,29 @@
                             border-color: #ddd;
                             margin-left: 0;
                             background-color: transparent;
-
                             span {
                                 display: inline-block;
                                 font-weight: 600;
                                 margin-left: auto;
-
                                 &#payment {
                                     font-size: 1.1rem;
                                     font-weight: 600;
                                 }
                             }
-
                             &:last-child {
                                 border-bottom: none;
                             }
                         }
-
                         &--detailed {
                             font-size: 14px;
-
                             li {
                                 @include py(0);
                                 border-bottom: 1px solid rgba(#0c5460, 0.25);
-
                                 span {
                                     font-weight: 400;
                                 }
-
                                 &.total {
                                     font-weight: 700;
-
                                     span {
                                         font-weight: 700;
                                     }
@@ -558,78 +471,63 @@
                             }
                         }
                     }
-
                     &-summary,
                     &-comparison {
                         @include my(4);
                         list-style-type: disc;
                         @include px(3);
-
                         &-heading {
                             color: #0c5460;
                             @include mt(0);
                             @include pb(1);
                         }
-
                     }
-
-
                     .interest-detail {
                         color: rgba($charcoal, 0.9);
                         @include mb(0);
                     }
                 }
             }
-
             .consolidation.calculator {
                 .inner {
                     flex-direction: column;
-
                     @include media-breakpoint-up(md) {
                         flex-direction: row;
                     }
                 }
-
                 .intro {
                     @include mb(4);
                 }
-
                 .intro,
                 .column-left {
                     @include make-col-ready(0);
                     @include make-col(12);
                     order: 1;
-
                     @include media-breakpoint-up(md) {
                         @include make-col(7);
                         order: 1;
                         padding: 0 15px;
                     }
                 }
-
                 .column-right {
                     @include make-col-ready(0);
                     @include make-col(12);
                     order: 2;
                     @include mb(4);
-
                     @include media-breakpoint-up(md) {
                         @include make-col(5);
                         order: 3;
                         padding: 0 15px;
                     }
-
                     .representative-example {
                         margin-left: -1.25rem;
                         margin-right: -1.25rem;
-
                         @include media-breakpoint-up(md) {
                             margin-left: inherit;
                             margin-right: inherit;
                         }
                     }
                 }
-
                 .btn-apply {
                     width: auto;
                     @include mt(4);
@@ -637,72 +535,56 @@
                 }
             }
         }
-
         #consolidation-tab {
             h4 {
                 font-weight: 600;
                 @include mb(3);
             }
-
             .header-row {
                 white-space: nowrap;
             }
-
             .repeat-row {
                 &:not(:first-child) {
                     display: none
                 }
             }
-
             .repeat-row,
             .header-row {
                 @include mb(2);
                 @extend .form-row;
-
                 label {
                     font-size: 90%;
-
                     @include media-breakpoint-up(md) {
                         font-size: 100%;
                     }
                 }
-
                 .type {
                     @include make-col-ready();
                     @include make-col(5);
                     padding-right: 5px;
                     padding-left: 5px;
                 }
-
                 .balance {
                     @include make-col-ready();
                     @include make-col(3);
-
                     @include media-breakpoint-up(md) {
                         @include make-col(3);
                     }
-
                     padding-right: 5px;
                     padding-left: 5px;
                 }
-
                 .repayment {
                     @include make-col-ready();
                     @include make-col(3);
-
                     @include media-breakpoint-up(md) {
                         @include make-col(3);
                     }
-
                     padding-right: 5px;
                     padding-left: 5px;
                 }
-
                 .controls {
-
                     display: flex;
                     width: auto;
-
                     .btn {
                         width: 1.5rem;
                         height: 1.5rem;
@@ -710,20 +592,16 @@
                         line-height: 1.5rem;
                         font-size: 0.75rem;
                         margin: auto 0 auto auto;
-
                         @include media-breakpoint-up(md) {
                             margin: auto;
                         }
-
                         cursor: pointer;
                     }
-
                     .btn-add {
                         background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z" /></svg>');
                         background-size: 20px 20px;
                         background-repeat: no-repeat;
                     }
-
                     .btn-remove {
                         background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M416 208H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h384c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z" /></svg>');
                         background-size: 20px 20px;
@@ -731,110 +609,117 @@
                     }
                 }
             }
-
             .repayment-calc {
                 @extend .form-row;
                 @include my(5);
                 @include pt(4);
                 @extend .border-top;
-
                 .repayment-calc-label {
                     @include make-col-ready();
                     @include make-col(12);
-
                     @include media-breakpoint-up(md) {
                         @include make-col(8);
                     }
-
                     padding-right: 5px;
                     padding-left: 5px;
                     display: flex;
                     flex-direction: column;
-
                     p {
                         font-size: 80%;
                         @extend .text-muted;
                     }
                 }
-
                 .repayment-calc-total {
                     @include make-col-ready();
                     @include make-col(5);
                     @include mt(3);
-
                     @include media-breakpoint-up(md) {
                         @include make-col(3);
                         @include mt(0);
                     }
-
                     padding-right: 5px;
                     padding-left: 5px;
                 }
             }
-
             .mobile-btn-row {
                 @include make-col-ready();
                 @include make-col(12);
                 padding: 0 5px;
                 @include mt(4);
-
                 @include media-breakpoint-up(md) {
                     display: none;
                 }
-
                 a {
                     @extend .btn;
                     @extend .btn-secondary;
                 }
             }
         }
+        .details-block {
+            margin: 1rem 0;
+            &__summary {
+                display: inline-block;
+                color: #1565ab;
+                &:focus {
+                    outline: 3px solid transparent;
+                    color: #0b0c0c;
+                    background-color: #fd0;
+                    box-shadow: 0 -2px #fd0, 0 4px #0b0c0c;
+                    text-decoration: none;
+                }
+            }
+            &__details-txt {
+                margin: 10px 0 0 3px;
+                font-weight: initial;
+                font-size: 16px;
+                p {
+                    margin-bottom: 1rem;
+                
+                }
+                li {
+                    margin-bottom: 0.5rem;
+                }
+            }
+            &[open] summary~* {
+                animation: fadeIn .5s ease-in-out forwards;
+            }
+            /*&:not([open]) summary~* {
+        animation: fadeOut .5s ease-in-out forwards;
+    }*/
+        }
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        @keyframes fadeOut {
+            0% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
     }
-
+    
     #infoLegal {
         @include make-container();
         overflow: scroll;
         top: 80px;
         height: calc(100vh - 80px);
         overflow-y: auto;
-
         ul {
             font-size: 14px;
             list-style-type: inherit;
             margin-left: 1.5rem;
-
             li {
                 margin-bottom: 0.75rem;
             }
         }
-
         p {
             padding-bottom: 1rem;
         }
     }
-
-    /*! purgecss start ignore */
-    .modal .modal-content {
-        border: none;
-        box-shadow: none;
-    }
-
-    .modal-backdrop {
-        position: fixed;
-        pointer-events: none;
-        top: 0;
-        left: 0;
-        z-index: 1040;
-        width: 100vw;
-        height: 100vh;
-        background-color: #fff
-    }
-
-    .modal-backdrop.fade {
-        opacity: 0
-    }
-
-    .modal-backdrop.show {
-        opacity: 1
-    }
-
-    /*! purgecss end ignore */

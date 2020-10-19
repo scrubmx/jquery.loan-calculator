@@ -13,10 +13,10 @@ function NPER(payment, present, future, type) {
 }
 // Return readable messages based on the NPER result
 function NPERResult(payment, present) {
-    if (present > 25000) {
+    if (present > 7500) {
         var result = {
             validLoan: 0,
-            message: '<div class="results-message message-warning">The maximum amount we can lend is £25,000</div>',
+            message: '<div class="results-message message-black"><h4 class="results-heading">Sorry</h4><p>The maximum amount we can lend for consolidation purposes is £7,500.</p><p>If you owe more than £7,500, a consolidation loan may not be the best option for you.</p><p>Visit the <a href="https://www.moneyadviceservice.org.uk/en/articles/help-if-youre-struggling-with-debt">Money Advice Service</a> for more information about other ways to reduce debt.</p></div>',
             months: nper,
             months_readable: npertext
         }
@@ -38,7 +38,7 @@ function NPERResult(payment, present) {
             if (nper > 60) {
                 var result = {
                     validLoan: 0,
-                    message: '<div class="results-message message-warning"><p>Even with our low rates, it would take you <strong>' + npertext + '</strong> to pay everything off.</p><p>The maximum loan term we offer is 5 years.</p><p>Can you afford to pay more each month to get it paid off sooner?</div>',
+                    message: '<div class="results-message message-black"><h4 class="results-heading">Sorry</h4><p>Even with our low rates, it would take you <strong>' + npertext + '</strong> to pay everything off.</p><p>The maximum loan term we offer is 5 years.</p><p>If you can afford to, consider increasing your repayments to get it paid off sooner.</div>',
                     months: nper,
                     months_readable: npertext
                 }
@@ -46,7 +46,7 @@ function NPERResult(payment, present) {
             } else if (nper < 2) {
                 var result = {
                     validLoan: 0,
-                    message: '<div class="results-message message-warning"><p>It looks like you are well on your way to paying everything off already. Good job. Have you thought about opening a <a href="https://creditunion.co.uk/savings">savings account</a> with us?</p></div>',
+                    message: '<div class="results-message message-green"><h4 class="results-heading">Nice one</h4><p>It looks like you are well on your way to paying everything off already.</p><p>Have you thought about opening a <a href="https://creditunion.co.uk/savings">savings account</a> with us?</p></div>',
                     months: nper,
                     months_readable: npertext
                 }
@@ -63,7 +63,7 @@ function NPERResult(payment, present) {
         } else {
             var result = {
                 validLoan: 0,
-                message: '<div class="results-message message-danger"><p>At this repayment amount, you are unlikely to ever be able to pay everything off.</p><p>Consider increasing the amount you repay each month if possible.</div>',
+                message: '<div class="results-message message-red"><h4 class="results-heading">Sorry</h4><p>At this repayment amount, you are unlikely to ever be able to reduce the amount you owe.</p><p>Consider increasing the amount you repay each month if you can afford to.</p><p>Visit the <a href="https://www.moneyadviceservice.org.uk/en/articles/help-if-youre-struggling-with-debt">Money Advice Service</a> for more information about other ways to reduce debt.</p></div>',
                 months: nper,
                 months_readable: npertext
             }

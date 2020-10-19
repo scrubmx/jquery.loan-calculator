@@ -5650,6 +5650,8 @@ a.text-dark:hover, a.text-dark:focus {
           padding-left: 0;
           flex: 0 0 66.66667%;
           max-width: 66.66667%; }
+          #lmcu-calculator .calculator-body-item#remind-tab .controls .fields-primary .field-left .form-group {
+            margin-bottom: 0; }
         #lmcu-calculator .calculator-body-item#remind-tab .controls .fields-primary .field-right {
           position: relative;
           width: 100%;
@@ -5659,14 +5661,13 @@ a.text-dark:hover, a.text-dark:focus {
           max-width: 33.33333%;
           display: flex; }
           #lmcu-calculator .calculator-body-item#remind-tab .controls .fields-primary .field-right .btn, #lmcu-calculator .calculator-body-item#remind-tab .controls .fields-primary .field-right #consolidation-tab .mobile-btn-row a, #lmcu-calculator #consolidation-tab .mobile-btn-row .calculator-body-item#remind-tab .controls .fields-primary .field-right a {
-            align-self: flex-end;
-            margin-top: auto;
-            margin-bottom: 1rem;
-            margin-left: 1rem;
+            border-radius: 0;
             color: #ffffff;
             background-color: #272d37;
             border-color: #272d37;
-            transition: all 1s; }
+            transition: all 1s;
+            margin: auto auto 0 0;
+            height: 2.66666rem; }
             #lmcu-calculator .calculator-body-item#remind-tab .controls .fields-primary .field-right .btn:hover, #lmcu-calculator .calculator-body-item#remind-tab .controls .fields-primary .field-right #consolidation-tab .mobile-btn-row a:hover, #lmcu-calculator #consolidation-tab .mobile-btn-row .calculator-body-item#remind-tab .controls .fields-primary .field-right a:hover {
               color: #212529;
               background-color: #ffffff;
@@ -5700,8 +5701,6 @@ a.text-dark:hover, a.text-dark:focus {
             #lmcu-calculator .calculator-body-item#remind-tab .controls .fields-primary .field-right .btn:hover, #lmcu-calculator .calculator-body-item#remind-tab .controls .fields-primary .field-right #consolidation-tab .mobile-btn-row a:hover, #lmcu-calculator #consolidation-tab .mobile-btn-row .calculator-body-item#remind-tab .controls .fields-primary .field-right a:hover {
               background-color: #272d37;
               color: #ffffff; }
-              #lmcu-calculator .calculator-body-item#remind-tab .controls .fields-primary .field-right .btn:hover:before, #lmcu-calculator .calculator-body-item#remind-tab .controls .fields-primary .field-right #consolidation-tab .mobile-btn-row a:hover:before, #lmcu-calculator #consolidation-tab .mobile-btn-row .calculator-body-item#remind-tab .controls .fields-primary .field-right a:hover:before {
-                padding-right: 1rem; }
       #lmcu-calculator .calculator-body-item#remind-tab .controls .fields-secondary {
         display: flex;
         flex-wrap: wrap;
@@ -5811,7 +5810,7 @@ a.text-dark:hover, a.text-dark:focus {
             padding: 1rem; } }
         #lmcu-calculator .calculator-right .results-heading {
           margin-bottom: 0.5rem;
-          margin-top: 1rem;
+          margin-top: 0.25rem;
           font-weight: 700;
           color: #0c5460; }
         #lmcu-calculator .calculator-right .results-message {
@@ -5819,11 +5818,29 @@ a.text-dark:hover, a.text-dark:focus {
           font-size: 1rem;
           padding: 1rem;
           color: #0c5460;
+          border: 4px solid #0c5460;
           margin-bottom: 1rem; }
           #lmcu-calculator .calculator-right .results-message.horiz {
             display: flex;
             align-items: center;
             justify-content: center; }
+          #lmcu-calculator .calculator-right .results-message h4 {
+            color: inherit; }
+          #lmcu-calculator .calculator-right .results-message a {
+            color: inherit;
+            text-decoration: underline; }
+          #lmcu-calculator .calculator-right .results-message.message-green {
+            border-color: #038750;
+            font-weight: 600;
+            color: #038750; }
+          #lmcu-calculator .calculator-right .results-message.message-red {
+            border-color: #e31836;
+            font-weight: 600;
+            color: #e31836; }
+          #lmcu-calculator .calculator-right .results-message.message-black {
+            border-color: #272d37;
+            font-weight: 600;
+            color: #272d37; }
           #lmcu-calculator .calculator-right .results-message span.lg {
             white-space: nowrap;
             display: inline-block;
@@ -6060,6 +6077,42 @@ a.text-dark:hover, a.text-dark:focus {
     @media (min-width: 768px) {
       #lmcu-calculator #consolidation-tab .mobile-btn-row {
         display: none; } }
+  #lmcu-calculator .details-block {
+    margin: 1rem 0;
+    /*&:not([open]) summary~* {
+        animation: fadeOut .5s ease-in-out forwards;
+    }*/ }
+    #lmcu-calculator .details-block__summary {
+      display: inline-block;
+      color: #1565ab; }
+      #lmcu-calculator .details-block__summary:focus {
+        outline: 3px solid transparent;
+        color: #0b0c0c;
+        background-color: #fd0;
+        box-shadow: 0 -2px #fd0, 0 4px #0b0c0c;
+        text-decoration: none; }
+    #lmcu-calculator .details-block__details-txt {
+      margin: 10px 0 0 3px;
+      font-weight: initial;
+      font-size: 16px; }
+      #lmcu-calculator .details-block__details-txt p {
+        margin-bottom: 1rem; }
+      #lmcu-calculator .details-block__details-txt li {
+        margin-bottom: 0.5rem; }
+    #lmcu-calculator .details-block[open] summary ~ * {
+      animation: fadeIn .5s ease-in-out forwards; }
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1; }
+  100% {
+    opacity: 0; } }
 
 #infoLegal {
   width: 100%;
@@ -6079,29 +6132,6 @@ a.text-dark:hover, a.text-dark:focus {
       margin-bottom: 0.75rem; }
   #infoLegal p {
     padding-bottom: 1rem; }
-
-/*! purgecss start ignore */
-.modal .modal-content {
-  border: none;
-  box-shadow: none; }
-
-.modal-backdrop {
-  position: fixed;
-  pointer-events: none;
-  top: 0;
-  left: 0;
-  z-index: 1040;
-  width: 100vw;
-  height: 100vh;
-  background-color: #fff; }
-
-.modal-backdrop.fade {
-  opacity: 0; }
-
-.modal-backdrop.show {
-  opacity: 1; }
-
-/*! purgecss end ignore */
 
 /*!
  * Bootstrap v4.4.1 (https://getbootstrap.com/)
