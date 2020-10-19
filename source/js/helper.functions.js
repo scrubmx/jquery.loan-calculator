@@ -175,7 +175,6 @@ jQuery(document).ready(function ($) {
         e.preventDefault();
     });
     //Move modal in DOM and set up tabs and popovers
-    $('.modal').appendTo("body");
     $('[data-toggle="popover"]').popover();
     $('#option-tabs a').click(function (e) {
         e.preventDefault();

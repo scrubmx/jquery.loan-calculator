@@ -112,6 +112,7 @@ jQuery(document).ready(function ($) {
         When a new product is selected, change values
         */
         $('[data-toggle="product"]').on('click', function (e) {
+            e.preventDefault();
             var SelectedProduct = {
                     minValue: $(this).data('min-value')
                     , maxValue: $(this).data('max-value')

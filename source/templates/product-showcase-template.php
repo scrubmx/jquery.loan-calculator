@@ -10,7 +10,7 @@
                 </a>
             </li>
             <li class="showcase-item">
-                <a class="showcase-link" class="showcase-link" id="personal-loan" data-toggle="product" data-interest="6.69" data-description="The smart alternative to credit cards and arranged overdrafts. Available to all new and existing members in employment and with good credit." data-product="Personal Loan" data-step="25" data-default-value="5000" data-default-term="36" data-min-term="1" data-max-term="36" data-max-value="7499" data-min-value="100">
+                <a class="showcase-link" href="#" class="showcase-link" id="personal-loan" data-toggle="product" data-interest="6.69" data-description="The smart alternative to credit cards and arranged overdrafts. Available to all new and existing members in employment and with good credit." data-product="Personal Loan" data-step="25" data-default-value="5000" data-default-term="36" data-min-term="1" data-max-term="36" data-max-value="7499" data-min-value="100">
 
                    <svg class="icon">
   <use xlink:href="#icon_percent" />
