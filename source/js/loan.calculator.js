@@ -102,9 +102,11 @@ jQuery(document).ready(function ($) {
         });
         // When the calculator changes, update the application URL
         $calculator.on('loan:update', function (e) {
-            var loanAmount = parseInt(loanamountslider.noUiSlider.get());
-            var loanTerm = parseInt(loantermslider.noUiSlider.get());
-            setURLS(loanAmount, loanTerm);
+            gtmLoanAmount = parseInt(loanamountslider.noUiSlider.get());
+            gtmLoanLength = parseInt(loantermslider.noUiSlider.get());
+            gtmProduct = 'Personal Loan';
+            
+            setURLS(gtmLoanAmount, gtmLoanLength);
         });
         /*
         When a new product is selected, change values

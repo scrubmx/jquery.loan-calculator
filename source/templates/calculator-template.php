@@ -5,7 +5,7 @@
     </div>
     <div class="calculator">
         <?php 
-            if($showcase == true && $consolidation !== 1) {
+            if($showcase == 1) {
                 include( plugin_dir_path( __FILE__ ) . '/product-showcase-template.php');
                 }?>
         <main id="widget" class="calculator-inner">

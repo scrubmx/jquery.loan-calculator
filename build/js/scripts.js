@@ -10896,12 +10896,13 @@ function getdateGA(){
 }
 
 jQuery('#ApplyLink').on('click', function (e) {
-     e.preventDefault();
+
     dataLayer.push({
         'date-time': getdateGA()
         , 'event': 'loan-calculator-params-selected'
-        , 'loan-term': monthstoYears(loantermslider.noUiSlider.get())
-        , 'loan-amount': loanamountslider.noUiSlider.get()
+        , 'loan-term': gtmLoanLength
+        , 'loan-amount': gtmLoanAmount
+        , 'loan-product': gtmProduct
     });
 });
 /* 
@@ -11114,9 +11115,11 @@ jQuery(document).ready(function ($) {
         });
         // When the calculator changes, update the application URL
         $calculator.on('loan:update', function (e) {
-            var loanAmount = parseInt(loanamountslider.noUiSlider.get());
-            var loanTerm = parseInt(loantermslider.noUiSlider.get());
-            setURLS(loanAmount, loanTerm);
+            gtmLoanAmount = parseInt(loanamountslider.noUiSlider.get());
+            gtmLoanLength = parseInt(loantermslider.noUiSlider.get());
+            gtmProduct = 'Personal Loan';
+            
+            setURLS(gtmLoanAmount, gtmLoanLength);
         });
         /*
         When a new product is selected, change values
@@ -11217,7 +11220,15 @@ jQuery(document).ready(function ($) {
             }
             var OptionalRepayment = ConvertToNumber($(this).val());
             ConsolidateResult(OptionalRepayment, BalanceTotal);
-            setURLS(BalanceTotal, Math.round(NPER(OptionalRepayment, BalanceTotal)));
+            var LoanTerm = Math.round(NPER(OptionalRepayment, BalanceTotal));
+            console.log('Loan Term' + LoanTerm);
+
+            setURLS(BalanceTotal, LoanTerm);
+            gtmLoanAmount = BalanceTotal;
+            gtmLoanLength = LoanTerm;
+            gtmProduct = 'Consolidation';
+            console.log('GTM Loan Term' + gtmLoanLength);
+            
         });
     }
 });

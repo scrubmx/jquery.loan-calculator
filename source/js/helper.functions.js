@@ -157,12 +157,13 @@ function getdateGA(){
 }
 
 jQuery('#ApplyLink').on('click', function (e) {
-     e.preventDefault();
+
     dataLayer.push({
         'date-time': getdateGA()
         , 'event': 'loan-calculator-params-selected'
-        , 'loan-term': monthstoYears(loantermslider.noUiSlider.get())
-        , 'loan-amount': loanamountslider.noUiSlider.get()
+        , 'loan-term': gtmLoanLength
+        , 'loan-amount': gtmLoanAmount
+        , 'loan-product': gtmProduct
     });
 });
 /* 

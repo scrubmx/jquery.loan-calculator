@@ -41,7 +41,15 @@ jQuery(document).ready(function ($) {
             }
             var OptionalRepayment = ConvertToNumber($(this).val());
             ConsolidateResult(OptionalRepayment, BalanceTotal);
-            setURLS(BalanceTotal, Math.round(NPER(OptionalRepayment, BalanceTotal)));
+            var LoanTerm = Math.round(NPER(OptionalRepayment, BalanceTotal));
+            console.log('Loan Term' + LoanTerm);
+
+            setURLS(BalanceTotal, LoanTerm);
+            gtmLoanAmount = BalanceTotal;
+            gtmLoanLength = LoanTerm;
+            gtmProduct = 'Consolidation';
+            console.log('GTM Loan Term' + gtmLoanLength);
+            
         });
     }
 });

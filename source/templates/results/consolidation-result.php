@@ -20,7 +20,7 @@
                         </div>
                         <!-- Button -->
                         <div class="mobile-button">
-                            <button type="button" class="btn-apply" data-toggle="modal" data-target="#currentMember"> Apply for this loan </button>
+                             <a class="btn-apply" id="ApplyLink" href="https://apps.creditunion.co.uk/Loan/Default.aspx/?amount=<?php echo $amount;?>&months=<?php echo $term;?>">Apply for this loan </a>
                         </div>
                     </div>
                 </div>
