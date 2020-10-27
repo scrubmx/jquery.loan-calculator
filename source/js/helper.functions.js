@@ -147,7 +147,7 @@ function calculateSum(selector) {
 Set URLs based on Calculator content 
 */
 function setURLS(loanAmount, loanTerm) {
-    applyurl = "https://apps.creditunion.co.uk/Loan/Default.aspx?newmember=no&amount=" + loanAmount + "&months=" + loanTerm + "&skipcalc=true";
+    applyurl = "https://apps.creditunion.co.uk/Loan/Default.aspx?amount=" + loanAmount + "&months=" + loanTerm + "&skipcalc=true";
     jQuery('#ApplyLink').attr("href", applyurl);
 };
 /* Datalayer Push when button clicked */

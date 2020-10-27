@@ -10,6 +10,6 @@
                                         </ul>
                                     </div>
                                     <!-- Button -->
-                                    <a class="btn-apply" id="ApplyLink" href="https://apps.creditunion.co.uk/Loan/Default.aspx/?amount=<?php echo $amount;?>&months=<?php echo $term;?>">Apply for this loan </a>
+                                    <a class="btn-apply" id="ApplyLink" href="https://apps.creditunion.co.uk/Loan/Default.aspx?amount=<?php echo $amount;?>&months=<?php echo $term;?>">Apply for this loan </a>
                                 </div>
                             </div>
