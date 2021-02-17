@@ -45,6 +45,7 @@ function lmcu_calculator( $atts ) {
             'amount' => '7500',
             'term' => '36',
             'step' => '25',
+			'optionstabs' => true,
             'desc' => 'Work for one of our salary deduction partners? Benefit from a special rate with repayments taken straight from your salary.',
             'showcase' => 1,
             'consolidation' => false,

@@ -14,6 +14,7 @@
                     <h3 class="product-title"> <span id="product-name"><?php if($consolidation) { 
     echo 'Consolidation Loan';
 }; ?></span></h3>
+					 <?php if($optionstabs) : ?>
                     <ul class="product-options" id="option-tabs" role="tablist">
 
                         <?php if($consolidation) : ?>
@@ -31,6 +32,7 @@
                                     <use xlink:href="#icon_save" />
                                 </svg> <span>Save</span></a> </li>
                     </ul>
+					<?php endif;?>
                 </nav>
                 <div class="calculator-body">
                     <?php 

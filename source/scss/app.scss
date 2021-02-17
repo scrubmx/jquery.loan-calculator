@@ -35,7 +35,7 @@
         }
         .showcase {
             @include make-container(0);
-            @include my(5);
+            @include mb(5);
             &-nav {
                 @include p(0);
                 display: flex;
@@ -49,28 +49,34 @@
             &-item {}
             &-link {
                 display: flex;
+				@include media-breakpoint-up(lg) {
                 @include p(3);
+				}
                 cursor: pointer;
                 @include transition(all 0.6s);
                 align-items: flex-start;
+									text-decoration: none;
                 &.active {
+					text-decoration: underline;
                     .icon {
-                        fill: $white;
+                        fill: #1565ab;
                     }
                     .showcase-link-title {
-                        color: $white;
+                        color: #1565ab;
+						
                     }
-                    background-color: #1565ab;
                 }
                 &-title {
+					font-family: 'Lato';
                     align-self: center;
                     font-size: 1.2rem;
                     font-weight: 400;
                     @include p(0);
+
                     @include my(auto);
                 }
                 .icon {
-                    fill: #336699;
+                    fill: #dee2e6;
                     @include mr(2);
                     max-width: 30px;
                     max-height: 30px;
@@ -324,7 +330,7 @@
                 }
                 &-description {
                     @include pl(3);
-                    @include py(1);
+                    @include py(0);
                     border-left: 4px solid rgba(28, 25, 26, 0.4);
                     @include mb(5);
                 }
@@ -373,6 +379,8 @@
                     }
                 }
                 .results {
+					  @include px(2);
+					  @include py(3);
                     @include media-breakpoint-up(md) {
                         @include mb(0);
                         @include p(3);
@@ -392,7 +400,7 @@
                         font-size: 1rem;
                         padding: 1rem;
                         color: #0c5460;
-                        border: 4px solid #0c5460;
+                        
                         &.horiz {
                             display: flex;
                             align-items: center;
@@ -406,7 +414,8 @@
                             text-decoration: underline;
                         }
                         &.message {
-                              
+                              border-style: solid;
+							border-width: 4px;
                             &-green {
                                 border-color: #038750;
                                 font-weight: 600;

@@ -5419,7 +5419,6 @@ a.text-dark:hover, a.text-dark:focus {
     padding-left: 0;
     margin-right: auto;
     margin-left: auto;
-    margin-top: 3rem;
     margin-bottom: 3rem; }
     #lmcu-calculator .showcase-nav {
       padding: 0;
@@ -5432,20 +5431,24 @@ a.text-dark:hover, a.text-dark:focus {
           justify-content: space-between; } }
     #lmcu-calculator .showcase-link {
       display: flex;
-      padding: 1rem;
       cursor: pointer;
       transition: all 0.6s;
-      align-items: flex-start; }
+      align-items: flex-start;
+      text-decoration: none; }
+      @media (min-width: 992px) {
+        #lmcu-calculator .showcase-link {
+          padding: 1rem; } }
       @media (prefers-reduced-motion: reduce) {
         #lmcu-calculator .showcase-link {
           transition: none; } }
       #lmcu-calculator .showcase-link.active {
-        background-color: #1565ab; }
+        text-decoration: underline; }
         #lmcu-calculator .showcase-link.active .icon {
-          fill: #ffffff; }
+          fill: #1565ab; }
         #lmcu-calculator .showcase-link.active .showcase-link-title {
-          color: #ffffff; }
+          color: #1565ab; }
       #lmcu-calculator .showcase-link-title {
+        font-family: 'Lato';
         align-self: center;
         font-size: 1.2rem;
         font-weight: 400;
@@ -5453,7 +5456,7 @@ a.text-dark:hover, a.text-dark:focus {
         margin-top: auto;
         margin-bottom: auto; }
       #lmcu-calculator .showcase-link .icon {
-        fill: #336699;
+        fill: #dee2e6;
         margin-right: 0.5rem;
         max-width: 30px;
         max-height: 30px; }
@@ -5724,8 +5727,8 @@ a.text-dark:hover, a.text-dark:focus {
               margin-top: 1.5rem; } }
     #lmcu-calculator .calculator-body-description {
       padding-left: 1rem;
-      padding-top: 0.25rem;
-      padding-bottom: 0.25rem;
+      padding-top: 0;
+      padding-bottom: 0;
       border-left: 4px solid rgba(28, 25, 26, 0.4);
       margin-bottom: 3rem; }
     #lmcu-calculator .calculator-right {
@@ -5800,6 +5803,10 @@ a.text-dark:hover, a.text-dark:focus {
           outline: 3px solid #f5d505;
           outline-offset: 0; }
       #lmcu-calculator .calculator-right .results {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
         margin-bottom: 3rem;
         border: none;
         background-color: #f1f8ff;
@@ -5818,7 +5825,6 @@ a.text-dark:hover, a.text-dark:focus {
           font-size: 1rem;
           padding: 1rem;
           color: #0c5460;
-          border: 4px solid #0c5460;
           margin-bottom: 1rem; }
           #lmcu-calculator .calculator-right .results-message.horiz {
             display: flex;
@@ -5829,18 +5835,21 @@ a.text-dark:hover, a.text-dark:focus {
           #lmcu-calculator .calculator-right .results-message a {
             color: inherit;
             text-decoration: underline; }
-          #lmcu-calculator .calculator-right .results-message.message-green {
-            border-color: #038750;
-            font-weight: 600;
-            color: #038750; }
-          #lmcu-calculator .calculator-right .results-message.message-red {
-            border-color: #e31836;
-            font-weight: 600;
-            color: #e31836; }
-          #lmcu-calculator .calculator-right .results-message.message-black {
-            border-color: #272d37;
-            font-weight: 600;
-            color: #272d37; }
+          #lmcu-calculator .calculator-right .results-message.message {
+            border-style: solid;
+            border-width: 4px; }
+            #lmcu-calculator .calculator-right .results-message.message-green {
+              border-color: #038750;
+              font-weight: 600;
+              color: #038750; }
+            #lmcu-calculator .calculator-right .results-message.message-red {
+              border-color: #e31836;
+              font-weight: 600;
+              color: #e31836; }
+            #lmcu-calculator .calculator-right .results-message.message-black {
+              border-color: #272d37;
+              font-weight: 600;
+              color: #272d37; }
           #lmcu-calculator .calculator-right .results-message span.lg {
             white-space: nowrap;
             display: inline-block;
