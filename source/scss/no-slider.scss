@@ -22,126 +22,137 @@ $fill-color: $control-color;
 /// Height of the slider's gutter
 /// @type String
 $gutter-height: 16px;
+
 /// noUiSlider Gutter
 .noUi-background {
-    height: $gutter-height;
+	height: $gutter-height;
 }
 
 .noUi-target {
-    border-radius: 8px;
-    border: none;
-    background-color: #dee2e6;
-    box-shadow: none;
+	border-radius: 8px;
+	border: none;
+	background-color: #dee2e6;
+	box-shadow: none;
 }
 
 .noUi-horizontal {
-    height: 12px
+	height: 12px
 }
 
 .noUi-pips-horizontal {
-    padding: 4px 0;
-    height: 12px;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    .noUi-marker-horizontal {
-        &.noUi-marker {
-            width: 1px;
-        }
-        &.noUi-marker-large {
-            height: 12px;
-            background-color: rgba(0,0,0,0.125);
-        }
-    }
-    .noUi-value-large {
-        color: $charcoal;
-        webkit-transform: translate(0, 50%);
-        transform: translate(0, 50%);
-        font-weight: 400;
-        font-size: 14px;
-        & ~ .noUi-value-large {
-            webkit-transform: translate(-50%, 50%);
-            transform: translate(-50%, 50%);
-            font-weight: normal;
-        }
-        &:last-of-type {
-            webkit-transform: translate(-100%, 50%);
-            transform: translate(-100%, 50%);
-        }
-    }
+	padding: 4px 0;
+	height: 12px;
+	top: 100%;
+	left: 0;
+	width: 100%;
+
+	.noUi-marker-horizontal {
+		&.noUi-marker {
+			width: 1px;
+		}
+
+		&.noUi-marker-large {
+			height: 12px;
+			background-color: rgba(0, 0, 0, 0.125);
+		}
+	}
+
+	.noUi-value-large {
+		color: $charcoal;
+		transform: translate(0, 5px);
+		font-weight: 400;
+		font-size: 80%;
+
+		& ~ .noUi-value-large {
+			transform: translate(-50%, 5px);
+			font-weight: normal;
+		}
+
+		&:last-of-type {
+			transform: translate(-100%, 5px);
+		}
+	}
 }
 
 .noUi-base {
-    .noUi-connects {
-        border-radius: 8px;
-        cursor: pointer;
-        .noUi-connect {
-            background-color: $fill-color;
-        }
-    }
-    /// noUiSlider Handle
-    .noUi-handle {
-        background-color: #ffffff;
-        border: 2px solid $control-color;
-        border-radius: 50%;
-        box-shadow: -0.06125rem 0.06125rem 0.125rem rgba(0, 0, 0, 0.5);
-        height: $control-height;
-        width: $control-width;
-        z-index: 2;
-        top: -8px;
-        right: unset;
-        left: calc(100% - 16px)!important;
-        cursor: pointer;
-        position: relative;
-        cursor: grab;
-        &:focus {
-              background-color: #fff;
+	.noUi-connects {
+		border-radius: 8px;
+		cursor: pointer;
 
-            outline-width: 0;
-        }
-        .noUi-touch-area {
-            position: absolute;
-            top: -12px;
-            width: 36px;
-            height: 36px;
-            left: -12px;
-            &:focus {
-                outline-width: 0;
-            }
-        }
-        &:hover {
-           
-        }
-        &.noUi-active {
-            cursor: grabbing;
-            background-color: #fff;
-            box-shadow: 0 0 0 3px #f5d505;
-            z-index: 3;
-            &:before {
-                content:"";
-                width: 14px;
-                height: 14px;
-                left: 5px;
-                top: 5px;
-                position: absolute;
-                display: block;
-                background-color: $control-color;
-                border-radius: 50%;
-            }
-        }
-        &::before {
-            background: transparent;
-            content: attr(data-value);
-            font-size: $control-font-size;
-            font-weight: $control-font-weight;
-            position: static;
-            width: 100%;
-            vertical-align: middle;
-        }
-        &::after {
-            display: none;
-        }
-    }
+		.noUi-connect {
+			background-color: $fill-color;
+		}
+	}
+
+	/// noUiSlider Handle
+	.noUi-handle {
+		background-color: #ffffff;
+		border: 2px solid $control-color;
+		border-radius: 50%;
+		box-shadow: -0.06125rem 0.06125rem 0.125rem rgba(0, 0, 0, 0.5);
+		height: $control-height;
+		width: $control-width;
+		z-index: 2;
+		top: -8px;
+		right: unset;
+		left: calc(100% - 16px) !important;
+		cursor: pointer;
+		position: relative;
+		cursor: grab;
+
+		&:focus {
+			background-color: #fff;
+
+			outline-width: 0;
+		}
+
+		.noUi-touch-area {
+			position: absolute;
+			top: -12px;
+			width: 36px;
+			height: 36px;
+			left: -12px;
+
+			&:focus {
+				outline-width: 0;
+			}
+		}
+
+		&:hover {}
+
+		&.noUi-active {
+			cursor: grabbing;
+			background-color: #fff;
+			box-shadow: 0 0 0 3px #f5d505;
+			z-index: 3;
+
+			&:before {
+				content: "";
+				width: 14px;
+				height: 14px;
+				left: 5px;
+				top: 5px;
+				position: absolute;
+				display: block;
+				background-color: $control-color;
+				border-radius: 50%;
+			}
+		}
+
+		&::before {
+			background: transparent;
+			content: attr(data-value);
+			font-size: $control-font-size;
+			font-weight: $control-font-weight;
+			position: static;
+			width: 100%;
+			vertical-align: middle;
+		}
+
+		&::after {
+			display: none;
+		}
+	}
 }
 
 

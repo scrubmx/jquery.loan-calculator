@@ -10868,198 +10868,195 @@ jQuery(document).ready(function ($) {
 Our nifty NPER functions
 */
 function NPER(payment, present, future, type) {
-    var type = (typeof type === 'undefined') ? 0 : type;
-    var future = (typeof future === 'undefined') ? 0 : future;
-    GetRate = variableInterest(present);
-    rate = GetRate / 12 / 100;
-    rate = eval(rate);
-    var num = -payment * (1 + rate * type) - future * rate;
-    var den = (present * rate + -payment * (1 + rate * type));
-    return Math.log(num / den) / Math.log(1 + rate);
+	var type = (typeof type === 'undefined') ? 0 : type;
+	var future = (typeof future === 'undefined') ? 0 : future;
+	GetRate = variableInterest(present);
+	rate = GetRate / 12 / 100;
+	rate = eval(rate);
+	var num = -payment * (1 + rate * type) - future * rate;
+	var den = (present * rate + -payment * (1 + rate * type));
+	return Math.log(num / den) / Math.log(1 + rate);
 }
 // Return readable messages based on the NPER result
 function NPERResult(payment, present) {
-    if (present > 7500) {
-        var result = {
-            validLoan: 0
-            , message: '<div class="results-message message-black"><h4 class="results-heading">Sorry</h4><p>The maximum amount we can lend for consolidation purposes is £7,500.</p><p>If you owe more than £7,500, a consolidation loan may not be the best option for you.</p><p>Visit the <a href="https://www.moneyadviceservice.org.uk/en/articles/help-if-youre-struggling-with-debt">Money Advice Service</a> for more information about other ways to reduce debt.</p></div>'
-            , months: nper
-            , months_readable: npertext
-        }
-        return result;
-    }
-    if (present > 15000) {
-        var result = {
-            validLoan: 1
-            , message: '<div class="results-message message-info">To be eligible to borrow over £15,000, you will need to be a homeowner</div>'
-            , months: nper
-            , months_readable: npertext
-        }
-        return result;
-    }
-    else {
-        var nper = NPER(payment, present);
-        var nper = Math.round(nper);
-        var npertext = monthstoYears(nper);
-        if (isFinite(nper)) {
-            if (nper > 60) {
-                var result = {
-                    validLoan: 0
-                    , message: '<div class="results-message message-black"><h4 class="results-heading">Sorry</h4><p>Even with our low rates, it would take you <strong>' + npertext + '</strong> to pay everything off.</p><p>The maximum loan term we offer is 5 years.</p><p>If you can afford to, consider increasing your repayments to get it paid off sooner.</div>'
-                    , months: nper
-                    , months_readable: npertext
-                }
-                return result;
-            }
-            else if (nper < 2) {
-                var result = {
-                    validLoan: 0
-                    , message: '<div class="results-message message-green"><h4 class="results-heading">Nice one</h4><p>It looks like you are well on your way to paying everything off already.</p><p>Have you thought about opening a <a href="https://creditunion.co.uk/savings">savings account</a> with us?</p></div>'
-                    , months: nper
-                    , months_readable: npertext
-                }
-                return result;
-            }
-            else {
-                var result = {
-                    validLoan: 1
-                    , message: '<p>Good news. we may be able to save you money.</p>'
-                    , months: nper
-                    , months_readable: npertext
-                }
-                return result;
-            }
-        }
-        else {
-            var result = {
-                validLoan: 0
-                , message: '<div class="results-message message-red"><h4 class="results-heading">Sorry</h4><p>At this repayment amount, you are unlikely to ever be able to reduce the amount you owe.</p><p>Consider increasing the amount you repay each month if you can afford to.</p><p>Visit the <a href="https://www.moneyadviceservice.org.uk/en/articles/help-if-youre-struggling-with-debt">Money Advice Service</a> for more information about other ways to reduce debt.</p></div>'
-                , months: nper
-                , months_readable: npertext
-            }
-            return result;
-        }
-    }
+	if (present > 7500) {
+		var result = {
+			validLoan: 0,
+			message: '<div class="results-message message-black"><strong class="results-heading">Maximum Amount</strong><p>The maximum amount we can lend for consolidation is £7,500.</p><p>If you owe more than £7,500, a consolidation loan may not be the best option for you.</p><p>Visit the <a href="https://www.moneyadviceservice.org.uk/en/articles/help-if-youre-struggling-with-debt">Money Advice Service</a> for more information about other ways to reduce debt.</p></div>',
+			months: nper,
+			months_readable: npertext
+		}
+		return result;
+	}
+	if (present > 15000) {
+		var result = {
+			validLoan: 1,
+			message: '<div class="results-message message-info">To be eligible to borrow over £15,000, you will need to be a homeowner</div>',
+			months: nper,
+			months_readable: npertext
+		}
+		return result;
+	} else {
+		var nper = NPER(payment, present);
+		var nper = Math.round(nper);
+		var npertext = monthstoYears(nper);
+		if (isFinite(nper)) {
+			if (nper > 60) {
+				var result = {
+					validLoan: 0,
+					message: '<div class="results-message message-black"><strong class="results-heading">Repayment Period Too Long</strong><p>Even with our low rates, it would take you <strong>' + npertext + '</strong> to pay everything off.</p><p>The maximum loan term we offer is 5 years.</p><p>If you can afford to, consider increasing your repayments to get it paid off sooner.</div>',
+					months: nper,
+					months_readable: npertext
+				}
+				return result;
+			} else if (nper < 2) {
+				var result = {
+					validLoan: 0,
+					message: '<div class="results-message message-green"><strong class="results-heading">Nice one</strong><p>It looks like you are well on your way to paying everything off already.</p><p>Have you thought about opening a <a href="https://creditunion.co.uk/savings">savings account</a> with us?</p></div>',
+					months: nper,
+					months_readable: npertext
+				}
+				return result;
+			} else {
+				var result = {
+					validLoan: 1,
+					message: '<p>Good news. we may be able to save you money.</p>',
+					months: nper,
+					months_readable: npertext
+				}
+				return result;
+			}
+		} else {
+			var result = {
+				validLoan: 0,
+				message: '<div class="results-message message-red"><strong class="results-heading">Sorry</strong><p>At this repayment amount, you are unlikely to ever be able to reduce the amount you owe.</p><p>Consider increasing the amount you repay each month if you can afford to.</p><p>Visit the <a href="https://www.moneyadviceservice.org.uk/en/articles/help-if-youre-struggling-with-debt">Money Advice Service</a> for more information about other ways to reduce debt.</p></div>',
+				months: nper,
+				months_readable: npertext
+			}
+			return result;
+		}
+	}
 }
 /*
 Convert APR to Monthly
 */
 function convertAPR(value) {
-    return (Math.pow((1 + (Math.pow(((value * 1 / 100) + 1), (1 / 12)) - 1) / 100), 12) - 1) * 100 * 100
+	return (Math.pow((1 + (Math.pow(((value * 1 / 100) + 1), (1 / 12)) - 1) / 100), 12) - 1) * 100 * 100
 }
 /* 
 Months to years calculations 
 */
 function monthstoYears(value) {
-    function getPlural(number, word) {
-        return number === 1 && word.one || word.other;
-    }
-    var months = {
-            one: 'month'
-            , other: 'months'
-        }
-        , years = {
-            one: 'year'
-            , other: 'years'
-        }
-        , m = value % 12
-        , y = Math.floor(value / 12)
-        , result = [];
-    y && result.push(y + ' ' + getPlural(y, years));
-    m && result.push(m + ' ' + getPlural(m, months));
-    return result.join(' and ');
+	function getPlural(number, word) {
+		return number === 1 && word.one || word.other;
+	}
+	var months = {
+			one: 'month',
+			other: 'months'
+		},
+		years = {
+			one: 'year',
+			other: 'years'
+		},
+		m = value % 12,
+		y = Math.floor(value / 12),
+		result = [];
+	y && result.push(y + ' ' + getPlural(y, years));
+	m && result.push(m + ' ' + getPlural(m, months));
+	return result.join(' and ');
 }
 /* 
 Convert money into useful formats 
 */
 // Format strings into money
 var moneyFormat = wNumb({
-    mark: '.'
-    , thousand: ','
-    , prefix: '£'
+	mark: '.',
+	thousand: ',',
+	prefix: '£'
 });
 
 function ConvertToMoney(value) {
-    var moneyValue = parseFloat(value);
-    return moneyFormat.to(moneyValue);
+	var moneyValue = parseFloat(value);
+	return moneyFormat.to(moneyValue);
 }
 
 function ConvertToNumber(value) {
-    numberValue = moneyFormat.from(value);
-    return parseFloat(numberValue);
+	numberValue = moneyFormat.from(value);
+	return parseFloat(numberValue);
 }
 // Change inputs into money
 (function ($) {
-    $("input[data-type='currency']").on({
-        change: function () {
-            formatCurrency($(this));
-        }
-    });
+	$("input[data-type='currency']").on({
+		change: function () {
+			formatCurrency($(this));
+		}
+	});
 })(jQuery);
 /*
 Sum all fields matching selector and return total
 */
 function calculateSum(selector) {
-    var sum = 0;
-    jQuery(selector).each(function () {
-        if (this.value.length != 0) {
-            var total = this.value
-            sum += ConvertToNumber(total);
-        }
-    });
-    return sum;
+	var sum = 0;
+	jQuery(selector).each(function () {
+		if (this.value.length != 0) {
+			var total = this.value
+			sum += ConvertToNumber(total);
+		}
+	});
+	return sum;
 }
 /* 
 Set URLs based on Calculator content 
 */
 function setURLS(loanAmount, loanTerm) {
-    applyurl = "https://apps.creditunion.co.uk/Loan/Default.aspx?amount=" + loanAmount + "&months=" + loanTerm + "&skipcalc=true";
-    jQuery('#ApplyLink').attr("href", applyurl);
+	applyurl = "https://apps.creditunion.co.uk/Loan/Default.aspx?amount=" + loanAmount + "&months=" + loanTerm + "&skipcalc=true";
+	jQuery('#ApplyLink').attr("href", applyurl);
 };
 /* Datalayer Push when button clicked */
 
-function getdateGA(){
-  return Date();
+function getdateGA() {
+	return Date();
 }
 
 jQuery('#ApplyLink').on('click', function (e) {
 
-    dataLayer.push({
-        'date-time': getdateGA()
-        , 'event': 'loan-calculator-params-selected'
-        , 'loan-term': gtmLoanLength
-        , 'loan-amount': gtmLoanAmount
-        , 'loan-product': gtmProduct
-    });
+	dataLayer.push({
+		'date-time': getdateGA(),
+		'event': 'loan-calculator-params-selected',
+		'loan-term': gtmLoanLength,
+		'loan-amount': gtmLoanAmount,
+		'loan-product': gtmProduct
+	});
 });
 /* 
 Set up tabs etc
 */
 jQuery(document).ready(function ($) {
-    $('[data-toggle="tooltip"]').tooltip();
-    $('[data-toggle="tooltip"]').click(function (e) {
-        e.preventDefault();
-    });
-    //Move modal in DOM and set up tabs and popovers
-    $('[data-toggle="popover"]').popover();
-    $('#option-tabs a').click(function (e) {
-        e.preventDefault();
-        $(this).tab('show');
-        $('#option-tabs a').not(this).removeClass('active');
-    });
-    $('.info-tabs-nav a').click(function (e) {
-        e.preventDefault();
-        $(this).tab('show');
-        $('.info-tabs-nav a').not(this).removeClass('active');
-    });
-    if ($(window).width() < 360) {
-        $('.info-tabs-tab-content').collapse({
-            toggle: false
-            , parent: '#v-pills-tabContent'
-        });
-    };
+	$('[data-toggle="tooltip"]').tooltip();
+	$('[data-toggle="tooltip"]').click(function (e) {
+		e.preventDefault();
+	});
+	//Move modal in DOM and set up tabs and popovers
+	$('[data-toggle="popover"]').popover();
+	$('#option-tabs a').click(function (e) {
+		e.preventDefault();
+		$(this).tab('show');
+		$('#option-tabs a').not(this).removeClass('active');
+	});
+	$('.info-tabs-nav a').click(function (e) {
+		e.preventDefault();
+		$(this).tab('show');
+		$('.info-tabs-nav a').not(this).removeClass('active');
+	});
+	if ($(window).width() < 360) {
+		$('.info-tabs-tab-content').collapse({
+			toggle: false,
+			parent: '#v-pills-tabContent'
+		});
+	};
 });
 // GA Push
+
 jQuery(function ($) {
     // Change interest rates based on amount
     SaverLoan = $('#saver-loan');
@@ -11305,96 +11302,97 @@ jQuery(document).ready(function ($) {
     }
 });
 jQuery(document).ready(function ($) {
-    //Only fire this up if it's a consolidation calculator
-    if (ProductDefaults.consolidation == 1) {
-        // Initialize
-        $('.btn-apply, #example, #comparison,.mobile-btn-row,.repayment-calc,.representative-example').hide();
-        $example = jQuery('#example').loanCalculator();
-        $comparison = jQuery('#comparison').loanCalculator();
-        // Repeater fields
-        $(document).on('click', '.btn-add', function (e) {
-            e.preventDefault();
-            var controlForm = $('#repeater-rows'),
-                currentEntry = $(this).parents('.repeat-row:first'),
-                newEntry = $(currentEntry.clone()).appendTo(controlForm).fadeIn('slow').css("display", "flex");
-            newEntry.find('input').val('');
-            controlForm.find('.repeat-row:not(:last) .btn-add').removeClass('btn-add').addClass('btn-remove').removeClass('btn-success').html('');
-        }).on('click', '.btn-remove', function (e) {
-            e.preventDefault();
-            $(this).parents('.repeat-row:first').remove();
-            return false;
-        });
-        //When a value in the row is changed, add it up
-        $('#repeater-rows').on({
-            change: function () {
-                formatCurrency($(this));
-                BalanceTotal = calculateSum('.balance input');
-                MonthlyRepaymentTotal = calculateSum('.repayment input');
-                $('#result_amount .result').text(ConvertToMoney(BalanceTotal));
-                $('#TotalRepayment').val(MonthlyRepaymentTotal).trigger('change');
-            }
-        }, '.repeat-row input');
-        $('#repeater-rows').on({
-            change: function () {
-                $('.representative-example').show();
-                $('.repayment-calc').show();
-            }
-        }, '.repayment input');
-        // Do our calculations once the monthly repayment amount is selected
-        $('#TotalRepayment').on('change paste keyup', function () {
-            if ($(window).width() < 568) {
-                $('.mobile-btn-row').show();
-            }
-            var OptionalRepayment = ConvertToNumber($(this).val());
-            ConsolidateResult(OptionalRepayment, BalanceTotal);
-            var LoanTerm = Math.round(NPER(OptionalRepayment, BalanceTotal));
-            console.log('Loan Term' + LoanTerm);
+	//Only fire this up if it's a consolidation calculator
+	if (ProductDefaults.consolidation == 1) {
+		// Initialize
+		$('.btn-apply, #example, #comparison,.mobile-btn-row,.repayment-calc,.representative-example,.calculator-right').hide();
+		$example = jQuery('#example').loanCalculator();
+		$comparison = jQuery('#comparison').loanCalculator();
+		// Repeater fields
+		$(document).on('click', '.btn-add', function (e) {
+			e.preventDefault();
+			var controlForm = $('#repeater-rows'),
+				currentEntry = $(this).parents('.repeat-row:first'),
+				newEntry = $(currentEntry.clone()).appendTo(controlForm).fadeIn('slow').css("display", "flex");
+			newEntry.find('input').val('');
+			controlForm.find('.repeat-row:not(:last) .btn-add').removeClass('btn-add').addClass('btn-remove').removeClass('btn-success').html('');
+		}).on('click', '.btn-remove', function (e) {
+			e.preventDefault();
+			$(this).parents('.repeat-row:first').remove();
+			return false;
+		});
+		//When a value in the row is changed, add it up
+		$('#repeater-rows').on({
+			change: function () {
+				formatCurrency($(this));
+				BalanceTotal = calculateSum('.balance input');
+				MonthlyRepaymentTotal = calculateSum('.repayment input');
+				$('#result_amount .result').text(ConvertToMoney(BalanceTotal));
+				$('#TotalRepayment').val(MonthlyRepaymentTotal).trigger('change');
+			}
+		}, '.repeat-row input');
+		$('#repeater-rows').on({
+			change: function () {
+				$('.calculator-right').show();
+				$('.representative-example').show();
+				$('.repayment-calc').show();
+			}
+		}, '.repayment input');
+		// Do our calculations once the monthly repayment amount is selected
+		$('#TotalRepayment').on('change paste keyup', function () {
+			if ($(window).width() < 568) {
+				$('.mobile-btn-row').show();
+			}
+			var OptionalRepayment = ConvertToNumber($(this).val());
+			ConsolidateResult(OptionalRepayment, BalanceTotal);
+			var LoanTerm = Math.round(NPER(OptionalRepayment, BalanceTotal));
+			console.log('Loan Term' + LoanTerm);
 
-            setURLS(BalanceTotal, LoanTerm);
-            gtmLoanAmount = BalanceTotal;
-            gtmLoanLength = LoanTerm;
-            gtmProduct = 'Consolidation';
-            console.log('GTM Loan Term' + gtmLoanLength);
-            
-        });
-    }
+			setURLS(BalanceTotal, LoanTerm);
+			gtmLoanAmount = BalanceTotal;
+			gtmLoanLength = LoanTerm;
+			gtmProduct = 'Consolidation';
+			console.log('GTM Loan Term' + gtmLoanLength);
+
+		});
+	}
 });
 
 function CalculateLoan(term, amount, rate, selector) {
-    selector.loanCalculator('update', {
-        loanAmount: amount,
-        interestRate: rate,
-        loanDuration: term,
-        interestTotalSelector: '#result_cost .result',
-        totalAnnualCostSelector: '#result_apr .result',
-        paymentSelector: '#result_repayment .result'
-    });
+	selector.loanCalculator('update', {
+		loanAmount: amount,
+		interestRate: rate,
+		loanDuration: term,
+		interestTotalSelector: '#result_cost .result',
+		totalAnnualCostSelector: '#result_apr .result',
+		paymentSelector: '#result_repayment .result'
+	});
 }
 // Calculate total savings 
 function CalculateInterestSaved() {
-    var getExampleCost = ConvertToNumber(jQuery('#example #result_cost .result').text());
-    var getComparisonCost = ConvertToNumber(jQuery('#comparison #result_cost .result').text());
-    if (getExampleCost < getComparisonCost) {
-        var TotalSavings = getComparisonCost - getExampleCost;
-        var TotalSavings = TotalSavings.toFixed(2);
-        var SavingsOutput = '<div class="results-message message-success"><h4 class="results-heading">Good news: we could save you money</h4><ul class="results-list"><li>Pay off in <span class="lg">' + monthstoYears(NperResult.months) + '</span></li><li>Saving you <span class="lg">' + ConvertToMoney(TotalSavings) + '</span></li></ul></div>';
-    } else {
-        var SavingsOutput = '<div class="results-message message-danger">For amounts under £400, we are unlikely to be able to save you money with a consolidation loan.</div>';
-    }
-    return SavingsOutput;
+	var getExampleCost = ConvertToNumber(jQuery('#example #result_cost .result').text());
+	var getComparisonCost = ConvertToNumber(jQuery('#comparison #result_cost .result').text());
+	if (getExampleCost < getComparisonCost) {
+		var TotalSavings = getComparisonCost - getExampleCost;
+		var TotalSavings = TotalSavings.toFixed(2);
+		var SavingsOutput = '<div class="results-message message-success"><strong class="results-heading">It looks like we could save you money</strong><ul class="results-list"><li>Pay off in <span class="lg">' + monthstoYears(NperResult.months) + '</span></li><li>Saving you <span class="lg">' + ConvertToMoney(TotalSavings) + '</span></li></ul></div>';
+	} else {
+		var SavingsOutput = '<div class="results-message message-danger">If you owe less than £500, we are unlikely to be able to save you money with a consolidation loan.</div>';
+	}
+	return SavingsOutput;
 }
 // Display various result messages
 function ConsolidateResult(repayment, balance) {
-    nperMonths = NPER(repayment, balance);
-    NperResult = NPERResult(repayment, balance);
-    jQuery('#result_message').html(NperResult.message);
-    if (NperResult.validLoan == 1) {
-        jQuery('.btn-apply, #example, #comparison').fadeIn(600);
-        jQuery('#result_months .result').hide().html(NperResult.months_readable).fadeIn(600);
-        CalculateLoan(NperResult.months, balance, variableInterest(balance), $example);
-        CalculateLoan(NperResult.months, balance, convertAPR(24.7), $comparison);
-        jQuery('#result_message').html(CalculateInterestSaved());
-    } else {
-        jQuery('.btn-apply, #example, #comparison').fadeOut();
-    }
+	nperMonths = NPER(repayment, balance);
+	NperResult = NPERResult(repayment, balance);
+	jQuery('#result_message').html(NperResult.message);
+	if (NperResult.validLoan == 1) {
+		jQuery('.btn-apply, #example, #comparison').fadeIn(600);
+		jQuery('#result_months .result').hide().html(NperResult.months_readable).fadeIn(600);
+		CalculateLoan(NperResult.months, balance, variableInterest(balance), $example);
+		CalculateLoan(NperResult.months, balance, convertAPR(24.7), $comparison);
+		jQuery('#result_message').html(CalculateInterestSaved());
+	} else {
+		jQuery('.btn-apply, #example, #comparison').fadeOut();
+	}
 }
