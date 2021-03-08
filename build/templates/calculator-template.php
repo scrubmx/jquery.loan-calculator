@@ -148,6 +148,7 @@
                                     include( plugin_dir_path( __FILE__ ) . 'tabs/consolidation-tabs-template.php');
                        	} else {
                                     include( plugin_dir_path( __FILE__ ) . 'tabs/slider-tabs-template.php');
+						};
                    	if($optionstabs) :
 						include( plugin_dir_path( __FILE__ ) . 'tabs/about-tabs-template.php');
 						include( plugin_dir_path( __FILE__ ) . 'tabs/contact-tabs-template.php');
@@ -164,9 +165,6 @@
                             ?>
 			</div>
 		</main>
-		<footer class="terms">
-			<p>All loans are subject to affordability checks and our Terms &amp; Conditions. Loans are offered subject to status to members aged 18 or over.
-				The rates displayed on this page are for illustrative purposes only, and the actual amount and interest payable will be indicated in the Loan Agreement provided when we offer you a loan.</p>
-		</footer>
+
 	</div>
 </div>

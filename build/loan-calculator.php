@@ -45,7 +45,7 @@ function lmcu_calculator( $atts ) {
             'amount' => '7500',
             'term' => '36',
             'step' => '25',
-			'optionstabs' => true,
+			'optionstabs' => false,
             'desc' => 'Work for one of our salary deduction partners? Benefit from a special rate with repayments taken straight from your salary.',
             'showcase' => 1,
             'consolidation' => false,
@@ -55,7 +55,7 @@ function lmcu_calculator( $atts ) {
     extract($atts);
     ob_start();?>
 <script type="text/javascript">
-    var ProductDefaults = <?php echo json_encode($atts, JSON_PRETTY_PRINT+JSON_NUMERIC_CHECK) ?>;
+	var ProductDefaults = <?php echo json_encode($atts, JSON_PRETTY_PRINT+JSON_NUMERIC_CHECK) ?>;
 
 </script>
 <?php 

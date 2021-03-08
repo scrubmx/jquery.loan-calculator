@@ -37,7 +37,6 @@
     }
 
     #lmcu-calculator {
-    	overflow: hidden;
 
     	.d-none {
     		display: none;
@@ -179,6 +178,7 @@
     			display: flex;
     			flex-wrap: wrap;
     			@include mb(3);
+    			@include mt(3);
 
     			&-title {
     				@include media-breakpoint-up(lg) {

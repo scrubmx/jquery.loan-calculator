@@ -10,6 +10,10 @@
                             				<li>Total repayable: <span class="strong " id="loan-total"></span> </li>
                             			</ul>
                             		</div>
+                            		<footer class="terms">
+                            			<p>All loans are subject to affordability checks and our Terms &amp; Conditions. Loans are offered subject to status to members aged 18 or over.
+                            				The rates displayed on this page are for illustrative purposes only, and the actual amount and interest payable will be indicated in the Loan Agreement provided when we offer you a loan.</p>
+                            		</footer>
                             		<!-- Button -->
                             		<a class="btn-apply" id="ApplyLink" href="https://apps.creditunion.co.uk/Loan/Default.aspx?amount=<?php echo $amount;?>&months=<?php echo $term;?>">Apply for this loan </a>
                             	</div>
