@@ -7,6 +7,7 @@
                             				<li>Borrowing: <span class="strong" id="selected-amount"></span></li>
                             				<li>Over: <span class="strong" id="selected-duration"></span>&nbsp;Months</li>
                             				<li>Representative: <span class="strong" id="total-annual-cost"></span>&nbsp;APR</li>
+                            				<li>Total cost of this loan: <span class="strong" id="interest-total"></span></li>
                             				<li>Total repayable: <span class="strong " id="loan-total"></span> </li>
                             			</ul>
                             		</div>
