@@ -313,13 +313,14 @@
   padding-left: 0;
   margin-right: auto;
   margin-left: auto;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+  padding-top: 0;
+  padding-bottom: 0;
   margin-bottom: 1.5rem;
   border-bottom: 1px solid #dee2e6;
   border-top: 1px solid #dee2e6; }
   #lmcu-calculator .showcase-nav {
     padding: 0;
+    margin: 0;
     display: flex;
     list-style-type: none;
     flex-direction: column; }
@@ -327,6 +328,11 @@
       #lmcu-calculator .showcase-nav {
         flex-direction: row;
         justify-content: space-between; } }
+  #lmcu-calculator .showcase-item {
+    padding-bottom: 0.5rem; }
+    @media (min-width: 992px) {
+      #lmcu-calculator .showcase-item {
+        padding-bottom: 0; } }
   #lmcu-calculator .showcase-link {
     display: flex;
     margin-bottom: 0.5rem;
@@ -334,21 +340,29 @@
     transition: all 0.6s;
     align-items: flex-start;
     text-decoration: none; }
+    #lmcu-calculator .showcase-link:focus {
+      background-color: inherit;
+      box-shadow: none;
+      color: inherit;
+      outline: none; }
     @media (min-width: 992px) {
       #lmcu-calculator .showcase-link {
-        padding: 1rem; } }
+        padding: 1rem;
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem; } }
     @media (prefers-reduced-motion: reduce) {
       #lmcu-calculator .showcase-link {
         transition: none; } }
     #lmcu-calculator .showcase-link.active {
-      text-decoration: underline; }
+      background-color: #f8f8f8;
+      border-radius: 10px; }
       #lmcu-calculator .showcase-link.active .icon {
         fill: #1565ab; }
       #lmcu-calculator .showcase-link.active .showcase-link-title {
         color: #1565ab; }
     #lmcu-calculator .showcase-link-title {
       align-self: center;
-      font-size: 1.2rem;
+      font-size: 1rem;
       font-weight: 400;
       padding: 0;
       margin-top: auto;

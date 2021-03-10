@@ -78,13 +78,14 @@
 
     	.showcase {
     		@include make-container(0);
-    		@include py(2);
+    		@include py(0);
     		@include mb(4);
     		border-bottom: 1px solid #dee2e6;
     		border-top: 1px solid #dee2e6;
 
     		&-nav {
     			@include p(0);
+    			@include m(0);
     			display: flex;
     			list-style-type: none;
     			flex-direction: column;
@@ -95,14 +96,28 @@
     			}
     		}
 
-    		&-item {}
+    		&-item {
+    			@include pb(2);
+
+    			@include media-breakpoint-up(lg) {
+    				@include pb(0);
+    			}
+    		}
 
     		&-link {
     			display: flex;
     			@include mb(2);
 
+    			&:focus {
+    				background-color: inherit;
+    				box-shadow: none;
+    				color: inherit;
+    				outline: none;
+    			}
+
     			@include media-breakpoint-up(lg) {
     				@include p(3);
+    				@include my(2);
     			}
 
     			cursor: pointer;
@@ -111,7 +126,8 @@
     			text-decoration: none;
 
     			&.active {
-    				text-decoration: underline;
+    				background-color: #f8f8f8;
+    				border-radius: 10px;
 
     				.icon {
     					fill: #1565ab;
@@ -125,7 +141,7 @@
 
     			&-title {
     				align-self: center;
-    				font-size: 1.2rem;
+    				font-size: 1rem;
     				font-weight: 400;
     				@include p(0);
 
