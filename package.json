@@ -1,6 +1,6 @@
 {
     "name": "lmcu-loan-calculator-wordpress",
-    "version": "1.0.0",
+    "version": "1.0.3",
     "description": "A Wordpress plugin to create a simple loan calculator from a shortcode configurable via shortcode attributes",
     "main": "gulpfile.js",
     "dependencies": {
@@ -8,6 +8,7 @@
         "autonumeric": "^4.6.0",
         "bootstrap": "^4.5.3",
         "gulp": "^4.0.2",
+        "gulp-bump": "^3.2.0",
         "gulp-concat": "^2.6.1",
         "gulp-inject": "^5.0.5",
         "gulp-purgecss": "^1.2.0",
