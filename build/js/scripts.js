@@ -11376,7 +11376,7 @@ function CalculateInterestSaved() {
 	if (getExampleCost < getComparisonCost) {
 		var TotalSavings = getComparisonCost - getExampleCost;
 		var TotalSavings = TotalSavings.toFixed(2);
-		var SavingsOutput = '<div class="results-message message-success"><strong class="results-heading">It looks like we could save you money</strong><ul class="results-list"><li>Pay off in <span class="lg">' + monthstoYears(NperResult.months) + '</span></li><li>Saving you <span class="lg">' + ConvertToMoney(TotalSavings) + '</span></li></ul></div>';
+		var SavingsOutput = '<div class="results-message message-success"><strong class="results-heading">It looks like we could save you money</strong><ul class="results-list"><li>Pay off what you owe in <span class="lg">' + monthstoYears(NperResult.months) + '</span></li><li>Saving you <span class="lg">' + ConvertToMoney(TotalSavings) + '</span></li></ul></div>';
 	} else {
 		var SavingsOutput = '<div class="results-message message-danger">If you owe less than £500, we are unlikely to be able to save you money with a consolidation loan.</div>';
 	}
