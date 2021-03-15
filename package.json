@@ -11,6 +11,7 @@
         "gulp-bump": "^3.2.0",
         "gulp-concat": "^2.6.1",
         "gulp-inject": "^5.0.5",
+        "gulp-minify-css": "^1.2.4",
         "gulp-purgecss": "^1.2.0",
         "gulp-sass": "^4.1.0",
         "gulp-svgmin": "^3.0.0",

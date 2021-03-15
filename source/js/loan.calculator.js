@@ -105,7 +105,7 @@ jQuery(document).ready(function ($) {
 			gtmLoanAmount = parseInt(loanamountslider.noUiSlider.get());
 			gtmLoanLength = parseInt(loantermslider.noUiSlider.get());
 			gtmProduct = 'Personal Loan';
-
+			gtmInterest = ConvertToNumber($('#interest-total').text());
 			setURLS(gtmLoanAmount, gtmLoanLength);
 		});
 		/*

@@ -11,6 +11,7 @@ const svgstore = require('gulp-svgstore');
 const svgmin = require('gulp-svgmin');
 const path = require('path');
 const inject = require('gulp-inject');
+const minifyCSS = require('gulp-minify-css');
 const bump = require('gulp-bump');
 
 const dir = {
@@ -85,10 +86,10 @@ gulp.task('zip', function () {
 
 
 gulp.task('pack-js', function () {
-	return gulp.src([dir.source + paths.js + package.currency, dir.node + package.popper, dir.node + package.bootstrap, dir.node + package.wnumb, dir.node + package.loancalculator, dir.node + package.nouislider, dir.source + paths.js + package.reminder, dir.source + paths.js + package.helpers, dir.source + paths.js + package.loansettings, dir.source + paths.js + package.init, dir.source + paths.js + package.consolidation]).pipe(concat('scripts.js')).pipe(gulp.dest(dir.build + paths.js));
+	return gulp.src([dir.source + paths.js + package.currency, dir.node + package.popper, dir.node + package.bootstrap, dir.node + package.wnumb, dir.node + package.loancalculator, dir.node + package.nouislider, dir.source + paths.js + package.reminder, dir.source + paths.js + package.helpers, dir.source + paths.js + package.loansettings, dir.source + paths.js + package.init, dir.source + paths.js + package.consolidation]).pipe(concat('scripts.js')).pipe(uglify()).pipe(gulp.dest(dir.build + paths.js));
 });
 gulp.task('pack-css', function () {
-	return gulp.src([dir.node + 'nouislider/distribute/*.min.css', dir.source + 'scss/*.scss']).pipe(sass()).pipe(concat('styles.css')).pipe(gulp.dest(dir.build + paths.css));
+	return gulp.src([dir.node + 'nouislider/distribute/*.min.css', dir.source + 'scss/*.scss']).pipe(sass()).pipe(concat('styles.css')).pipe(minifyCSS()).pipe(gulp.dest(dir.build + paths.css));
 });
 gulp.task('default', gulp.parallel('pack-js', 'pack-css', 'svgstore'));
 gulp.task('watch', function () {

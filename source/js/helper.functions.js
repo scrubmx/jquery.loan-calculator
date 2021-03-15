@@ -159,7 +159,8 @@ jQuery('#ApplyLink').on('click', function (e) {
 		'event': 'loan-calculator-params-selected',
 		'loan-term': gtmLoanLength,
 		'loan-amount': gtmLoanAmount,
-		'loan-product': gtmProduct
+		'loan-product': gtmProduct,
+		'loan-interest': gtmInterest
 	});
 });
 /* 
