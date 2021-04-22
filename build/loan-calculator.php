@@ -3,7 +3,7 @@
 Plugin Name: LMCU Loan Calculator
 Plugin URI:  https://github.com/lmculondon/lmcu-loan-calculator
 Description: Configurable Loan Calculator with Shortcode
-Version:     2.7.0
+Version:     2.7.1
 Author:      London Mutual Credit Union
 Author URI:  https://creditunion.co.uk/
 License:     GPL2
@@ -14,15 +14,15 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 add_action( 'wp_enqueue_scripts', 'lmcu_scripts' );
 
 function lmcu_scripts() {
-wp_register_script( 'calculator-js', plugins_url( 'js/scripts.js' , __FILE__ ), array('jquery'), '1.0.0', true );
-    wp_register_style( 'calculator-css', plugins_url( 'css/styles.css' , __FILE__ ));
+wp_register_script( 'lmcu-calculator', plugins_url( 'js/scripts.js' , __FILE__ ), array('jquery'), '1.0.0', true );
+    wp_register_style( 'lmcu-calculator', plugins_url( 'css/styles.css' , __FILE__ ));
 }
 // Enqueue the right way
 function lmcu_shortcode_scripts() {
     global $post;
     if( is_a( $post, 'WP_Post' ) && has_shortcode( $post->post_content, 'loan-calculator') ) {
                     wp_enqueue_script( 'calculator-js' );
-    wp_enqueue_style( 'calculator-css' );
+    wp_enqueue_style( 'lmcu-calculator' );
     }
 }
 add_action( 'wp_enqueue_scripts', 'lmcu_shortcode_scripts');
