@@ -28,7 +28,8 @@
     "devDependencies": {
         "gulp-clean-css": "^4.3.0",
         "gulp-embed-svg": "^1.2.0",
-        "gulp-svgo": "^2.2.1"
+        "gulp-svgo": "^2.2.1",
+        "purgecss-with-wordpress": "^4.0.3"
     },
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
