@@ -150,7 +150,7 @@ jQuery(document).ready(function ($) {
 		/* 
 		SPECIAL FOR THE SAVER LOAN
 		*/
-		$('#saver-loan').on('click', function (e) {
+		if (ProductDefaults.saver == 1) {
 			$('#saver').show();
 			$('#saver').change(function () {
 				var savedAmount = $('#saved-amount').val();
@@ -162,6 +162,6 @@ jQuery(document).ready(function ($) {
 					}
 				});
 			});
-		});
+		};
 	}
 });

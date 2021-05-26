@@ -3,7 +3,7 @@
 Plugin Name: LMCU Loan Calculator
 Plugin URI:  https://github.com/lmculondon/lmcu-loan-calculator
 Description: Configurable Loan Calculator with Shortcode
-Version:     2.7.41
+Version:     2.8.1
 Author:      London Mutual Credit Union
 Author URI:  https://creditunion.co.uk/
 License:     GPL2
@@ -45,10 +45,11 @@ function lmcu_calculator( $atts ) {
             'amount' => '7500',
             'term' => '36',
             'step' => '25',
+			'saver'=> 0,
 			'optionstabs' => false,
             'desc' => 'Move the sliders to select how much you would like to borrow, and over how long.',
             'showcase' => 0,
-            'consolidation' => 0,
+            'consolidation' => 0
 		),
 		$atts
 	);
