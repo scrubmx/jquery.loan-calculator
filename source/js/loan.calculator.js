@@ -151,10 +151,15 @@ jQuery(document).ready(function ($) {
 		SPECIAL FOR THE SAVER LOAN
 		*/
 		if (ProductDefaults.saver == 1) {
+			$('.slider').hide();
+			$('.calculator-right').hide();
 			$('#saver').show();
 			$('#saver').change(function () {
+				$('.slider').show();
+				$('.calculator-right').show();
 				var savedAmount = $('#saved-amount').val();
 				var convertedAmount = ConvertToNumber(savedAmount);
+				loanamountslider.noUiSlider.set(convertedAmount);
 				loanamountslider.noUiSlider.updateOptions({
 					range: {
 						'min': 0,

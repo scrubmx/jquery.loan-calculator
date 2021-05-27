@@ -143,7 +143,12 @@ function calculateSum(selector) {
 Set URLs based on Calculator content 
 */
 function setURLS(loanAmount, loanTerm) {
+	//Use home-brewed application form if a saver loan
+	if (ProductDefaults.saver == 1) {
+		applyurl = "https://creditunion.co.uk/loans/saver-loan/saver-loan-apply/?amount=" + loanAmount + "&months=" + loanTerm + "&skipcalc=true";
+	} else {
 	applyurl = "https://apps.creditunion.co.uk/Loan/Default.aspx?amount=" + loanAmount + "&months=" + loanTerm + "&skipcalc=true";
+	};
 	jQuery('#ApplyLink').attr("href", applyurl);
 };
 /* Datalayer Push when button clicked */

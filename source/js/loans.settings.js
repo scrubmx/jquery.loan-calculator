@@ -8,6 +8,9 @@ jQuery(function ($) {
     window.variableInterest = function (value) {
         var InterestRate = ProductDefaults.rate;
         switch (true) {
+        case (ProductDefaults.saver == 1):
+            InterestRate = 4.41;
+        break;
         case (SaverLoan.hasClass('active')):
             InterestRate = 4.41;
             break;
@@ -26,10 +29,10 @@ jQuery(function ($) {
         case (value < 7500):
             InterestRate = 6.69;
             break;
-        case (value < 15001):
+        case (value < 15000):
             InterestRate = 5.75;
             break;
-        case (value < 25001):
+        case (value < 25000.1):
             InterestRate = 4.75;
             break;
         }
@@ -38,8 +41,12 @@ jQuery(function ($) {
     // Change time period based on amount
     window.variableTerm = function (value) {
         switch (true) {
+            case (ProductDefaults.saver == 1):
+                MaxTerm = 84;
+                MinTerm = 1;
+            break;
         case (SaverLoan.hasClass('active')):
-            MaxTerm = 120;
+            MaxTerm = 84;
             MinTerm = 1;
             break;
         case (CUOKLoan.hasClass('active')):
