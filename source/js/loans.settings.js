@@ -42,7 +42,7 @@ jQuery(function ($) {
     window.variableTerm = function (value) {
         switch (true) {
             case (ProductDefaults.saver == 1):
-                MaxTerm = 84;
+                MaxTerm = 120;
                 MinTerm = 1;
             break;
         case (SaverLoan.hasClass('active')):

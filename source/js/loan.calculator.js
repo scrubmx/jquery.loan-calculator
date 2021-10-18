@@ -160,6 +160,12 @@ jQuery(document).ready(function ($) {
 				var savedAmount = $('#saved-amount').val();
 				var convertedAmount = ConvertToNumber(savedAmount);
 				loanamountslider.noUiSlider.set(convertedAmount);
+				loantermslider.noUiSlider.updateOptions({
+					range: {
+						'min': 0,
+						'max': 120
+					}
+				});
 				loanamountslider.noUiSlider.updateOptions({
 					range: {
 						'min': 0,
