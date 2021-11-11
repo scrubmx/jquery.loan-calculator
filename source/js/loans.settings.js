@@ -34,7 +34,7 @@ jQuery(function ($) {
                 //6.9% APR
                 InterestRate = 6.69;
                 break;
-            case (value < 14999):
+            case (value < 15001):
                 //5.9% APR
                 InterestRate = 5.75;
                 break;
@@ -53,23 +53,23 @@ jQuery(function ($) {
                 MinTerm = 1;
                 break;
             case (ProductDefaults.product == 'CON'):
-                MaxTerm = 84;
+                MaxTerm = 60;
                 MinTerm = 6;
                 break;
             case (ProductDefaults.product == 'BOOSTER'):
             case (ProductDefaults.product == 'GRW'):
                 MaxTerm = 24;
-                MinTerm = 2;
+                MinTerm = 3;
                 break;
             case (value < 2499):
                 MaxTerm = 36;
-                MinTerm = 2;
+                MinTerm = 3;
                 break;
             case (value < 4999):
                 MaxTerm = 60;
-                MinTerm = 2;
+                MinTerm = 3;
                 break;
-            case (value < 9999):
+            case (value < 14999):
                 MaxTerm = 60;
                 MinTerm = 6;
                 break;
