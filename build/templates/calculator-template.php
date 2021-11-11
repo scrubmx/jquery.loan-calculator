@@ -115,17 +115,20 @@
 		<?php 
             if($showcase == 1) {
                 include( plugin_dir_path( __FILE__ ) . '/product-showcase-template.php');
-                }?>
+                };?>
 		<main id="widget" class="calculator-inner">
 			<div class="calculator-left">
 				<nav class="product">
-					<h3 class="product-title"> <span id="product-name"><?php if($consolidation) { 
-    echo 'Calculate a Consolidation Loan';
-}; ?></span></h3>
-					<?php if($optionstabs) : ?>
+					<h3 class="product-title">
+						<span id="product-displayname">
+						<?php if($product == 'CON') { ?>
+    						Calculate a Consolidation Loan
+						<?php }; ?>
+						</span></h3>
+					<?php if($optionstabs): ?>
 					<ul class="product-options" id="option-tabs" role="tablist">
 
-						<?php if($consolidation) : ?>
+						<?php if($product == 'CON'): ?>
 						<li> <a data-toggle="tab" class="active tab-consolidation" data-target="#consolidation-tab" role="tab" aria-controls="tab-sliders"><svg class="icon">
 									<use xlink:href="#icon_calculator" />
 								</svg> <span>Calculate</span></a> </li><?php else: ?>
@@ -144,7 +147,7 @@
 				</nav>
 				<div class="calculator-body">
 					<?php 
-                        if($consolidation) {
+                        if($product == 'CON') {
                                     include( plugin_dir_path( __FILE__ ) . 'tabs/consolidation-tabs-template.php');
                        	} else {
                                     include( plugin_dir_path( __FILE__ ) . 'tabs/slider-tabs-template.php');
@@ -157,11 +160,11 @@
 			</div>
 			<div class="calculator-right">
 				<?php 
-                          if($consolidation == 1) {
+                          if($product == 'CON') {
                                 include( plugin_dir_path( __FILE__ ) . 'results/consolidation-result.php');
                           } else {
                                 include( plugin_dir_path( __FILE__ ) . 'results/calculator-result.php');
-                                }  
+                                };  
                             ?>
 			</div>
 		</main>

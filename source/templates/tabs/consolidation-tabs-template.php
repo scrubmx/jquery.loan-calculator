@@ -4,7 +4,7 @@
 		<details class="details-block mb-0">
 			<summary class="details-block__summary" aria-controls="details-content-0" tabindex="0"> Important information </summary>
 			<div class="details-block__details-txt" id="details-content-0">
-				<p>This calculator is provided as an informational tool enabling to compare the cost of borrowing with a typical London Mutual loan, compared to the average APR of a credit card in the UK (<a target="_blank" href="https://www.theguardian.com/money/2019/sep/21/credit-cards-interest-rates-hit-a-record-high">17 Sept 2019</a>).</p>
+				<p>This calculator is provided as an informational tool enabling to compare the cost of borrowing with a typical London Mutual loan, compared to the average APR of a credit card in the UK (<a target="_blank" href="https://www.independent.co.uk/money/average-credit-card-purchase-apr-hits-new-high-b1924228.html">21 Sept 2021</a>).</p>
 				<p>Please be aware that:</p>
 				<ul>
 					<li>This summary is for illustrative purposes only, so as to give you, the borrower, an overview of the potential cost of borrowing. </li>

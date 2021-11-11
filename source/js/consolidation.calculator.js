@@ -1,6 +1,6 @@
 jQuery(document).ready(function ($) {
 	//Only fire this up if it's a consolidation calculator
-	if (ProductDefaults.consolidation == 1) {
+	if (ProductDefaults.product == 'CON') {
 		// Initialize
 		$('.btn-apply, #example, #comparison,.mobile-btn-row,.repayment-calc,.representative-example,.calculator-right').hide();
 		$example = jQuery('#example').loanCalculator();
@@ -44,11 +44,12 @@ jQuery(document).ready(function ($) {
 			ConsolidateResult(OptionalRepayment, BalanceTotal);
 			var LoanTerm = Math.round(NPER(OptionalRepayment, BalanceTotal));
 			console.log('Loan Term' + LoanTerm);
-
-			setURLS(BalanceTotal, LoanTerm);
 			gtmLoanAmount = BalanceTotal;
 			gtmLoanLength = LoanTerm;
-			gtmProduct = 'Consolidation';
+			gtmProduct = 'CON';
+
+			setURLS(BalanceTotal, LoanTerm, gtmProduct);
+
 			console.log('GTM Loan Term' + gtmLoanLength);
 
 		});
@@ -87,7 +88,7 @@ function ConsolidateResult(repayment, balance) {
 		jQuery('.btn-apply, #example, #comparison').fadeIn(600);
 		jQuery('#result_months .result').hide().html(NperResult.months_readable).fadeIn(600);
 		CalculateLoan(NperResult.months, balance, variableInterest(balance), $example);
-		CalculateLoan(NperResult.months, balance, convertAPR(24.7), $comparison);
+		CalculateLoan(NperResult.months, balance, convertAPR(26), $comparison);
 		jQuery('#result_message').html(CalculateInterestSaved());
 	} else {
 		jQuery('.btn-apply, #example, #comparison').fadeOut();

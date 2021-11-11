@@ -13,19 +13,10 @@ function NPER(payment, present, future, type) {
 }
 // Return readable messages based on the NPER result
 function NPERResult(payment, present) {
-	if (present > 7500) {
+	if (present > 15000) {
 		var result = {
 			validLoan: 0,
 			message: '<div class="results-message message-black"><strong class="results-heading">Maximum Amount</strong><p>The maximum amount we can lend for consolidation is £7,500.</p><p>If you owe more than £7,500, a consolidation loan may not be the best option for you.</p><p>Visit the <a href="https://www.moneyadviceservice.org.uk/en/articles/help-if-youre-struggling-with-debt">Money Advice Service</a> for more information about other ways to reduce debt.</p></div>',
-			months: nper,
-			months_readable: npertext
-		}
-		return result;
-	}
-	if (present > 15000) {
-		var result = {
-			validLoan: 1,
-			message: '<div class="results-message message-info">To be eligible to borrow over £15,000, you will need to be a homeowner</div>',
 			months: nper,
 			months_readable: npertext
 		}
@@ -142,12 +133,12 @@ function calculateSum(selector) {
 /* 
 Set URLs based on Calculator content 
 */
-function setURLS(loanAmount, loanTerm) {
+function setURLS(loanAmount, loanTerm, loanProduct) {
 	//Use home-brewed application form if a saver loan
-	if (ProductDefaults.saver == 1) {
-		applyurl = "https://creditunion.co.uk/loans/saver-loan/saver-loan-apply/?amount=" + loanAmount + "&months=" + loanTerm + "&skipcalc=true";
+	if (ProductDefaults.product == 'SAV') {
+		applyurl = "https://creditunion.co.uk/loans/saver-loan/saver-loan-apply/?amount=" + loanAmount + "&months=" + loanTerm + "&product=SAV";
 	} else {
-	applyurl = "https://apps.creditunion.co.uk/Loan/Default.aspx?amount=" + loanAmount + "&months=" + loanTerm + "&skipcalc=true";
+			applyurl = "https://apps.creditunion.co.uk/Loan/Default.aspx?amount=" + loanAmount + "&product=" + loanProduct + "&months=" + loanTerm;
 	};
 	jQuery('#ApplyLink').attr("href", applyurl);
 };

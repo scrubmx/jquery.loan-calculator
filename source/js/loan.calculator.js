@@ -1,6 +1,6 @@
 jQuery(document).ready(function ($) {
 	// Only fire this up if it isn't a consolidation calculator
-	if (ProductDefaults.consolidation == 0) {
+	if (ProductDefaults.product != 'CON') {
 		$('[data-toggle="product"]').on('click', function (e) {
 			$('[data-toggle="product"]').not(this).removeClass('active');
 			$(this).addClass('active');
@@ -62,7 +62,7 @@ jQuery(document).ready(function ($) {
 			}
 		});
 		// Set default title description
-		$('#product-name').text(ProductDefaults.product);
+		$('#product-name').text(ProductDefaults.displayname);
 		$('#product-description').text(ProductDefaults.desc);
 		/* 
 		FIRE UP THE CALCULATOR
@@ -104,53 +104,53 @@ jQuery(document).ready(function ($) {
 		$calculator.on('loan:update', function (e) {
 			gtmLoanAmount = parseInt(loanamountslider.noUiSlider.get());
 			gtmLoanLength = parseInt(loantermslider.noUiSlider.get());
-			gtmProduct = 'Personal Loan';
+			gtmProduct = ProductDefaults.product;
 			gtmInterest = ConvertToNumber($('#interest-total').text());
-			setURLS(gtmLoanAmount, gtmLoanLength);
+			setURLS(gtmLoanAmount, gtmLoanLength, gtmProduct);
 		});
 		/*
 		When a new product is selected, change values
 		*/
 		$('[data-toggle="product"]').on('click', function (e) {
 			e.preventDefault();
-			var SelectedProduct = {
+			var ProductDefaults = {
 				minValue: $(this).data('min-value'),
 				maxValue: $(this).data('max-value'),
 				step: $(this).data('step'),
 				rate: $(this).data('interest'),
-				name: $(this).data('product'),
+				displayname: $(this).data('displayname'),
 				desc: $(this).data('description'),
 				term: $(this).data('default-term'),
 				amount: $(this).data('default-value')
 			}
 			//Change Range attribs
-			$('#product-name').text(SelectedProduct.name);
-			$('#product-description').text(SelectedProduct.desc);
+			$('#product-displayname').text(ProductDefaults.displayname);
+			$('#product-description').text(ProductDefaults.desc);
 			// Update the rest of the options
 			loanamountslider.noUiSlider.updateOptions({
 				range: {
-					'min': SelectedProduct.minValue,
-					'max': SelectedProduct.maxValue
+					'min': ProductDefaults.minValue,
+					'max': ProductDefaults.maxValue
 				},
-				step: SelectedProduct.step
+				step: ProductDefaults.step
 			});
 			loantermslider.noUiSlider.updateOptions({
 				range: {
-					'min': variableTerm(SelectedProduct.minValue).min,
-					'max': variableTerm(SelectedProduct.maxValue).max
+					'min': variableTerm(ProductDefaults.minValue).min,
+					'max': variableTerm(ProductDefaults.maxValue).max
 				}
 			});
-			loanamountslider.noUiSlider.set(SelectedProduct.amount);
-			loantermslider.noUiSlider.set(SelectedProduct.term);
+			loanamountslider.noUiSlider.set(ProductDefaults.amount);
+			loantermslider.noUiSlider.set(ProductDefaults.term);
 			// Recalculate
 			$calculator.loanCalculator('update', {
-				interestRate: SelectedProduct.rate
+				interestRate: ProductDefaults.rate
 			});
 		});
 		/* 
 		SPECIAL FOR THE SAVER LOAN
 		*/
-		if (ProductDefaults.saver == 1) {
+		if (ProductDefaults.product == 'SAV') {
 			$('.slider').hide();
 			$('.calculator-right').hide();
 			$('#saver').show();

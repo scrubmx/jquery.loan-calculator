@@ -1,13 +1,12 @@
 {
     "name": "lmcu-loan-calculator-wordpress",
-    "version": "1.0.3",
+    "version": "1.2.3",
     "description": "A Wordpress plugin to create a simple loan calculator from a shortcode configurable via shortcode attributes",
     "main": "gulpfile.js",
     "dependencies": {
         "@fortawesome/fontawesome-free": "^5.15.1",
         "autonumeric": "^4.6.0",
         "bootstrap": "^4.5.3",
-        "gulp": "^4.0.2",
         "gulp-bump": "^3.2.0",
         "gulp-concat": "^2.6.1",
         "gulp-inject": "^5.0.5",
@@ -26,8 +25,15 @@
         "wnumb": "^1.2.0"
     },
     "devDependencies": {
+        "eslint": "^7.32.0",
+        "eslint-config-airbnb": "^18.2.1",
+        "eslint-plugin-import": "^2.25.2",
+        "eslint-plugin-jsx-a11y": "^6.4.1",
+        "eslint-plugin-react": "^7.26.1",
+        "gulp": "^4.0.2",
         "gulp-clean-css": "^4.3.0",
         "gulp-embed-svg": "^1.2.0",
+        "gulp-eslint": "^6.0.0",
         "gulp-svgo": "^2.2.1",
         "purgecss-with-wordpress": "^4.0.3"
     },
