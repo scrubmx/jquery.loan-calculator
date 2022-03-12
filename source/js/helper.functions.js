@@ -138,7 +138,7 @@ function setURLS(loanAmount, loanTerm, loanProduct) {
 	if (ProductDefaults.product == 'SAV') {
 		applyurl = "https://creditunion.co.uk/loans/saver-loan/saver-loan-apply/?amount=" + loanAmount + "&months=" + loanTerm + "&product=SAV";
 	} else {
-			applyurl = "https://apps.creditunion.co.uk/Loan/Default.aspx?amount=" + loanAmount + "&product=" + loanProduct + "&months=" + loanTerm;
+			applyurl = "https://apps.creditunion.co.uk/Loan/Default.aspx?amount=" + loanAmount + "&cb=" + cBond + "&product=" + loanProduct + "&months=" + loanTerm;
 	};
 	jQuery('#ApplyLink').attr("href", applyurl);
 };
