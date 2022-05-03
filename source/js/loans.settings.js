@@ -13,8 +13,9 @@ jQuery(function ($) {
                     //9.38% APR
                     InterestRate = 24.97;
                 break;
+            case (ProductDefaults.product == 'BOOSTER'):
             case (ProductDefaults.product == 'BOS'):
-            case (ProductDefaults.product == 'GRw'):
+            case (ProductDefaults.product == 'GRW'):
                 //Booster and Growth - 42.6% APR
                 InterestRate = 36;
                 break;
