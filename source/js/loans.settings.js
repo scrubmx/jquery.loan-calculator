@@ -6,8 +6,8 @@ jQuery(function ($) {
                 InterestRate = 4.41;
                 break;
             case (ProductDefaults.product == 'CON'):
-                //9.38% APR
-                InterestRate = 8.95;
+                //Consolidation 16.5% APR
+                InterestRate = 15.33;
                 break;
             case (ProductDefaults.product == 'EMG'):
                     //9.38% APR
@@ -15,32 +15,32 @@ jQuery(function ($) {
                 break;
             case (ProductDefaults.product == 'BOS'):
             case (ProductDefaults.product == 'GRw'):
-                //42.6% APR
+                //Booster and Growth - 42.6% APR
                 InterestRate = 36;
                 break;
             case (value < 2499):
-                //16.08% APR
-                InterestRate = 14.95;
+                //Advantage - 19.5% APR
+                InterestRate = 18;
                 break;
             case (value < 4999):
-                //13.68% APR
-                InterestRate = 12.89;
+                //Premier - 16.68% APR
+                InterestRate = 15.46;
                 break;
             case (value < 7499):
-                //8.3% APR
-                InterestRate = 8;
+                //Select - 12.68% APR
+                InterestRate = 11.97;
                 break;
             case (value < 9999):
-                //6.9% APR
-                InterestRate = 6.69;
+                //Gold - 9.2% APR
+                InterestRate = 8.79;
                 break;
             case (value < 15001):
-                //5.9% APR
-                InterestRate = 5.75;
+                //Platinum - 7.4% APR
+                InterestRate = 7.12;
                 break;
             case (value < 25001):
-                //5.4% APR
-                InterestRate = 5.3;
+                //Home Owner - 7% APR
+                InterestRate = 6.74;
                 break;
         }
         return InterestRate;
