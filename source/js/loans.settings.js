@@ -25,23 +25,23 @@ jQuery(function ($) {
                 break;
             case (value < 4999):
                 //Premier - 16.68% APR
-                InterestRate = 15.53;
+                InterestRate = 15.46;
                 break;
             case (value < 7499):
                 //Select - 12.68% APR
-                InterestRate = 12;
+                InterestRate = 11.97;
                 break;
             case (value < 9999):
                 //Gold - 9.2% APR
-                InterestRate = 8.83;
+                InterestRate = 8.79;
                 break;
             case (value < 15001):
                 //Platinum - 7.4% APR
-                InterestRate = 7.16;
+                InterestRate = 7.12;
                 break;
             case (value < 25001):
                 //Home Owner - 7% APR
-                InterestRate = 6.785;
+                InterestRate = 6.74;
                 break;
         }
         return InterestRate;
