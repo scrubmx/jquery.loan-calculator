@@ -1,7 +1,10 @@
+@import "loan-calc";
+@import "no-slider";
 @import "bootstrap-variables";
 @import "spacing";
 @import "mixins";
-@import "bootstrap-config";
+@import "bootstrap-config"; 
+
 
 @mixin btn {
 	display: inline-block;

@@ -14,8 +14,11 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 add_action( 'wp_enqueue_scripts', 'lmcu_scripts' );
 
 function lmcu_scripts() {
-	wp_register_script( 'lmcu-calculator', plugins_url( 'js/scripts.js' , __FILE__ ), array('jquery'), '1.0.0', true );
-    wp_register_style( 'lmcu-calculator', plugins_url( 'css/styles.css' , __FILE__ ));
+	//wp_register_script( 'lmcu-calculator', plugins_url( 'js/scripts.js' , __FILE__ ), array('jquery'), '1.0.0', true );
+    //wp_register_style( 'lmcu-calculator', plugins_url( 'css/styles.css' , __FILE__ ));
+
+    wp_register_script('lmcu-calculator', plugins_url('js/loan-calc.js', __FILE__), array('jquery'), '1.0.0', true);
+    wp_register_style('lmcu-calculator', plugins_url('css/loan-calc.css', __FILE__));
 }
 // Enqueue the right way
 function lmcu_shortcode_scripts() {
@@ -34,7 +37,7 @@ function lmcu_calculator( $atts ) {
     $atts = shortcode_atts(
 		array(
 			'displayname' => 'Personal Loan',
-            'rate' => '5.75',
+            'rate' => '4.75',
 			'minamount' => '100',
             'maxamount' => '15000',
             'minterm' => '1',

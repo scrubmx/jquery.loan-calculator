@@ -94,3 +94,9 @@ function ConsolidateResult(repayment, balance) {
 		jQuery('.btn-apply, #example, #comparison').fadeOut();
 	}
 }
+
+
+
+
+
+

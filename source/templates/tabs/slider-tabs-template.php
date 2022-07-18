@@ -7,8 +7,8 @@
          </div>
      </div>
      <div class="slider">
-         <label for="loan-amount">I want to borrow <span class="selected-amount"></span></label>
-         <div id="loanamount"></div>
+         <label for="loan-amount">I want to borrow <span class="selected-amount js-slider-val-output"></span></label>
+         <div id="loanamount" class="js-amount-slider"></div>
      </div>
      <div class="slider">
          <label for="loan-duration">and repay over <span class="selected-term"></span></label>
