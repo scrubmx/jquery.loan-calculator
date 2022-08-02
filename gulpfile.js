@@ -63,6 +63,13 @@ function phpBundle(){
     .pipe(dest(dir.build + 'templates/'));
 }
 
+function copyJson(){
+  return src(
+    dir.source + 'loan-settings.json'
+  )
+  .pipe(dest(dir.build));
+}
+
 function watchTasks() {
   watch(dir.source, 
     parallel(scriptsBundle, stylesBundle));
@@ -71,6 +78,7 @@ function watchTasks() {
 exports.default = series(
   parallel(scriptsBundle, stylesBundle),
   phpBundle,
+  copyJson,
   watchTasks
 );
 

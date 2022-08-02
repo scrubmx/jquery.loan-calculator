@@ -12,6 +12,6 @@
      </div>
      <div class="slider">
          <label for="loan-duration">and repay over <span class="selected-term"></span></label>
-         <div id="loanterm"></div>
+         <div id="loanterm" class="js-duration-slider"></div>
      </div>
  </div>

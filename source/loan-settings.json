@@ -1,0 +1,30 @@
+[
+  {
+    "productCode": "PER",
+    "rate": 7,
+    "maxTerm": 84,
+    "minTerm": 3,
+    "maxAmount": 15000,
+    "minAmount": 100,
+    "defaultAmount": 7500,
+    "defaultTerm": 36,
+    "step": 25,
+    "desc": "Lorem ipsum dolor",
+    "displayName": "Personal Loan"
+  },
+  {
+    "productCode": "CON",
+    "rate": 7,
+    "maxTerm": 84,
+    "minTerm": 3,
+    "maxAmount": 15000,
+    "minAmount": 100,
+    "defaultTerm": 36,
+    "step": 25,
+    "desc": "Lorem ipsum dolor"
+  }
+]
+
+
+
+

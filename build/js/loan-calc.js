@@ -13443,31 +13443,15 @@ return jQuery;
 
 const loanCalculator = (function () {
   'use strict';
-  let log = console.log;
+  const log = console.log;
   //cache DOM
-  let amountSlider = document.querySelector('.js-amount-slider');
-  let sliderAmountOutputElement = $('.js-slider-val-output');
+  const amountSlider = document.querySelector('.js-amount-slider');
+  const durationSlider = document.querySelector('.js-duration-slider');
+  const sliderAmountOutputElement = $('.js-slider-val-output');
 
-  //slider settings
-  const amountSliderSettings = {
-    start: [7500],
-    range: {
-      'min': [100],
-      'max': [25000],
-    },
-    step: 25,
-    pips: {
-      mode: 'range',
-      values: 2,
-      density: 100,
-      format: wNumb({
-        prefix: '£',
-        thousand: ',',
-        decimals: 0
-      })
-    }
-  }
-
+  // json data 
+  const jsonResource = 'http://localhost:8888/wp/wp-content/plugins/build/loan-settings.json';
+  
   // currency format
   const currencyFormat = wNumb({
     prefix: '£',
@@ -13475,33 +13459,96 @@ const loanCalculator = (function () {
     decimals: 2,
     thousand: ',',
   });
+  
+  $.getJSON(jsonResource, function (data) {
+    var amountSliderSettings;
 
-  //slider init
-  noUiSlider.create(amountSlider, amountSliderSettings);
+    let results = data.filter(({ productCode }) =>
+      productCode === ProductDefaults.product
+    );
 
-  // slider on change
-  amountSlider.noUiSlider.on('update', function () {
+    results.forEach(el => {      
+      amountSliderSettings = {
+        start: el.defaultAmount,
+        range: {
+          'min': el.minAmount,
+          'max': el.maxAmount,
+        },
+        step: el.step,
+        pips: {
+          mode: 'range',
+          values: 2,
+          density: 100,
+          format: wNumb({
+            prefix: '£',
+            thousand: ',',
+            decimals: 0
+          })
+        }
+      }
+    });
+
+    //slider init
+    noUiSlider.create(amountSlider, amountSliderSettings);
+    noUiSlider.create(durationSlider, durationSliderSettings);
+
+    // slider on change
+    amountSlider.noUiSlider.on('update', function () {
+      writeSliderAmount();
+    });
+
+
+    //write slider amount on page
+    function writeSliderAmount() {
+      let loanAmount = getLoanAmount();
+      sliderAmountOutputElement.text(currencyFormat.to(loanAmount))
+    }
+
+
+
+
+    function getLoanAmount() {
+      let loanAmount = Number(amountSlider.noUiSlider.get().replace(/\£|,/g, ''));
+      return isNaN(loanAmount) ? 0 : loanAmount;
+    }
     writeSliderAmount();
   });
+  
+  
 
-  //write slider amount on page
-  function writeSliderAmount() {
-    let loanAmount = getLoanAmount();
-    sliderAmountOutputElement.text(currencyFormat.to(loanAmount))
+
+  const durationSliderSettings ={    
+    start: ProductDefaults.term,
+    animate: true,
+    connect: [true, false],
+    step: 1,
+    pips: {
+      mode: 'positions',
+      values: [0, 100],
+      density: 100,
+      format: wNumb({
+        decimals: 0,
+        thousand: ',',
+        suffix: ' months'
+      })
+    },
+    range: {
+      'min': 0,
+      'max': 28
+    }
   }
 
-  function getLoanAmount() {
-    let loanAmount = Number(amountSlider.noUiSlider.get().replace(/\£|,/g, ''));
-    return isNaN(loanAmount) ? 0 : loanAmount;
-  }
+
+
+
 
   return {
-    writeSliderAmount: writeSliderAmount
+    //writeSliderAmount: writeSliderAmount
   }
 
 })();
 
-loanCalculator.writeSliderAmount();
+//loanCalculator.writeSliderAmount();
 
 
 
