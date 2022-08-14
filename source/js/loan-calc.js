@@ -27,6 +27,7 @@ const loanCalculator = (function () {
     results.forEach(el => {      
       amountSliderSettings = {
         start: el.defaultAmount,
+        connect: 'lower',
         range: {
           'min': el.minAmount,
           'max': el.maxAmount,
@@ -78,6 +79,7 @@ const loanCalculator = (function () {
     start: ProductDefaults.term,
     animate: true,
     connect: [true, false],
+    //connect: 'lower',
     step: 1,
     pips: {
       mode: 'positions',

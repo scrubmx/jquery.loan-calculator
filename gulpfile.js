@@ -60,7 +60,7 @@ function phpBundle(){
   return src(
     dir.source + 'templates/**/*.php'
   )
-    .pipe(dest(dir.build + 'templates/'));
+  .pipe(dest(dir.build + 'templates/'));
 }
 
 function copyJson(){
@@ -72,7 +72,7 @@ function copyJson(){
 
 function watchTasks() {
   watch(dir.source, 
-    parallel(scriptsBundle, stylesBundle));
+    parallel(scriptsBundle, stylesBundle, phpBundle));
 }
 
 exports.default = series(
