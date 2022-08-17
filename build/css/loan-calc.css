@@ -656,122 +656,58 @@
   top: auto;
   right: 28px;
 }
-/*! purgecss start ignore */
-.noUi-background {
-  height: 16px;
-}
-
-.noUi-target {
-  border-radius: 8px;
-  border: none;
-  background-color: #dee2e6;
-  box-shadow: none;
-}
-
-.noUi-horizontal {
-  height: 12px;
-}
-
-.noUi-pips-horizontal {
-  padding: 4px 0;
-  height: 12px;
-  top: 100%;
-  left: 0;
-  width: 100%;
-}
-.noUi-pips-horizontal .noUi-marker-horizontal.noUi-marker {
-  width: 1px;
-}
-.noUi-pips-horizontal .noUi-marker-horizontal.noUi-marker-large {
-  height: 12px;
-  background-color: rgba(0, 0, 0, 0.125);
-}
-.noUi-pips-horizontal .noUi-value-large {
-  color: #272d37;
-  transform: translate(0, 5px);
-  font-weight: 400;
-  font-size: 80%;
-}
-.noUi-pips-horizontal .noUi-value-large ~ .noUi-value-large {
-  transform: translate(-50%, 5px);
-  font-weight: normal;
-}
-.noUi-pips-horizontal .noUi-value-large:last-of-type {
-  transform: translate(-100%, 5px);
-}
-
-.noUi-base .noUi-connects {
-  border-radius: 8px;
-  cursor: pointer;
-}
-.noUi-base .noUi-connects .noUi-connect {
-  background-color: #272d37;
-}
-.noUi-base .noUi-handle {
-  background-color: #ffffff;
-  border: 2px solid #272d37;
-  border-radius: 50%;
-  box-shadow: -0.06125rem 0.06125rem 0.125rem rgba(0, 0, 0, 0.5);
-  height: 28px;
-  width: 28px;
-  z-index: 2;
-  top: -8px;
-  right: unset;
-  left: calc(100% - 16px) !important;
-  cursor: pointer;
-  position: relative;
-  cursor: -webkit-grab;
-  cursor: grab;
-}
-.noUi-base .noUi-handle:focus {
-  background-color: #fff;
-  outline-width: 0;
-}
-.noUi-base .noUi-handle .noUi-touch-area {
-  position: absolute;
-  top: -12px;
-  width: 36px;
-  height: 36px;
-  left: -12px;
-}
-.noUi-base .noUi-handle .noUi-touch-area:focus {
-  outline-width: 0;
-}
-.noUi-base .noUi-handle.noUi-active {
-  cursor: -webkit-grabbing;
-  cursor: grabbing;
-  background-color: #fff;
-  box-shadow: 0 0 0 3px #f5d505;
-  z-index: 3;
-}
-.noUi-base .noUi-handle.noUi-active:before {
-  content: "";
-  width: 14px;
-  height: 14px;
-  left: 5px;
-  top: 5px;
-  position: absolute;
-  display: block;
-  background-color: #272d37;
-  border-radius: 50%;
-}
-.noUi-base .noUi-handle::before {
-  background: transparent;
-  content: attr(data-value);
-  font-size: 18px;
-  font-weight: 100;
-  position: static;
-  width: 100%;
-  vertical-align: middle;
-}
-.noUi-base .noUi-handle::after {
-  display: none;
-}
-
-/*! purgecss end ignore */
 /*!
  * Bootstrap v4.4.1 (https://getbootstrap.com/)
  * Copyright 2011-2019 The Bootstrap Authors
  * Copyright 2011-2019 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
+.noUi-horizontal {
+  height: 4px;
+}
+.noUi-horizontal .noUi-handle {
+  width: 22px;
+  height: 22px;
+  right: -11px;
+  top: -9px;
+  border: 3px solid #038750;
+  border-radius: 50%;
+  z-index: 2;
+  cursor: -webkit-grab;
+  cursor: grab;
+}
+.noUi-horizontal .noUi-handle::before, .noUi-horizontal .noUi-handle::after {
+  display: none;
+}
+.noUi-connect {
+  background: #038750;
+}
+.noUi-target {
+  border: none;
+  border-radius: 5px;
+  box-shadow: none;
+  background: rgba(3, 135, 80, 0.2);
+}
+.noUi-touch-area {
+  background-color: #fff;
+  border-radius: 50%;
+}
+.noUi-marker-horizontal.noUi-marker {
+  display: none;
+}
+.noUi-value-horizontal {
+  transform: translate(0%, 0%);
+}
+.noUi-value-horizontal:last-of-type {
+  transform: translate(-100%, 0%);
+}
+
+.slider {
+  margin-bottom: 4rem;
+}
+.slider__val-output {
+  display: block;
+  font-size: 24px;
+  margin: 10px 0 15px;
+  font-weight: bold;
+}

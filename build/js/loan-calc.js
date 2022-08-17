@@ -13448,6 +13448,7 @@ const loanCalculator = (function () {
   const amountSlider = document.querySelector('.js-amount-slider');
   const durationSlider = document.querySelector('.js-duration-slider');
   const sliderAmountOutputElement = $('.js-slider-val-output');
+  const termOutputElement = $('.js-selected-term');
 
   // json data 
   const jsonResource = 'http://localhost:8888/wp/wp-content/plugins/build/loan-settings.json';
@@ -13461,7 +13462,8 @@ const loanCalculator = (function () {
   });
   
   $.getJSON(jsonResource, function (data) {
-    var amountSliderSettings;
+    var amountSliderSettings,
+        durationSliderSettings;
 
     let results = data.filter(({ productCode }) =>
       productCode === ProductDefaults.product
@@ -13486,7 +13488,29 @@ const loanCalculator = (function () {
             decimals: 0
           })
         }
-      }
+      };
+
+      durationSliderSettings = {
+        start: ProductDefaults.term,
+        animate: true,
+        connect: [true, false],
+        //connect: 'lower',
+        step: 1,
+        pips: {
+          mode: 'positions',
+          values: [0, 100],
+          density: 100,
+          format: wNumb({
+            decimals: 0,
+            thousand: ',',
+            suffix: ' months'
+          })
+        },
+        range: {
+          'min': el.minTerm,
+          'max': el.maxTerm
+        }
+      };
     });
 
     //slider init
@@ -13498,6 +13522,9 @@ const loanCalculator = (function () {
       writeSliderAmount();
     });
 
+    durationSlider.noUiSlider.on('update', function () {
+      writeSelectedPaymentTerm();
+    });
 
     //write slider amount on page
     function writeSliderAmount() {
@@ -13505,44 +13532,18 @@ const loanCalculator = (function () {
       sliderAmountOutputElement.text(currencyFormat.to(loanAmount))
     }
 
-
-
-
     function getLoanAmount() {
       let loanAmount = Number(amountSlider.noUiSlider.get().replace(/\£|,/g, ''));
       return isNaN(loanAmount) ? 0 : loanAmount;
     }
     writeSliderAmount();
-  });
-  
-  
 
-
-  const durationSliderSettings ={    
-    start: ProductDefaults.term,
-    animate: true,
-    connect: [true, false],
-    //connect: 'lower',
-    step: 1,
-    pips: {
-      mode: 'positions',
-      values: [0, 100],
-      density: 100,
-      format: wNumb({
-        decimals: 0,
-        thousand: ',',
-        suffix: ' months'
-      })
-    },
-    range: {
-      'min': 0,
-      'max': 28
+    //write term on page
+    function writeSelectedPaymentTerm(){
+      let selectedPaymentTerm = durationSlider.noUiSlider.get();
+      termOutputElement.text(selectedPaymentTerm);
     }
-  }
-
-
-
-
+  });
 
   return {
     //writeSliderAmount: writeSliderAmount
@@ -13550,7 +13551,6 @@ const loanCalculator = (function () {
 
 })();
 
-//loanCalculator.writeSliderAmount();
 
 
 

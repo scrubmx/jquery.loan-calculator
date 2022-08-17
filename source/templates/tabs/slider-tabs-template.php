@@ -18,10 +18,14 @@
 
 
  <div class="slider">
-     <label for="loan-amount">I want to borrow <span class="selected-amount js-slider-val-output"></span></label>
-     <div id="loanamount" class="js-amount-slider"></div>
+     <label for="loan-amount">I want to borrow
+         <span class="js-slider-val-output slider__val-output"></span>
+     </label>
+     <div class="js-amount-slider"></div>
  </div>
  <div class="slider">
-     <label for="loan-duration">and repay over <span class="selected-term"></span></label>
-     <div id="loanterm" class="js-duration-slider"></div>
+     <label for="loan-duration">and repay over
+        <span class="js-selected-term slider__val-output"></span>
+     </label>
+     <div class="js-duration-slider"></div>
  </div>

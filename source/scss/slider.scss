@@ -1,0 +1,62 @@
+//slider vars
+
+$slider-bg: #038750;
+$slider-height: 4px;
+$slider-handle-w-h: 22px;
+
+
+
+.noUi{
+  $self: &;
+
+  &-horizontal{
+    height: $slider-height;
+
+    #{$self}-handle{
+      width: $slider-handle-w-h;
+      height: $slider-handle-w-h;
+      right: -11px;
+      top: -9px;
+      border: 3px solid $slider-bg;
+      border-radius: 50%;
+      z-index: 2;
+      cursor: grab;
+
+      &::before, &::after {
+        display: none;
+      }
+    }
+  }
+
+  &-connect {
+    background: $slider-bg;
+  }
+
+  &-target {
+    border: none;
+    border-radius: 5px;
+    box-shadow: none;
+    background: rgba($slider-bg, 0.2);
+  }
+
+  &-touch-area{
+    background-color: #fff;
+    border-radius: 50%;
+  }
+
+  &-marker-horizontal#{$self}-marker {
+    display: none;
+  }
+
+  &-value-horizontal {
+    transform: translate(0%, 0%);
+
+    &:last-of-type {
+      transform: translate(-100%, 0%);
+    }
+  }
+}
+
+
+
+
