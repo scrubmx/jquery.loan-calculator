@@ -13457,7 +13457,7 @@ const loanCalculator = (function () {
   const currencyFormat = wNumb({
     prefix: '£',
     mark: '.',
-    decimals: 2,
+    decimals: 0,
     thousand: ',',
   });
   
@@ -13473,6 +13473,7 @@ const loanCalculator = (function () {
       amountSliderSettings = {
         start: el.defaultAmount,
         connect: 'lower',
+        animate: true,
         range: {
           'min': el.minAmount,
           'max': el.maxAmount,
@@ -13482,16 +13483,13 @@ const loanCalculator = (function () {
           mode: 'range',
           values: 2,
           density: 100,
-          format: wNumb({
-            prefix: '£',
-            thousand: ',',
-            decimals: 0
-          })
-        }
+          format: currencyFormat
+        },
+        format: currencyFormat
       };
 
       durationSliderSettings = {
-        start: ProductDefaults.term,
+        start: el.defaultTerm,
         animate: true,
         connect: [true, false],
         //connect: 'lower',
@@ -13502,14 +13500,17 @@ const loanCalculator = (function () {
           density: 100,
           format: wNumb({
             decimals: 0,
-            thousand: ',',
             suffix: ' months'
           })
         },
         range: {
           'min': el.minTerm,
           'max': el.maxTerm
-        }
+        },
+        format: wNumb({
+          decimals: 0,
+          suffix: ' months'
+        })
       };
     });
 
@@ -13536,11 +13537,11 @@ const loanCalculator = (function () {
       let loanAmount = Number(amountSlider.noUiSlider.get().replace(/\£|,/g, ''));
       return isNaN(loanAmount) ? 0 : loanAmount;
     }
-    writeSliderAmount();
 
     //write term on page
     function writeSelectedPaymentTerm(){
       let selectedPaymentTerm = durationSlider.noUiSlider.get();
+      log(selectedPaymentTerm)
       termOutputElement.text(selectedPaymentTerm);
     }
   });
