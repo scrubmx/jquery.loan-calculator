@@ -1,3 +1,30 @@
+
+
+
+.lmcu-calc{
+
+  &__inner{
+    @include make-row(0);
+  }
+  &__left{
+    @include make-col-ready(0);
+    @include mb(4);
+  
+    @include media-breakpoint-up(md) {
+      @include pr(5);
+      @include mb(0);
+    }
+  
+    @include media-breakpoint-up(md) {
+      @include make-col(8);
+    }
+  
+    @include media-breakpoint-up(xl) {
+      @include make-col(8);
+    }
+  }
+}
+
 .slider{
   margin-bottom: 4rem;
 

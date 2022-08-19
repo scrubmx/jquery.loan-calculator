@@ -98,7 +98,6 @@ const loanCalculator = (function () {
     //write term on page
     function writeSelectedPaymentTerm(){
       let selectedPaymentTerm = durationSlider.noUiSlider.get();
-      log(selectedPaymentTerm)
       termOutputElement.text(selectedPaymentTerm);
     }
   });

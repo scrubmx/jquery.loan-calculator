@@ -47,6 +47,7 @@ function scriptsBundle(){
 
 function stylesBundle(){
   return src([
+    //dir.node + packages.bootstrapCSS,
     dir.node + packages.nouisliderCSS,
     dir.source + packages.appSCSS
     //(dir.source+'scss/').pipe(sass()).pipe(postcss([autoprefixer(),cssnano()])) <----------- ENABLE CSS NANO IN PRODUCTION 
