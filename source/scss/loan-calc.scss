@@ -79,6 +79,7 @@ $result-text-colour: #272d37;
 
     &--apply{
       display: block;
+      position: relative;
       font-weight: 600;
       text-align: center;
       cursor: pointer;
@@ -87,6 +88,26 @@ $result-text-colour: #272d37;
       font-size: 1.125rem;
       line-height: 1.7em;
       transition: all .3s ease 0s;
+
+      &::after{
+        font-family: ETmodules !important;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        speak: none;
+        position: absolute;
+        margin-left: -1em;
+        opacity: 0;
+        text-shadow: none;
+        font-size: 32px;
+        font-weight: 400;
+        font-style: normal;
+        font-variant: none;
+        line-height: 1em;
+        text-transform: none;
+        content: "5";
+        -webkit-transition: all .2s;
+        transition: all .2s;
+      }
     }
 
     &:hover{

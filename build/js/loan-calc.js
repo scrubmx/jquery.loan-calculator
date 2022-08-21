@@ -13485,7 +13485,8 @@ const loanCalculator = (function () {
           density: 100,
           format: currencyFormat
         },
-        format: currencyFormat
+        format: currencyFormat,
+        variableTerms: el.variableTerms
       };
 
       durationSliderSettings = {
