@@ -1,7 +1,18 @@
+$result-bg-colour: #c4d9e5;
+$result-text-colour: #272d37;
 
+.calc{
 
-
-.lmcu-calc{
+  &-slider {
+    margin-bottom: 4rem;
+  
+    &__val-output {
+      display: block;
+      font-size: 1.8rem;
+      margin: 10px 0 15px;
+      font-weight: bold;
+    }
+  }
 
   &__inner{
     @include make-row(0);
@@ -11,27 +22,79 @@
     @include mb(4);
   
     @include media-breakpoint-up(md) {
-      @include pr(5);
+      @include pr(6);
       @include mb(0);
+      @include make-col(7);
     }
-  
+  }
+
+  &__right{
+    box-shadow: 0px 1px 15px -3px rgb(0 0 0 / 10%);
+    //box-shadow: 6px 6px 18px 0px rgb(0 0 0 / 16%);
+    @include make-col-ready(0);
+    
     @include media-breakpoint-up(md) {
-      @include make-col(8);
+      @include make-col(5);
     }
-  
-    @include media-breakpoint-up(xl) {
-      @include make-col(8);
+  }
+
+  &__results{
+    padding: 1.5rem;
+    background-color: rgba($result-bg-colour, 0.3);
+    border-radius: 5px;
+
+    &-header {
+      padding: 1rem;
+      border-radius: 5px;
+      color: $result-text-colour;
+      background-color: rgba($result-bg-colour, 0.8);
+      font-size: 1.125rem;
+      margin-bottom: 1rem;
+    }
+
+    &-list{
+      list-style: none;
+      padding: 0;
+
+      li{
+        margin-bottom: 1rem;
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+  }
+
+  &__terms{
+    font-size: 0.8rem;
+    margin: 1.2rem 0 0;
+  }
+
+  &__btn{
+    background-color: $slider-bg;
+    color: #fff;
+    border-radius: 3px;
+    text-decoration: none!important;
+
+
+
+    &--apply{
+      display: block;
+      font-weight: 600;
+      text-align: center;
+      cursor: pointer;
+      user-select: none;
+      padding: 1rem 1.4rem;
+      font-size: 1.125rem;
+      line-height: 1.7em;
+      transition: all .3s ease 0s;
+    }
+
+    &:hover{
+      color: #fff;
+      background-color: #02623a;
+      border-color: #025532;
+      padding-right: 3.4rem;
     }
   }
 }
 
-.slider{
-  margin-bottom: 4rem;
-
-  &__val-output{
-    display: block;
-    font-size: 24px;
-    margin: 10px 0 15px;
-    font-weight: bold;    
-  }
-}

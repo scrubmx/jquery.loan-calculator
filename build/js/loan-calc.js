@@ -13444,16 +13444,16 @@ return jQuery;
 const loanCalculator = (function () {
   'use strict';
   const log = console.log;
-  //cache DOM
+  //Cache DOM
   const amountSlider = document.querySelector('.js-amount-slider');
   const durationSlider = document.querySelector('.js-duration-slider');
   const sliderAmountOutputElement = $('.js-slider-val-output');
   const termOutputElement = $('.js-selected-term');
 
-  // json data 
+  // JSON Data 
   const jsonResource = 'http://localhost:8888/wp/wp-content/plugins/build/loan-settings.json';
   
-  // currency format
+  // Currency Format
   const currencyFormat = wNumb({
     prefix: '£',
     mark: '.',
@@ -13514,11 +13514,11 @@ const loanCalculator = (function () {
       };
     });
 
-    //slider init
+    //Slider init
     noUiSlider.create(amountSlider, amountSliderSettings);
     noUiSlider.create(durationSlider, durationSliderSettings);
 
-    // slider on change
+    // Slider on change
     amountSlider.noUiSlider.on('update', function () {
       writeSliderAmount();
     });
@@ -13527,7 +13527,7 @@ const loanCalculator = (function () {
       writeSelectedPaymentTerm();
     });
 
-    //write slider amount on page
+    //Write slider amount on page
     function writeSliderAmount() {
       let loanAmount = getLoanAmount();
       sliderAmountOutputElement.text(currencyFormat.to(loanAmount))
@@ -13538,7 +13538,7 @@ const loanCalculator = (function () {
       return isNaN(loanAmount) ? 0 : loanAmount;
     }
 
-    //write term on page
+    //Write term on page
     function writeSelectedPaymentTerm(){
       let selectedPaymentTerm = durationSlider.noUiSlider.get();
       termOutputElement.text(selectedPaymentTerm);

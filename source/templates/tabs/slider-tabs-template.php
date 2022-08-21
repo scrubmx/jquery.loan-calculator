@@ -17,15 +17,15 @@
  </div> -->
 
 
-    <div class="slider">
+    <div class="calc-slider">
         <label for="loan-amount">I want to borrow
-            <span class="js-slider-val-output slider__val-output"></span>
+            <span class="js-slider-val-output calc-slider__val-output"></span>
         </label>
         <div class="js-amount-slider"></div>
     </div>
-    <div class="slider">
+    <div class="calc-slider">
         <label for="loan-duration">and repay over
-            <span class="js-selected-term slider__val-output"></span>
+            <span class="js-selected-term calc-slider__val-output"></span>
         </label>
         <div class="js-duration-slider"></div>
     </div>
