@@ -21,11 +21,24 @@
     "defaultTerm": 36,
     "step": 25,
     "desc": "Lorem ipsum dolor",
-    "displayName": "Personal Loan"
+    "displayName": "Personal Loan",
+    "variableTerms": {
+      "2499": {
+        "minTerm": 3,
+        "maxTerm": 36
+      },
+      "4999": {
+        "minTerm": 3,
+        "maxTerm": 60
+      },
+      "14999": {
+        "minTerm": 6,
+        "maxTerm": 60
+      },
+      "25001": {
+        "minTerm": 12,
+        "maxTerm": 84
+      }
+    }
   }
-
 ]
-
-
-
-

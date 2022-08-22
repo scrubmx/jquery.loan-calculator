@@ -13449,6 +13449,7 @@ const loanCalculator = (function () {
   const durationSlider = document.querySelector('.js-duration-slider');
   const sliderAmountOutputElement = $('.js-slider-val-output');
   const termOutputElement = $('.js-selected-term');
+  let termVariation = null;
 
   // JSON Data 
   const jsonResource = 'http://localhost:8888/wp/wp-content/plugins/build/loan-settings.json';
@@ -13465,6 +13466,7 @@ const loanCalculator = (function () {
     var amountSliderSettings,
         durationSliderSettings;
 
+    
     let results = data.filter(({ productCode }) =>
       productCode === ProductDefaults.product
     );
@@ -13485,8 +13487,7 @@ const loanCalculator = (function () {
           density: 100,
           format: currencyFormat
         },
-        format: currencyFormat,
-        variableTerms: el.variableTerms
+        format: currencyFormat
       };
 
       durationSliderSettings = {
@@ -13512,8 +13513,11 @@ const loanCalculator = (function () {
           decimals: 0,
           suffix: ' months'
         })
-      };
+      };      
+      termVariation = el.variableTerms;
     });
+
+    
 
     //Slider init
     noUiSlider.create(amountSlider, amountSliderSettings);
@@ -13531,7 +13535,8 @@ const loanCalculator = (function () {
     //Write slider amount on page
     function writeSliderAmount() {
       let loanAmount = getLoanAmount();
-      sliderAmountOutputElement.text(currencyFormat.to(loanAmount))
+      sliderAmountOutputElement.text(currencyFormat.to(loanAmount));
+      updateTermBasedOnValue(loanAmount);
     }
 
     function getLoanAmount() {
@@ -13544,20 +13549,47 @@ const loanCalculator = (function () {
       let selectedPaymentTerm = durationSlider.noUiSlider.get();
       termOutputElement.text(selectedPaymentTerm);
     }
+
+    function updateTermBasedOnValue(val){
+      durationSlider.noUiSlider.updateOptions({
+        range: {
+          'min': getMinMaxBasedOnValue(val).min,
+          'max': getMinMaxBasedOnValue(val).max
+        }
+      });
+    }
+
   });
 
-  return {
-    //writeSliderAmount: writeSliderAmount
-  }
+
+  let getMinMaxBasedOnValue = function (value) {
+    let minTerm,
+        maxTerm;
+
+    for(let prop in termVariation){
+      if(value < prop){
+        minTerm = termVariation[prop].minTerm;
+        maxTerm = termVariation[prop].maxTerm;
+        
+        let termObj = {
+          min: minTerm,
+          max: maxTerm
+        };
+        return termObj;
+      }
+    }
+  };
+
+
+
+
+
+
+
+
+
+
+
 
 })();
-
-
-
-
-
-
-
-
-
 
