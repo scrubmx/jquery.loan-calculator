@@ -1,12 +1,12 @@
 <div class="calc__results-header">
-	Monthly repayment: <span class="lg" id="payment"></span>
+	Monthly repayment: <span class="js-disp-monthly-repayment"></span>
 </div>
 <ul class="calc__results-list">
-	<li>Borrowing: <span class="strong" id="selected-amount"></span></li>
-	<li>Over: <span class="strong" id="selected-duration"></span>&nbsp;Months</li>
-	<li>Representative: <span class="strong" id="total-annual-cost"></span>&nbsp;APR</li>
-	<li>Total cost of this loan: <span class="strong" id="interest-total"></span></li>
-	<li>Total repayable: <span class="strong " id="loan-total"></span> </li>
+	<li>Borrowing: <span class="js-disp-loan-amount"></span></li>
+	<li>Over: <span class="js-disp-term"></span>&nbsp;Months</li>
+	<li>Representative: <span class="js-disp-apr"></span>&nbsp;APR</li>
+	<li>Total cost of this loan: <span class="js-disp-total-cost"></span></li>
+	<li>Total repayable: <span class="js-disp-total-repayable"></span></li>
 </ul>
 <!-- Button -->
 <a class="calc__btn calc__btn--apply" id="ApplyLink" href="https://apps.creditunion.co.uk/Loan/Default.aspx?amount=<?php echo $amount; ?>&months=<?php echo $term; ?>&product=<?php echo $product; ?>&cb=<?php echo $cbond; ?>">Apply for this loan </a>

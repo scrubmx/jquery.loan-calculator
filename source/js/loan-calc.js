@@ -6,6 +6,14 @@ const loanCalculator = (function () {
   const durationSlider = document.querySelector('.js-duration-slider');
   const sliderAmountOutputElement = $('.js-slider-val-output');
   const termOutputElement = $('.js-selected-term');
+
+  const dispLoanAmount = $('.js-disp-loan-amount');
+  const dispLoanTerm = $('.js-disp-term');
+  const dispMonthlyRepayment = $('.js-disp-monthly-repayment');
+  const dispAPR = $('.js-disp-apr');
+  const dispTotalCost = $('.js-disp-total-cost');
+  const dispTotalRepayable = $('.js-disp-total-repayable');
+
   let termVariation = null;
 
   // JSON Data 
@@ -23,6 +31,7 @@ const loanCalculator = (function () {
     var amountSliderSettings,
         durationSliderSettings;
 
+    let valueStore = {};
     
     let results = data.filter(({ productCode }) =>
       productCode === ProductDefaults.product
@@ -74,8 +83,6 @@ const loanCalculator = (function () {
       termVariation = el.variableTerms;
     });
 
-    
-
     //Slider init
     noUiSlider.create(amountSlider, amountSliderSettings);
     noUiSlider.create(durationSlider, durationSliderSettings);
@@ -91,9 +98,10 @@ const loanCalculator = (function () {
 
     //Write slider amount on page
     function writeSliderAmount() {
-      let loanAmount = getLoanAmount();
-      sliderAmountOutputElement.text(currencyFormat.to(loanAmount));
+      let loanAmount = getLoanAmount();      
       updateTermBasedOnValue(loanAmount);
+      valueStore.loanAmount = loanAmount;
+      writeValuesOnPage();
     }
 
     function getLoanAmount() {
@@ -103,10 +111,11 @@ const loanCalculator = (function () {
 
     //Write term on page
     function writeSelectedPaymentTerm(){
-      let selectedPaymentTerm = durationSlider.noUiSlider.get();
-      termOutputElement.text(selectedPaymentTerm);
+      valueStore.paymentTerm = durationSlider.noUiSlider.get();
+      writeValuesOnPage();
     }
 
+    //change the payment terms slider based on loan amount
     function updateTermBasedOnValue(val){
       durationSlider.noUiSlider.updateOptions({
         range: {
@@ -115,6 +124,15 @@ const loanCalculator = (function () {
         }
       });
     }
+
+    //update values on page
+    function writeValuesOnPage() {
+      dispLoanAmount.text(valueStore.loanAmount);
+      sliderAmountOutputElement.text(currencyFormat.to(valueStore.loanAmount));
+      dispLoanTerm.text(valueStore.paymentTerm);
+      termOutputElement.text(valueStore.paymentTerm);
+    }
+
 
   });
 
@@ -136,12 +154,6 @@ const loanCalculator = (function () {
       }
     }
   };
-
-
-
-
-
-
 
 
 
