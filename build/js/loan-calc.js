@@ -13443,19 +13443,20 @@ return jQuery;
 
 const loanCalculator = (function () {
   'use strict';
-  const log = console.log;
-  //Cache DOM
-  const amountSlider = document.querySelector('.js-amount-slider');
-  const durationSlider = document.querySelector('.js-duration-slider');
-  const sliderAmountOutputElement = $('.js-slider-val-output');
-  const termOutputElement = $('.js-selected-term');
 
-  const dispLoanAmount = $('.js-disp-loan-amount');
-  const dispLoanTerm = $('.js-disp-term');
-  const dispMonthlyRepayment = $('.js-disp-monthly-repayment');
-  const dispAPR = $('.js-disp-apr');
-  const dispTotalCost = $('.js-disp-total-cost');
-  const dispTotalRepayable = $('.js-disp-total-repayable');
+  //Cache DOM
+  const log = console.log,
+        amountSlider = document.querySelector('.js-amount-slider'),
+        durationSlider = document.querySelector('.js-duration-slider'),
+        sliderAmountOutputElement = $('.js-slider-val-output'),
+        termOutputElement = $('.js-selected-term'),
+
+        dispLoanAmount = $('.js-disp-loan-amount'),
+        dispLoanTerm = $('.js-disp-term'),
+        dispMonthlyRepayment = $('.js-disp-monthly-repayment'),
+        dispAPR = $('.js-disp-apr'),
+        dispTotalCost = $('.js-disp-total-cost'),
+        dispTotalRepayable = $('.js-disp-total-repayable');
 
   let termVariation = null;
 
@@ -13467,7 +13468,13 @@ const loanCalculator = (function () {
     prefix: '£',
     mark: '.',
     decimals: 0,
-    thousand: ',',
+    thousand: ','
+  });
+
+  const currencyFormatWithDecimal = wNumb({
+    prefix: '£',
+    decimals: 2,
+    thousand: ','
   });
   
   $.getJSON(jsonResource, function (data) {
@@ -13520,7 +13527,7 @@ const loanCalculator = (function () {
         },
         format: wNumb({
           decimals: 0,
-          suffix: ' months'
+          //suffix: ' months'
         })
       };      
       termVariation = el.variableTerms;
@@ -13570,10 +13577,10 @@ const loanCalculator = (function () {
 
     //update values on page
     function writeValuesOnPage() {
-      dispLoanAmount.text(valueStore.loanAmount);
+      dispLoanAmount.text(currencyFormatWithDecimal.to(valueStore.loanAmount));
       sliderAmountOutputElement.text(currencyFormat.to(valueStore.loanAmount));
       dispLoanTerm.text(valueStore.paymentTerm);
-      termOutputElement.text(valueStore.paymentTerm);
+      termOutputElement.text(monthsToYears(valueStore.paymentTerm));
     }
 
 
@@ -13585,7 +13592,7 @@ const loanCalculator = (function () {
         maxTerm;
 
     for(let prop in termVariation){
-      if(value < prop){
+      if (value < prop && termVariation.hasOwnProperty(prop)){
         minTerm = termVariation[prop].minTerm;
         maxTerm = termVariation[prop].maxTerm;
         
@@ -13597,6 +13604,28 @@ const loanCalculator = (function () {
       }
     }
   };
+
+  let monthsToYears = function (value) {
+    let months = {
+        one: 'month',
+        other: 'months'
+      },
+      years = {
+        one: 'year',
+        other: 'years'
+      },
+      m = value % 12,
+      y = Math.floor(value / 12),
+      result = [];
+
+    y && result.push(y + ' ' + getPlural(y, years));
+    m && result.push(m + ' ' + getPlural(m, months));
+    return result.join(' and ');
+
+    function getPlural(number, word) {
+      return number === 1 && word.one || word.other;
+    }
+  }
 
 
 

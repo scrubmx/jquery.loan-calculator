@@ -3,8 +3,8 @@
 </div>
 <ul class="calc__results-list">
 	<li>Borrowing: <span class="js-disp-loan-amount"></span></li>
-	<li>Over: <span class="js-disp-term"></span>&nbsp;Months</li>
-	<li>Representative: <span class="js-disp-apr"></span>&nbsp;APR</li>
+	<li>Over: <span><span class="js-disp-term"></span> Months</span></li>
+	<li>Representative: <span class="js-disp-apr"></span> APR</li>
 	<li>Total cost of this loan: <span class="js-disp-total-cost"></span></li>
 	<li>Total repayable: <span class="js-disp-total-repayable"></span></li>
 </ul>
