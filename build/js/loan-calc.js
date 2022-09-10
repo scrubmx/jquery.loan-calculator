@@ -13555,8 +13555,13 @@ const loanCalculator = (function () {
       updateTermBasedOnValue(loanAmount);
       updateRatesBasedOnValue(loanAmount);
       valueStore.loanAmount = loanAmount;
+      writeValuesOnPage();      
+    }
+
+    //Write term on page
+    function writeSelectedPaymentTerm() {
+      valueStore.paymentTerm = durationSlider.noUiSlider.get();
       writeValuesOnPage();
-      calcMonthlyPayment();
     }
 
     function getLoanAmount() {
@@ -13564,11 +13569,7 @@ const loanCalculator = (function () {
       return isNaN(loanAmount) ? 0 : loanAmount;
     }
 
-    //Write term on page
-    function writeSelectedPaymentTerm(){
-      valueStore.paymentTerm = durationSlider.noUiSlider.get();
-      writeValuesOnPage();
-    }
+
 
     //change the payment terms slider based on loan amount
     function updateTermBasedOnValue(val){
@@ -13588,18 +13589,28 @@ const loanCalculator = (function () {
     function calcMonthlyPayment(){
       let monthlyPayment = pmt(valueStore.aprForPmt, valueStore.paymentTerm, -(valueStore.loanAmount));
       valueStore.monthlyPayment = monthlyPayment.toFixed(2);
-      log(valueStore.monthlyPayment);
-      writeValuesOnPage();
+      calcTotalRepayable();
     }
-    
-    //update values on page
+
+    function calcTotalRepayable(){
+      valueStore.totalRepayable = (valueStore.monthlyPayment * valueStore.paymentTerm).toFixed(2);
+      calcTotalCostOfLoan();
+    }
+
+    function calcTotalCostOfLoan(){
+      valueStore.totalCostOfLoan = (valueStore.totalRepayable - valueStore.loanAmount).toFixed(2);
+    }
+
     function writeValuesOnPage() {
       dispLoanAmount.text(currencyFormatWithDecimal.to(valueStore.loanAmount));
       sliderAmountOutputElement.text(currencyFormat.to(valueStore.loanAmount));
       dispLoanTerm.text(valueStore.paymentTerm);
       termOutputElement.text(monthsToYears(valueStore.paymentTerm));
       dispAPR.text(valueStore.apr);
+      calcMonthlyPayment();
       dispMonthlyRepayment.text(valueStore.monthlyPayment); 
+      dispTotalRepayable.text(valueStore.totalRepayable);
+      dispTotalCost.text(valueStore.totalCostOfLoan);
     }
   });
 

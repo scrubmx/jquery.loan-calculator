@@ -50,6 +50,8 @@ $result-text-colour: #272d37;
       background-color: rgba($result-bg-colour, 0.8);
       font-size: 1.125rem;
       margin-bottom: 1rem;
+      display: flex;
+      justify-content: space-between;
     }
 
     &-list{
