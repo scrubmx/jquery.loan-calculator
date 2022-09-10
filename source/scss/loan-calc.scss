@@ -38,6 +38,14 @@ $result-text-colour: #272d37;
     }
   }
 
+  &__value-output{
+    font-weight: 600;
+
+    &--large{
+      font-size: 120%;
+    }
+  }
+
   &__results{
     padding: 1.5rem;
     background-color: rgba($result-bg-colour, 0.3);

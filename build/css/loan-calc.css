@@ -745,6 +745,12 @@
     max-width: 41.66666667%;
   }
 }
+.calc__value-output {
+  font-weight: 600;
+}
+.calc__value-output--large {
+  font-size: 120%;
+}
 .calc__results {
   padding: 1.5rem;
   background-color: rgba(196, 217, 229, 0.3);
