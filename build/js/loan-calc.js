@@ -13602,15 +13602,19 @@ const loanCalculator = (function () {
     }
 
     function writeValuesOnPage() {
-      dispLoanAmount.text(currencyFormatWithDecimal.to(valueStore.loanAmount));
+      dispLoanAmount.text(convertValsForDisplay(valueStore.loanAmount));
       sliderAmountOutputElement.text(currencyFormat.to(valueStore.loanAmount));
       dispLoanTerm.text(valueStore.paymentTerm);
       termOutputElement.text(monthsToYears(valueStore.paymentTerm));
       dispAPR.text(valueStore.apr);
       calcMonthlyPayment();
-      dispMonthlyRepayment.text(valueStore.monthlyPayment); 
-      dispTotalRepayable.text(valueStore.totalRepayable);
-      dispTotalCost.text(valueStore.totalCostOfLoan);
+      dispMonthlyRepayment.text(convertValsForDisplay(valueStore.monthlyPayment)); 
+      dispTotalRepayable.text(convertValsForDisplay(valueStore.totalRepayable));
+      dispTotalCost.text(convertValsForDisplay(valueStore.totalCostOfLoan));
+    }
+
+    function convertValsForDisplay(val){
+      return currencyFormatWithDecimal.to(parseFloat(val));
     }
   });
 
