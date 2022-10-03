@@ -7,7 +7,7 @@
 <ul class="calc__results-list">
 	<li>Borrowing: <span class="js-disp-loan-amount calc__value-output"></span></li>
 	<li>Over: <span class="calc__value-output"><span class="js-disp-term"></span> Months</span></li>
-	<li>Representative: <span class="calc__value-output"><span class="js-disp-apr"></span> %APR</span></li>
+	<li>Representative: <span class="calc__value-output"><span class="js-disp-apr"></span>%APR</span></li>
 	<li>Total cost of this loan: <span class="calc__value-output"><span class="js-disp-total-cost"></span></span></li>
 	<li>Total repayable: <span class="calc__value-output"><span class="js-disp-total-repayable"></span></span></li>
 </ul>

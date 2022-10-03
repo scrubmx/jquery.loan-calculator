@@ -13461,6 +13461,12 @@ const loanCalculator = (function () {
   let termVariation,rateVariation;
       termVariation = rateVariation = null;
 
+  
+  //Hide calc on load if product code is SAV
+  if(ProductDefaults.product == 'SAV'){
+    $('.calc__sliders, .calc__right').hide();
+  }
+
   // JSON Data 
   const jsonResource = 'http://localhost:8888/wp/wp-content/plugins/build/loan-settings.json';
   
@@ -13484,6 +13490,7 @@ const loanCalculator = (function () {
 
     let valueStore = {};
     
+    //assign values from the matching JSON node to the results variable
     let results = data.filter(({ productCode }) =>
       productCode === ProductDefaults.product
     );
@@ -13533,8 +13540,15 @@ const loanCalculator = (function () {
       };      
       termVariation = el.variableTerms;
       rateVariation = el.variableRates;
+      valueStore.product = el.productCode;
     });
 
+    //assign min loan amount
+    function assignMinLoanAmount() {
+      if(valueStore.product =='SAV'){
+
+      }
+    }
 
     //Slider init
     noUiSlider.create(amountSlider, amountSliderSettings);
@@ -13571,6 +13585,7 @@ const loanCalculator = (function () {
 
 
 
+
     //change the payment terms slider based on loan amount
     function updateTermBasedOnValue(val){
       durationSlider.noUiSlider.updateOptions({
@@ -13582,7 +13597,7 @@ const loanCalculator = (function () {
     }
 
     function updateRatesBasedOnValue(val){
-      valueStore.apr = getAprBasedOnValue(val, rateVariation);
+      valueStore.apr = valueStore.product == 'PER'? getAprBasedOnValue(val, rateVariation) : results[0].rate;
       valueStore.aprForPmt = convertAprForPmt(valueStore.apr);      
     }
     
@@ -13616,11 +13631,36 @@ const loanCalculator = (function () {
     function convertValsForDisplay(val){
       return currencyFormatWithDecimal.to(parseFloat(val));
     }
+
+    function getSaverLoanSavingsAmount() {
+      valueStore.minAmount = results[0].minAmount;
+      $('.js-con-saved-amt-input').on('blur', function () {
+        let selectedVal = $(this).val();
+        if (selectedVal > valueStore.minAmount) {          
+          $('.calc__sliders, .calc__right').show();
+          log(valueStore.minAmount, selectedVal);
+          amountSlider.noUiSlider.updateOptions({
+            range: {
+              'min': valueStore.minAmount,
+              'max': Number(selectedVal)
+            }
+          });
+
+        }
+        else {
+          $('.calc__sliders, .calc__right').hide();
+        }
+      });
+    }
+    getSaverLoanSavingsAmount();
+
+
   });
 
   let convertAprForPmt = function(apr){
     return apr/100/12;
   }
+
 
 
   let getMinMaxBasedOnValue = function (value, obj) {
@@ -13687,8 +13727,6 @@ const loanCalculator = (function () {
     };
     return pmt;
   }
-
-
 
 
 })();

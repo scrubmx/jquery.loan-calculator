@@ -3,6 +3,10 @@ $result-text-colour: #272d37;
 
 .calc{
 
+  &__sliders{
+    margin-top: 3rem;
+  }
+
   &-slider {
     margin-bottom: 4rem;
   

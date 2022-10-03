@@ -702,6 +702,9 @@
   transform: translate(-100%, 0%);
 }
 
+.calc__sliders {
+  margin-top: 3rem;
+}
 .calc-slider {
   margin-bottom: 4rem;
 }

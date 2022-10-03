@@ -1,14 +1,51 @@
 [
   {
-    "productCode": "CON",
-    "rate": 7,
-    "maxTerm": 84,
+    "productCode": "SAV",
+    "rate": 4.5,
+    "maxTerm": 120,
     "minTerm": 3,
     "maxAmount": 15000,
-    "minAmount": 100,
+    "minAmount": 0,
+    "defaultAmount": 100,
     "defaultTerm": 36,
     "step": 25,
-    "desc": "Lorem ipsum dolor"
+    "desc": "Lorem ipsum dolor",
+    "displayName": "Personal Loan",
+    "variableTerms": {
+      "2499": {
+        "minTerm": 3,
+        "maxTerm": 36
+      },
+      "4999": {
+        "minTerm": 3,
+        "maxTerm": 60
+      },
+      "14999": {
+        "minTerm": 6,
+        "maxTerm": 60
+      },
+      "25001": {
+        "minTerm": 12,
+        "maxTerm": 84
+      }
+    },
+    "variableRates": {
+      "2499": {
+        "apr": 17.95
+      },
+      "4999": {
+        "apr": 15.46
+      },
+      "7499": {
+        "apr": 11.97
+      },
+      "9999": {
+        "apr": 8.79
+      },
+      "15001": {
+        "apr": 7.12
+      }
+    }
   },
   {
     "productCode": "PER",
@@ -38,6 +75,23 @@
       "25001": {
         "minTerm": 12,
         "maxTerm": 84
+      }
+    },
+    "variableRates": {
+      "2499": {
+        "apr": 17.95
+      },
+      "4999": {
+        "apr": 15.46
+      },
+      "7499": {
+        "apr": 11.97
+      },
+      "9999": {
+        "apr": 8.79
+      },
+      "15001": {
+        "apr": 7.12
       }
     }
   }

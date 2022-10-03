@@ -73,7 +73,7 @@ function copyJson(){
 
 function watchTasks() {
   watch(dir.source, 
-    parallel(scriptsBundle, stylesBundle, phpBundle));
+    parallel(scriptsBundle, stylesBundle, phpBundle,copyJson));
 }
 
 exports.default = series(
