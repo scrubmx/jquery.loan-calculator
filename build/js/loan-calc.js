@@ -13583,17 +13583,16 @@ const loanCalculator = (function () {
       return isNaN(loanAmount) ? 0 : loanAmount;
     }
 
-
-
-
     //change the payment terms slider based on loan amount
     function updateTermBasedOnValue(val){
-      durationSlider.noUiSlider.updateOptions({
-        range: {
-          'min': getMinMaxBasedOnValue(val, termVariation).min,
-          'max': getMinMaxBasedOnValue(val, termVariation).max
-        }
-      });
+      if(valueStore.product == 'PER'){
+        durationSlider.noUiSlider.updateOptions({
+          range: {
+            'min': getMinMaxBasedOnValue(val, termVariation).min,
+            'max': getMinMaxBasedOnValue(val, termVariation).max
+          }
+        });
+      }
     }
 
     function updateRatesBasedOnValue(val){
@@ -13635,17 +13634,16 @@ const loanCalculator = (function () {
     function getSaverLoanSavingsAmount() {
       valueStore.minAmount = results[0].minAmount;
       $('.js-con-saved-amt-input').on('blur', function () {
-        let selectedVal = $(this).val();
+        let selectedVal = Number($(this).val());
         if (selectedVal > valueStore.minAmount) {          
           $('.calc__sliders, .calc__right').show();
-          log(valueStore.minAmount, selectedVal);
           amountSlider.noUiSlider.updateOptions({
             range: {
               'min': valueStore.minAmount,
-              'max': Number(selectedVal)
-            }
+              'max': selectedVal
+            },
+            start: selectedVal
           });
-
         }
         else {
           $('.calc__sliders, .calc__right').hide();
@@ -13660,8 +13658,6 @@ const loanCalculator = (function () {
   let convertAprForPmt = function(apr){
     return apr/100/12;
   }
-
-
 
   let getMinMaxBasedOnValue = function (value, obj) {
     let minTerm,
