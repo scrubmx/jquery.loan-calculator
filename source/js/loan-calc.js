@@ -100,12 +100,6 @@ const loanCalculator = (function () {
       valueStore.product = el.productCode;
     });
 
-    //assign min loan amount
-    function assignMinLoanAmount() {
-      if(valueStore.product =='SAV'){
-
-      }
-    }
 
     //Slider init
     noUiSlider.create(amountSlider, amountSliderSettings);
@@ -158,9 +152,16 @@ const loanCalculator = (function () {
     }
     
     function calcMonthlyPayment(){
+      /*
       let monthlyPayment = pmt(valueStore.aprForPmt, valueStore.paymentTerm, -(valueStore.loanAmount));
       valueStore.monthlyPayment = monthlyPayment.toFixed(2);
-      calcTotalRepayable();
+      calcTotalRepayable(); 
+      */
+
+      let monthlyPayment = pmtFunc(valueStore.apr, valueStore.paymentTerm, valueStore.loanAmount);
+      log(monthlyPayment);
+      calcTotalRepayable(); 
+
     }
 
     function calcTotalRepayable(){
@@ -267,6 +268,7 @@ const loanCalculator = (function () {
   }
 
   let pmt = function (rate, nper, pv, fv, type) {
+    log(rate, nper, pv);
     if (!fv) fv = 0;
     if (!type) type = 0;
 
@@ -278,9 +280,31 @@ const loanCalculator = (function () {
     if (type == 1) {
       pmt /= (1 + rate);
     };
+    log(pmt);
     return pmt;
   }
 
+  let pmtFunc = function (intRate,term,loanAmt) {
+    
+    let monthlyIntRate = monthlyApr(intRate) / 100;
+    let loanRepayment = monthlyIntRate * Math.pow(1 + monthlyIntRate, term);
+    loanRepayment = loanRepayment / ((Math.pow(1 + monthlyIntRate, term)) - 1);
+    loanRepayment = loanRepayment * loanAmt;
+
+    let cost = (loanRepayment * term) - loanAmt;
+
+    return {
+      total: loanRepayment * term,
+      monthly: loanRepayment,
+      cost: cost
+    };
+  };
+
+  var monthlyApr = function (apr) {
+    var apr = 1 + apr / 100;
+    apr = Math.pow(apr, 1 / 12) - 1;
+    return apr * 100;
+  };
 
 })();
 
