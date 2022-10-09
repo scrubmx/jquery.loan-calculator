@@ -100,7 +100,6 @@ const loanCalculator = (function () {
       valueStore.product = el.productCode;
     });
 
-
     //Slider init
     noUiSlider.create(amountSlider, amountSliderSettings);
     noUiSlider.create(durationSlider, durationSliderSettings);
@@ -148,29 +147,13 @@ const loanCalculator = (function () {
 
     function updateRatesBasedOnValue(val){
       valueStore.apr = valueStore.product == 'PER'? getAprBasedOnValue(val, rateVariation) : results[0].rate;
-      valueStore.aprForPmt = convertAprForPmt(valueStore.apr);      
     }
     
     function calcMonthlyPayment(){
-      /*
-      let monthlyPayment = pmt(valueStore.aprForPmt, valueStore.paymentTerm, -(valueStore.loanAmount));
-      valueStore.monthlyPayment = monthlyPayment.toFixed(2);
-      calcTotalRepayable(); 
-      */
-
-      let monthlyPayment = pmtFunc(valueStore.apr, valueStore.paymentTerm, valueStore.loanAmount);
-      log(monthlyPayment);
-      calcTotalRepayable(); 
-
-    }
-
-    function calcTotalRepayable(){
-      valueStore.totalRepayable = (valueStore.monthlyPayment * valueStore.paymentTerm).toFixed(2);
-      calcTotalCostOfLoan();
-    }
-
-    function calcTotalCostOfLoan(){
-      valueStore.totalCostOfLoan = (valueStore.totalRepayable - valueStore.loanAmount).toFixed(2);
+      let caclResults = pmtFunc(valueStore.apr, valueStore.paymentTerm, valueStore.loanAmount);
+      valueStore.monthlyPayment = caclResults.monthly;
+      valueStore.totalRepayable = valueStore.monthlyPayment * valueStore.paymentTerm;
+      valueStore.totalCostOfLoan = caclResults.cost;
     }
 
     function writeValuesOnPage() {
@@ -198,7 +181,7 @@ const loanCalculator = (function () {
           amountSlider.noUiSlider.updateOptions({
             range: {
               'min': valueStore.minAmount,
-              'max': selectedVal
+              'max': selectedVal <= results[0].maxAmount ? selectedVal : results[0].maxAmount
             },
             start: selectedVal
           });
@@ -212,10 +195,6 @@ const loanCalculator = (function () {
 
 
   });
-
-  let convertAprForPmt = function(apr){
-    return apr/100/12;
-  }
 
   let getMinMaxBasedOnValue = function (value, obj) {
     let minTerm,
@@ -267,25 +246,7 @@ const loanCalculator = (function () {
     }
   }
 
-  let pmt = function (rate, nper, pv, fv, type) {
-    log(rate, nper, pv);
-    if (!fv) fv = 0;
-    if (!type) type = 0;
-
-    if (rate == 0) return -(pv + fv) / nper;
-
-    var pvif = Math.pow(1 + rate, nper);
-    var pmt = rate / (pvif - 1) * -(pv * pvif + fv);
-
-    if (type == 1) {
-      pmt /= (1 + rate);
-    };
-    log(pmt);
-    return pmt;
-  }
-
   let pmtFunc = function (intRate,term,loanAmt) {
-    
     let monthlyIntRate = monthlyApr(intRate) / 100;
     let loanRepayment = monthlyIntRate * Math.pow(1 + monthlyIntRate, term);
     loanRepayment = loanRepayment / ((Math.pow(1 + monthlyIntRate, term)) - 1);
