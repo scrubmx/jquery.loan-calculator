@@ -13,6 +13,40 @@
     "displayName": "Personal Loan"
   },
   {
+    "productCode": "BOO",
+    "rate": 42.58,
+    "maxTerm": 24,
+    "minTerm": 3,
+    "maxAmount": 1200,
+    "minAmount": 100,
+    "defaultAmount": 600,
+    "defaultTerm": 9,
+    "step": 25,
+    "desc": "Lorem ipsum dolor",
+    "displayName": "Personal Loan"
+  },
+  {
+    "productCode": "HOM",
+    "rate": 7,
+    "maxTerm": 84,
+    "minTerm": 12,
+    "maxAmount": 25000,
+    "minAmount": 15000,
+    "defaultAmount": 17500,
+    "defaultTerm": 36,
+    "step": 25,
+    "desc": "Lorem ipsum dolor",
+    "displayName": "Personal Loan",
+    "variableRates": {
+      "15000": {
+        "apr": 7.4
+      },
+      "25000": {
+        "apr": 7
+      }
+    }
+  },
+  {
     "productCode": "PER",
     "rate": 7,
     "maxTerm": 84,

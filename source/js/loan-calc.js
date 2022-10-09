@@ -146,7 +146,7 @@ const loanCalculator = (function () {
     }
 
     function updateRatesBasedOnValue(val){
-      valueStore.apr = valueStore.product == 'PER'? getAprBasedOnValue(val, rateVariation) : results[0].rate;
+      valueStore.apr = (valueStore.product == 'PER' || valueStore.product == 'HOM') ? getAprBasedOnValue(val, rateVariation) : results[0].rate;
     }
     
     function calcMonthlyPayment(){
