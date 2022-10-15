@@ -214,6 +214,8 @@ const loanCalculator = (function () {
     }
   };
 
+  
+
   let getAprBasedOnValue = function(value, obj){
     var apr;
     for (let prop in obj){
@@ -253,7 +255,6 @@ const loanCalculator = (function () {
     loanRepayment = loanRepayment * loanAmt;
 
     let cost = (loanRepayment * term) - loanAmt;
-
     return {
       total: loanRepayment * term,
       monthly: loanRepayment,
@@ -261,11 +262,27 @@ const loanCalculator = (function () {
     };
   };
 
-  var monthlyApr = function (apr) {
+  let monthlyApr = function (apr) {
     var apr = 1 + apr / 100;
     apr = Math.pow(apr, 1 / 12) - 1;
     return apr * 100;
   };
+
+  let consolidationLoanEvents = (function(){
+    //add row
+    $('.js-add-debt-input-row').on('click', function(e){
+      e.preventDefault();
+      $('.con-items__repeater--original').clone()
+        .removeClass('con-items__repeater--original')
+        .appendTo('.con-items');
+    });
+
+    //remove row
+    $('.con-items').on('click','.js-con-item-delete', function(e){
+      e.preventDefault();
+      $(this).closest('.con-items__repeater').remove();
+    });
+  })();
 
 })();
 
