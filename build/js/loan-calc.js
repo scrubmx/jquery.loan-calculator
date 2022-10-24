@@ -13489,12 +13489,12 @@ const loanCalculator = (function () {
         durationSliderSettings;
 
     let valueStore = {};
-    
+  
     //assign values from the matching JSON node to the results variable
     let results = data.filter(({ productCode }) =>
       productCode === ProductDefaults.product
     );
-
+    
     results.forEach(el => {      
       amountSliderSettings = {
         start: el.defaultAmount,
@@ -13541,20 +13541,23 @@ const loanCalculator = (function () {
       termVariation = el.variableTerms;
       rateVariation = el.variableRates;
       valueStore.product = el.productCode;
+      
     });
 
-    //Slider init
-    noUiSlider.create(amountSlider, amountSliderSettings);
-    noUiSlider.create(durationSlider, durationSliderSettings);
+    if(valueStore.product !== 'CON'){
+      //Slider init
+      noUiSlider.create(amountSlider, amountSliderSettings);
+      noUiSlider.create(durationSlider, durationSliderSettings);
 
-    // Slider on change
-    amountSlider.noUiSlider.on('update', function () {
-      writeSliderAmount();
-    });
+      // Slider on change
+      amountSlider.noUiSlider.on('update', function () {
+        writeSliderAmount();
+      });
 
-    durationSlider.noUiSlider.on('update', function () {
-      writeSelectedPaymentTerm();
-    });
+      durationSlider.noUiSlider.on('update', function () {
+        writeSelectedPaymentTerm();
+      });
+    }
 
     //Write slider amount on page
     function writeSliderAmount() {
@@ -13635,8 +13638,6 @@ const loanCalculator = (function () {
       });
     }
     getSaverLoanSavingsAmount();
-
-
   });
 
   let getMinMaxBasedOnValue = function (value, obj) {
@@ -13656,8 +13657,6 @@ const loanCalculator = (function () {
       }
     }
   };
-
-  
 
   let getAprBasedOnValue = function(value, obj){
     var apr;
@@ -13717,15 +13716,36 @@ const loanCalculator = (function () {
       e.preventDefault();
       $('.con-items__repeater--original').clone()
         .removeClass('con-items__repeater--original')
-        .appendTo('.con-items');
+        .appendTo('.con-items')
+        .find('input').val('');      
     });
 
     //remove row
     $('.con-items').on('click','.js-con-item-delete', function(e){
       e.preventDefault();
       $(this).closest('.con-items__repeater').remove();
+      calcSum();
     });
+
+    //calculate repayment sum 
+    $('.con-items').on('blur', '.js-repayment-input', function () {
+      calcSum();      
+    });
+
+    function calcSum(){
+      let sum = 0;
+      $('.js-repayment-input').each(function () {
+        let val = $.trim($(this).val());
+        if (val) {
+          val = parseFloat(val.replace(/^\$/, ""));
+          sum += !isNaN(val) ? val : 0;
+        }
+      });
+      log(sum)      
+    }
+
   })();
+
 
 })();
 

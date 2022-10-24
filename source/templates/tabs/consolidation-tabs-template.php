@@ -86,7 +86,7 @@
 				<input class="form-control" aria-label="Enter balance" data-type="currency" inputmode="numeric" type="text" placeholder="£0.00">
 			</div>
 			<div class="con-item con-item--repayment">
-				<input class="form-control" aria-label="Enter repayment amount" data-type="currency" inputmode="numeric" type="text" placeholder="£0.00">
+				<input class="form-control js-repayment-input" aria-label="Enter repayment amount" data-type="currency" inputmode="numeric" type="text" placeholder="£0.00">
 			</div>
 			<a href="#" class="con-items__delete js-con-item-delete">
 				<span class="sr-only">Delete row</span>

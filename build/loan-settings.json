@@ -93,5 +93,18 @@
         "apr": 7.4
       }
     }
+  },
+  {
+    "productCode": "CON",
+    "rate": 16.45,
+    "maxTerm": 120,
+    "minTerm": 3,
+    "maxAmount": 15000,
+    "minAmount": 100,
+    "defaultAmount": 300,
+    "defaultTerm": 36,
+    "step": 25,
+    "desc": "Lorem ipsum dolor",
+    "displayName": "Personal Loan"
   }
 ]
