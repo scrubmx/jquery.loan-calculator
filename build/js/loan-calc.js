@@ -13716,7 +13716,7 @@ const loanCalculator = (function () {
       e.preventDefault();
       $('.con-items__repeater--original').clone()
         .removeClass('con-items__repeater--original')
-        .appendTo('.con-items')
+        .insertBefore('.js-add-debt-input-row')
         .find('input').val('');      
     });
 
@@ -13724,24 +13724,30 @@ const loanCalculator = (function () {
     $('.con-items').on('click','.js-con-item-delete', function(e){
       e.preventDefault();
       $(this).closest('.con-items__repeater').remove();
-      calcSum();
+      calcRepaymentSum();
     });
 
     //calculate repayment sum 
     $('.con-items').on('blur', '.js-repayment-input', function () {
-      calcSum();      
+      calcRepaymentSum();      
     });
 
-    function calcSum(){
+    let conValues = {};
+    function calcRepaymentSum(){
       let sum = 0;
       $('.js-repayment-input').each(function () {
         let val = $.trim($(this).val());
         if (val) {
-          val = parseFloat(val.replace(/^\$/, ""));
+          val = parseFloat(val.replace(/^\£/, ""));
           sum += !isNaN(val) ? val : 0;
         }
       });
-      log(sum)      
+      conValues.repaymentSum = sum;  
+      displayValues();   
+    }
+
+    function displayValues(){
+      $('.js-repayment-total-input').val(conValues.repaymentSum);
     }
 
   })();

@@ -17,96 +17,56 @@
 			</div>
 		</details>
 	</div>
-	<h4>What you currently owe</h4>
-	<!-- 
-		<div class="header-row">
-			<div class="type">
-				<label>Type</label>
+	<div class="con-calc-input">
+		<h4>What you currently owe</h4>
+		<div class="con-items">
+			<div class="con-items__hd">
+				<div class="con-item con-item--type" aria-hidden="true">
+					<span>Type</span>
+				</div>
+				<div class="con-item con-item--balance" aria-hidden="true">
+					<span>Balance</span>
+				</div>
+				<div class="con-item con-item--repayment" aria-hidden="true">
+					<span>Repayment</span>
+				</div>
 			</div>
-			<div class="balance">
-				<label>Balance
-					<a href="#" inputmode="numeric" data-toggle="tooltip" data-placement="top" title="How much you currently owe">
-						<svg class="icon">
-							<use xlink:href="#icon_question" /> </svg>
-					</a>
-				</label>
-			</div>
-			<div class="repayment">
-				<label>Repayment
-					<a href="#" inputmode="numeric" data-toggle="tooltip" data-placement="top" title="How much you typically repay each month">
-						<svg class="icon">
-							<use xlink:href="#icon_question" /> </svg>
-					</a>
-				</label>
-			</div>
-		</div>
-		<div id="repeater-rows">
-			<div id="" class="repeat-row">
-				<div class="type">
-					<select class="form-control">
+			<div class="con-items__repeater con-items__repeater--original">
+				<div class="con-item con-item--type">
+					<select class="form-control" aria-label="Select type of debt">
 						<option value="credit-card">Credit Card</option>
 						<option value="credit-card">Personal Loan</option>
 						<option value="credit-card">Overdraft</option>
 						<option value="credit-card">Other</option>
 					</select>
 				</div>
-				<div class="balance">
-					<input class="form-control" data-type="currency" inputmode="numeric" type="text" placeholder="£0.00"> </div>
-				<div class="repayment">
-					<input class="form-control" data-type="currency" inputmode="numeric" type="text" placeholder="£0.00"> </div>
-				<div class="controls">
-					<a class="btn btn-add"></a>
+				<div class="con-item con-item--balance">
+					<input class="form-control" aria-label="Enter balance" data-type="currency" inputmode="numeric" type="text" placeholder="£0.00">
 				</div>
-			</div>
-		</div> 
-	-->
+				<div class="con-item con-item--repayment">
+					<input class="form-control js-repayment-input" aria-label="Enter repayment amount" data-type="currency" inputmode="numeric" type="text" placeholder="£0.00">
+				</div>
 
-	<div class="con-items">
-		<div class="con-items__hd">
-			<div class="con-item con-item--type" aria-hidden="true">
-				<span>Type</span>
+				<a href="#" class="con-items__delete js-con-item-delete">
+					<span class="sr-only">Delete row</span>
+				</a>
 			</div>
-			<div class="con-item con-item--balance" aria-hidden="true">
-				<span>Balance</span>
+			<a href="#" role="button" class="btn btn-default js-add-debt-input-row">Add row</a>
+		</div>
+		<div class="con-repayment">
+			<div class="con-repayment__label">
+				<h5>
+					<label for="conRepaymentTotal">What you can afford to repay each month</label>
+				</h5>
+				<p class="con-repayment__help-txt" id="conRepaymentTotalHelpTxt">
+					We've added this up for you. You should increase it if you can afford to,though.
+					Increasing this will enable you to pay everything off sooner,saving you money on interest.
+				</p>
 			</div>
-			<div class="con-item con-items--repayment" aria-hidden="true">
-				<span>Repayment</span>
+			<div class="con-repayment__total">
+				<input id="conRepaymentTotal" inputmode="numeric" data-type="currency" type="text" class="js-repayment-total-input form-control" placeholder="£0.00" aria-describedby="conRepaymentTotalHelpTxt">
 			</div>
 		</div>
-		<div class="con-items__repeater con-items__repeater--original">
-			<div class="con-item con-item--type">
-				<select class="form-control" aria-label="Select type of debt">
-					<option value="credit-card">Credit Card</option>
-					<option value="credit-card">Personal Loan</option>
-					<option value="credit-card">Overdraft</option>
-					<option value="credit-card">Other</option>
-				</select>
-			</div>
-			<div class="con-item con-item--balance">
-				<input class="form-control" aria-label="Enter balance" data-type="currency" inputmode="numeric" type="text" placeholder="£0.00">
-			</div>
-			<div class="con-item con-item--repayment">
-				<input class="form-control js-repayment-input" aria-label="Enter repayment amount" data-type="currency" inputmode="numeric" type="text" placeholder="£0.00">
-			</div>
-			<a href="#" class="con-items__delete js-con-item-delete">
-				<span class="sr-only">Delete row</span>
-			</a>
-		</div>
-	</div>
-	<a href="#" role="button" class="btn btn-default js-add-debt-input-row">Add row</a>
-
-
-	<div id="RepaymentSize" class="repayment-calc">
-		<div class="repayment-calc-label">
-			<h5>What you can afford to repay each month <a href="#" data-toggle="tooltip" data-placement="top" title="We've added this up for you. You should increase it if you can afford to, though."><svg class="icon">
-						<use xlink:href="#icon_question" />
-					</svg></a></h5>
-			<p>Increasing this will enable you to pay everything off sooner, saving you money on interest.</p>
-		</div>
-		<div class="repayment-calc-total">
-			<input id="TotalRepayment" inputmode="numeric" data-type="currency" type="text" class="form-control" placeholder="£0.00">
-		</div>
-		<div class="mobile-btn-row"><a href="#results">Calculate</a></div>
 	</div>
 </div>
 <!-- #widget -->
