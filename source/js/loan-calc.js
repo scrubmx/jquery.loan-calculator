@@ -261,11 +261,33 @@ const loanCalculator = (function () {
     };
   };
 
+
+
+
+  function NPER(rate, payment, present, future, type) {
+    // Initialize type
+
+    //rate = monthlyApr(rate);
+    type = (typeof type === 'undefined') ? 0 : type;
+
+    // Initialize future value
+    future = (typeof future === 'undefined') ? 0 : future;
+
+    // Return number of periods
+    const num = payment * (1 + rate * type) - future * rate;
+    const den = (present * rate + payment * (1 + rate * type));
+    return Math.log(num / den) / Math.log(1 + rate);
+  }
+
+ 
+
   let monthlyApr = function (apr) {
     var apr = 1 + apr / 100;
     apr = Math.pow(apr, 1 / 12) - 1;
     return apr * 100;
   };
+
+  log(NPER(16.45, 50, 300));
 
   let consolidationLoanEvents = (function(){
     //add row
