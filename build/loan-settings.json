@@ -97,6 +97,7 @@
   {
     "productCode": "CON",
     "rate": 16.45,
+    "rateComparison": 26.03,
     "maxTerm": 120,
     "minTerm": 3,
     "maxAmount": 15000,

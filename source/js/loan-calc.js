@@ -18,7 +18,7 @@ const loanCalculator = (function () {
   let termVariation,rateVariation;
       termVariation = rateVariation = null;
 
-  
+  let valueStore = {};
   //Hide calc on load if product code is SAV
   if(ProductDefaults.product == 'SAV'){
     $('.calc__sliders, .calc__right').hide();
@@ -45,7 +45,7 @@ const loanCalculator = (function () {
     var amountSliderSettings,
         durationSliderSettings;
 
-    let valueStore = {};
+    
   
     //assign values from the matching JSON node to the results variable
     let results = data.filter(({ productCode }) =>
@@ -114,6 +114,12 @@ const loanCalculator = (function () {
       durationSlider.noUiSlider.on('update', function () {
         writeSelectedPaymentTerm();
       });
+    }
+
+    else{
+      //assign CON loan vars
+      valueStore.apr = results[0].rate;
+      valueStore.rateComparison = results[0].rateComparison;
     }
 
     //Write slider amount on page
@@ -261,35 +267,24 @@ const loanCalculator = (function () {
     };
   };
 
-
-
-
-  function NPER(rate, payment, present, future, type) {
-    // Initialize type
-
-    //rate = monthlyApr(rate);
+  let NPER = function (rate, payment, present, future, type) {
+    let monthlyRate = monthlyApr(rate) / 100;
     type = (typeof type === 'undefined') ? 0 : type;
-
-    // Initialize future value
     future = (typeof future === 'undefined') ? 0 : future;
 
-    // Return number of periods
-    const num = payment * (1 + rate * type) - future * rate;
-    const den = (present * rate + payment * (1 + rate * type));
-    return Math.log(num / den) / Math.log(1 + rate);
+    const num = payment * (1 + monthlyRate * type) - future * monthlyRate;
+    const den = (present * monthlyRate + payment * (1 + monthlyRate * type));
+    return Math.log(num / den) / Math.log(1 + monthlyRate);
   }
-
  
-
   let monthlyApr = function (apr) {
     var apr = 1 + apr / 100;
     apr = Math.pow(apr, 1 / 12) - 1;
     return apr * 100;
   };
 
-  log(NPER(16.45, 50, 300));
-
   let consolidationLoanEvents = (function(){
+    let conValues = {};
     //add row
     $('.js-add-debt-input-row').on('click', function(e){
       e.preventDefault();
@@ -308,21 +303,29 @@ const loanCalculator = (function () {
 
     //calculate repayment sum 
     $('.con-items').on('blur', '.js-repayment-input', function () {
-      calcRepaymentSum();      
+      conValues.repaymentSum = calcRepaymentSum('.js-repayment-input');  
+      conValues.balanceSum = calcRepaymentSum('.js-repayment-input');   
+      getRepaymentTerm();
+      displayValues();      
     });
 
-    let conValues = {};
-    function calcRepaymentSum(){
+    
+    function calcRepaymentSum(el){
+      log(el)
       let sum = 0;
-      $('.js-repayment-input').each(function () {
+      $(el).each(function () {
         let val = $.trim($(this).val());
         if (val) {
           val = parseFloat(val.replace(/^\£/, ""));
           sum += !isNaN(val) ? val : 0;
         }
       });
-      conValues.repaymentSum = sum;  
-      displayValues();   
+      return sum;  
+    }
+ 
+    function getRepaymentTerm() {
+      var x = NPER(valueStore.apr, -(conValues.repaymentSum), 300)
+      log(monthsToYears(Math.round(x)));
     }
 
     function displayValues(){
