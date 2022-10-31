@@ -41,11 +41,13 @@ const loanCalculator = (function () {
     thousand: ','
   });
   
+  let convertValsForDisplay = function(val) {
+    return currencyFormatWithDecimal.to(parseFloat(val));
+  }
+
   $.getJSON(jsonResource, function (data) {
     var amountSliderSettings,
         durationSliderSettings;
-
-    
   
     //assign values from the matching JSON node to the results variable
     let results = data.filter(({ productCode }) =>
@@ -177,9 +179,7 @@ const loanCalculator = (function () {
       dispTotalCost.text(convertValsForDisplay(valueStore.totalCostOfLoan));
     }
 
-    function convertValsForDisplay(val){
-      return currencyFormatWithDecimal.to(parseFloat(val));
-    }
+
 
     function getSaverLoanSavingsAmount() {
       valueStore.minAmount = results[0].minAmount;
@@ -302,7 +302,10 @@ const loanCalculator = (function () {
     });
 
     //repayment and balance input event bindings
-    $('.con-items').on('blur', '.js-repayment-input, .js-balance-input', function () {      
+    $('.con-items').on('blur', '.js-repayment-input, .js-balance-input', function () { 
+      $(this).val(function (i, v) {
+        return '£' + v.replace('£', ''); 
+      });     
       funcBundle();
     });
     
@@ -339,15 +342,18 @@ const loanCalculator = (function () {
 
     function getPMTValues(){
       conValues.pmtVals = pmtFunc(valueStore.apr,conValues.term,conValues.balanceSum);
-      log(conValues.pmtVals);
+      conValues.pmtComparisonVals = pmtFunc(valueStore.rateComparison, conValues.term, conValues.balanceSum);
     }
 
     function displayValues(){
-      $('.js-repayment-total-input').val(conValues.repaymentSum);
-      $('.js-con-loan-amt-output').text(parseFloat(conValues.balanceSum).toFixed(2));
+      $('.js-repayment-total-input').val(convertValsForDisplay(conValues.repaymentSum));
+      $('.js-con-loan-amt-output').text(convertValsForDisplay(conValues.balanceSum));
       $('.js-con-loan-apr-output').text(valueStore.apr);
       $('.js-con-loan-length-output').text(conValues.term);
-      $('.js-con-loan-repayment-output').text(parseFloat(conValues.pmtVals.monthly).toFixed(2));
+      $('.js-con-loan-repayment-output').text(convertValsForDisplay(conValues.pmtVals.monthly));
+      $('.js-con-loan-interest-output').text(convertValsForDisplay(conValues.pmtVals.cost));
+      $('.js-comparison-apr-output').text(valueStore.rateComparison);
+      $('.js-comparison-total-interest-output').text(convertValsForDisplay(conValues.pmtComparisonVals.cost));
     }
 
     //bundle the repetitive functions
