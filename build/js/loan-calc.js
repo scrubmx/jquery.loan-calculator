@@ -13741,20 +13741,28 @@ const loanCalculator = (function () {
     $('.con-items').on('click','.js-con-item-delete', function(e){
       e.preventDefault();
       $(this).closest('.con-items__repeater').remove();
-      calcRepaymentSum();
+      funcBundle(); 
     });
 
-    //calculate repayment sum 
-    $('.con-items').on('blur', '.js-repayment-input', function () {
-      conValues.repaymentSum = calcRepaymentSum('.js-repayment-input');  
-      conValues.balanceSum = calcRepaymentSum('.js-repayment-input');   
-      getRepaymentTerm();
-      displayValues();      
+    //repayment and balance input event bindings
+    $('.con-items').on('blur', '.js-repayment-input, .js-balance-input', function () {      
+      funcBundle();
     });
-
     
-    function calcRepaymentSum(el){
-      log(el)
+    //calculate repayment and balance sum 
+    function calcRepaymentSum(){
+      let arr = ['.js-repayment-input', '.js-balance-input'];
+      $(arr).each(function () {
+        if(this == '.js-repayment-input'){
+          conValues.repaymentSum = getSum($(this));
+        }
+        else{
+          conValues.balanceSum = getSum($(this));
+        }
+      });
+    }
+
+    function getSum(el) {
       let sum = 0;
       $(el).each(function () {
         let val = $.trim($(this).val());
@@ -13763,20 +13771,37 @@ const loanCalculator = (function () {
           sum += !isNaN(val) ? val : 0;
         }
       });
-      return sum;  
+      return sum;
     }
  
+    // get the term it takes to pay the loan
     function getRepaymentTerm() {
-      var x = NPER(valueStore.apr, -(conValues.repaymentSum), 300)
-      log(monthsToYears(Math.round(x)));
+      let terms = NPER(valueStore.apr, -(conValues.repaymentSum), conValues.balanceSum)
+      conValues.term = Math.round(terms);
+    }
+
+    function getPMTValues(){
+      conValues.pmtVals = pmtFunc(valueStore.apr,conValues.term,conValues.balanceSum);
+      log(conValues.pmtVals);
     }
 
     function displayValues(){
       $('.js-repayment-total-input').val(conValues.repaymentSum);
+      $('.js-con-loan-amt-output').text(parseFloat(conValues.balanceSum).toFixed(2));
+      $('.js-con-loan-apr-output').text(valueStore.apr);
+      $('.js-con-loan-length-output').text(conValues.term);
+      $('.js-con-loan-repayment-output').text(parseFloat(conValues.pmtVals.monthly).toFixed(2));
+    }
+
+    //bundle the repetitive functions
+    function funcBundle(){
+      calcRepaymentSum();
+      getRepaymentTerm();      
+      getPMTValues(); 
+      displayValues();
     }
 
   })();
-
 
 })();
 

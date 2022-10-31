@@ -162,6 +162,8 @@ $result-text-colour: #272d37;
   }
 }
 
+
+// consolidation calc
 .con-calc-input{
   .form-control {
     border: 2px solid #1c191a;
@@ -229,4 +231,42 @@ $result-text-colour: #272d37;
     font-weight: 400;
     margin-bottom: 0;
   }
+}
+
+.con-results{
+  &__hd{
+    font-weight: 600;
+    font-size: 1rem;
+    color: #23384e;
+    margin-top: 0;
+  }
+
+  &__summary-hd{
+    font-weight: 600;
+    font-size: 1rem;
+    color: mix($lmcu-blue, $charcoal, 20%);
+  }
+
+  &__list{
+    @include p(0);
+    margin-bottom: 20px;
+    
+    li {
+      @include py(1);
+      @include px(0);
+      display: flex;
+      justify-content: space-between;
+      font-size: 1rem;
+      line-height: 1.7;
+      border-bottom: 1px solid #ddd;
+      margin-left: 0;
+
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+  }
+
+
+
 }

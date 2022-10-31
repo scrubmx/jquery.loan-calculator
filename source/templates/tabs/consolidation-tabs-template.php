@@ -35,13 +35,13 @@
 				<div class="con-item con-item--type">
 					<select class="form-control" aria-label="Select type of debt">
 						<option value="credit-card">Credit Card</option>
-						<option value="credit-card">Personal Loan</option>
-						<option value="credit-card">Overdraft</option>
-						<option value="credit-card">Other</option>
+						<option value="personal-loan">Personal Loan</option>
+						<option value="overdraft">Overdraft</option>
+						<option value="other">Other</option>
 					</select>
 				</div>
 				<div class="con-item con-item--balance">
-					<input class="form-control" aria-label="Enter balance" data-type="currency" inputmode="numeric" type="text" placeholder="£0.00">
+					<input class="form-control js-balance-input" aria-label="Enter balance" data-type="currency" inputmode="numeric" type="text" placeholder="£0.00">
 				</div>
 				<div class="con-item con-item--repayment">
 					<input class="form-control js-repayment-input" aria-label="Enter repayment amount" data-type="currency" inputmode="numeric" type="text" placeholder="£0.00">

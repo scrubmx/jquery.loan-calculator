@@ -927,3 +927,34 @@
   font-weight: 400;
   margin-bottom: 0;
 }
+
+.con-results__hd {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #23384e;
+  margin-top: 0;
+}
+.con-results__summary-hd {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #23384e;
+}
+.con-results__list {
+  padding: 0;
+  margin-bottom: 20px;
+}
+.con-results__list li {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  padding-left: 0;
+  padding-right: 0;
+  display: flex;
+  justify-content: space-between;
+  font-size: 1rem;
+  line-height: 1.7;
+  border-bottom: 1px solid #ddd;
+  margin-left: 0;
+}
+.con-results__list li:last-child {
+  border-bottom: none;
+}
