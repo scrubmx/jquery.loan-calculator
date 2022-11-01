@@ -98,14 +98,17 @@
     "productCode": "CON",
     "rate": 16.45,
     "rateComparison": 26.03,
-    "maxTerm": 120,
+    "maxTerm": 60,
     "minTerm": 3,
-    "maxAmount": 15000,
+    "maxAmount": 7500,
     "minAmount": 100,
     "defaultAmount": 300,
     "defaultTerm": 36,
-    "step": 25,
-    "desc": "Lorem ipsum dolor",
-    "displayName": "Personal Loan"
+    "messages":{
+      "maxLoan": "<div class=\"results-message message-black\"><strong class=\"results-heading\">Maximum Amount<\/strong><p>The maximum amount we can lend for consolidation is £7,500.<\/p><p>If you owe more than £7,500, a consolidation loan may not be the best option for you.<\/p><p>Visit the <a href=\"https://www.moneyadviceservice.org.uk/en/articles/help-if-youre-struggling-with-debt\" target=\"_blank\">Money Advice Service<\/a> for more information about other ways to reduce debt.<\/p></div>",
+      
+      "maxTerm": "<div class=\"results-message message-black\"><strong class=\"results-heading\">Repayment Period Too Long<\/strong><p>Even with our low rates, it would take you <strong>\" + npertext + \"<\/strong> to pay everything off.<\/p><p>The maximum loan term we offer is 5 years.<\/p><p>If you can afford to, consider increasing your repayments to get it paid off sooner.<\/div>"
+    }
+    
   }
 ]

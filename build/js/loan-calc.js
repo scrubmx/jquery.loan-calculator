@@ -13461,7 +13461,8 @@ const loanCalculator = (function () {
   let termVariation,rateVariation;
       termVariation = rateVariation = null;
 
-  let valueStore = {};
+  let valueStore = {},
+      results = [];
   //Hide calc on load if product code is SAV
   if(ProductDefaults.product == 'SAV'){
     $('.calc__sliders, .calc__right').hide();
@@ -13493,7 +13494,7 @@ const loanCalculator = (function () {
         durationSliderSettings;
   
     //assign values from the matching JSON node to the results variable
-    let results = data.filter(({ productCode }) =>
+    results = data.filter(({ productCode }) =>
       productCode === ProductDefaults.product
     );
     
@@ -13726,6 +13727,7 @@ const loanCalculator = (function () {
     return apr * 100;
   };
 
+  //consolidation loan functionality wrapped within the IIFE
   let consolidationLoanEvents = (function(){
     let conValues = {};
     //add row
@@ -13777,7 +13779,7 @@ const loanCalculator = (function () {
       return sum;
     }
  
-    // get the term it takes to pay the loan
+    // get the term it takes to pay off the loan
     function getRepaymentTerm() {
       let terms = NPER(valueStore.apr, -(conValues.repaymentSum), conValues.balanceSum)
       conValues.term = Math.round(terms);
@@ -13792,11 +13794,25 @@ const loanCalculator = (function () {
       $('.js-repayment-total-input').val(convertValsForDisplay(conValues.repaymentSum));
       $('.js-con-loan-amt-output').text(convertValsForDisplay(conValues.balanceSum));
       $('.js-con-loan-apr-output').text(valueStore.apr);
-      $('.js-con-loan-length-output').text(conValues.term);
+      $('.js-con-loan-length-output').text(monthsToYears(conValues.term));
       $('.js-con-loan-repayment-output').text(convertValsForDisplay(conValues.pmtVals.monthly));
       $('.js-con-loan-interest-output').text(convertValsForDisplay(conValues.pmtVals.cost));
       $('.js-comparison-apr-output').text(valueStore.rateComparison);
       $('.js-comparison-total-interest-output').text(convertValsForDisplay(conValues.pmtComparisonVals.cost));
+    }
+
+    function resultSummaryDisplay(){
+      log(conValues);
+      let resultsBoxCache = $('.js-result-message-box');
+      if (conValues.balanceSum > results[0].maxAmount){
+        resultsBoxCache.html(results[0].messages.maxLoan);
+      }
+      else if (conValues.term > results[0].maxTerm){
+        resultsBoxCache.html(results[0].messages.maxTerm);
+      }
+      else {
+        resultsBoxCache.html('');
+      }
     }
 
     //bundle the repetitive functions
@@ -13805,8 +13821,8 @@ const loanCalculator = (function () {
       getRepaymentTerm();      
       getPMTValues(); 
       displayValues();
+      resultSummaryDisplay();
     }
-
   })();
 
 })();
