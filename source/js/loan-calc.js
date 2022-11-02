@@ -338,7 +338,7 @@ const loanCalculator = (function () {
  
     // get the term it takes to pay off the loan
     function getRepaymentTerm() {
-      let terms = NPER(valueStore.apr, -(conValues.repaymentSum), conValues.balanceSum)
+      let terms = NPER(valueStore.apr, -(conValues.repaymentSum), conValues.balanceSum);
       conValues.term = Math.round(terms);
     }
 
@@ -359,7 +359,7 @@ const loanCalculator = (function () {
     }
 
     function resultSummaryDisplay(){
-      log(conValues);
+      //log(conValues);
       let resultsBoxCache = $('.js-result-message-box');
       if (conValues.balanceSum > results[0].maxAmount){
         resultsBoxCache.html(results[0].messages.maxLoan);
