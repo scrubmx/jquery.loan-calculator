@@ -958,3 +958,7 @@
 .con-results__list li:last-child {
   border-bottom: none;
 }
+
+.d-none {
+  display: none;
+}

@@ -13802,16 +13802,29 @@ const loanCalculator = (function () {
     }
 
     function resultSummaryDisplay(){
-      //log(conValues);
-      let resultsBoxCache = $('.js-result-message-box');
+      let yourResultBox = $('.js-result-message-box'),
+          resultsSummaryBox = $('.con-results__summary');
+      resultsSummaryBox.addClass('d-none');
+      
       if (conValues.balanceSum > results[0].maxAmount){
-        resultsBoxCache.html(results[0].messages.maxLoan);
+        yourResultBox.html(results[0].messages.maxLoan);
       }
-      else if (conValues.term > results[0].maxTerm){
-        resultsBoxCache.html(results[0].messages.maxTerm);
-      }
-      else {
-        resultsBoxCache.html('');
+      else{
+        if (isFinite(conValues.term)){
+          if (conValues.term > results[0].maxTerm) {
+            yourResultBox.html(results[0].messages.maxTerm);
+          }
+          else if (conValues.term < results[0].minTerm) {
+            yourResultBox.html(results[0].messages.minTerm);
+          }
+          else{
+            yourResultBox.html(results[0].messages.payable);
+            resultsSummaryBox.removeClass('d-none');
+          }
+        }
+        else{
+          yourResultBox.html(results[0].messages.unPayable);
+        }
       }
     }
 
