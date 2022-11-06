@@ -1,6 +1,11 @@
 $result-bg-colour: #c4d9e5;
 $result-text-colour: #272d37;
 
+$result-warning-bg: #f5d505;
+$result-danger-bg: #f7c2cc;
+$result-success-bg: #038750;
+
+
 .calc{
   &__sliders{
     margin-top: 3rem;
@@ -267,6 +272,27 @@ $result-text-colour: #272d37;
   }
 }
 
+.results-msg {
+  padding: 10px 15px;
+  color: inherit;
+
+  &--warning{
+    background: $result-warning-bg;
+  }
+  &--danger{
+    background: $result-danger-bg;
+  }
+
+  &--success{
+    background: $result-success-bg;
+    color: #fff;
+  }
+}
+
 .d-none {
   display: none;
+}
+
+.mb-0{
+  margin-bottom: 0;
 }

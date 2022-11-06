@@ -123,6 +123,7 @@ const loanCalculator = (function () {
       //assign CON loan vars
       valueStore.apr = results[0].rate;
       valueStore.rateComparison = results[0].rateComparison;
+      consolidationLoanEvents();
     }
 
     //Write slider amount on page
@@ -179,8 +180,6 @@ const loanCalculator = (function () {
       dispTotalRepayable.text(convertValsForDisplay(valueStore.totalRepayable));
       dispTotalCost.text(convertValsForDisplay(valueStore.totalCostOfLoan));
     }
-
-
 
     function getSaverLoanSavingsAmount() {
       valueStore.minAmount = results[0].minAmount;
@@ -278,15 +277,17 @@ const loanCalculator = (function () {
     return Math.log(num / den) / Math.log(1 + monthlyRate);
   }
  
+  //calculate monthly apr from annual
   let monthlyApr = function (apr) {
     var apr = 1 + apr / 100;
     apr = Math.pow(apr, 1 / 12) - 1;
     return apr * 100;
   };
 
-  //consolidation loan functionality wrapped within the IIFE
-  let consolidationLoanEvents = (function(){
+  //consolidation loan functionality 
+  let consolidationLoanEvents = function(){
     let conValues = {};
+    checkInputValuesExist();
     //add row
     $('.js-add-debt-input-row').on('click', function(e){
       e.preventDefault();
@@ -297,20 +298,27 @@ const loanCalculator = (function () {
     });
 
     //remove row
-    $('.con-items').on('click','.js-con-item-delete', function(e){
+    $('.con-calc-input').on('click','.js-con-item-delete', function(e){
       e.preventDefault();
       $(this).closest('.con-items__repeater').remove();
+      calcRepaymentSum();
       funcBundle(); 
     });
 
     //repayment and balance input event bindings
-    $('.con-items').on('blur', '.js-repayment-input, .js-balance-input', function () { 
-      $(this).val(function (i, v) {
-        return '£' + v.replace('£', ''); 
-      });     
+    $('.con-calc-input').on('blur', '.js-repayment-input, .js-balance-input', function () { 
+      prefixPoundSign($(this)); 
+      calcRepaymentSum(); 
       funcBundle();
     });
     
+    //watch changes to repayment total input
+    $('.js-repayment-total-input').on('blur',function(){
+      prefixPoundSign($(this));
+      conValues.repaymentSum = getSum($(this));
+      funcBundle();      
+    });
+
     //calculate repayment and balance sum 
     function calcRepaymentSum(){
       let arr = ['.js-repayment-input', '.js-balance-input'];
@@ -324,6 +332,14 @@ const loanCalculator = (function () {
       });
     }
 
+    //add pound sign to input
+    function prefixPoundSign(el){
+      el.val(function (i, v) {
+        return '£' + v.replace('£', '');
+      });   
+    }
+
+    //add-up values in balance and repayment inputs
     function getSum(el) {
       let sum = 0;
       $(el).each(function () {
@@ -347,6 +363,7 @@ const loanCalculator = (function () {
       conValues.pmtComparisonVals = pmtFunc(valueStore.rateComparison, conValues.term, conValues.balanceSum);
     }
 
+    //display loan details on screen
     function displayValues(){
       $('.js-repayment-total-input').val(convertValsForDisplay(conValues.repaymentSum));
       $('.js-con-loan-amt-output').text(convertValsForDisplay(conValues.balanceSum));
@@ -358,18 +375,30 @@ const loanCalculator = (function () {
       $('.js-comparison-total-interest-output').text(convertValsForDisplay(conValues.pmtComparisonVals.cost));
     }
 
+    //checking if both balance and repayment inputs aren't zero
+    function checkInputValuesExist(){
+      if (conValues.repaymentSum > 0 && conValues.balanceSum > 0) {
+        $('.calc__results').removeClass('d-none');
+      }
+      else {
+        $('.calc__results').addClass('d-none');
+      }
+    }
+
+    //display of various messages based on the inputs
     function resultSummaryDisplay(){
       let yourResultBox = $('.js-result-message-box'),
           resultsSummaryBox = $('.con-results__summary');
       resultsSummaryBox.addClass('d-none');
-      
+
       if (conValues.balanceSum > results[0].maxAmount){
         yourResultBox.html(results[0].messages.maxLoan);
       }
       else{
         if (isFinite(conValues.term)){
           if (conValues.term > results[0].maxTerm) {
-            yourResultBox.html(results[0].messages.maxTerm);
+            let formattedMsg = results[0].messages.maxTerm.replace('#npertext#', monthsToYears(conValues.term));
+            yourResultBox.html(formattedMsg);
           }
           else if (conValues.term < results[0].minTerm) {
             yourResultBox.html(results[0].messages.minTerm);
@@ -387,13 +416,13 @@ const loanCalculator = (function () {
 
     //bundle the repetitive functions
     function funcBundle(){
-      calcRepaymentSum();
       getRepaymentTerm();      
       getPMTValues(); 
       displayValues();
+      checkInputValuesExist();
       resultSummaryDisplay();
     }
-  })();
+  };
 
 })();
 

@@ -64,7 +64,7 @@
 				</p>
 			</div>
 			<div class="con-repayment__total">
-				<input id="conRepaymentTotal" inputmode="numeric" data-type="currency" type="text" class="js-repayment-total-input form-control" placeholder="£0.00" aria-describedby="conRepaymentTotalHelpTxt">
+				<input id="conRepaymentTotal" inputmode="numeric" data-type="currency" type="text" class="js-repayment-total-input form-control" placeholder="£0.00" aria-label="Total you can afford each month" aria-describedby="conRepaymentTotalHelpTxt">
 			</div>
 		</div>
 	</div>

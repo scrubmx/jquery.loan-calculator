@@ -105,16 +105,15 @@
     "defaultAmount": 300,
     "defaultTerm": 36,
     "messages":{
-      "maxLoan": "<div class=\"results-message message-black\"><strong class=\"results-heading\">Maximum Amount<\/strong><p>The maximum amount we can lend for consolidation is £7,500.<\/p><p>If you owe more than £7,500, a consolidation loan may not be the best option for you.<\/p><p>Visit the <a href=\"https://www.moneyadviceservice.org.uk/en/articles/help-if-youre-struggling-with-debt\" target=\"_blank\">Money Advice Service<\/a> for more information about other ways to reduce debt.<\/p></div>",
+      "maxLoan": "<div class=\"results-msg results-msg--warning\"><strong class=\"results-heading\">Maximum Amount<\/strong><p>The maximum amount we can lend for consolidation is £7,500.<\/p><p>If you owe more than £7,500, a consolidation loan may not be the best option for you.<\/p><p>Visit the <a href=\"https://www.moneyadviceservice.org.uk/en/articles/help-if-youre-struggling-with-debt\" target=\"_blank\">Money Advice Service<\/a> for more information about other ways to reduce debt.<\/p></div>",
       
-      "maxTerm": "<div class=\"results-message message-black\"><strong class=\"results-heading\">Repayment Period Too Long<\/strong><p>Even with our low rates, it would take you <strong>\" + npertext + \"<\/strong> to pay everything off.<\/p><p>The maximum loan term we offer is 5 years.<\/p><p>If you can afford to, consider increasing your repayments to get it paid off sooner.<\/div>",
+      "maxTerm": "<div class=\"results-msg results-msg--warning\"><strong class=\"results-heading\">Repayment Period Too Long<\/strong><p>Even with our low rates, it would take you <strong> #npertext# <\/strong> to pay everything off.<\/p><p>The maximum loan term we offer is 5 years.<\/p><p>If you can afford to, consider increasing your repayments to get it paid off sooner.<\/div>",
 
-      "minTerm": "<div class=\"results-message message-green\"><strong class=\"results-heading\">Nice one<\/strong><p>It looks like you are well on your way to paying everything off already.<\/p><p>Have you thought about opening a <a href=\"https://creditunion.co.uk/savings\">savings account<\/a> with us?<\/p><\/div>",
+      "minTerm": "<div class=\"results-msg results-msg--success\"><strong class=\"results-heading\">Nice one<\/strong><p>It looks like you are well on your way to paying everything off already.<\/p><p>Have you thought about opening a <a href=\"https://creditunion.co.uk/savings\">savings account<\/a> with us?<\/p><\/div>",
 
-      "unPayable": "<div class=\"results-message message-red\"><strong class=\"results-heading\">Sorry<\/strong><p>At this repayment amount, you are unlikely to ever be able to reduce the amount you owe.<\/p><p>Consider increasing the amount you repay each month if you can afford to.<\/p><p>Visit the <a href=\"https://www.moneyadviceservice.org.uk/en/articles/help-if-youre-struggling-with-debt\" target=\"_blank\">Money Advice Service<\/a> for more information about other ways to reduce debt.<\/p><\/div>",
+      "unPayable": "<div class=\"results-msg results-msg--danger\"><strong class=\"results-heading\">Sorry<\/strong><p>At this repayment amount, you are unlikely to ever be able to reduce the amount you owe.<\/p><p>Consider increasing the amount you repay each month if you can afford to.<\/p><p>Visit the <a href=\"https://www.moneyadviceservice.org.uk/en/articles/help-if-youre-struggling-with-debt\" target=\"_blank\">Money Advice Service<\/a> for more information about other ways to reduce debt.<\/p><\/div>",
 
-      "payable": "<p>Good news. we may be able to save you money.<\/p>"
+      "payable": "<div class=\"results-msg results-msg--success\"><p class=\"mb-0\">Good news. we may be able to save you money.<\/p><\/div>"
     }
-    
   }
 ]

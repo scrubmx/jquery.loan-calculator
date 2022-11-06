@@ -959,6 +959,25 @@
   border-bottom: none;
 }
 
+.results-msg {
+  padding: 10px 15px;
+  color: inherit;
+}
+.results-msg--warning {
+  background: #f5d505;
+}
+.results-msg--danger {
+  background: #f7c2cc;
+}
+.results-msg--success {
+  background: #038750;
+  color: #fff;
+}
+
 .d-none {
   display: none;
+}
+
+.mb-0 {
+  margin-bottom: 0;
 }
