@@ -316,6 +316,9 @@ const loanCalculator = (function () {
     $('.js-repayment-total-input').on('blur',function(){
       prefixPoundSign($(this));
       conValues.repaymentSum = getSum($(this));
+      if(conValues.repaymentSum <= 0){
+        calcRepaymentSum();
+      }
       funcBundle();      
     });
 
