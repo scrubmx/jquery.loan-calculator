@@ -113,7 +113,7 @@
 
       "unPayable": "<div class=\"results-msg results-msg--danger\"><strong class=\"results-heading\">Sorry<\/strong><p>At this repayment amount, you are unlikely to ever be able to reduce the amount you owe.<\/p><p>Consider increasing the amount you repay each month if you can afford to.<\/p><p>Visit the <a href=\"https://www.moneyadviceservice.org.uk/en/articles/help-if-youre-struggling-with-debt\" target=\"_blank\">Money Advice Service<\/a> for more information about other ways to reduce debt.<\/p><\/div>",
 
-      "payable": "<div class=\"results-msg results-msg--success\"><p class=\"mb-0\">Good news. we may be able to save you money.<\/p><\/div>"
+      "payable": "<div class=\"results-msg results-msg--success\"><p class=\"mb-0\">Good news. We may be able to save you money.<\/p><\/div>"
     }
   }
 ]

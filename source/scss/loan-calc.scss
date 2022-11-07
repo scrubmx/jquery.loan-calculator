@@ -274,13 +274,19 @@ $result-success-bg: #038750;
 
 .results-msg {
   padding: 10px 15px;
+  margin-bottom: 20px;
   color: inherit;
+
+a {
+    color: inherit;
+  }
 
   &--warning{
     background: $result-warning-bg;
   }
   &--danger{
     background: $result-danger-bg;
+
   }
 
   &--success{
@@ -289,10 +295,16 @@ $result-success-bg: #038750;
   }
 }
 
+
+//Miscellaneous
 .d-none {
   display: none;
 }
 
 .mb-0{
   margin-bottom: 0;
+}
+
+.btn-add-row{
+  text-decoration: none!important;
 }

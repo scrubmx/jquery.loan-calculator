@@ -1,8 +1,8 @@
-//@import "no-slider";
+
 @import "bootstrap-variables";
 @import "spacing";
 @import "mixins";
 @import "bootstrap-config"; 
-//@import "old";
-@import "slider";
-@import "loan-calc";
+
+@import "slider"; //noUi slider overrides
+@import "loan-calc"; //all loan calc styling

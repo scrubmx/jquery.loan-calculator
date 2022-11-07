@@ -17,13 +17,14 @@ const dir = {
 
 const paths = {
   css:    'css/',
-  js:     'js/'
+  js:     'js/',
+  scss:   'scss/'
 };
 
 const packages = {
   bootstrapCSS: 'bootstrap/dist/css/bootstrap.css',
   appSCSS: 'scss/app.scss',
-  nouisliderCSS: 'nouislider/distribute/*.css',
+  nouisliderCSS: 'nouislider/distribute/nouislider.css',
 
   jquery: 'jquery/dist/jquery.js',
   wNumb: 'wnumb/wNumb.js',
@@ -41,7 +42,7 @@ function scriptsBundle(){
     dir.source + paths.js + packages.loanCalc
   ])
   .pipe(concat('loan-calc.js'))
-  //.pipe(uglify())   <----------- ENABLE IN PRODUCTION 
+  .pipe(uglify())   //<----------- ENABLE IN PRODUCTION 
   .pipe(dest(dir.build + 'js'));
 }
 
@@ -49,10 +50,9 @@ function stylesBundle(){
   return src([
     //dir.node + packages.bootstrapCSS,
     dir.node + packages.nouisliderCSS,
-    dir.source + packages.appSCSS
-    //(dir.source+'scss/').pipe(sass()).pipe(postcss([autoprefixer(),cssnano()])) <----------- ENABLE CSS NANO IN PRODUCTION 
+    dir.source + packages.appSCSS 
   ])
-  .pipe(sass()).pipe(postcss([autoprefixer()]))
+  .pipe(sass()).pipe(postcss([autoprefixer(), cssnano()]))
   .pipe(concat('loan-calc.css'))
   .pipe(dest(dir.build + 'css'))
 }

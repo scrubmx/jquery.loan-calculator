@@ -51,7 +51,7 @@
 					<span class="sr-only">Delete row</span>
 				</a>
 			</div>
-			<a href="#" role="button" class="btn btn-default js-add-debt-input-row">Add row</a>
+			<a href="#" role="button" class="btn btn-add-row js-add-debt-input-row">Add another</a>
 		</div>
 		<div class="con-repayment">
 			<div class="con-repayment__label">

@@ -123,7 +123,7 @@ const loanCalculator = (function () {
       //assign CON loan vars
       valueStore.apr = results[0].rate;
       valueStore.rateComparison = results[0].rateComparison;
-      consolidationLoanEvents();
+      consolidationLoanEvents(); // CON loan functionality
     }
 
     //Write slider amount on page
