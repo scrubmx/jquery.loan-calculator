@@ -1,29 +1,37 @@
 {
-  "name": "jquery.loan-calculator",
-  "version": "3.1.3",
-  "main": "js/jquery.loan-calculator.js",
-  "description": "Amortized Loan Calculator jQuery Plugin",
-  "author": "Jorge González",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/scrubmx/jquery.loan-calculator"
+  "name": "lmcu-loan-calculator",
+  "version": "2.0.0",
+  "description": "A Wordpress plugin to create a simple loan calculator from a shortcode configurable via shortcode attributes",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "bootstrap": "^4.5.3",
+    "jquery": "^3.5.1",
+    "nouislider": "^14.6.2",
+    "popper.js": "^1.16.1",
+    "wnumb": "^1.2.0"
   },
-  "license": "MIT",
   "devDependencies": {
-    "jasmine-core": "^2.4.1",
-    "jquery": "^2.1.4",
-    "karma": "^0.13.15",
-    "karma-jasmine": "^0.3.6",
-    "karma-jasmine-ajax": "^0.1.13",
-    "karma-jasmine-jquery": "^0.1.1",
-    "karma-phantomjs-launcher": "^1.0.2",
-    "phantomjs": "^1.9.18"
-  },
-  "bugs": {
-    "url": "https://github.com/scrubmx/jquery.loan-calculator/issues"
+    "autoprefixer": "^10.4.7",
+    "cssnano": "^5.1.12",
+    "gulp": "^4.0.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-postcss": "^9.0.1",
+    "gulp-sass": "^5.1.0",
+    "gulp-sourcemaps": "^3.0.0",
+    "gulp-uglify": "^3.0.2",
+    "sass": "^1.53.0"
   },
   "scripts": {
-    "test": "node_modules/karma/bin/karma start karma.conf.js --single-run",
-    "watch": "node_modules/karma/bin/karma start karma.conf.js"
-  }
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lmculondon/lmcu-loan-calculator.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lmculondon/lmcu-loan-calculator/issues"
+  },
+  "homepage": "https://github.com/lmculondon/lmcu-loan-calculator#readme"
 }

@@ -1,0 +1,119 @@
+[
+  {
+    "productCode": "SAV",
+    "rate": 4.5,
+    "maxTerm": 120,
+    "minTerm": 3,
+    "maxAmount": 15000,
+    "minAmount": 100,
+    "defaultAmount": 300,
+    "defaultTerm": 36,
+    "step": 25,
+    "desc": "Lorem ipsum dolor",
+    "displayName": "Personal Loan"
+  },
+  {
+    "productCode": "BOO",
+    "rate": 42.58,
+    "maxTerm": 24,
+    "minTerm": 3,
+    "maxAmount": 1200,
+    "minAmount": 100,
+    "defaultAmount": 600,
+    "defaultTerm": 9,
+    "step": 25,
+    "desc": "Lorem ipsum dolor",
+    "displayName": "Personal Loan"
+  },
+  {
+    "productCode": "HOM",
+    "rate": 7,
+    "maxTerm": 84,
+    "minTerm": 12,
+    "maxAmount": 25000,
+    "minAmount": 15000,
+    "defaultAmount": 17500,
+    "defaultTerm": 36,
+    "step": 25,
+    "desc": "Lorem ipsum dolor",
+    "displayName": "Personal Loan",
+    "variableRates": {
+      "15000": {
+        "apr": 7.4
+      },
+      "25000": {
+        "apr": 7
+      }
+    }
+  },
+  {
+    "productCode": "PER",
+    "rate": 7,
+    "maxTerm": 84,
+    "minTerm": 3,
+    "maxAmount": 15000,
+    "minAmount": 100,
+    "defaultAmount": 7500,
+    "defaultTerm": 36,
+    "step": 25,
+    "desc": "Lorem ipsum dolor",
+    "displayName": "Personal Loan",
+    "variableTerms": {
+      "2499": {
+        "minTerm": 3,
+        "maxTerm": 36
+      },
+      "4999": {
+        "minTerm": 3,
+        "maxTerm": 60
+      },
+      "14999": {
+        "minTerm": 6,
+        "maxTerm": 60
+      },
+      "25001": {
+        "minTerm": 12,
+        "maxTerm": 84
+      }
+    },
+    "variableRates": {
+      "2499": {
+        "apr": 19.50
+      },
+      "4999": {
+        "apr": 16.68
+      },
+      "7499": {
+        "apr": 12.68
+      },
+      "9999": {
+        "apr": 9.20
+      },
+      "15001": {
+        "apr": 7.4
+      }
+    }
+  },
+  {
+    "productCode": "CON",
+    "rate": 16.45,
+    "rateComparison": 26.03,
+    "maxTerm": 60,
+    "minTerm": 2,
+    "maxAmount": 7500,
+    "minAmount": 100,
+    "defaultAmount": 300,
+    "defaultTerm": 36,
+    "messages":{
+      "maxLoan": "<div class=\"results-msg results-msg--warning\"><strong class=\"results-heading\">Maximum Amount<\/strong><p>The maximum amount we can lend for consolidation is £7,500.<\/p><p>If you owe more than £7,500, a consolidation loan may not be the best option for you.<\/p><p>Visit the <a href=\"https://www.moneyadviceservice.org.uk/en/articles/help-if-youre-struggling-with-debt\" target=\"_blank\">Money Advice Service<\/a> for more information about other ways to reduce debt.<\/p></div>",
+      
+      "maxTerm": "<div class=\"results-msg results-msg--warning\"><strong class=\"results-heading\">Repayment Period Too Long<\/strong><p>Even with our low rates, it would take you <strong> #npertext# <\/strong> to pay everything off.<\/p><p>The maximum loan term we offer is 5 years.<\/p><p>If you can afford to, consider increasing your repayments to get it paid off sooner.<\/div>",
+
+      "minTerm": "<div class=\"results-msg results-msg--success\"><strong class=\"results-heading\">Nice one<\/strong><p>It looks like you are well on your way to paying everything off already.<\/p><p>Have you thought about opening a <a href=\"https://creditunion.co.uk/savings\">savings account<\/a> with us?<\/p><\/div>",
+
+      "unPayable": "<div class=\"results-msg results-msg--danger\"><strong class=\"results-heading\">Sorry<\/strong><p>At this repayment amount, you are unlikely to ever be able to reduce the amount you owe.<\/p><p>Consider increasing the amount you repay each month if you can afford to.<\/p><p>Visit the <a href=\"https://www.moneyadviceservice.org.uk/en/articles/help-if-youre-struggling-with-debt\" target=\"_blank\">Money Advice Service<\/a> for more information about other ways to reduce debt.<\/p><\/div>",
+
+      "payable": "<div class=\"results-msg results-msg--success\"><p class=\"mb-0\">Good news. We may be able to save you money.<\/p><\/div>"
+    }
+  }
+]
